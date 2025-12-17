@@ -1,24 +1,47 @@
-const elev_navn = document.getElementById("navn").value;
-const pc = document.getElementById("pc_nummer").value;
-const dato_lånt = document.getElementById("dato_lånt").value;
-const leverings_dato = document.getElementById("leverings_dato").value;
+const API_URL = "/rentals";
 
-const liste = document.getElementById("liste");
+// Load list when page opens
+async function loadRentals() {
+    const res = await fetch(API_URL);
+    const rentals = await res.json();
 
-function update_list() {
-    const ny_utlån = document.createElement("div");
-    const navn_text = document.createElement("h5");
-    const pc_text = document.createElement("h5");
-    const lånt_dato = document.createElement("h5");
-    const levering_dato = document.createElement("h5");
+    const list = document.getElementById("liste");
+    list.innerHTML = "";
 
-    navn_text.innerText = elev_navn;
-    pc_text.innerText = pc;
-    lånt_dato.innerText = dato_lånt;
-    levering_dato.innerText = leverings_dato;
+    rentals.forEach(r => {
+        const row = document.createElement("div");
+        row.style.display = "flex";
 
-    ny_utlån.appendChild(navn_text)
-    ny_utlån.appendChild(pc_text)
-    ny_utlån.appendChild(lånt_dato)
-    ny_utlån.appendChild(levering_dato)
+        row.innerHTML = `
+            <h5 style="width:150px">${r.student_name}</h5>
+            <h5 style="width:100px">${r.pc_number}</h5>
+            <h5 style="width:150px">${r.rented_date}</h5>
+            <h5 style="width:150px">${r.return_date}</h5>
+        `;
+
+        list.appendChild(row);
+    });
+}
+
+// Add new rental
+async function addRental() {
+    const data = {
+        student_name: document.getElementById("navn").value,
+        pc_number: document.getElementById("pc_nummer").value,
+        rented_date: document.getElementById("dato_lånt").value,
+        return_date: document.getElementById("leverings_dato").value
+    };
+
+    await fetch(API_URL, {
+        method: "POST",
+        headers: { "content-Type": "application/json" },
+        body: JSON.stringify(data)
+    });
+
+    window.location.href = "/";
+}
+
+// Auto-load list
+if (document.getElementById("liste")) {
+    loadRentals();
 }
