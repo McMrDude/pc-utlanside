@@ -1,0 +1,58 @@
+import express from "express";
+import cors from "cors";
+import pg from "pg";
+
+const app = express();
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Database connection
+const pool = new pg.Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false
+});
+
+// Test route
+app.get("/", (req, res) => {
+  res.send("PC Rental API is running");
+});
+
+// Get all rentals
+app.get("/rentals", async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT * FROM rentals ORDER BY created_at DESC"
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Database error" });
+  }
+});
+
+// Add a rental
+app.post("/rentals", async (req, res) => {
+  try {
+    const { student_name, pc_number, rented_date, return_date } = req.body;
+
+    await pool.query(
+      `INSERT INTO rentals
+       (student_name, pc_number, rented_date, return_date)
+       VALUES ($1, $2, $3, $4)`,
+      [student_name, pc_number, rented_date, return_date]
+    );
+
+    res.sendStatus(201);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Insert failed" });
+  }
+});
+
+// Start server
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
