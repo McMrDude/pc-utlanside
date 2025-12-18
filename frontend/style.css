@@ -4,13 +4,14 @@ body {
     background-color: rgb(154, 154, 154);
 }
 
-h4 {
-    margin: 10px;
-
+#listDiv {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
 }
 
-.lineBreak {
-    border: 1px solid rgb(97, 97, 97);
-    height: 80%; 
-    margin-top: 3px
+h4 {
+    margin: 0px;
+    margin-right: 10px;
+    border-right: 2px solid black;
+    text-align: center;
 }

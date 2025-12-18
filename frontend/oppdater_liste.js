@@ -5,7 +5,7 @@ async function loadRentals() {
     const res = await fetch(API_URL);
     const rentals = await res.json();
 
-    const list = document.getElementById("liste");
+    const list = document.getElementById("listDiv");
     list.innerHTML = "";
 
     rentals.forEach(r => {
@@ -52,6 +52,6 @@ function formatDate(dateString) {
 }
 
 // Auto-load list
-if (document.getElementById("liste")) {
+if (document.getElementById("listDiv")) {
     loadRentals();
 }
