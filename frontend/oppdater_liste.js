@@ -13,10 +13,10 @@ async function loadRentals() {
         row.style.display = "flex";
 
         row.innerHTML = `
-            <h5 style="width:150px">${r.student_name}</h5>
+            <h5 style="width:50px">${r.student_name}</h5>
             <h5 style="width:100px">${r.pc_number}</h5>
-            <h5 style="width:150px">${r.rented_date}</h5>
-            <h5 style="width:150px">${r.return_date}</h5>
+            <h5 style="width:50px">${r.rented_date}</h5>
+            <h5 style="width:50px">${r.return_date}</h5>
         `;
 
         list.appendChild(row);
