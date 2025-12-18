@@ -15,8 +15,8 @@ async function loadRentals() {
         row.innerHTML = `
             <h5 style="width:150px">${r.student_name}</h5>
             <h5 style="width:100px">${r.pc_number}</h5>
-            <h5 style="width:150px">${r.rented_date}</h5>
-            <h5 style="width:150px">${r.return_date}</h5>
+            <h5 style="width:150px">${formatDate(r.rented_date)}</h5>
+            <h5 style="width:150px">${formatDate(r.return_date)}</h5>
         `;
 
         list.appendChild(row);
@@ -39,6 +39,16 @@ async function addRental() {
     });
 
     window.location.href = "/";
+}
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+
+    const month = string(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const year = date.getFullYear();
+
+    return `${month}/${day}/${year}`;
 }
 
 // Auto-load list
