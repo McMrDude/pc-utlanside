@@ -8,7 +8,7 @@ async function loadRentals() {
     const list = document.getElementById("listDiv");
 
     rentals.forEach(r => {
-        row = `
+        const row = `
             <h5 style="width:150px">${r.student_name}</h5>
             <h5 style="width:100px">${r.pc_number}</h5>
             <h5 style="width:150px">${formatDate(r.rented_date)}</h5>
