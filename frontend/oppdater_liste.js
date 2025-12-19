@@ -6,10 +6,9 @@ async function loadRentals() {
     const rentals = await res.json();
 
     const list = document.getElementById("listDiv");
-    list.innerHTML = "";
 
     rentals.forEach(r => {
-        `
+        row = `
             <h5 style="width:150px">${r.student_name}</h5>
             <h5 style="width:100px">${r.pc_number}</h5>
             <h5 style="width:150px">${formatDate(r.rented_date)}</h5>
