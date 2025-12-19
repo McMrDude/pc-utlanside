@@ -6,23 +6,19 @@ async function loadRentals() {
     const rentals = await res.json();
 
     const list = document.getElementById("listDiv");
-    list.innerHTML = " "
+    list.innerHTML = "";
 
     rentals.forEach(r => {
         const row = document.createElement("div");
 
-        row.innerHTML = `<h5 style="width:150px">${r.student_name}</h5>`;
+        row.innerHTML = <h5 style="width:150px">${r.student_name}</h5>;
         list.appendChild(row)
-        row.innerHTML = " "
-        row.innerHTML = `<h5 style="width:100px">${r.pc_number}</h5>`;
+        row.innerHTML = <h5 style="width:100px">${r.pc_number}</h5>;
         list.appendChild(row)
-        row.innerHTML = " "
-        row.innerHTML = `<h5 style="width:150px">${formatDate(r.rented_date)}</h5>`;
+        row.innerHTML = <h5 style="width:150px">${formatDate(r.rented_date)}</h5>;
         list.appendChild(row)
-        row.innerHTML = " "
-        row.innerHTML = `<h5 style="width:150px">${formatDate(r.return_date)}</h5>`;
+        row.innerHTML = <h5 style="width:150px">${formatDate(r.return_date)}</h5>;
         list.appendChild(row)
-        row.innerHTML = " "
     });
 }
 
