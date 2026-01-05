@@ -16,7 +16,7 @@ async function loadRentals() {
     
     headers.forEach(r => {
         const row = document.createElement("div");
-        row.innerHTML = row[r];
+        row.innerHTML = headers[r];
 
         list.appendChild(row)
     })
