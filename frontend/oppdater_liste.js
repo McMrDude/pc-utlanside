@@ -14,11 +14,26 @@ async function loadRentals() {
         
         row.innerHTML = ` 
         <h5 style="width:150px">${r.student_name}</h5> 
-        <h5 style="width:100px">${r.pc_number}</h5> 
-        <h5 style="width:150px">${formatDate(r.rented_date)}</h5> 
-        <h5 style="width:150px">${formatDate(r.return_date)}</h5>
         `; 
         
+        list.appendChild(row);
+
+        row.innerHTML = ` 
+        <h5 style="width:100px">${r.pc_number}</h5> 
+        `; 
+
+        list.appendChild(row);
+
+        row.innerHTML = ` 
+        <h5 style="width:150px">${formatDate(r.rented_date)}</h5> 
+        `; 
+
+        list.appendChild(row);
+
+        row.innerHTML = ` 
+        <h5 style="width:150px">${formatDate(r.return_date)}</h5>
+        `; 
+
         list.appendChild(row);
     });
 }

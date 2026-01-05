@@ -9,12 +9,6 @@ body {
     grid-template-columns: auto auto auto auto;
 }
 
-#listDiv {
-    display: grid;
-    grid-template-columns: auto;
-
-}
-
 h4 {
     margin: 0px;
     border-right: 2px solid black;
