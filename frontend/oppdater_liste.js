@@ -9,10 +9,10 @@ async function loadRentals() {
     const list = document.getElementById("listDiv");
     list.innerHTML = "";
 
-    const headers = [`<h4>Elev navn</h4>`,
-                    `<h4>PC nummer</h4>`,
-                    `<h4>Dato lånet</h4>`,
-                    `<h4 style="border-right: none;">Leverings dato</h4>`];
+    const headers = ["`<h4>Elev navn</h4>`",
+                    "`<h4>PC nummer</h4>`",
+                    "`<h4>Dato lånet</h4>`",
+                    '`<h4 style="border-right: none;">Leverings dato</h4>`'];
     
     headers.forEach(r => {
         const row = document.createElement("div");
@@ -22,10 +22,10 @@ async function loadRentals() {
     })
 
     rentals.forEach(r => {
-        const rows = [`<h5 style="width:150px">${r.student_name}</h5>`,
-                    `<h5 style="width:100px">${r.pc_number}</h5>`,
-                    `<h5 style="width:150px">${formatDate(r.rented_date)}</h5>`,
-                    `<h5 style="width:150px">${formatDate(r.return_date)}</h5>`];
+        const rows = ['`<h5 style="width:150px">${r.student_name}</h5>`',
+                    '`<h5 style="width:100px">${r.pc_number}</h5>`',
+                    '`<h5 style="width:150px">${formatDate(r.rented_date)}</h5>`',
+                    '`<h5 style="width:150px">${formatDate(r.return_date)}</h5>`'];
 
         rows.forEach(t => {
             const row = document.createElement("div"); 
