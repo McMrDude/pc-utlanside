@@ -16,7 +16,7 @@ async function loadRentals() {
     
     headers.forEach(r => {
         const row = document.createElement("div");
-        row.innerHTML = headers[r];
+        row.innerHTML = r;
 
         list.appendChild(row)
     })
@@ -31,7 +31,7 @@ async function loadRentals() {
             const row = document.createElement("div"); 
             row.style.display = "flex"; 
 
-            row.innerHTML = rows[t]; 
+            row.innerHTML = t; 
             
             list.appendChild(row);
         });
