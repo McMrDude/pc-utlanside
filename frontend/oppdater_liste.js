@@ -30,6 +30,7 @@ async function loadRentals() {
         rows.forEach(t => {
             const row = document.createElement("div"); 
             row.style.display = "flex"; 
+            row.style.width = "100%";
 
             row.innerHTML = t; 
             
