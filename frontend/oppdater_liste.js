@@ -9,10 +9,10 @@ async function loadRentals() {
     const list = document.getElementById("listDiv");
     list.innerHTML = "";
 
-    const headers = ["`<h4>Elev navn</h4>`",
-                    "`<h4>PC nummer</h4>`",
-                    "`<h4>Dato lånet</h4>`",
-                    '`<h4 style="border-right: none;">Leverings dato</h4>`'];
+    const headers = [`<h4>Elev navn</h4>`,
+                    `<h4>PC nummer</h4>`,
+                    `<h4>Dato lånet</h4>`,
+                    `<h4 style="border-right: none;">Leverings dato</h4>`];
     
     headers.forEach(r => {
         const row = document.createElement("div");
