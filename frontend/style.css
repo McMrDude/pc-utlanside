@@ -23,6 +23,7 @@ h4 {
 }
 
 h5 {
-    font-size: 25px;
-    padding-left: 80px;padding-right: 80px;
+    font-size: 20px;
+    width: 250px;
+    padding-left: 40px;padding-right: 40px;
 }
