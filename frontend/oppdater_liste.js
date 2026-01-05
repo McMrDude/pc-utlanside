@@ -2,10 +2,6 @@ const API_URL = "/rentals";
 
 // Load list when page opens
 async function loadRentals() {
-    const rows = [`<h5 style="width:150px">${r.student_name}</h5>`,
-            `<h5 style="width:100px">${r.pc_number}</h5>`,
-            `<h5 style="width:150px">${formatDate(r.rented_date)}</h5>`,
-            `<h5 style="width:150px">${formatDate(r.return_date)}</h5>`];
 
     const res = await fetch(API_URL);
     const rentals = await res.json();
@@ -14,6 +10,11 @@ async function loadRentals() {
     list.innerHTML = "";
 
     rentals.forEach(r => {
+        const rows = [`<h5 style="width:150px">${r.student_name}</h5>`,
+            `<h5 style="width:100px">${r.pc_number}</h5>`,
+            `<h5 style="width:150px">${formatDate(r.rented_date)}</h5>`,
+            `<h5 style="width:150px">${formatDate(r.return_date)}</h5>`];
+
         rows.forEach(t => {
             const row = document.createElement("div"); 
             row.style.display = "flex"; 
@@ -21,7 +22,7 @@ async function loadRentals() {
             row.innerHTML = rows[t]; 
             
             list.appendChild(row);
-        })
+        });
     });
 }
 
