@@ -9,14 +9,9 @@ body {
     grid-template-columns: auto auto auto auto;
 }
 
-h4 {
+h4, h5 {
     margin: 0px;
     border-right: 2px solid black;
     border-bottom: 1px solid black;
     text-align: center;
-}
-
-h5 {
-    font-size: 15px;
-    padding-left: 40px;padding-right: 40px;
 }
