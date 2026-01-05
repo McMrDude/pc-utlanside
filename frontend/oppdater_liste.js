@@ -9,32 +9,38 @@ async function loadRentals() {
     list.innerHTML = "";
 
     rentals.forEach(r => {
-        const row = document.createElement("div"); 
+        const name = document.createElement("div"); 
+        row.style.display = "flex"; 
+        const number = document.createElement("div"); 
+        row.style.display = "flex"; 
+        const rented = document.createElement("div"); 
+        row.style.display = "flex"; 
+        const returned = document.createElement("div"); 
         row.style.display = "flex"; 
         
-        row.innerHTML = ` 
+        name.innerHTML = ` 
         <h5 style="width:150px">${r.student_name}</h5> 
         `; 
         
-        list.appendChild(row);
+        list.appendChild(name);
 
-        row.innerHTML = ` 
+        number.innerHTML = ` 
         <h5 style="width:100px">${r.pc_number}</h5> 
         `; 
 
-        list.appendChild(row);
+        list.appendChild(number);
 
-        row.innerHTML = ` 
+        rented.innerHTML = ` 
         <h5 style="width:150px">${formatDate(r.rented_date)}</h5> 
         `; 
 
-        list.appendChild(row);
+        list.appendChild(rented);
 
-        row.innerHTML = ` 
+        returned.innerHTML = ` 
         <h5 style="width:150px">${formatDate(r.return_date)}</h5>
         `; 
 
-        list.appendChild(row);
+        list.appendChild(returned);
     });
 }
 
