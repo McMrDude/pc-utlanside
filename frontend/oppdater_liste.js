@@ -10,13 +10,13 @@ async function loadRentals() {
 
     rentals.forEach(r => {
         const name = document.createElement("div"); 
-        row.style.display = "flex"; 
+        name.style.display = "flex"; 
         const number = document.createElement("div"); 
-        row.style.display = "flex"; 
+        number.style.display = "flex"; 
         const rented = document.createElement("div"); 
-        row.style.display = "flex"; 
+        rented.style.display = "flex"; 
         const returned = document.createElement("div"); 
-        row.style.display = "flex"; 
+        returned.style.display = "flex"; 
         
         name.innerHTML = ` 
         <h5 style="width:150px">${r.student_name}</h5> 
