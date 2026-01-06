@@ -22,10 +22,10 @@ async function loadRentals() {
     })
 
     rentals.forEach(r => {
-        const rows = [`<h5 style="100%">${r.student_name}</h5>`,
-                    `<h5 style="100%">${r.pc_number}</h5>`,
-                    `<h5 style="100%">${formatDate(r.rented_date)}</h5>`,
-                    `<h5 style="100%">${formatDate(r.return_date)}</h5>`];
+        const rows = [`<h5 style="width:100%">${r.student_name}</h5>`,
+                    `<h5 style="width:100%">${r.pc_number}</h5>`,
+                    `<h5 style="width:100%">${formatDate(r.rented_date)}</h5>`,
+                    `<h5 style="width:100%">${formatDate(r.return_date)}</h5>`];
 
         rows.forEach(t => {
             const row = document.createElement("h5"); 
