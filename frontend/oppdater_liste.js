@@ -25,8 +25,9 @@ async function loadRentals() {
 
     rentals.forEach(r => {
         const return_date = new Date(r.return_date).getTime();
-        const day = today - return_date;
-        const rows = [`<h5 style="width:100%>${day.toString}</h5>`,
+        daysRemaining = (return_date - today) / (1000 * 60 * 60 * 24)
+
+        const rows = [`<h5 style="width:100%>${daysRemaining}</h5>`,
                     `<h5 style="width:100%">${r.student_name}</h5>`,
                     `<h5 style="width:100%">${r.pc_number}</h5>`,
                     `<h5 style="width:100%">${formatDate(r.rented_date)}</h5>`,
