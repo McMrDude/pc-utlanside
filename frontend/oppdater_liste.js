@@ -28,8 +28,7 @@ async function loadRentals() {
                     `<h5 style="100%">${formatDate(r.return_date)}</h5>`];
 
         rows.forEach(t => {
-            const row = document.createElement("div"); 
-            row.style.display = "flex"; 
+            const row = document.createElement("h5"); 
 
             row.innerHTML = t; 
             
