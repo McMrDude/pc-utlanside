@@ -24,7 +24,8 @@ async function loadRentals() {
     })
 
     rentals.forEach(r => {
-        const rows = [`<h5 style="width:100%>${today - r.return_date}</h5>`,
+        const day = today - formatDate(r.return_date);
+        const rows = [`<h5 style="width:100%>${day.toString()}</h5>`,
                     `<h5 style="width:100%">${r.student_name}</h5>`,
                     `<h5 style="width:100%">${r.pc_number}</h5>`,
                     `<h5 style="width:100%">${formatDate(r.rented_date)}</h5>`,
