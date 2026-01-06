@@ -26,7 +26,7 @@ async function loadRentals() {
 
     rentals.forEach(r => {
         const return_date = new Date(r.return_date).getTime();
-        const daysRemaining = Math.ceil((return_date - today) / (1000*60*60*24));
+        const daysRemaining = Math.ceil((return_date - today) / (1000*60*60*24)) - 1;
 
         const rows = [`<h5 style="width:100%">${daysRemaining.toString()}</h5>`,
                     `<h5 style="width:100%">${r.student_name}</h5>`,
