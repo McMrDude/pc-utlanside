@@ -2,7 +2,8 @@ const API_URL = "/rentals";
 
 // Load list when page opens
 async function loadRentals() {
-    const today = Date.now();
+    const today = new Date();
+    today.setHours(0,0,0,0);
 
     const res = await fetch(API_URL);
     const rentals = await res.json();
@@ -25,7 +26,7 @@ async function loadRentals() {
 
     rentals.forEach(r => {
         const return_date = new Date(r.return_date).getTime();
-        daysRemaining = (return_date - today) / (1000 * 60 * 60 * 24)
+        const daysRemaining = Math.ceil((return_date - today) / (1000*60*60*24));
 
         const rows = [`<h5 style="width:100%>${daysRemaining}</h5>`,
                     `<h5 style="width:100%">${r.student_name}</h5>`,
