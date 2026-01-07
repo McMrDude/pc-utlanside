@@ -40,7 +40,7 @@ async function loadRentals() {
 
             row.innerHTML = t; 
 
-            if (e <= 0) {
+            if (e === 0) {
                 row.style.backgroundColor = "green";
                 if (daysRemaining < 0) {
                     row.style.backgroundColor = "darkred"
