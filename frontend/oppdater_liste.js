@@ -39,9 +39,8 @@ async function loadRentals() {
 
             row.innerHTML = t; 
 
-            row.style.backgroundColor = "green";
-
             if (t >= 0) {
+                row.style.backgroundColor = "green";
                 if (daysRemaining < 0) {
                     row.style.backgroundColor = "darkred"
                     row.innerHTML = "Overdue";
