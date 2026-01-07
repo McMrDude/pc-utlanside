@@ -25,6 +25,7 @@ async function loadRentals() {
     })
 
     rentals.forEach(r => {
+        const e = 0;
         const return_date = new Date(r.return_date).getTime();
         const daysRemaining = Math.ceil((return_date - today) / (1000*60*60*24)) - 1;
 
@@ -34,12 +35,12 @@ async function loadRentals() {
                     `<h5 style="width:100%">${formatDate(r.rented_date)}</h5>`,
                     `<h5 style="width:100%">${formatDate(r.return_date)}</h5>`];
 
-        rows.forEach(t, e => {
+        rows.forEach(t => {
             const row = document.createElement("h5"); 
 
             row.innerHTML = t; 
 
-            if (e >= 0) {
+            if (e <= 0) {
                 row.style.backgroundColor = "green";
                 if (daysRemaining < 0) {
                     row.style.backgroundColor = "darkred"
@@ -58,6 +59,8 @@ async function loadRentals() {
                     row.innerHTML = "Don worry bout it, key"
                 };
             };
+
+            e = 1;
             
             list.appendChild(row);
         });
