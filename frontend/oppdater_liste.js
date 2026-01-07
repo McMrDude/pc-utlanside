@@ -25,7 +25,7 @@ async function loadRentals() {
     })
 
     rentals.forEach(r => {
-        const e = 0;
+        let e = 0;
         const return_date = new Date(r.return_date).getTime();
         const daysRemaining = Math.ceil((return_date - today) / (1000*60*60*24)) - 1;
 
@@ -45,15 +45,12 @@ async function loadRentals() {
                 if (daysRemaining < 0) {
                     row.style.backgroundColor = "darkred"
                     row.innerHTML = `<h5 style="100%">Overdue</h5>`;
-                };
-                if (daysRemaining === 0) {
+                } else if (daysRemaining === 0) {
                     row.style.backgroundColor = "red";
                     row.innerHTML = `<h5 style="100%">Today</h5>`
-                };
-                if (daysRemaining <= 5) {
+                } else if (daysRemaining <= 5) {
                     row.style.backgroundColor = "yellow";
-                };
-                if (daysRemaining > 5) {
+                } else {
                     row.style.backgroundColor = "green";
                 };
             };
