@@ -42,17 +42,21 @@ async function loadRentals() {
             if (t <= 0) {
                 if (daysRemaining < 0) {
                     row.style.backgroundColor = "darkred"
+                    row.innerHTML = "Overdue";
                 };
-                if (daysRemaining == 0) {
+                if (daysRemaining === 0) {
                     row.style.backgroundColor = "red";
+                    row.innerHTML = "Today"
                 };
                 if (daysRemaining <= 5) {
                     row.style.backgroundColor = "yellow";
+                    row.innerHTML = "Soon"
                 };
                 if (daysRemaining > 5) {
                     row.style.backgroundColor = "green";
+                    row.innerHTML = "Don worry bout it, key"
                 };
-            }
+            };
             
             list.appendChild(row);
         });
