@@ -34,12 +34,12 @@ async function loadRentals() {
                     `<h5 style="width:100%">${formatDate(r.rented_date)}</h5>`,
                     `<h5 style="width:100%">${formatDate(r.return_date)}</h5>`];
 
-        rows.forEach(t => {
+        rows.forEach(t, e => {
             const row = document.createElement("h5"); 
 
             row.innerHTML = t; 
 
-            if (t >= 0) {
+            if (e >= 0) {
                 row.style.backgroundColor = "green";
                 if (daysRemaining < 0) {
                     row.style.backgroundColor = "darkred"
