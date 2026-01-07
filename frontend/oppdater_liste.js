@@ -28,7 +28,7 @@ async function loadRentals() {
         const return_date = new Date(r.return_date).getTime();
         const daysRemaining = Math.ceil((return_date - today) / (1000*60*60*24)) - 1;
 
-        const rows = [`<h5 style="width:100%">${daysRemaining.toString()}</h5>`,
+        const rows = [`<h5 style="width:100%">Dager til levering: ${daysRemaining.toString()}</h5>`,
                     `<h5 style="width:100%">${r.student_name}</h5>`,
                     `<h5 style="width:100%">${r.pc_number}</h5>`,
                     `<h5 style="width:100%">${formatDate(r.rented_date)}</h5>`,
@@ -38,6 +38,21 @@ async function loadRentals() {
             const row = document.createElement("h5"); 
 
             row.innerHTML = t; 
+
+            if (t <= 0) {
+                if (daysRemaining < 0) {
+                    row.style.backgroundColor = "darkred"
+                };
+                if (daysRemaining == 0) {
+                    row.style.backgroundColor = "red";
+                };
+                if (daysRemaining <= 5) {
+                    row.style.backgroundColor = "yellow";
+                };
+                if (daysRemaining > 5) {
+                    row.style.backgroundColor = "green";
+                };
+            }
             
             list.appendChild(row);
         });
