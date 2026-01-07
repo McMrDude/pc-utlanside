@@ -44,19 +44,17 @@ async function loadRentals() {
                 row.style.backgroundColor = "green";
                 if (daysRemaining < 0) {
                     row.style.backgroundColor = "darkred"
-                    row.innerHTML = "Overdue";
+                    row.innerHTML = `<h5 style="100%">Overdue</h5>`;
                 };
                 if (daysRemaining === 0) {
                     row.style.backgroundColor = "red";
-                    row.innerHTML = "Today"
+                    row.innerHTML = `<h5 style="100%">Today</h5>`
                 };
                 if (daysRemaining <= 5) {
                     row.style.backgroundColor = "yellow";
-                    row.innerHTML = "Soon"
                 };
                 if (daysRemaining > 5) {
                     row.style.backgroundColor = "green";
-                    row.innerHTML = "Don worry bout it, key"
                 };
             };
 
