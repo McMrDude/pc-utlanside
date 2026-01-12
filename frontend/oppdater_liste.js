@@ -2,24 +2,18 @@ const API_URL = "/rentals";
 
 const list = document.getElementById("listPage");
 const calendar = document.getElementById("calendar");
-
-function checkPages() {
-    if(calendar.style.display == "inline") {
-        list.style.display = " none";
-    } else if(list.style.display == "inline") {
-        calendar.style.display = "none";
-    };
-};
+let calendarInstance
 
 checkPages();
 
 async function openList() {
-    list.style.display = "inline";
-    checkPages();
+    list.style.display = "block";
+    calendar.style.display = "none";
 };
 async function openCalendar() {
-    calendar.style.display = "inline";
-    checkPages();
+    calendarInstance.updateSize();
+    list.style.display = "none";
+    calendar.style.display = "block";
 };
 
 
