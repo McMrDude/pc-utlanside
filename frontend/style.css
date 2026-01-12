@@ -26,4 +26,5 @@ h5 {
 #calendar {
     margin: 40px auto;
     background-color: rgb(189, 189, 189);
+    display: none;
 }

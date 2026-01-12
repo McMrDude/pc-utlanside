@@ -16,9 +16,11 @@ checkPages()
 
 async function openList() {
     list.style.display = "block"
+    checkPages()
 }
 async function openCalendar() {
     calendar.style.display = "block"
+    checkPages()
 }
 
 
