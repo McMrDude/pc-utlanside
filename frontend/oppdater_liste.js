@@ -3,12 +3,21 @@ const API_URL = "/rentals";
 const list = document.getElementById("listPage")
 const calendar = document.getElementById("calendar")
 
+function checkPages() {
+    if(list.style.display == "block") {
+        calendar.style.display = "none"
+    }
+    if(calendar.style.display == "block") {
+        list.style.display = " none"
+    }
+}
+
+checkPages()
+
 async function openList() {
     list.style.display = "block"
-    calendar.style.display = "none"
 }
 async function openCalendar() {
-    list.style.display = "none"
     calendar.style.display = "block"
 }
 
