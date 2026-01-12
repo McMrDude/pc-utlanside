@@ -7,7 +7,7 @@ function checkPages() {
     if(calendar.style.display == "block") {
         list.style.display = " none"
     }
-    else if(list.style.display == "block") {
+    if(list.style.display == "block") {
         calendar.style.display = "none"
     }
 }
