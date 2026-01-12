@@ -1,5 +1,18 @@
 const API_URL = "/rentals";
 
+const list = document.getElementById("listPage")
+const calendar = document.getElementById("calendarPage")
+
+async function openList() {
+    list.style.display = "block"
+    calendar.style.display = "none"
+}
+async function openCalendar() {
+    list.style.display = "none"
+    calendar.style.display = "block"
+}
+
+
 // Load list when page opens
 async function loadRentals() {
     const today = new Date();
