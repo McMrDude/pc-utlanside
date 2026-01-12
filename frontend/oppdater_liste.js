@@ -2,9 +2,9 @@ const API_URL = "/rentals";
 
 const list = document.getElementById("listPage");
 const calendar = document.getElementById("calendar");
+calendar.style.display = "none"
 
 function checkPages() {
-    calendar.style.display = "none"
     if(calendar.style.display == "block") {
         list.style.display = " none";
     } else if(list.style.display == "block") {
