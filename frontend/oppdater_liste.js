@@ -1,7 +1,7 @@
 const API_URL = "/rentals";
 
 const list = document.getElementById("listPage")
-const calendar = document.getElementById("calendarPage")
+const calendar = document.getElementById("calendar")
 
 async function openList() {
     list.style.display = "block"
