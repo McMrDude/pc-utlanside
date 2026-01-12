@@ -1,27 +1,27 @@
 const API_URL = "/rentals";
 
-const list = document.getElementById("listPage")
-const calendar = document.getElementById("calendar")
+const list = document.getElementById("listPage");
+const calendar = document.getElementById("calendar");
 
 function checkPages() {
     if(calendar.style.display == "block") {
-        list.style.display = " none"
-    }
+        list.style.display = " none";
+    };
     if(list.style.display == "block") {
-        calendar.style.display = "none"
-    }
-}
+        calendar.style.display = "none";
+    };
+};
 
-checkPages()
+checkPages();
 
 async function openList() {
-    list.style.display = "block"
-    checkPages()
-}
+    list.style.display = "block";
+    checkPages();
+};
 async function openCalendar() {
-    calendar.style.display = "block"
-    checkPages()
-}
+    calendar.style.display = "block";
+    checkPages();
+};
 
 
 // Load list when page opens
@@ -45,8 +45,8 @@ async function loadRentals() {
         const row = document.createElement("div");
         row.innerHTML = r;
 
-        list.appendChild(row)
-    })
+        list.appendChild(row);
+    });
 
     rentals.forEach(r => {
         let e = 0;
@@ -85,7 +85,7 @@ async function loadRentals() {
             list.appendChild(row);
         });
     });
-}
+};
 
 // Add new rental
 async function addRental() {
