@@ -45,10 +45,10 @@ async function loadRentals() {
                 row.style.backgroundColor = "green";
                 if (daysRemaining < 0) {
                     row.style.backgroundColor = "darkred"
-                    row.innerHTML = `<h5 style="100%">Overdue</h5>`;
+                    row.innerHTML = "Overdue";
                 } else if (daysRemaining === 0) {
                     row.style.backgroundColor = "red";
-                    row.innerHTML = `<h5 style="100%">Today</h5>`
+                    row.innerHTML = "Today"
                 } else if (daysRemaining <= 5) {
                     row.style.backgroundColor = "yellow";
                 } else {
