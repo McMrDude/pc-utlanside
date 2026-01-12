@@ -4,11 +4,11 @@ const list = document.getElementById("listPage")
 const calendar = document.getElementById("calendar")
 
 function checkPages() {
-    if(list.style.display == "block") {
-        calendar.style.display = "none"
-    }
-    else if(calendar.style.display == "block") {
+    if(calendar.style.display == "block") {
         list.style.display = " none"
+    }
+    else if(list.style.display == "block") {
+        calendar.style.display = "none"
     }
 }
 
