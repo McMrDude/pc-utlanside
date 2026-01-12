@@ -9,18 +9,20 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div style="display: grid; grid-template-columns: auto auto auto auto; width: 90%;">
-            <h4>Elev navn</h4>
-            <h4>PC nummer</h4>
-            <h4>Dato lånet</h4>
-            <h4>Leverings dato</h4>
+        <div style="display: grid; grid-template-columns: auto auto;">
+            <div style="display: grid; grid-template-columns: auto auto auto auto; width: 90%;">
+                <h4>Elev navn</h4>
+                <h4>PC nummer</h4>
+                <h4>Dato lånet</h4>
+                <h4>Leverings dato</h4>
 
-            <input type="text" placeholder="Elev navn..."  id="navn">
-            <input type="text" placeholder="Nummer..." id="pc_nummer">
-            <input type="date" id="dato_lånt">
-            <input type="date" id="leverings_dato">
+                <input type="text" placeholder="Elev navn..."  id="navn">
+                <input type="text" placeholder="Nummer..." id="pc_nummer">
+                <input type="date" id="dato_lånt">
+                <input type="date" id="leverings_dato">
+            </div>
+            <a href="index.html"><button onclick="addRental()">Legg til</button></a>
         </div>
-        <a href="index.html"><button onclick="addRental()">Legg til</button></a>
         <script src="oppdater_liste.js"></script>
     </body>
 </html>
