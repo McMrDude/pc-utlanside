@@ -47,3 +47,9 @@ h5 {
   width: 36px;
   height: 36px;
 }
+
+#eventPopup {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    border-radius: 4px;
+    pointer-events: auto;
+}
