@@ -15,7 +15,7 @@ async function openCalendar() {
     if (!calendarInstance) {
         calendarInstance = new FullCalendar.Calendar(calendar, {
             initialView: 'dayGridMonth',
-            height: "100vh",
+            height: "auto",
             expandRows: true
         });
         calendarInstance.render();
