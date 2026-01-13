@@ -138,9 +138,9 @@ async function loadCalendarEvents() {
 
         calendarInstance.addEvent({
             title: `${r.student_name} - PC ${r.pc_number}`,
-            start: returnDate.toISOString().split('T')[0], // YYYY-MM-DD
-            color: color,
-            extendedProps: { rentedDate: r.rented_date }
+            start: returnDate.toISOString().split('T')[0],
+            display: 'background',  // <-- this makes it fill the cell
+            color: color
         });
     });
 }
