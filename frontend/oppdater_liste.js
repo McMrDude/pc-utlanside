@@ -4,16 +4,14 @@ const list = document.getElementById("listPage");
 const calendar = document.getElementById("calendar");
 let calendarInstance
 
-checkPages();
-
 async function openList() {
     list.style.display = "block";
     calendar.style.display = "none";
 };
 async function openCalendar() {
-    calendarInstance.updateSize();
-    list.style.display = "none";
     calendar.style.display = "block";
+    list.style.display = "none";
+    calendarInstance.updateSize();
 };
 
 
