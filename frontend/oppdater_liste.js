@@ -30,7 +30,7 @@ async function openCalendar() {
     if (!calendarInstance) {
         calendarInstance = new FullCalendar.Calendar(calendar, {
             initialView: 'dayGridMonth',
-            height: '100%',  // fills container
+            height: "auto",  // fills container
             expandRows: true,
             events: [], // will populate after fetching rentals
             eventClick: function(info) {
