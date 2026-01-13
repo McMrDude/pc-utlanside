@@ -39,11 +39,11 @@ h5 {
   align-items: center;
   gap: 10px;           /* space between icon and text */
   padding: 10px;
-  font-size: 24px;
+  font-size: 20px;
   cursor: pointer;
 }
 
 .nav-btn img {
-  width: 48px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
 }
