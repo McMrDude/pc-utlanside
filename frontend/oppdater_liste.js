@@ -12,8 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
         height: "100%",
         expandRows: true
     });
-
-    calendarInstance.render();
 });
 
 async function openList() {
@@ -23,7 +21,17 @@ async function openList() {
 async function openCalendar() {
     calendar.style.display = "block";
     list.style.display = "none";
-    calendarInstance.updateSize();
+    
+    if (!calendarInstance) {
+        calendarInstance = new FullCalendar.Calendar(calendar, {
+            initialView: 'dayGridMonth',
+            height: "100%",
+            expandRows: true
+        });
+        calendarInstance.render();
+    } else {
+        calendarInstance.updateSize();
+    }
 };
 
 
