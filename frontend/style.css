@@ -30,5 +30,6 @@ h5 {
     display: none;
     flex: 1;
     width: 100%;
+    min-height: 0;
     background-color: rgb(189, 189, 189);
 }
