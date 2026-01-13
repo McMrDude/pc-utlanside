@@ -33,3 +33,17 @@ h5 {
     min-height: 0;
     background-color: rgb(189, 189, 189);
 }
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;           /* space between icon and text */
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.nav-btn img {
+  width: 24px;
+  height: 24px;
+}
