@@ -2,7 +2,19 @@ const API_URL = "/rentals";
 
 const list = document.getElementById("listPage");
 const calendar = document.getElementById("calendar");
-let calendarInstance
+let calendarInstance;
+
+document.addEventListener('DOMContentLoaded', function () {
+    const calendarEl = document.getElementById('calendar');
+
+    calendarInstance = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        height: "100%",
+        expandRows: true
+    });
+
+    calendarInstance.render();
+});
 
 async function openList() {
     list.style.display = "block";
