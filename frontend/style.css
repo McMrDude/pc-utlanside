@@ -53,3 +53,12 @@ h5 {
     border-radius: 4px;
     pointer-events: auto;
 }
+
+.fc-bg-event {
+  opacity: 1 !important;
+}
+
+/* Optional: stronger color */
+.fc-daygrid-day-frame {
+  background-clip: padding-box;
+}
