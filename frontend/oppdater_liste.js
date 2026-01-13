@@ -4,16 +4,6 @@ const list = document.getElementById("listPage");
 const calendar = document.getElementById("calendar");
 let calendarInstance;
 
-document.addEventListener('DOMContentLoaded', function () {
-    const calendarEl = document.getElementById('calendar');
-
-    calendarInstance = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        height: "100%",
-        expandRows: true
-    });
-});
-
 async function openList() {
     list.style.display = "block";
     calendar.style.display = "none";
