@@ -58,6 +58,10 @@ h5 {
   opacity: 1 !important;
 }
 
+.fc-event-title {
+    color: white
+}
+
 /* Optional: stronger color */
 .fc-daygrid-day-frame {
   background-clip: padding-box;

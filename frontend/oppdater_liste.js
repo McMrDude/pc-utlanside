@@ -36,16 +36,14 @@ async function openCalendar() {
             eventClick: function(info) {
                 const event = info.event;
                 const rentedDate = event.extendedProps.rentedDate;
-                const returnDate = event.start;
+                const returnDate = event.extendedProps.returnDate;
 
-                // Fill popup with info
                 popup.innerHTML = `
-                    <strong>${event.title}</strong><br>
+                    <strong>${event.extendedProps.studentName} - PC ${event.extendedProps.pcNumber}</strong><br>
                     Rented: ${formatDate(rentedDate)}<br>
                     Return: ${formatDate(returnDate)}
                 `;
-                
-                // Position near mouse
+
                 popup.style.left = info.jsEvent.pageX + 10 + "px";
                 popup.style.top = info.jsEvent.pageY + 10 + "px";
                 popup.style.display = "block";
@@ -104,7 +102,6 @@ async function loadRentals() {
             row.innerHTML = t;
 
             if (e === 0) {
-                row.style.backgroundColor = "green";
                 if (daysRemaining < 0) row.style.backgroundColor = "darkred", row.innerHTML = "Overdue";
                 else if (daysRemaining === 0) row.style.backgroundColor = "red", row.innerHTML = "Today";
                 else if (daysRemaining <= 5) row.style.backgroundColor = "yellow";
@@ -131,7 +128,7 @@ async function loadCalendarEvents() {
         today.setHours(0,0,0,0);
         const daysRemaining = Math.ceil((returnDate - today) / (1000*60*60*24)) - 1;
 
-        let color = 'green';
+        let color = 'lightgreen';
         if (daysRemaining < 0) color = 'darkred';
         else if (daysRemaining === 0) color = 'red';
         else if (daysRemaining <= 5) color = 'yellow';
@@ -140,7 +137,13 @@ async function loadCalendarEvents() {
             title: `${r.student_name} - PC ${r.pc_number}`,
             start: returnDate.toISOString().split('T')[0],
             display: 'background',  // <-- this makes it fill the cell
-            color: color
+            color: color,
+            extendedProps: {
+                rentedDate: r.rented_date,
+                returnDate: r.return_date,
+                studentName: r.student_name,
+                pcNumber: r.pc_number
+            }
         });
     });
 }
