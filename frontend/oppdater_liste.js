@@ -35,18 +35,30 @@ async function openCalendar() {
             events: [], // will populate after fetching rentals
             eventClick: function(info) {
                 const event = info.event;
-                const rentedDate = event.extendedProps.rentedDate;
-                const returnDate = event.extendedProps.returnDate;
 
                 popup.innerHTML = `
                     <strong>${event.extendedProps.studentName} - PC ${event.extendedProps.pcNumber}</strong><br>
-                    Rented: ${formatDate(rentedDate)}<br>
-                    Return: ${formatDate(returnDate)}
+                    Rented: ${formatDate(event.extendedProps.rentedDate)}<br>
+                    Return: ${formatDate(event.extendedProps.returnDate)}<br><br>
+
+                    <button id="popupDeleteBtn" class="delete-btn">Delete</button>
                 `;
 
                 popup.style.left = info.jsEvent.pageX + 10 + "px";
                 popup.style.top = info.jsEvent.pageY + 10 + "px";
                 popup.style.display = "block";
+
+                document.getElementById("popupDeleteBtn").onclick = async () => {
+                    if (!confirm("Delete this rental?")) return;
+
+                    await fetch(`${API_URL}/${event.extendedProps.id}`, {
+                        method: "DELETE"
+                    });
+
+                    popup.style.display = "none";
+                    loadRentals();
+                    loadCalendarEvents();
+                };
             }
         });
         calendarInstance.render();
@@ -74,7 +86,8 @@ async function loadRentals() {
         `<h4>Elev navn</h4>`,
         `<h4>PC nummer</h4>`,
         `<h4>Dato lånet</h4>`,
-        `<h4 style="border-right: none;">Leverings dato</h4>`
+        `<h4>Leverings dato</h4>`,
+        `<h4 style="border-right: none;">Slett</h4>`
     ];
     
     headers.forEach(r => {
@@ -111,6 +124,21 @@ async function loadRentals() {
             e = 1;
             listDiv.appendChild(row);
         });
+        const deleteCell = document.createElement("button");
+        deleteCell.className = "delete-btn";
+        deleteCell.textContent = "✕";
+
+        deleteCell.onclick = async () => {
+            if (!confirm("Delete this rental?")) return;
+
+            await fetch(`${API_URL}/${r.id}`, { method: "DELETE" });
+
+            // Refresh both views
+            loadRentals();
+            if (calendarInstance) loadCalendarEvents();
+        };
+
+        listDiv.appendChild(deleteCell);
     });
 }
 
@@ -139,6 +167,7 @@ async function loadCalendarEvents() {
             display: 'background',  // <-- this makes it fill the cell
             color: color,
             extendedProps: {
+                id: r.id,
                 rentedDate: r.rented_date,
                 returnDate: r.return_date,
                 studentName: r.student_name,

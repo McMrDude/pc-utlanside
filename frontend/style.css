@@ -9,7 +9,21 @@ body {
 
 .listDiv {
     display: grid;
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto 60px;
+}
+
+.delete-btn {
+    width: 100%;
+    height: 100%;
+    background-color: darkred;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: red;
 }
 
 h4, h5 {

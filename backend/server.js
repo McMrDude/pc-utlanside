@@ -60,6 +60,23 @@ app.post("/rentals", async (req, res) => {
   }
 });
 
+// Delete a rental
+app.delete("/rentals/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    await pool.query(
+      "DELETE FROM rentals WHERE id = $1",
+      [id]
+    );
+
+    res.sendStatus(204);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Delete failed" });
+  }
+});
+
 // Start server
 const PORT = 3000;
 app.listen(PORT, () => {
