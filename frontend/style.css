@@ -20,6 +20,8 @@ body {
     font-weight: bold;
     border: none;
     cursor: pointer;
+    border-right: 2px solid black;
+    border-bottom: 1px solid black;
 }
 
 .delete-btn:hover {
