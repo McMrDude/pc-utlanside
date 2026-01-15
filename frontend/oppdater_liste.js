@@ -34,31 +34,77 @@ function openPCs() {
 /* ---------- LIST ---------- */
 
 async function loadRentals() {
-  const r = await fetch(API);
-  const rentals = await r.json();
-  const div = document.getElementById("listDiv");
-  div.innerHTML = "";
+    const today = new Date();
+    today.setHours(0,0,0,0);
 
-  rentals.forEach(r => {
-    ["", r.student_name, r.pc_number,
-     formatDate(r.rented_date),
-     formatDate(r.return_date)
-    ].forEach(t => {
-      const c = document.createElement("div");
-      c.textContent = t;
-      div.appendChild(c);
+    const res = await fetch(API_URL);
+    const rentals = await res.json();
+
+    const listDiv = document.getElementById("listDiv");
+    listDiv.innerHTML = "";
+
+    // HEADERS (DO NOT REMOVE)
+    const headers = [
+        "Status",
+        "Elev navn",
+        "PC nummer",
+        "Dato lånet",
+        "Leverings dato",
+        "Slett"
+    ];
+
+    headers.forEach(h => {
+        const el = document.createElement("h4");
+        el.textContent = h;
+        listDiv.appendChild(el);
     });
 
-    const del = document.createElement("button");
-    del.textContent = "✕";
-    del.className = "delete-btn";
-    del.onclick = async () => {
-      await fetch(`${API}/${r.id}`, { method: "DELETE" });
-      loadRentals();
-      if (calendar) loadCalendarEvents();
-    };
-    div.appendChild(del);
-  });
+    rentals.forEach(r => {
+        const returnDate = new Date(r.return_date);
+        const daysRemaining =
+            Math.ceil((returnDate - today) / (1000*60*60*24)) - 1;
+
+        // STATUS
+        const status = document.createElement("h5");
+        if (daysRemaining < 0) {
+            status.textContent = "Overdue";
+            status.style.backgroundColor = "darkred";
+        } else if (daysRemaining === 0) {
+            status.textContent = "Today";
+            status.style.backgroundColor = "red";
+        } else if (daysRemaining <= 5) {
+            status.textContent = ` ${daysRemaining} dager`;
+            status.style.backgroundColor = "yellow";
+        } else {
+            status.textContent = ` ${daysRemaining} dager`;
+            status.style.backgroundColor = "lightgreen";
+        }
+
+        listDiv.appendChild(status);
+
+        [
+            r.student_name,
+            r.pc_number,
+            formatDate(r.rented_date),
+            formatDate(r.return_date)
+        ].forEach(t => {
+            const el = document.createElement("h5");
+            el.textContent = t;
+            listDiv.appendChild(el);
+        });
+
+        const del = document.createElement("button");
+        del.className = "delete-btn";
+        del.textContent = "✕";
+        del.onclick = async () => {
+            if (!confirm("Delete rental?")) return;
+            await fetch(`${API_URL}/${r.id}`, { method: "DELETE" });
+            loadRentals();
+            if (calendarInstance) loadCalendarEvents();
+        };
+
+        listDiv.appendChild(del);
+    });
 }
 
 /* ---------- CALENDAR ---------- */
@@ -80,26 +126,39 @@ function initCalendar() {
 }
 
 async function loadCalendarEvents() {
-  calendar.getEvents().forEach(e => e.remove());
-  const r = await fetch(API);
-  const rentals = await r.json();
+    const res = await fetch(API_URL);
+    const rentals = await res.json();
 
-  rentals.forEach(r => {
-    calendar.addEvent({
-      start: r.return_date,
-      display: "background",
-      color: "red"
-    });
+    calendarInstance.getEvents().forEach(e => e.remove());
 
-    calendar.addEvent({
-      title: `${r.student_name} – ${r.pc_number}`,
-      start: r.return_date,
-      extendedProps: {
-        student: r.student_name,
-        pc: r.pc_number
-      }
+    rentals.forEach(r => {
+        const returnDate = new Date(r.return_date);
+        const today = new Date();
+        today.setHours(0,0,0,0);
+
+        const daysRemaining =
+            Math.ceil((returnDate - today) / (1000*60*60*24)) - 1;
+
+        let color = "lightgreen";
+        if (daysRemaining < 0) color = "darkred";
+        else if (daysRemaining === 0) color = "red";
+        else if (daysRemaining <= 5) color = "yellow";
+
+        // BACKGROUND CELL COLOR
+        calendarInstance.addEvent({
+            start: returnDate.toISOString().split("T")[0],
+            display: "background",
+            color: color
+        });
+
+        // CLICKABLE EVENT
+        calendarInstance.addEvent({
+            title: `${r.student_name} – PC ${r.pc_number}`,
+            start: returnDate.toISOString().split("T")[0],
+            color: color,
+            extendedProps: r
+        });
     });
-  });
 }
 
 /* ---------- PCS ---------- */
