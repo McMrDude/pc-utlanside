@@ -1,15 +1,50 @@
 html, body {
     height: 100%;
+    margin: 0;
 }
+
 body {
-    padding: 0; 
-    margin: 0; 
-    background-color: rgb(198, 198, 198);
+    background-color: rgb(198,198,198);
 }
 
 .listDiv {
     display: grid;
     grid-template-columns: auto auto auto auto auto 60px;
+}
+
+h4, h5 {
+    margin: 0;
+    border-right: 2px solid black;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+
+h4 {
+    font-size: 30px;
+}
+
+h5 {
+    font-size: 20px;
+}
+
+#calendar {
+    display: none;
+    flex: 1;
+    background-color: rgb(189,189,189);
+}
+
+.nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.nav-btn img {
+    width: 36px;
+    height: 36px;
 }
 
 .delete-btn {
@@ -20,65 +55,27 @@ body {
     font-weight: bold;
     border: none;
     cursor: pointer;
-    border-left: 2px solid black;
-    border-bottom: 1px solid black;
 }
 
 .delete-btn:hover {
     background-color: red;
 }
 
-h4, h5 {
-    margin: 0px;
-    border-right: 2px solid black;
-    border-bottom: 1px solid black;
-    text-align: center;
-}
-
-h4 {
-    font-size: 30px;
-}
-h5 {
-    font-size: 20px;
-}
-
-#calendar {
-    display: none;
-    flex: 1;
-    width: 100%;
-    min-height: 0;
-    background-color: rgb(189, 189, 189);
-}
-
-.nav-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;           /* space between icon and text */
-  padding: 10px;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.nav-btn img {
-  width: 36px;
-  height: 36px;
-}
-
-#eventPopup {
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    border-radius: 4px;
-    pointer-events: auto;
-}
-
+/* Calendar fixes */
 .fc-bg-event {
-  opacity: 1 !important;
+    opacity: 1 !important;
 }
 
 .fc-event-title {
-    color: white
+    color: white;
 }
 
-/* Optional: stronger color */
-.fc-daygrid-day-frame {
-  background-clip: padding-box;
+#eventPopup {
+    position: absolute;
+    background: white;
+    border: 1px solid black;
+    padding: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.3);
+    display: none;
+    z-index: 1000;
 }

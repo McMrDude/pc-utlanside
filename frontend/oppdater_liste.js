@@ -1,120 +1,174 @@
-const list = document.getElementById("listPage");
-const calendar = document.getElementById("calendar");
-const pcPage = document.getElementById("pcPage");
+const API_URL = "/rentals";
 
+const listPage = document.getElementById("listPage");
+const calendarEl = document.getElementById("calendar");
 let calendarInstance;
 
-/* ================== NAV ================== */
+/* ================= POPUP ================= */
+
+const popup = document.createElement("div");
+popup.id = "eventPopup";
+document.body.appendChild(popup);
+
+/* ================= NAV ================= */
 
 function openList() {
-  list.style.display = "block";
-  calendar.style.display = "none";
-  pcPage.style.display = "none";
-  loadRentals();
+    listPage.style.display = "block";
+    calendarEl.style.display = "none";
+    popup.style.display = "none";
 }
 
 function openCalendar() {
-  list.style.display = "none";
-  calendar.style.display = "block";
-  pcPage.style.display = "none";
+    listPage.style.display = "none";
+    calendarEl.style.display = "block";
+    popup.style.display = "none";
 
-  if (!calendarInstance) {
-    calendarInstance = new FullCalendar.Calendar(calendar, {
-      initialView: "dayGridMonth",
-      height: "auto",
-      eventClick(info) {
-        alert(info.event.title);
-      }
-    });
-    calendarInstance.render();
-  }
+    if (!calendarInstance) {
+        calendarInstance = new FullCalendar.Calendar(calendarEl, {
+            initialView: "dayGridMonth",
+            height: "auto",
+            expandRows: true,
 
-  loadCalendarEvents();
+            eventClick(info) {
+                const e = info.event;
+
+                popup.innerHTML = `
+                    <strong>${e.extendedProps.studentName} - PC ${e.extendedProps.pcNumber}</strong><br>
+                    Rented: ${formatDate(e.extendedProps.rentedDate)}<br>
+                    Return: ${formatDate(e.extendedProps.returnDate)}<br><br>
+                    <button class="delete-btn" id="popupDelete">Delete</button>
+                `;
+
+                popup.style.left = info.jsEvent.pageX + 10 + "px";
+                popup.style.top = info.jsEvent.pageY + 10 + "px";
+                popup.style.display = "block";
+
+                document.getElementById("popupDelete").onclick = async () => {
+                    if (!confirm("Delete this rental?")) return;
+                    await fetch(`${API_URL}/${e.extendedProps.id}`, { method: "DELETE" });
+                    popup.style.display = "none";
+                    loadRentals();
+                    loadCalendarEvents();
+                };
+            }
+        });
+
+        calendarInstance.render();
+        loadCalendarEvents();
+    } else {
+        calendarInstance.updateSize();
+    }
 }
 
-function openPcs() {
-  list.style.display = "none";
-  calendar.style.display = "none";
-  pcPage.style.display = "block";
-  loadPcs();
-}
-
-/* ================== PCS ================== */
-
-async function loadPcs() {
-  const res = await fetch("/pcs");
-  const pcs = await res.json();
-
-  pcPage.innerHTML = `
-    <button onclick="addPcPrompt()">+ Add PC</button>
-    <table>
-      <tr><th>PC</th><th>Model</th><th>Status</th><th>Student</th></tr>
-      ${pcs.map(pc => `
-        <tr>
-          <td>${pc.pc_number}</td>
-          <td>${pc.model}</td>
-          <td>${pc.student_name ? "Rented" : "Available"}</td>
-          <td>${pc.student_name || "-"}</td>
-        </tr>
-      `).join("")}
-    </table>
-  `;
-}
-
-async function addPcPrompt() {
-  const pc_number = prompt("PC number:");
-  const model = prompt("Model:");
-  if (!pc_number || !model) return;
-
-  await fetch("/pcs", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ pc_number, model })
-  });
-
-  loadPcs();
-}
-
-/* ================== RENTALS ================== */
+/* ================= LIST ================= */
 
 async function loadRentals() {
-  const res = await fetch("/rentals");
-  const rentals = await res.json();
+    const res = await fetch(API_URL);
+    const rentals = await res.json();
 
-  list.innerHTML = `
-    <a href="utlån_side.html"><button>New Loan</button></a>
-    ${rentals.map(r => `
-      <div>
-        ${r.student_name} – PC ${r.pc_number} (${r.model})
-        <button onclick="deleteRental(${r.id})">✕</button>
-      </div>
-    `).join("")}
-  `;
+    const listDiv = document.getElementById("listDiv");
+    listDiv.innerHTML = "";
+
+    const headers = [
+        "Status", "Elev navn", "PC nummer",
+        "Dato lånet", "Leverings dato", "Slett"
+    ];
+
+    headers.forEach(h => {
+        const el = document.createElement("h4");
+        el.textContent = h;
+        listDiv.appendChild(el);
+    });
+
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    rentals.forEach(r => {
+        const returnTime = new Date(r.return_date).getTime();
+        const daysRemaining = Math.ceil((returnTime - today) / 86400000) - 1;
+
+        const cells = [
+            daysRemaining,
+            r.student_name,
+            r.pc_number,
+            formatDate(r.rented_date),
+            formatDate(r.return_date)
+        ];
+
+        cells.forEach((val, i) => {
+            const cell = document.createElement("h5");
+
+            if (i === 0) {
+                if (daysRemaining < 0) { cell.textContent = "Overdue"; cell.style.background = "darkred"; }
+                else if (daysRemaining === 0) { cell.textContent = "Today"; cell.style.background = "red"; }
+                else if (daysRemaining <= 5) { cell.textContent = `Days: ${val}`; cell.style.background = "yellow"; }
+                else { cell.textContent = `Days: ${val}`; cell.style.background = "lightgreen"; }
+            } else {
+                cell.textContent = val;
+            }
+
+            listDiv.appendChild(cell);
+        });
+
+        const del = document.createElement("button");
+        del.className = "delete-btn";
+        del.textContent = "✕";
+        del.onclick = async () => {
+            if (!confirm("Delete this rental?")) return;
+            await fetch(`${API_URL}/${r.id}`, { method: "DELETE" });
+            loadRentals();
+            if (calendarInstance) loadCalendarEvents();
+        };
+        listDiv.appendChild(del);
+    });
 }
 
-async function deleteRental(id) {
-  if (!confirm("Delete this rental?")) return;
-  await fetch(`/rentals/${id}`, { method: "DELETE" });
-  loadRentals();
-  if (calendarInstance) loadCalendarEvents();
-}
-
-/* ================== CALENDAR ================== */
+/* ================= CALENDAR ================= */
 
 async function loadCalendarEvents() {
-  const res = await fetch("/rentals");
-  const rentals = await res.json();
+    const res = await fetch(API_URL);
+    const rentals = await res.json();
 
-  calendarInstance.getEvents().forEach(e => e.remove());
+    calendarInstance.getEvents().forEach(e => e.remove());
 
-  rentals.forEach(r => {
-    calendarInstance.addEvent({
-      title: `${r.student_name} – PC ${r.pc_number}`,
-      start: r.return_date,
-      display: "background",
-      color: "red"
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    rentals.forEach(r => {
+        const returnDate = new Date(r.return_date);
+        const daysRemaining = Math.ceil((returnDate - today) / 86400000) - 1;
+
+        let color = "lightgreen";
+        if (daysRemaining < 0) color = "darkred";
+        else if (daysRemaining === 0) color = "red";
+        else if (daysRemaining <= 5) color = "yellow";
+
+        calendarInstance.addEvent({
+            start: r.return_date,
+            display: "background",
+            color,
+            extendedProps: {
+                id: r.id,
+                studentName: r.student_name,
+                pcNumber: r.pc_number,
+                rentedDate: r.rented_date,
+                returnDate: r.return_date
+            }
+        });
     });
-  });
 }
 
-openList();
+/* ================= UTIL ================= */
+
+function formatDate(d) {
+    const date = new Date(d);
+    return `${String(date.getMonth()+1).padStart(2,"0")}/${String(date.getDate()).padStart(2,"0")}/${date.getFullYear()}`;
+}
+
+if (document.getElementById("listDiv")) {
+    loadRentals();
+}
+
+document.addEventListener("click", e => {
+    if (!e.target.closest(".fc-event")) popup.style.display = "none";
+});

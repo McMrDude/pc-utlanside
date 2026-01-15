@@ -1,37 +1,35 @@
 <!DOCTYPE html>
-<html style="padding: 0; margin: 0;">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Pc-utlån</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css">
-        <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
-    </head>
-    <body>
+    <html style="padding: 0; margin: 0;">
+        <head>
+            <meta charset="utf-8">
+            <title>Pc-utlån</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="style.css">
+            <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
+        </head>
+        <body>
         <div style="display: flex; flex-direction: row; height: 100vh;">
             <div style="display: flex; flex-direction: column; flex-basis: 10%; border: 1px solid black;">
-                <button class="nav-btn" onclick="openList()"><img src="icons\list.png">List</button>
+                <button class="nav-btn" onclick="openList()"><img src="icons/list.png">List</button>
                 <button class="nav-btn" onclick="openCalendar()"><img src="icons/calendar.png">Calendar</button>
-                <button class="nav-btn" onclick="openPcs()"><img src="icons\pc.png">PC's</button>
-                <button class="nav-btn">d</button>
-                <button class="nav-btn">e</button>
             </div>
+
             <div style="display: flex; flex-direction: column; flex: 1;">
                 <div id="listPage" style="flex: 1;">
-                    <a href="utlån_side.html"><button style="height: 40px; width: 80px; margin: 5px;">Ny utlån</button></a>
-                    <div style="display: flex; flex-direction: column; border: 1px solid black; background-color: rgb(189, 189, 189);">
-                        <div id="listDiv" class="listDiv">
+                    <a href="utlån_side.html">
+                        <button style="height: 40px; width: 80px; margin: 5px;">Ny utlån</button>
+                    </a>
 
-                        </div>
+                    <div style="border: 1px solid black; background-color: rgb(189,189,189);">
+                        <div id="listDiv" class="listDiv"></div>
                     </div>
                 </div>
+
                 <div id="calendar"></div>
-                <div id="pcPage" style="display:none;"></div>
             </div>
         </div>
+
         <script src="oppdater_liste.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
-    </body>
-</html>
+        </body>
+    </html>
