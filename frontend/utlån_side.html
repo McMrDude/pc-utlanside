@@ -17,12 +17,43 @@
                 <h4>Leverings dato</h4>
 
                 <input type="text" placeholder="Elev navn..."  id="navn">
-                <input type="text" placeholder="Nummer..." maxlength="4" id="pc_nummer">
+                <select id="pcSelect"></select>
                 <input type="date" id="dato_lånt">
                 <input type="date" id="leverings_dato">
             </div>
             <a href="index.html"><button onclick="addRental()" style="margin-left: 5px; width: 30%; height: 100%;">Legg til</button></a>
         </div>
         <script src="oppdater_liste.js"></script>
+        <script>
+        async function loadAvailablePcs() {
+        const res = await fetch("/pcs/available");
+        const pcs = await res.json();
+
+        const select = document.getElementById("pcSelect");
+        pcs.forEach(pc => {
+            const opt = document.createElement("option");
+            opt.value = pc.id;
+            opt.textContent = `${pc.pc_number} – ${pc.model}`;
+            select.appendChild(opt);
+        });
+        }
+
+        async function addRental() {
+        await fetch("/rentals", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+            student_name: navn.value,
+            pc_id: pcSelect.value,
+            rented_date: dato_lånt.value,
+            return_date: leverings_dato.value
+            })
+        });
+
+        location.href = "/";
+        }
+
+        loadAvailablePcs();
+        </script>
     </body>
 </html>

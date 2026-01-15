@@ -77,6 +77,36 @@ app.delete("/rentals/:id", async (req, res) => {
   }
 });
 
+app.get("/pcs", async (req, res) => {
+  const result = await pool.query(
+    "SELECT * FROM pcs ORDER BY pc_number"
+  );
+  res.json(result.rows);
+});
+
+app.get("/pcs/available", async (req, res) => {
+  const result = await pool.query(`
+    SELECT p.*
+    FROM pcs p
+    WHERE p.id NOT IN (
+      SELECT pc_id FROM rentals
+    )
+    ORDER BY p.pc_number
+  `);
+  res.json(result.rows);
+});
+
+app.post("/pcs", async (req, res) => {
+  const { pc_number, model } = req.body;
+
+  await pool.query(
+    "INSERT INTO pcs (pc_number, model) VALUES ($1, $2)",
+    [pc_number, model]
+  );
+
+  res.sendStatus(201);
+});
+
 // Start server
 const PORT = 3000;
 app.listen(PORT, () => {

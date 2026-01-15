@@ -14,9 +14,9 @@
             <div style="display: flex; flex-direction: column; flex-basis: 10%; border: 1px solid black;">
                 <button class="nav-btn" onclick="openList()"><img src="icons\list.png">List</button>
                 <button class="nav-btn" onclick="openCalendar()"><img src="icons/calendar.png">Calendar</button>
-                <button>c</button>
-                <button>d</button>
-                <button>e</button>
+                <button class="nav-btn" onclick="openPcs()"><img src="icons\pc.png">PC's</button>
+                <button class="nav-btn">d</button>
+                <button class="nav-btn">e</button>
             </div>
             <div style="display: flex; flex-direction: column; flex: 1;">
                 <div id="listPage" style="flex: 1;">
@@ -28,6 +28,7 @@
                     </div>
                 </div>
                 <div id="calendar"></div>
+                <div id="pcPage" style="display:none;"></div>
             </div>
         </div>
         <script src="oppdater_liste.js"></script>

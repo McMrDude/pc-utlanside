@@ -70,6 +70,8 @@ async function openCalendar() {
     }
 }
 
+
+
 // Load list view
 async function loadRentals() {
     const today = new Date();
