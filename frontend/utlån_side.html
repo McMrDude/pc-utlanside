@@ -9,7 +9,7 @@
 <div style="display:grid; grid-template-columns:auto auto;">
     <div style="display:grid; grid-template-columns:auto auto auto auto;">
         <h4>Elev navn</h4>
-        <h4>PC nummer</h4>
+        <select id="pcSelect"></select>
         <h4>Dato lånet</h4>
         <h4>Leverings dato</h4>
 
@@ -23,5 +23,18 @@
 </div>
 
 <script src="oppdater_liste.js"></script>
+<script>
+    async function loadAvailablePCs() {
+    const r = await fetch("/pcs");
+    const pcs = await r.json();
+    pcs.filter(p => !p.rented).forEach(p => {
+        const o = document.createElement("option");
+        o.value = p.id;
+        o.textContent = `${p.pc_number} - ${p.model}`;
+        pcSelect.appendChild(o);
+    });
+    }
+    loadAvailablePCs();
+</script>
 </body>
 </html>
