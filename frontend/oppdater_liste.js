@@ -268,7 +268,9 @@ async function loadPCs() {
     const number = document.createElement("div");
     const model = document.createElement("div");
     const status = document.createElement("div");
-    number.style.backgroundColor, model.style.backgroundColor, status.style.backgroundColor = "white";
+    number.style.backgroundColor = "white"; 
+    model.style.backgroundColor = "white"; 
+    status.style.backgroundColor = "white";
 
     number.textContent = `${pc.pc_number}`;
 
