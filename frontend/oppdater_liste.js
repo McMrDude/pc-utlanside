@@ -181,7 +181,7 @@ async function loadCalendarEvents() {
     const daysRemaining =
       Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24)) - 1;
 
-    let color = "lightgreen";
+    let color = "green";
     if (daysRemaining < 0) color = "darkred";
     else if (daysRemaining === 0) color = "red";
     else if (daysRemaining <= 5) color = "orange";
