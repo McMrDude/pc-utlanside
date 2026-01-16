@@ -1,212 +1,245 @@
-/* ================= CONFIG ================= */
+const API_URL = "/rentals";
 
-const RENTALS_API = "/rentals";
-const PCS_API = "/pcs";
+const list = document.getElementById("listPage");
+const calendar = document.getElementById("calendar");
 
-const listPage = document.getElementById("listPage");
-const calendarEl = document.getElementById("calendar");
-const pcPage = document.getElementById("pcPage");
+let calendarInstance;
 
-let calendar;
+/* =========================
+   Popup for event details
+========================= */
+const popup = document.createElement("div");
+popup.id = "eventPopup";
+popup.style.position = "absolute";
+popup.style.backgroundColor = "white";
+popup.style.border = "1px solid black";
+popup.style.padding = "10px";
+popup.style.display = "none";
+popup.style.zIndex = "1000";
+document.body.appendChild(popup);
 
-/* ================= VIEW SWITCH ================= */
-
-function openList() {
-  listPage.style.display = "block";
-  calendarEl.style.display = "none";
-  pcPage.style.display = "none";
+/* =========================
+   Open / Close views
+========================= */
+async function openList() {
+  list.style.display = "block";
+  calendar.style.display = "none";
+  popup.style.display = "none";
 }
 
-function openCalendar() {
-  listPage.style.display = "none";
-  pcPage.style.display = "none";
-  calendarEl.style.display = "block";
+async function openCalendar() {
+  list.style.display = "none";
+  calendar.style.display = "block";
+  popup.style.display = "none";
 
-  if (!calendar) initCalendar();
-  calendar.updateSize();
+  if (!calendarInstance) {
+    calendarInstance = new FullCalendar.Calendar(calendar, {
+      initialView: "dayGridMonth",
+      height: "auto",
+      expandRows: true,
+      events: [],
+
+      eventClick: function (info) {
+        const event = info.event;
+
+        popup.innerHTML = `
+          <strong>
+            ${event.extendedProps.studentName} - PC ${event.extendedProps.pcNumber}
+          </strong><br>
+          Rented: ${formatDate(event.extendedProps.rentedDate)}<br>
+          Return: ${formatDate(event.extendedProps.returnDate)}<br><br>
+          <button id="popupDeleteBtn" class="delete-btn">Delete</button>
+        `;
+
+        popup.style.left = info.jsEvent.pageX + 10 + "px";
+        popup.style.top = info.jsEvent.pageY + 10 + "px";
+        popup.style.display = "block";
+
+        document.getElementById("popupDeleteBtn").onclick = async () => {
+          if (!confirm("Delete this rental?")) return;
+
+          await fetch(`${API_URL}/${event.extendedProps.id}`, {
+            method: "DELETE"
+          });
+
+          popup.style.display = "none";
+          loadRentals();
+          loadCalendarEvents();
+        };
+      }
+    });
+
+    calendarInstance.render();
+    loadCalendarEvents();
+  } else {
+    calendarInstance.updateSize();
+  }
 }
 
-function openPCs() {
-  listPage.style.display = "none";
-  calendarEl.style.display = "none";
-  pcPage.style.display = "block";
-  loadPCs();
-}
-
-/* ================= LIST ================= */
-
+/* =========================
+   Load list view
+========================= */
 async function loadRentals() {
   const today = new Date();
-  today.setHours(0,0,0,0);
+  today.setHours(0, 0, 0, 0);
 
-  const res = await fetch(RENTALS_API);
+  const res = await fetch(API_URL);
   const rentals = await res.json();
 
   const listDiv = document.getElementById("listDiv");
   listDiv.innerHTML = "";
 
   const headers = [
-    "Status",
-    "Elev navn",
-    "PC",
-    "Dato lånet",
-    "Leverings dato",
-    "Slett"
+    "<h4>Status</h4>",
+    "<h4>Elev navn</h4>",
+    "<h4>PC nummer</h4>",
+    "<h4>Dato lånet</h4>",
+    "<h4>Leverings dato</h4>",
+    '<h4 style="border-right: none;">Slett</h4>'
   ];
 
   headers.forEach(h => {
-    const el = document.createElement("h4");
-    el.textContent = h;
-    listDiv.appendChild(el);
+    const row = document.createElement("div");
+    row.innerHTML = h;
+    listDiv.appendChild(row);
   });
 
   rentals.forEach(r => {
-    const returnDate = new Date(r.return_date);
-    const days =
-      Math.ceil((returnDate - today) / (1000*60*60*24)) - 1;
+    let firstCell = true;
 
-    const status = document.createElement("h5");
-    if (days < 0) {
-      status.textContent = "Overdue";
-      status.style.backgroundColor = "darkred";
-    } else if (days === 0) {
-      status.textContent = "Today";
-      status.style.backgroundColor = "red";
-    } else if (days <= 5) {
-      status.textContent = `${days} dager`;
-      status.style.backgroundColor = "yellow";
-    } else {
-      status.textContent = `${days} dager`;
-      status.style.backgroundColor = "lightgreen";
-    }
-    listDiv.appendChild(status);
+    const returnDate = new Date(r.return_date).getTime();
+    const daysRemaining =
+      Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24)) - 1;
 
-    [
+    const rows = [
+      `Dager til levering: ${daysRemaining}`,
       r.student_name,
-      `${r.pc_number} (${r.model})`,
+      r.pc_number,
       formatDate(r.rented_date),
       formatDate(r.return_date)
-    ].forEach(t => {
-      const el = document.createElement("h5");
-      el.textContent = t;
-      listDiv.appendChild(el);
+    ];
+
+    rows.forEach(text => {
+      const row = document.createElement("h5");
+      row.style.width = "100%";
+      row.innerHTML = text;
+
+      if (firstCell) {
+        if (daysRemaining < 0) {
+          row.style.backgroundColor = "darkred";
+          row.innerHTML = "Overdue";
+        } else if (daysRemaining === 0) {
+          row.style.backgroundColor = "red";
+          row.innerHTML = "Today";
+        } else if (daysRemaining <= 5) {
+          row.style.backgroundColor = "yellow";
+        } else {
+          row.style.backgroundColor = "lightgreen";
+        }
+        firstCell = false;
+      }
+
+      listDiv.appendChild(row);
     });
 
-    const del = document.createElement("button");
-    del.className = "delete-btn";
-    del.textContent = "✕";
-    del.onclick = async () => {
-      if (!confirm("Delete rental?")) return;
-      await fetch(`${RENTALS_API}/${r.id}`, { method: "DELETE" });
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "delete-btn";
+    deleteBtn.textContent = "✕";
+
+    deleteBtn.onclick = async () => {
+      if (!confirm("Delete this rental?")) return;
+
+      await fetch(`${API_URL}/${r.id}`, {
+        method: "DELETE"
+      });
+
       loadRentals();
-      if (calendar) loadCalendarEvents();
+      if (calendarInstance) loadCalendarEvents();
     };
-    listDiv.appendChild(del);
+
+    listDiv.appendChild(deleteBtn);
   });
 }
 
-/* ================= CALENDAR ================= */
-
-function initCalendar() {
-  calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: "dayGridMonth",
-    height: "100%",
-    eventClick(info) {
-      alert(
-        `${info.event.extendedProps.student_name}\n` +
-        `PC: ${info.event.extendedProps.pc_number} (${info.event.extendedProps.model})\n` +
-        `Return: ${formatDate(info.event.start)}`
-      );
-    }
-  });
-  calendar.render();
-  loadCalendarEvents();
-}
-
+/* =========================
+   Load calendar events
+========================= */
 async function loadCalendarEvents() {
-  const res = await fetch(RENTALS_API);
+  const res = await fetch(API_URL);
   const rentals = await res.json();
 
-  calendar.getEvents().forEach(e => e.remove());
+  calendarInstance.getEvents().forEach(e => e.remove());
 
   rentals.forEach(r => {
     const returnDate = new Date(r.return_date);
-    const today = new Date();
-    today.setHours(0,0,0,0);
 
-    const days =
-      Math.ceil((returnDate - today) / (1000*60*60*24)) - 1;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const daysRemaining =
+      Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24)) - 1;
 
     let color = "lightgreen";
-    if (days < 0) color = "darkred";
-    else if (days === 0) color = "red";
-    else if (days <= 5) color = "yellow";
+    if (daysRemaining < 0) color = "darkred";
+    else if (daysRemaining === 0) color = "red";
+    else if (daysRemaining <= 5) color = "yellow";
 
-    calendar.addEvent({
+    calendarInstance.addEvent({
+      title: `${r.student_name} - PC ${r.pc_number}`,
       start: returnDate.toISOString().split("T")[0],
       display: "background",
-      color
+      color: color,
+      extendedProps: {
+        id: r.id,
+        rentedDate: r.rented_date,
+        returnDate: r.return_date,
+        studentName: r.student_name,
+        pcNumber: r.pc_number
+      }
     });
-
-    calendar.addEvent({
-      title: `${r.student_name} – PC ${r.pc_number}`,
-      start: returnDate.toISOString().split("T")[0],
-      color,
-      extendedProps: r
-    });
   });
 }
 
-/* ================= PCS ================= */
-
-async function loadPCs() {
-  const r = await fetch(PCS_API);
-  const pcs = await r.json();
-
-  const div = document.getElementById("pcList");
-  div.innerHTML = "";
-
-  pcs.forEach(pc => {
-    const row = document.createElement("div");
-    row.textContent =
-      `${pc.pc_number} – ${pc.model} – ${pc.rented ? "Rented" : "Available"}`;
-    div.appendChild(row);
-  });
-}
-
-async function addPC() {
-  await fetch(PCS_API, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      pc_number: pcNum.value,
-      model: pcModel.value
-    })
-  });
-  loadPCs();
-}
-
-/* ================= ADD RENTAL ================= */
-
+/* =========================
+   Add new rental
+========================= */
 async function addRental() {
-  await fetch(RENTALS_API, {
+  const data = {
+    student_name: document.getElementById("navn").value,
+    pc_number: document.getElementById("pc_nummer").value,
+    rented_date: document.getElementById("dato_lånt").value,
+    return_date: document.getElementById("leverings_dato").value
+  };
+
+  await fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      student_name: navn.value,
-      pc_id: pcSelect.value,
-      rented_date: dato_lånt.value,
-      return_date: leverings_dato.value
-    })
+    body: JSON.stringify(data)
   });
+
   window.location.href = "/";
 }
 
-/* ================= HELPERS ================= */
-
-function formatDate(d) {
-  const x = new Date(d);
-  return `${x.getDate()}/${x.getMonth()+1}/${x.getFullYear()}`;
+/* =========================
+   Helpers
+========================= */
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  const year = date.getFullYear();
+  return `${month}/${day}/${year}`;
 }
 
-if (document.getElementById("listDiv")) loadRentals();
+/* =========================
+   Auto load + popup close
+========================= */
+if (document.getElementById("listDiv")) {
+  loadRentals();
+}
+
+document.addEventListener("click", function (e) {
+  if (!e.target.closest(".fc-event")) {
+    popup.style.display = "none";
+  }
+});

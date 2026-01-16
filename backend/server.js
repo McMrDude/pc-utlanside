@@ -4,72 +4,110 @@ import pg from "pg";
 import path from "path";
 import { fileURLToPath } from "url";
 
+/* =========================
+   Setup __dirname (ESM)
+========================= */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+/* =========================
+   Middleware
+========================= */
 app.use(cors());
 app.use(express.json());
+
+/* =========================
+   Serve frontend
+========================= */
 app.use(express.static(path.join(__dirname, "../frontend")));
 
+/* =========================
+   Database connection
+========================= */
 const pool = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false
+  ssl: process.env.DATABASE_URL
+    ? { rejectUnauthorized: false }
+    : false
 });
 
-/* ---------- RENTALS ---------- */
+/* =========================
+   Test route
+========================= */
+app.get("/", (req, res) => {
+  res.send("PC Rental API is running");
+});
 
+/* =========================
+   Get all rentals
+========================= */
 app.get("/rentals", async (req, res) => {
-  const r = await pool.query(`
-    SELECT rentals.*, pcs.pc_number, pcs.model
-    FROM rentals
-    JOIN pcs ON pcs.id = rentals.pc_id
-    ORDER BY return_date
-  `);
-  res.json(r.rows);
+  try {
+    const result = await pool.query(
+      "SELECT * FROM rentals ORDER BY created_at DESC"
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Database error" });
+  }
 });
 
+/* =========================
+   Add a rental
+========================= */
 app.post("/rentals", async (req, res) => {
-  const { student_name, pc_id, rented_date, return_date } = req.body;
+  try {
+    const {
+      student_name,
+      pc_number,
+      rented_date,
+      return_date
+    } = req.body;
 
-  await pool.query(`
-    INSERT INTO rentals (student_name, pc_id, rented_date, return_date)
-    VALUES ($1,$2,$3,$4)
-  `, [student_name, pc_id, rented_date, return_date]);
+    await pool.query(
+      `
+      INSERT INTO rentals
+        (student_name, pc_number, rented_date, return_date)
+      VALUES
+        ($1, $2, $3, $4)
+      `,
+      [student_name, pc_number, rented_date, return_date]
+    );
 
-  res.sendStatus(201);
+    res.sendStatus(201);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Insert failed" });
+  }
 });
 
+/* =========================
+   Delete a rental
+========================= */
 app.delete("/rentals/:id", async (req, res) => {
-  await pool.query("DELETE FROM rentals WHERE id=$1", [req.params.id]);
-  res.sendStatus(204);
+  try {
+    const { id } = req.params;
+
+    await pool.query(
+      "DELETE FROM rentals WHERE id = $1",
+      [id]
+    );
+
+    res.sendStatus(204);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Delete failed" });
+  }
 });
 
-/* ---------- PCS ---------- */
+/* =========================
+   Start server
+========================= */
+const PORT = 3000;
 
-app.get("/pcs", async (req, res) => {
-  const r = await pool.query(`
-    SELECT pcs.*,
-    EXISTS (
-      SELECT 1 FROM rentals
-      WHERE rentals.pc_id = pcs.id
-      AND rentals.return_date >= CURRENT_DATE
-    ) AS rented
-    FROM pcs
-    ORDER BY pc_number
-  `);
-  res.json(r.rows);
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });
-
-app.post("/pcs", async (req, res) => {
-  const { pc_number, model } = req.body;
-  await pool.query(
-    "INSERT INTO pcs (pc_number, model) VALUES ($1,$2)",
-    [pc_number, model]
-  );
-  res.sendStatus(201);
-});
-
-app.listen(3000, () =>
-  console.log("Server running on http://localhost:3000")
-);

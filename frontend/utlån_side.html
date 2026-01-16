@@ -1,40 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Nytt utlån</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div style="display:grid; grid-template-columns:auto auto;">
-    <div style="display:grid; grid-template-columns:auto auto auto auto;">
-        <h4>Elev navn</h4>
-        <h4>PC nummer</h4>
-        <h4>Dato lånet</h4>
-        <h4>Leverings dato</h4>
-
-        <input id="navn">
-        <select id="pcSelect"></select>
-        <input type="date" id="dato_lånt">
-        <input type="date" id="leverings_dato">
-    </div>
-
-    <button onclick="addRental()">Legg til</button>
-</div>
-
-<script src="oppdater_liste.js"></script>
-<script>
-    async function loadAvailablePCs() {
-    const r = await fetch("/pcs");
-    const pcs = await r.json();
-    pcs.filter(p => !p.rented).forEach(p => {
-        const o = document.createElement("option");
-        o.value = p.id;
-        o.textContent = `${p.pc_number} - ${p.model}`;
-        pcSelect.appendChild(o);
-    });
-    }
-    loadAvailablePCs();
-</script>
-</body>
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+        <title>Nytt Utlån</title> 
+        <meta name="description" content=""> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <link rel="stylesheet" href="style.css"> 
+    </head> 
+    <body> 
+        <div style="display: grid; grid-template-columns: auto auto;"> 
+            <div style="display: grid; grid-template-columns: auto auto auto auto; width: 100%;"> 
+                <h4>Elev navn</h4> 
+                <h4>PC nummer</h4> 
+                <h4>Dato lånet</h4> 
+                <h4>Leverings dato</h4> 
+                <input type="text" placeholder="Elev navn..." id="navn"> 
+                <input type="text" placeholder="Nummer..." maxlength="4" id="pc_nummer"> 
+                <input type="date" id="dato_lånt"> 
+                <input type="date" id="leverings_dato"> 
+            </div> 
+            <a href="index.html"><button onclick="addRental()" style="margin-left: 5px; width: 30%; height: 100%;">Legg til</button></a> 
+        </div> 
+        <script src="oppdater_liste.js"></script> 
+    </body> 
 </html>
