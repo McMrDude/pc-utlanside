@@ -25,14 +25,14 @@ async function openList() {
   list.style.display = "block";
   calendar.style.display = "none";
   popup.style.display = "none";
-  ument.getElementById("pcPage").style.display = "none";
+  document.getElementById("pcPage").style.display = "none";
 }
 
 async function openCalendar() {
   list.style.display = "none";
   calendar.style.display = "block";
   popup.style.display = "none";
-  ument.getElementById("pcPage").style.display = "none";
+  document.getElementById("pcPage").style.display = "none";
 
   if (!calendarInstance) {
     calendarInstance = new FullCalendar.Calendar(calendar, {
