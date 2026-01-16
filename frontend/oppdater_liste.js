@@ -265,13 +265,22 @@ async function loadPCs() {
   div.innerHTML = "";
 
   pcs.forEach(pc => {
-    const row = document.createElement("div");
+    const number = document.createElement("div");
+    const model = document.createElement("div");
+    const status = document.createElement("div");
+    number.style.backgroundColor, model.style.backgroundColor, status.style.backgroundColor = "white";
 
-    row.textContent =
-      `${pc.pc_number} – ${pc.model} – ` +
-      (pc.status === "loaned" ? "🔴 Loaned" : "🟢 Available");
+    number.textContent = `${pc.pc_number}`;
 
-    div.appendChild(row);
+    div.appendChild(number);
+
+    model.textContent = `${pc.model}`;
+
+    div.appendChild(model);
+
+    status.textContent = (pc.status === "loaned" ? "🔴 Loaned" : "🟢 Available");
+
+    div.appendChild(status);
   });
 }
 

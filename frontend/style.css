@@ -1,15 +1,23 @@
 html, body { 
     height: 100%; 
 } 
+
 body { 
     padding: 0; 
     margin: 0; 
     background-color: rgb(198, 198, 198); 
 } 
+
 .listDiv { 
     display: grid; 
     grid-template-columns: auto auto auto auto auto 60px; 
 } 
+
+.pcList {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
 .delete-btn { 
     width: 100%; 
     height: 100%; 
@@ -21,21 +29,26 @@ body {
     border-left: 2px solid black; 
     border-bottom: 1px solid black; 
 } 
+
 .delete-btn:hover { 
     background-color: red; 
 } 
+
 h4, h5 { 
     margin: 0px; 
     border-right: 2px solid black; 
     border-bottom: 1px solid black; 
     text-align: center; 
 } 
+
 h4 { 
     font-size: 30px; 
 } 
+
 h5 { 
     font-size: 20px; 
 } 
+
 #calendar { 
     display: none; 
     flex: 1; 
@@ -43,6 +56,7 @@ h5 {
     min-height: 0; 
     background-color: rgb(189, 189, 189); 
 } 
+
 .nav-btn { 
     display: flex; 
     align-items: center; 
@@ -51,21 +65,26 @@ h5 {
     font-size: 20px; 
     cursor: pointer; 
 } 
+
 .nav-btn img { 
     width: 36px; 
     height: 36px; 
 } 
+
 #eventPopup { 
     box-shadow: 0 2px 8px rgba(0,0,0,0.3); 
     border-radius: 4px; 
     pointer-events: auto; 
 } 
+
 .fc-bg-event { 
     opacity: 1 !important; 
 } 
+
 .fc-event-title { 
     color: white 
 } /* Optional: stronger color */ 
+
 .fc-daygrid-day-frame { 
     background-clip: padding-box; 
 }
