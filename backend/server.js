@@ -138,6 +138,36 @@ app.post("/pcs", async (req, res) => {
 });
 
 /* =========================
+   Get PCs with status
+========================= */
+app.get("/pcs/status", async (req, res) => {
+  try {
+    const result = await pool.query(`
+      SELECT 
+        pcs.id,
+        pcs.pc_number,
+        pcs.model,
+        CASE
+          WHEN EXISTS (
+            SELECT 1 FROM rentals
+            WHERE rentals.pc_number = pcs.pc_number
+            AND rentals.return_date >= CURRENT_DATE
+          )
+          THEN 'loaned'
+          ELSE 'available'
+        END AS status
+      FROM pcs
+      ORDER BY pcs.pc_number
+    `);
+
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "PC status fetch failed" });
+  }
+});
+
+/* =========================
    Start server
 ========================= */
 const PORT = 3000;

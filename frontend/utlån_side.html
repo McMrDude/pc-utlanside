@@ -25,21 +25,23 @@
         <script src="oppdater_liste.js"></script> 
         <script>
             async function loadPCOptions() {
-            const res = await fetch("/pcs");
-            const pcs = await res.json();
+                const res = await fetch("/pcs/status");
+                const pcs = await res.json();
 
-            const select = document.getElementById("pc_nummer");
-            select.innerHTML = "";
+                const select = document.getElementById("pc_nummer");
+                select.innerHTML = "";
 
-            pcs.forEach(pc => {
-                const opt = document.createElement("option");
-                opt.value = pc.pc_number;
-                opt.textContent = `${pc.pc_number} (${pc.model})`;
-                select.appendChild(opt);
-            });
-            }
+                pcs
+                    .filter(pc => pc.status === "available")
+                    .forEach(pc => {
+                    const opt = document.createElement("option");
+                    opt.value = pc.pc_number;
+                    opt.textContent = `${pc.pc_number} (${pc.model})`;
+                    select.appendChild(opt);
+                    });
+                }
 
-            loadPCOptions();
+                loadPCOptions();
         </script>
     </body> 
 </html>

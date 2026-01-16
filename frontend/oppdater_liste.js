@@ -258,7 +258,7 @@ function openPCs() {
 }
 
 async function loadPCs() {
-  const res = await fetch("/pcs");
+  const res = await fetch("/pcs/status");
   const pcs = await res.json();
 
   const div = document.getElementById("pcList");
@@ -266,7 +266,11 @@ async function loadPCs() {
 
   pcs.forEach(pc => {
     const row = document.createElement("div");
-    row.textContent = `${pc.pc_number} – ${pc.model}`;
+
+    row.textContent =
+      `${pc.pc_number} – ${pc.model} – ` +
+      (pc.status === "loaned" ? "🔴 Loaned" : "🟢 Available");
+
     div.appendChild(row);
   });
 }
