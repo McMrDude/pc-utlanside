@@ -264,6 +264,18 @@ async function loadPCs() {
   const div = document.getElementById("pcList");
   div.innerHTML = "";
 
+  const headers = [
+    "ID",
+    "Model",
+    "Status"
+  ]
+
+  headers.forEach(h => {
+    const row = document.createElement("div");
+    row.textContent = h
+    div.appendChild(row)
+  })
+
   pcs.forEach(pc => {
     const number = document.createElement("div");
     const model = document.createElement("div");

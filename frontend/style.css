@@ -92,6 +92,7 @@ h5 {
 
 .pcDiv {
     border-right: 2px solid black; 
+    border-top: 1px solid black;
     border-bottom: 1px solid black; 
     text-align: center; 
 }
