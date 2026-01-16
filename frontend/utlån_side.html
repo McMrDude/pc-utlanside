@@ -16,12 +16,30 @@
                 <h4>Dato lånet</h4> 
                 <h4>Leverings dato</h4> 
                 <input type="text" placeholder="Elev navn..." id="navn"> 
-                <input type="text" placeholder="Nummer..." maxlength="4" id="pc_nummer"> 
+                <select id="pc_nummer"></select>
                 <input type="date" id="dato_lånt"> 
                 <input type="date" id="leverings_dato"> 
             </div> 
             <a href="index.html"><button onclick="addRental()" style="margin-left: 5px; width: 30%; height: 100%;">Legg til</button></a> 
         </div> 
         <script src="oppdater_liste.js"></script> 
+        <script>
+            async function loadPCOptions() {
+            const res = await fetch("/pcs");
+            const pcs = await res.json();
+
+            const select = document.getElementById("pc_nummer");
+            select.innerHTML = "";
+
+            pcs.forEach(pc => {
+                const opt = document.createElement("option");
+                opt.value = pc.pc_number;
+                opt.textContent = `${pc.pc_number} (${pc.model})`;
+                select.appendChild(opt);
+            });
+            }
+
+            loadPCOptions();
+        </script>
     </body> 
 </html>

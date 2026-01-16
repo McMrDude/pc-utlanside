@@ -243,3 +243,41 @@ document.addEventListener("click", function (e) {
     popup.style.display = "none";
   }
 });
+
+/* =========================
+   PC PAGE
+========================= */
+
+function openPCs() {
+  document.getElementById("listPage").style.display = "none";
+  document.getElementById("calendar").style.display = "none";
+  document.getElementById("pcPage").style.display = "block";
+  loadPCs();
+}
+
+async function loadPCs() {
+  const res = await fetch("/pcs");
+  const pcs = await res.json();
+
+  const div = document.getElementById("pcList");
+  div.innerHTML = "";
+
+  pcs.forEach(pc => {
+    const row = document.createElement("div");
+    row.textContent = `${pc.pc_number} – ${pc.model}`;
+    div.appendChild(row);
+  });
+}
+
+async function addPC() {
+  const pc_number = document.getElementById("pcNumber").value;
+  const model = document.getElementById("pcModel").value;
+
+  await fetch("/pcs", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ pc_number, model })
+  });
+
+  loadPCs();
+}

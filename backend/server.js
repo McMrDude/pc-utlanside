@@ -104,6 +104,40 @@ app.delete("/rentals/:id", async (req, res) => {
 });
 
 /* =========================
+   Get all PCs
+========================= */
+app.get("/pcs", async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT * FROM pcs ORDER BY pc_number"
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "PC fetch failed" });
+  }
+});
+
+/* =========================
+   Add PC
+========================= */
+app.post("/pcs", async (req, res) => {
+  try {
+    const { pc_number, model } = req.body;
+
+    await pool.query(
+      "INSERT INTO pcs (pc_number, model) VALUES ($1, $2)",
+      [pc_number, model]
+    );
+
+    res.sendStatus(201);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "PC insert failed" });
+  }
+});
+
+/* =========================
    Start server
 ========================= */
 const PORT = 3000;
