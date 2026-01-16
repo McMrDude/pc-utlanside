@@ -16,6 +16,7 @@ body {
 #pcList {
     display: grid;
     grid-template-columns: auto auto auto;
+    width: 30%;
 }
 
 .delete-btn { 
@@ -87,4 +88,10 @@ h5 {
 
 .fc-daygrid-day-frame { 
     background-clip: padding-box; 
+}
+
+.pcDiv {
+    border-right: 2px solid black; 
+    border-bottom: 1px solid black; 
+    text-align: center; 
 }
