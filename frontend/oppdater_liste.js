@@ -184,7 +184,7 @@ async function loadCalendarEvents() {
     let color = "lightgreen";
     if (daysRemaining < 0) color = "darkred";
     else if (daysRemaining === 0) color = "red";
-    else if (daysRemaining <= 5) color = "yellow";
+    else if (daysRemaining <= 5) color = "orange";
 
     calendarInstance.addEvent({
       title: `${r.student_name} - PC ${r.pc_number}`,
