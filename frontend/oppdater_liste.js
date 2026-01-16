@@ -206,14 +206,24 @@ async function loadCalendarEvents() {
    Add new rental
 ========================= */
 async function addRental() {
+  const studentName = document.getElementById("navn").value.trim();
+  const pcNumber = document.getElementById("pc_nummer").value;
+  const rentedDate = document.getElementById("dato_lånt").value;
+  const returnDate = document.getElementById("leverings_dato").value;
+
+  if (!studentName || !pcNumber || !rentedDate || !returnDate) {
+    alert("Please fill in all fields");
+    return;
+  }
+
   const data = {
-    student_name: document.getElementById("navn").value,
-    pc_number: document.getElementById("pc_nummer").value,
-    rented_date: document.getElementById("dato_lånt").value,
-    return_date: document.getElementById("leverings_dato").value
+    student_name: studentName,
+    pc_number: pcNumber,
+    rented_date: rentedDate,
+    return_date: returnDate
   };
 
-  await fetch(API_URL, {
+  await fetch("/rentals", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
@@ -302,14 +312,28 @@ async function loadPCs() {
 }
 
 async function addPC() {
-  const pc_number = document.getElementById("pcNumber").value;
-  const model = document.getElementById("pcModel").value;
+  const pcNumberInput = document.getElementById("pcNumber");
+  const modelInput = document.getElementById("pcModel");
+
+  const data = {
+    pc_number: pcNumberInput.value,
+    model: modelInput.value
+  };
+
+  if (!data.pc_number || !data.model) {
+    alert("Please fill in both fields");
+    return;
+  }
 
   await fetch("/pcs", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ pc_number, model })
+    body: JSON.stringify(data)
   });
+
+  // ✅ CLEAR INPUTS AFTER SUCCESS
+  pcNumberInput.value = "";
+  modelInput.value = "";
 
   loadPCs();
 }

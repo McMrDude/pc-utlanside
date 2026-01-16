@@ -31,14 +31,34 @@
                 const select = document.getElementById("pc_nummer");
                 select.innerHTML = "";
 
-                pcs
-                    .filter(pc => pc.status === "available")
-                    .forEach(pc => {
+                const availablePCs = pcs.filter(pc => pc.status === "available");
+
+                if (availablePCs.length === 0) {
+                    const opt = document.createElement("option");
+                    opt.textContent = "No PCs available";
+                    opt.value = "";
+                    opt.disabled = true;
+                    opt.selected = true;
+                    select.appendChild(opt);
+                    select.disabled = true;
+                    return;
+                }
+
+                select.disabled = false;
+
+                const placeholder = document.createElement("option");
+                placeholder.textContent = "Select PC...";
+                placeholder.value = "";
+                placeholder.disabled = true;
+                placeholder.selected = true;
+                select.appendChild(placeholder);
+
+                availablePCs.forEach(pc => {
                     const opt = document.createElement("option");
                     opt.value = pc.pc_number;
                     opt.textContent = `${pc.pc_number} (${pc.model})`;
                     select.appendChild(opt);
-                    });
+                });
                 }
 
                 loadPCOptions();
