@@ -253,3 +253,51 @@ const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+/* =========================
+   Get rentals (role-based)
+========================= */
+app.get("/rentals", requireLogin, async (req, res) => {
+  try {
+    if (req.session.user.role === "admin") {
+      const result = await pool.query(
+        "SELECT * FROM rentals ORDER BY created_at DESC"
+      );
+      return res.json(result.rows);
+    }
+
+    const result = await pool.query(
+      "SELECT * FROM rentals WHERE user_id = $1 ORDER BY created_at DESC",
+      [req.session.user.id]
+    );
+
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Database error" });
+  }
+});
+
+app.post("/rentals", requireLogin, async (req, res) => {
+  try {
+    const { student_name, pc_number, rented_date, return_date } = req.body;
+
+    await pool.query(
+      `INSERT INTO rentals 
+       (student_name, pc_number, rented_date, return_date, user_id)
+       VALUES ($1, $2, $3, $4, $5)`,
+      [
+        student_name,
+        pc_number,
+        rented_date,
+        return_date,
+        req.session.user.id
+      ]
+    );
+
+    res.sendStatus(201);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Insert failed" });
+  }
+});
