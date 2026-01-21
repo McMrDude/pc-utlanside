@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>PC Loan</title>
+</head>
+<body>
+  <h2>PC Availability</h2>
+
+  <p>Available PCs: <strong id="available">...</strong></p>
+  <p>Next available: <strong id="next">...</strong></p>
+
+  <button onclick="requestLoan()">Request PC</button>
+
+  <p id="msg"></p>
+
+  <button id="adminBtn" style="display:none" onclick="location.href='/admin.html'">
+    Admin
+  </button>
+
+  <script>
+    async function load() {
+      const me = await fetch("/me", { credentials: "include" }).then(r => r.json());
+      if (!me) location.href = "/login.html";
+
+      if (me.role === "admin") {
+        document.getElementById("adminBtn").style.display = "block";
+      }
+
+      const avail = await fetch("/availability").then(r => r.json());
+      document.getElementById("available").textContent = avail.available;
+      document.getElementById("next").textContent =
+        avail.nextAvailableDate
+          ? new Date(avail.nextAvailableDate).toLocaleDateString()
+          : "N/A";
+    }
+
+    async function requestLoan() {
+      const res = await fetch("/request-loan", {
+        method: "POST",
+        credentials: "include"
+      });
+
+      const data = await res.json();
+
+      if (!data.available) {
+        document.getElementById("msg").textContent =
+          "No PCs available. Please check back later.";
+        return;
+      }
+
+      document.getElementById("msg").textContent =
+        `PC ${data.pcNumber} reserved.
+         Pickup before 12:00 on ${new Date(data.pickupDate).toLocaleDateString()}`;
+      load();
+    }
+
+    load();
+  </script>
+</body>
+</html>

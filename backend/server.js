@@ -301,3 +301,95 @@ app.post("/rentals", requireLogin, async (req, res) => {
     res.status(500).json({ error: "Insert failed" });
   }
 });
+
+app.get("/availability", async (req, res) => {
+  try {
+    const totalPCs = await pool.query("SELECT COUNT(*) FROM pcs");
+
+    const loaned = await pool.query(`
+      SELECT COUNT(DISTINCT pc_number)
+      FROM rentals
+      WHERE return_date >= CURRENT_DATE
+    `);
+
+    const available =
+      Number(totalPCs.rows[0].count) -
+      Number(loaned.rows[0].count);
+
+    const nextReturn = await pool.query(`
+      SELECT MIN(return_date) AS next_date
+      FROM rentals
+      WHERE return_date >= CURRENT_DATE
+    `);
+
+    res.json({
+      available,
+      nextAvailableDate: nextReturn.rows[0].next_date
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Availability check failed" });
+  }
+});
+
+app.post("/request-loan", requireLogin, async (req, res) => {
+  try {
+    // Find free PC
+    const pcRes = await pool.query(`
+      SELECT pc_number FROM pcs
+      WHERE pc_number NOT IN (
+        SELECT pc_number FROM rentals
+        WHERE return_date >= CURRENT_DATE
+      )
+      ORDER BY pc_number
+      LIMIT 1
+    `);
+
+    if (pcRes.rows.length === 0) {
+      return res.json({ available: false });
+    }
+
+    const pcNumber = pcRes.rows[0].pc_number;
+
+    const today = new Date();
+    let startDate = new Date(today);
+
+    // Pickup logic
+    const day = today.getDay(); // 0=Sun, 5=Fri
+    const hour = today.getHours();
+
+    if (day === 6 || day === 0 || (day === 5 && hour >= 12)) {
+      // Weekend or Fri after 12 → Monday
+      startDate.setDate(startDate.getDate() + ((8 - day) % 7));
+    } else if (hour >= 12) {
+      startDate.setDate(startDate.getDate() + 1);
+    }
+
+    startDate.setHours(0, 0, 0, 0);
+
+    const returnDate = new Date(startDate);
+    returnDate.setDate(returnDate.getDate() + 7);
+
+    await pool.query(`
+      INSERT INTO rentals
+      (student_name, pc_number, rented_date, return_date, user_id)
+      VALUES ($1, $2, $3, $4, $5)
+    `, [
+      req.session.user.name,
+      pcNumber,
+      startDate,
+      returnDate,
+      req.session.user.id
+    ]);
+
+    res.json({
+      available: true,
+      pcNumber,
+      pickupDate: startDate,
+      returnDate
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Loan request failed" });
+  }
+});
