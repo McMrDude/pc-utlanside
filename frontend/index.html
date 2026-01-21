@@ -6,6 +6,9 @@
   <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
+  <button id="adminBtn" style="display: none;" onclick="location.href='/admin.html'">
+    Admin
+  </button>
   <div class="splash_art">
     <h2>PC Availability</h2>
 
@@ -15,10 +18,6 @@
   <button onclick="requestLoan()">Request PC</button>
 
   <p id="msg"></p>
-
-  <button id="adminBtn" style="display:none" onclick="location.href='/admin.html'">
-    Admin
-  </button>
 
   <script>
     async function load() {
