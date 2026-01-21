@@ -150,13 +150,6 @@ app.get("/admin-data", requireAdmin, (req, res) => {
 });
 
 /* =========================
-   Test route
-========================= */
-app.get("/", (req, res) => {
-  res.send("PC Rental API is running");
-});
-
-/* =========================
    Rentals
 ========================= */
 app.get("/rentals", async (req, res) => {
