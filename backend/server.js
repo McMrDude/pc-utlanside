@@ -361,7 +361,7 @@ app.post("/request-loan", requireLogin, async (req, res) => {
     startDate.setHours(0, 0, 0, 0);
 
     const returnDate = new Date(startDate);
-    returnDate.setDate(returnDate.getDate() + 7);
+    returnDate.setDate(returnDate.getDate() + 6);
 
     await pool.query(`
       INSERT INTO rentals

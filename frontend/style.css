@@ -8,6 +8,15 @@ body {
     background-color: rgb(215, 215, 215); 
 } 
 
+/* INDEX VIEW */
+#splash_art {
+    width: 100%;
+    background-image: url("icons/background.png");
+    background-color: rgb(255, 255, 255, 0.5);
+    background-blend-mode: lighten;
+}
+
+/* ADMIN VIEW */
 .listDiv { 
     display: grid; 
     grid-template-columns: auto auto auto auto auto 60px; 
