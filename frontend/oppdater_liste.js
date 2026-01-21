@@ -337,3 +337,19 @@ async function addPC() {
 
   loadPCs();
 }
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    alert("You must be logged in to use this system");
+    window.location.href = "/login.html";
+    return;
+  }
+
+  // Optional: admin-only UI
+  if (user.role !== "admin") {
+    const pcTab = document.getElementById("pcTab");
+    if (pcTab) pcTab.style.display = "none";
+  }
+});
