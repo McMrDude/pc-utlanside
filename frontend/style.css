@@ -24,6 +24,14 @@ body {
     align-items: center;
 }
 
+h2 {
+    font-size: 50px;
+}
+
+p {
+    font-size: 30px;
+}
+
 /* ADMIN VIEW */
 .listDiv { 
     display: grid; 
