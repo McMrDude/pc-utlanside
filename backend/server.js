@@ -33,7 +33,7 @@ app.use(session({
 /* =========================
    Serve frontend
 ========================= */
-app.use(express.static(path.join(__dirname, "../frontend")));
+app.use(express.static(__dirname));
 
 /* =========================
    Database connection
