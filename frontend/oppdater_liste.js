@@ -305,7 +305,10 @@ async function loadPCs() {
 
     div.appendChild(model);
 
-    status.textContent = (pc.status === "loaned" ? "🔴 Loaned" : "🟢 Available");
+    status.textContent =
+      pc.status === "loaned"
+        ? `🔴 Loaned to ${pc.user_name} (${pc.user_email})`
+        : "🟢 Available";
 
     div.appendChild(status);
   });

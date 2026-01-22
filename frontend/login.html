@@ -8,20 +8,20 @@
 <body>
   <h2>Login</h2>
 
-  <input id="email" placeholder="Email"><br><br>
-  <input id="password" type="password" placeholder="Password"><br><br>
-
-  <button onclick="login()">Login</button>
+  <form id="loginForm">
+    <input id="email" placeholder="Email" style="width: 200px; height: 30px;"><br><br>
+    <input id="password" type="password" placeholder="Password" style="width: 200px; height: 30px;"><br><br>
+    <button type="submit">Login</button>
+  </form>
 
   <p id="msg"></p>
 
-  <p>
-    No account?
-    <a href="/register.html">Register</a>
-  </p>
+  <p>No account? <a href="/register.html">Register</a></p>
 
   <script>
-    async function login() {
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault(); // prevent page reload
+
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
 
@@ -40,7 +40,7 @@
       }
 
       window.location.href = "/";
-    }
+    });
   </script>
 </body>
 </html>

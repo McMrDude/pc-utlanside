@@ -213,25 +213,28 @@ app.post("/pcs", async (req, res) => {
   }
 });
 
-app.get("/pcs/status", async (req, res) => {
+app.get("/pcs/status", requireAdmin, async (req, res) => {
   try {
     const result = await pool.query(`
-      SELECT 
+      SELECT
         pcs.id,
         pcs.pc_number,
         pcs.model,
         CASE
-          WHEN EXISTS (
-            SELECT 1 FROM rentals
-            WHERE rentals.pc_number = pcs.pc_number
-            AND rentals.return_date >= CURRENT_DATE
-          )
-          THEN 'loaned'
+          WHEN r.id IS NOT NULL THEN 'loaned'
           ELSE 'available'
-        END AS status
+        END AS status,
+        u.name AS user_name,
+        u.email AS user_email
       FROM pcs
+      LEFT JOIN rentals r
+        ON r.pc_number = pcs.pc_number
+        AND r.return_date >= CURRENT_DATE
+      LEFT JOIN users u
+        ON u.id = r.user_id
       ORDER BY pcs.pc_number
     `);
+
     res.json(result.rows);
   } catch (err) {
     console.error(err);
