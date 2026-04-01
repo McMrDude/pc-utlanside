@@ -40,7 +40,9 @@ app.use(express.static(path.join(__dirname, "../frontend")));
 ========================= */
 const pool = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 /* =========================
@@ -152,31 +154,6 @@ app.get("/admin-data", requireAdmin, (req, res) => {
 /* =========================
    Rentals
 ========================= */
-app.get("/rentals", async (req, res) => {
-  try {
-    const result = await pool.query("SELECT * FROM rentals ORDER BY created_at DESC");
-    res.json(result.rows);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Database error" });
-  }
-});
-
-app.post("/rentals", async (req, res) => {
-  try {
-    const { student_name, pc_number, rented_date, return_date, user_id } = req.body;
-    await pool.query(
-      `INSERT INTO rentals
-       (student_name, pc_number, rented_date, return_date, user_id)
-       VALUES ($1, $2, $3, $4, $5)`,
-      [student_name, pc_number, rented_date, return_date, user_id]
-    );
-    res.sendStatus(201);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Insert failed" });
-  }
-});
 
 app.delete("/rentals/:id", async (req, res) => {
   try {
