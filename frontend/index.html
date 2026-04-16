@@ -37,7 +37,7 @@
       <input type="date" id="dateInput">
       <h3 >Returnerings dato:</h3>
       <input type="date" id="dateInput">
-      <button onclick="sendLoan()">Send</button>
+      <button onclick="sendRequest()">Send</button>
     </div>
   </div>
 
@@ -61,23 +61,11 @@
     }
 
     async function requestLoan() {
-      const res = await fetch("/request-loan", {
-        method: "POST",
-        credentials: "include"
-      });
+      const popup = document.getElementById("requestPopup").style.display = "block";
+    }
 
-      const data = await res.json();
-
-      if (!data.available) {
-        document.getElementById("msg").textContent =
-          "No PCs available. Please check back later.";
-        return;
-      }
-
-      document.getElementById("msg").textContent =
-        `PC ${data.pcNumber} reserved.
-         Pickup before 12:00 on ${new Date(data.pickupDate).toLocaleDateString()}`;
-      load();
+    async function sendRequest() {
+      const popup = document.getElementById("requestPopup").style.display = "none";
     }
 
     load();

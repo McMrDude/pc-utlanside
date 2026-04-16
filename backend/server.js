@@ -369,8 +369,3 @@ app.post("/request-loan", requireLogin, async (req, res) => {
     res.status(500).json({ error: "Loan request failed" });
   }
 });
-
-async function sendLoan() {
-    const popup = document.getElementById("requestPopup");
-    popup.style.display = "none";
-}
