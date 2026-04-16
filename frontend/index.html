@@ -9,13 +9,36 @@
   <button id="adminBtn" style="display: none;" onclick="location.href='/admin.html'">
     Admin
   </button>
-  <div class="splash_art">
-    <h2>PC Availability</h2>
-
-    <p>Available PCs: <strong id="available">...</strong></p>
-    <p>Next available: <strong id="next">...</strong></p>
+  <div style="border: 1px solid #ff0000; display: flex; width: 100vw; flex-direction: column; justify-content: center; align-items: center;">
+    <h2>Velkommen til PC utlåns</h2>
+    <h3>Denne nettsiden er dedikert til å gjøre det enkelt å låne PC-er.</h3>
   </div>
-  <button onclick="requestLoan()">Request PC</button>
+  <div class="splash_art">
+    <h2>PC Låneportal</h2>
+    <p>Ledige PC-er: <strong id="available">...</strong></p>
+    <p>Neste tilgjengelige: <strong id="next">...</strong></p>
+  </div>
+  <div style="display: flex; flex-direction: column; border: 1px solid #ff0000; width: 100vw; justify-content: center; align-items: center;">
+    <button style="width: 100px; height: 50px; border-radius: 10px; " onclick="requestLoan()">Send in forespørsel</button>
+  </div>
+
+  <div id="requestPopup" style="border: 3px solid black; 
+  border-radius: 20px; 
+  background-color: rgb(197, 197, 197);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);">
+    <div class="requestLoan">
+      <h1 style="text-align: center;">For hvilken lengde vil du låne en PC?</h1>
+      <h3>Velg hvilken periodedu ønsker å låne en PC</h3>
+      <h3>Plukke opp dato:</h3>
+      <input type="date" id="dateInput">
+      <h3 >Returnerings dato:</h3>
+      <input type="date" id="dateInput">
+      <button onclick="sendLoan()">Send</button>
+    </div>
+  </div>
 
   <p id="msg"></p>
 

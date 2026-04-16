@@ -307,6 +307,9 @@ app.get("/availability", async (req, res) => {
 
 app.post("/request-loan", requireLogin, async (req, res) => {
   try {
+    const popup = document.getElementById("requestPopup");
+    popup.style.display = "block";
+
     // Find free PC
     const pcRes = await pool.query(`
       SELECT pc_number FROM pcs
@@ -366,3 +369,8 @@ app.post("/request-loan", requireLogin, async (req, res) => {
     res.status(500).json({ error: "Loan request failed" });
   }
 });
+
+async function sendLoan() {
+    const popup = document.getElementById("requestPopup");
+    popup.style.display = "none";
+}

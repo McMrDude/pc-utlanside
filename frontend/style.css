@@ -32,6 +32,12 @@ p {
     font-size: 30px;
 }
 
+.requestLoan {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 /* ADMIN VIEW */
 .listDiv { 
     display: grid; 
