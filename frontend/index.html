@@ -32,12 +32,14 @@
   display: none;">
     <div class="requestLoan">
       <h1 style="text-align: center;">For hvilken lengde vil du låne en PC?</h1>
-      <h3>Velg hvilken periodedu ønsker å låne en PC</h3>
-      <h3>Plukke opp dato:</h3>
-      <input type="date" id="dateInput">
-      <h3 >Returnerings dato:</h3>
-      <input type="date" id="dateInput">
-      <button onclick="sendRequest()">Send</button>
+      <h3>Velg hvilken periode du ønsker å låne en PC</h3>
+      <form method="POST" action="/submit-date">
+        <h3>Plukke opp dato:</h3>
+        <input type="date" name="selectedDate">
+        <h3 >Returnerings dato:</h3>
+        <input type="date" name="returnDate">
+        <input type="submit" onclick="sendRequest()">Send</input>
+      </form>
     </div>
   </div>
 

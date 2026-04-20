@@ -369,3 +369,12 @@ app.post("/request-loan", requireLogin, async (req, res) => {
     res.status(500).json({ error: "Loan request failed" });
   }
 });
+
+app.post('/submit-date', (req, res) => {
+  const currentDate = req.body.selectedDate;
+  const returnDate = req.body.returnDate;
+
+  console.log(currentDate, returnDate); // e.g. "2026-04-20"
+
+  res.send(`You sent: ${currentDate}, ${returnDate}`);
+});
