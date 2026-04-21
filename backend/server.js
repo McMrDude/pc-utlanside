@@ -5,6 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import bcrypt from "bcrypt";
 import session from "express-session";
+import { send } from "@emailjs/nodejs";
 
 
 /* =========================
@@ -373,11 +374,27 @@ app.post("/request-loan", requireLogin, async (req, res) => {
   }
 });
 
-app.post('/submit-date', (req, res) => {
-  const currentDate = req.body.selectedDate;
-  const returnDate = req.body.returnDate;
+app.post("/submit-date", async (req, res) => {
+  try {
+    const { selectedDate, returnDate } = req.body;
 
-  console.log(currentDate, returnDate); // e.g. "2026-04-20"
+    console.log(selectedDate, returnDate);
 
-  res.send(`You sent: ${currentDate}, ${returnDate}`);
+    await send(
+      process.env.EMAILJS_SERVICE_ID,
+      process.env.EMAILJS_TEMPLATE_ID,
+      {
+        selected_date: selectedDate,
+        return_date: returnDate
+      },
+      {
+        publicKey: process.env.EMAILJS_PUBLIC_KEY
+      }
+    );
+
+    res.send("Email sent!");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error sending email");
+  }
 });
