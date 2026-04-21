@@ -11,9 +11,9 @@
     <body> 
         <div style="display: flex; flex-direction: row; height: 100vh;"> 
             <div style="display: flex; flex-direction: column; flex-basis: 10%; border: 1px solid black;"> 
-                <button class="nav-btn" onclick="openList()"><img src="icons\list.png">List</button> 
-                <button class="nav-btn" onclick="openCalendar()"><img src="icons/calendar.png">Calendar</button> 
-                <button class="nav-btn" onclick="openPCs()"><img src="icons\pc.png">PC's</button>
+                <button class="nav-btn" onclick="openList()"><img src="icons\list.png">Liste</button> 
+                <button class="nav-btn" onclick="openCalendar()"><img src="icons/calendar.png">Kalender</button> 
+                <button class="nav-btn" onclick="openPCs()"><img src="icons\pc.png">PC'er</button>
                 <button onclick="logout()">Logg ut</button>
             </div> <div style="display: flex; flex-direction: column; flex: 1;"> 
                 <div id="listPage" style="flex: 1;"> 
@@ -27,12 +27,12 @@
 
                 </div> 
                 <div id="pcPage" style="display:none; padding:10px;">
-                  <h3>Add PC</h3>
+                  <h3>Legg til PC</h3>
                   <input id="pcNumber" placeholder="PC number">
                   <input id="pcModel" placeholder="Model">
-                  <button onclick="addPC()">Add PC</button>
+                  <button onclick="addPC()">Legg til PC</button>
 
-                   <h2>PC Inventory</h2>
+                   <h2>Alle PC'er</h2>
 
                   <div id="pcList"></div>
                 </div>

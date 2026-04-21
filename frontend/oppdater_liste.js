@@ -58,7 +58,7 @@ async function openCalendar() {
         popup.style.display = "block";
 
         document.getElementById("popupDeleteBtn").onclick = async () => {
-          if (!confirm("Delete this rental?")) return;
+          if (!confirm("Slett denne leieavtalen?")) return;
 
           await fetch(`${API_URL}/${event.extendedProps.id}`, {
             method: "DELETE"
@@ -149,7 +149,7 @@ async function loadRentals() {
     deleteBtn.textContent = "✕";
 
     deleteBtn.onclick = async () => {
-      if (!confirm("Delete this rental?")) return;
+      if (!confirm("Slett denne leieavtalen?")) return;
 
       await fetch(`${API_URL}/${r.id}`, {
         method: "DELETE"
@@ -212,7 +212,7 @@ async function addRental() {
   const returnDate = document.getElementById("leverings_dato").value;
 
   if (!studentName || !pcNumber || !rentedDate || !returnDate) {
-    alert("Please fill in all fields");
+    alert("Vennligst fyll inn alle feltene");
     return;
   }
 
@@ -307,8 +307,8 @@ async function loadPCs() {
 
     status.textContent =
       pc.status === "loaned"
-        ? `🔴 Loaned to ${pc.user_name} (${pc.user_email})`
-        : "🟢 Available";
+        ? `🔴 Lånt til ${pc.user_name} (${pc.user_email})`
+        : "🟢 Tilgjengelig";
 
     div.appendChild(status);
   });
@@ -324,7 +324,7 @@ async function addPC() {
   };
 
   if (!data.pc_number || !data.model) {
-    alert("Please fill in both fields");
+    alert("Vennligst fyll inn begge feltene");
     return;
   }
 
@@ -345,7 +345,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const user = await getCurrentUser();
 
   if (!user) {
-    alert("You must be logged in to use this system");
+    alert("Du må være logget inn for å se denne siden");
     window.location.href = "/login.html";
     return;
   }
