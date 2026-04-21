@@ -385,7 +385,9 @@ app.post("/submit-date", async (req, res) => {
       process.env.EMAILJS_TEMPLATE_ID,
       {
         selected_date: selectedDate,
-        return_date: returnDate
+        return_date: returnDate,
+        student_name: req.session.user.name,
+        student_email: req.session.user.email
       },
       {
         publicKey: process.env.EMAILJS_PUBLIC_KEY
