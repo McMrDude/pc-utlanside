@@ -6,6 +6,7 @@ import { fileURLToPath } from "url";
 import bcrypt from "bcrypt";
 import session from "express-session";
 import { send } from "@emailjs/nodejs";
+import crypto from "crypto";
 
 
 /* =========================
@@ -377,6 +378,7 @@ app.post("/request-loan", requireLogin, async (req, res) => {
 app.post("/submit-date", requireLogin, async (req, res) => {
   try {
     const { selectedDate, returnDate } = req.body;
+    const user = req.session.user;
 
     console.log(selectedDate, returnDate);
 
