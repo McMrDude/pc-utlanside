@@ -374,7 +374,9 @@ app.post("/request-loan", requireLogin, async (req, res) => {
   }
 });
 
-app.post("/submit-date", async (req, res) => {
+app.post("/submit-date", requireLogin, async (req, res) => {
+  console.log("SESSION:", req.session);
+  console.log("USER:", req.session.user);
   try {
     const { selectedDate, returnDate } = req.body;
 
@@ -400,6 +402,7 @@ app.post("/submit-date", async (req, res) => {
        RETURNING user_id, student_name, student_email`,
       [req.session.user.id, req.session.user.name, req.session.user.email]
     );
+    
     res.json(result.rows);
   } catch (err) {
     console.error(err);
