@@ -271,19 +271,19 @@ async function loadPCs() {
   const res = await fetch("/pcs/status");
   const pcs = await res.json();
 
-  const div = document.getElementById("pcList");
-  div.innerHTML = "";
+  const pcDiv = document.getElementById("pcList");
+  pcDiv.innerHTML = "";
 
   const headers = [
-    "ID",
-    "Model",
+    "PC nummer",
+    "Modell",
     "Status"
   ]
 
   headers.forEach(h => {
     const row = document.createElement("div");
     row.textContent = h
-    div.appendChild(row)
+    pcDiv.appendChild(row)
   })
 
   pcs.forEach(pc => {
@@ -299,18 +299,58 @@ async function loadPCs() {
 
     number.textContent = `${pc.pc_number}`;
 
-    div.appendChild(number);
+    pcDiv.appendChild(number);
 
     model.textContent = `${pc.model}`;
 
-    div.appendChild(model);
+    pcDiv.appendChild(model);
 
     status.textContent =
       pc.status === "loaned"
         ? `🔴 Lånt til ${pc.user_name} (${pc.user_email})`
         : "🟢 Tilgjengelig";
 
-    div.appendChild(status);
+    pcDiv.appendChild(status);
+  });
+
+
+  const reqDiv = document.getElementById("requestList");
+  pcDiv.innerHTML = "";
+
+  const reqheaders = [
+    "Bruker",
+    "Model",
+    "Status"
+  ]
+
+  reqheaders.forEach(h => {
+    const row = document.createElement("div");
+    row.textContent = h
+    reqDiv.appendChild(row)
+  })
+
+  pcs.forEach(pc => {
+    const bruker = document.createElement("div");
+    const date = document.createElement("div");
+    const status = document.createElement("div");
+    bruker.style.backgroundColor = "white"; 
+    bruker.className = "pcDiv";
+    date.style.backgroundColor = "white"; 
+    date.className = "pcDiv";
+    status.style.backgroundColor = "white";
+    status.className = "pcDiv";
+
+    bruker.textContent = `${requests.student_name} (${requests.student_email})`;
+
+    reqDiv.appendChild(bruker);
+
+    date.textContent = `${requests.start_date} (${requests.return_date})`;
+
+    reqDiv.appendChild(date);
+
+    status.textContent = `${requests.status === "pending" ? "⏳ Venter på godkjenning" : requests.status === "approved" ? "✅ Godkjent" : "❌ Avvist"}`;
+
+    reqDiv.appendChild(status);
   });
 }
 

@@ -401,15 +401,17 @@ app.post("/submit-date", requireLogin, async (req, res) => {
 
     await pool.query(
       `INSERT INTO requests 
-       (user_id, student_name, student_email, status, token, requested_at)
-       VALUES ($1, $2, $3, $4, $5, NOW())
+       (user_id, student_name, student_email, status, token, start_date, return_date, requested_at)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, NOW())
        RETURNING *`,
       [
         user.id,
         user.name,
         user.email,
         status,
-        token
+        token,
+        selectedDate,
+        returnDate
       ]
     );
   } catch (err) {
