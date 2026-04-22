@@ -268,8 +268,8 @@ function openPCs() {
 }
 
 async function loadPCs() {
-  const res = await fetch("/pcs/status");
-  const pcs = await res.json();
+  const PCres = await fetch("/pcs/status");
+  const pcs = await PCres.json();
 
   const pcDiv = document.getElementById("pcList");
   pcDiv.innerHTML = "";
@@ -314,42 +314,44 @@ async function loadPCs() {
   });
 
 
-  const reqDiv = document.getElementById("requestList");
-  pcDiv.innerHTML = "";
+    const reqDiv = document.getElementById("requestList");
+  reqDiv.innerHTML = "";
 
-  const reqheaders = [
-    "Bruker",
-    "Model",
-    "Status"
-  ]
-
-  reqheaders.forEach(h => {
+  // headers
+  ["Bruker", "Datoer", "Status"].forEach(h => {
     const row = document.createElement("div");
-    row.textContent = h
-    reqDiv.appendChild(row)
-  })
+    row.textContent = h;
+    reqDiv.appendChild(row);
+  });
 
-  pcs.forEach(pc => {
+  // 👇 FETCH REQUESTS
+  const res = await fetch("/requests", {
+    credentials: "include"
+  });
+  const requests = await res.json();
+
+  // 👇 LOOP THROUGH REQUESTS
+  requests.forEach(req => {
     const bruker = document.createElement("div");
     const date = document.createElement("div");
     const status = document.createElement("div");
-    bruker.style.backgroundColor = "white"; 
+
     bruker.className = "pcDiv";
-    date.style.backgroundColor = "white"; 
     date.className = "pcDiv";
-    status.style.backgroundColor = "white";
     status.className = "pcDiv";
 
-    bruker.textContent = `${requests.student_name} (${requests.student_email})`;
+    bruker.textContent = `${req.student_name} (${req.student_email})`;
+    date.textContent = `${req.start_date} → ${req.return_date}`;
+
+    status.textContent =
+      req.status === "pending"
+        ? "⏳ Venter på godkjenning"
+        : req.status === "approved"
+        ? "✅ Godkjent"
+        : "❌ Avvist";
 
     reqDiv.appendChild(bruker);
-
-    date.textContent = `${requests.start_date} (${requests.return_date})`;
-
     reqDiv.appendChild(date);
-
-    status.textContent = `${requests.status === "pending" ? "⏳ Venter på godkjenning" : requests.status === "approved" ? "✅ Godkjent" : "❌ Avvist"}`;
-
     reqDiv.appendChild(status);
   });
 }

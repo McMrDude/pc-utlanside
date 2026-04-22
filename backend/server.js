@@ -224,6 +224,19 @@ app.get("/pcs/status", requireAdmin, async (req, res) => {
   }
 });
 
+app.get("/requests", requireAdmin, async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT * FROM requests ORDER BY requested_at DESC"
+    );
+
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch requests" });
+  }
+});
+
 /* =========================
    Start server
 ========================= */
