@@ -395,6 +395,14 @@ app.post("/submit-date", async (req, res) => {
     );
 
     res.send("Email sent!");
+
+    const result = await pool.query(
+      `INSERT INTO requests (user_id, student_name, student_email, requested_at)
+       VALUES ($1, $2, $3, NOW())
+       RETURNING user_id, student_name, student_email`,
+      [req.session.user.id, req.session.user.name, req.session.user.email]
+    );
+    res.json(result.rows);
   } catch (err) {
     console.error(err);
     res.status(500).send("Error sending email");
