@@ -401,8 +401,6 @@ app.post("/submit-date", async (req, res) => {
       [req.session.user.id, req.session.user.name, req.session.user.email]
     );
     res.json(result.rows);
-
-    res.send("Email sent!");
   } catch (err) {
     console.error(err);
     res.status(500).send("Error sending email");
