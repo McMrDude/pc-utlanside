@@ -375,12 +375,13 @@ app.post("/request-loan", requireLogin, async (req, res) => {
 });
 
 app.post("/submit-date", requireLogin, async (req, res) => {
-  console.log("SESSION:", req.session);
-  console.log("USER:", req.session.user);
   try {
     const { selectedDate, returnDate } = req.body;
 
     console.log(selectedDate, returnDate);
+
+    const token = crypto.randomBytes(32).toString("hex");
+    const status = "pending";
 
     await send(
       process.env.EMAILJS_SERVICE_ID,
@@ -397,14 +398,23 @@ app.post("/submit-date", requireLogin, async (req, res) => {
     );
 
     const result = await pool.query(
-      `INSERT INTO requests (user_id, student_name, student_email, requested_at)
-       VALUES ($1, $2, $3, NOW())
-       RETURNING user_id, student_name, student_email`,
-      [req.session.user.id, req.session.user.name, req.session.user.email]
+      `INSERT INTO requests 
+       (user_id, student_name, student_email, status, token, requested_at)
+       VALUES ($1, $2, $3, $4, $5, NOW())
+       RETURNING *`,
+      [
+        user.id,
+        user.name,
+        user.email,
+        status,
+        token
+      ]
     );
     
-    res.json(result.rows);
+    res.json(result.rows[0]);
+    res.json("Email sendt");
   } catch (err) {
     console.error(err);
+    res.status(500).send("Error sending email");
   }
 });
