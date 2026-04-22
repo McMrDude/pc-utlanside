@@ -121,10 +121,11 @@ h5 {
     background-clip: padding-box; 
 }
 
-.pcDiv, .reqDiv {
+.pcDiv {
     border-left: 1px solid black;
     border-right: 1px solid black; 
     border-top: 1px solid black;
     border-bottom: 1px solid black; 
+    background-color: white;
     text-align: center; 
 }
