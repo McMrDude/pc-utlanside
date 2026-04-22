@@ -121,7 +121,7 @@ h5 {
     background-clip: padding-box; 
 }
 
-.pcDiv, .requestDiv {
+.pcDiv, .reqDiv {
     border-left: 1px solid black;
     border-right: 1px solid black; 
     border-top: 1px solid black;
