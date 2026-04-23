@@ -315,7 +315,7 @@ async function loadPCs() {
   reqDiv.innerHTML = "";
 
   // headers
-  ["Bruker", "Datoer", "Status"].forEach(h => {
+  ["Bruker", "Datoer", "Status", "Godkjenn?"].forEach(h => {
     const row = document.createElement("div");
     row.textContent = h;
     reqDiv.appendChild(row);
