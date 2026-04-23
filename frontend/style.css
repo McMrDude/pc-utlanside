@@ -150,8 +150,21 @@ h5 {
     transition: 0.2s;
 }
 #yesButton:hover {
-    opacity: 80%;
+    background-color: rgb(150, 219, 47);
+    transform: scale(1.05);
+}
+#yesButton:active {
+    background-color: rgb(124, 176, 47);
+    transform: scale(0.95);
 }
 #noButton {
     background-color: red;
+}
+#noButton:hover {
+    background-color: rgb(223, 0, 0);
+    transform: scale(1.05);
+}
+#noButton:active {
+    background-color: rgb(198, 0, 0);
+    transform: scale(0.95);
 }
