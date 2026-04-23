@@ -52,7 +52,7 @@ p {
 #requestList {
     display: grid;
     grid-template-columns: auto auto auto auto;
-    width: 30%;
+    width: 40%;
 }
 
 .delete-btn { 
