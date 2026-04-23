@@ -44,9 +44,14 @@ p {
     grid-template-columns: auto auto auto auto auto 60px; 
 } 
 
-#pcList, #requestList {
+#pcList {
     display: grid;
     grid-template-columns: auto auto auto;
+    width: 30%;
+}
+#requestList {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
     width: 30%;
 }
 
