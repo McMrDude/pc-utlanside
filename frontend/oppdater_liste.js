@@ -277,7 +277,8 @@ async function loadPCs() {
   const headers = [
     "PC nummer",
     "Modell",
-    "Status"
+    "Status",
+    "Edit"
   ]
 
   headers.forEach(h => {
@@ -290,9 +291,11 @@ async function loadPCs() {
     const number = document.createElement("div");
     const model = document.createElement("div");
     const status = document.createElement("div");
+    const edit = document.createElement("div");
     number.className = "pcDiv";
     model.className = "pcDiv";
     status.className = "pcDiv";
+    edit.className = "pcDiv";
 
     number.textContent = `${pc.pc_number}`;
 
@@ -308,6 +311,11 @@ async function loadPCs() {
         : "🟢 Tilgjengelig";
 
     pcDiv.appendChild(status);
+
+    edit.textContent = "⚙️";
+    edit.style.backgroundColor = "grey";
+
+    pcDiv.appendChild(edit);
   });
 
 

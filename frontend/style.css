@@ -46,7 +46,7 @@ p {
 
 #pcList {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
     width: 30%;
 }
 #requestList {
@@ -151,11 +151,11 @@ h5 {
 }
 #yesButton:hover {
     background-color: rgb(191, 255, 96);
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 #yesButton:active {
     background-color: rgb(124, 176, 47);
-    transform: scale(0.95);
+    transform: scale(0.98);
 }
 #noButton {
     background-color: red;
@@ -163,9 +163,9 @@ h5 {
 }
 #noButton:hover {
     background-color: rgb(255, 32, 32);
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 #noButton:active {
     background-color: rgb(198, 0, 0);
-    transform: scale(0.95);
+    transform: scale(0.98);
 }
