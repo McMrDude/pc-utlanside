@@ -311,7 +311,7 @@ async function loadPCs() {
   });
 
 
-    const reqDiv = document.getElementById("requestList");
+  const reqDiv = document.getElementById("requestList");
   reqDiv.innerHTML = "";
 
   // headers
@@ -332,13 +332,15 @@ async function loadPCs() {
     const bruker = document.createElement("div");
     const date = document.createElement("div");
     const status = document.createElement("div");
+    const decide = document.createElement("div");
 
     bruker.className = "pcDiv";
     date.className = "pcDiv";
     status.className = "pcDiv";
+    decide.className = "pcDiv";
 
     bruker.textContent = `${req.student_name} (${req.student_email})`;
-    date.textContent = `${req.start_date} → ${req.return_date}`;
+    date.textContent = `${req.start_date.split("T")[0]} → ${req.return_date.split("T")[0]}`;
 
     status.textContent =
       req.status === "pending"
@@ -347,9 +349,25 @@ async function loadPCs() {
         ? "✅ Godkjent"
         : "❌ Avvist";
 
+    const shit = document.createElement("div");
+    shit.className = "shit";
+    const buttonYes = document.createElement("button");
+    buttonYes.className = "decideButton";
+    buttonYes.id = "yesButton";
+    buttonYes.textContent = "✓";
+    const buttonNo = document.createElement("button");
+    buttonNo.className = "decideButton";
+    buttonNo.id = "noButton";
+    buttonNo.textContent = "X";
+    shit.appendChild(buttonYes)
+    shit.appendChild(buttonNo)
+    
+    decide.appendChild(shit)
+
     reqDiv.appendChild(bruker);
     reqDiv.appendChild(date);
     reqDiv.appendChild(status);
+    reqDiv.appendChild(decide);
   });
 }
 

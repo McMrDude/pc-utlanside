@@ -129,3 +129,19 @@ h5 {
     background-color: white;
     text-align: center; 
 }
+
+.shit {
+    display: flex;
+    flex-direction: column;
+}
+
+.decideButton {
+    flex-basis: 50%;
+}
+
+#yesButton {
+    background-color: greenyellow;
+}
+#noButton {
+    background-color: red;
+}
