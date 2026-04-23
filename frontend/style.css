@@ -147,6 +147,10 @@ h5 {
 
 #yesButton {
     background-color: greenyellow;
+    transition: 0.2s;
+}
+#yesButton:hover {
+    opacity: 80%;
 }
 #noButton {
     background-color: red;
