@@ -138,6 +138,7 @@ h5 {
 .shit {
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .decideButton {
