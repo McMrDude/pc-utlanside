@@ -430,8 +430,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 async function editPC() {
-  const popup = document.getElementById("editPC").style.display = "none";
+  const popup = document.getElementById("editPC").style.display = "block";
 }
 async function savePC() {
-  const popup = document.getElementById("editPC").style.display = "block";
+  const popup = document.getElementById("editPC").style.display = "none";
 }
