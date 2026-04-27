@@ -440,7 +440,7 @@ app.post("/submit-changes", requireAdmin, async (req, res) => {
     await pool.query(`
       UPDATE pcs
       SET model = $1
-      WHERE pc_number = $2
+      SET pc_number = $2
     `, [model, pc_number]);
 
     res.json({ success: true });
