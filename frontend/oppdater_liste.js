@@ -443,26 +443,25 @@ function openEditPopup(pc) {
   popup.style.display = "block";
 }
 async function savePC(e) {
-  e.preventDefault(); // stop form reload
+  e.preventDefault();
 
   const pc_number = document.getElementById("editPcNumber").value;
   const model = document.getElementById("editPcModel").value;
 
-  await fetch("/submit-changes", {
+  console.log("Sending:", pc_number, model); // 👈 IMPORTANT DEBUG
+
+  const res = await fetch("/submit-changes", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({
-      pc_number,
-      model
-    }),
-    credentials: "include"
+    body: JSON.stringify({ pc_number, model })
   });
 
-  // close popup
+  const data = await res.json();
+  console.log("Response:", data);
+
   document.getElementById("editPC").style.display = "none";
 
-  // reload list
   loadPCs();
 }
