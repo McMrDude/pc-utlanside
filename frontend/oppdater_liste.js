@@ -318,7 +318,6 @@ async function loadPCs() {
     edit.onclick = () => {
       openEditPopup(pc);
     };
-    edit.style.backgroundColor = "grey";
 
     editDiv.appendChild(edit);
 
