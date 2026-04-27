@@ -172,13 +172,15 @@ h5 {
     transform: scale(0.98);
 }
 
-.pcList button {
+.edit-btn {
     transition: 0.2s;
     cursor: pointer;
 }
-.pcList button:hover {
+.edit-btn:hover {
     transform: scale(1.02);
+    background-color: rgb(144, 144, 144);
 }
-.pcList button:active {
+.edit-btn:active {
     transform: scale(0.98);
+    background-color: rgb(116, 116, 116);
 }

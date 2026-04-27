@@ -313,6 +313,7 @@ async function loadPCs() {
     pcDiv.appendChild(status);
 
     const edit = document.createElement("button");
+    edit.className = "edit-btn";
     edit.textContent = "⚙️";
     edit.onclick = () => {
       editPC();

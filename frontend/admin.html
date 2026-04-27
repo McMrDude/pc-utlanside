@@ -38,8 +38,15 @@
                     <h2>Alle PC'er</h2>
 
                     <div id="pcList"></div>
-                    
-                    <div id="editPC" style="display:none; border: 1px solid black; padding: 10px; margin-top: 10px;">
+
+                    <div id="editPC" style="display:none; 
+                    border: 1px solid black; 
+                    padding: 10px; 
+                    margin-top: 10px;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);">
                         <form method="POST" action="/submit-changes">
                             <h3>Rediger PC</h3>
                             <input id="editPcNumber" placeholder="PC nummer">
