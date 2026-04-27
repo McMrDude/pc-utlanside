@@ -432,3 +432,20 @@ app.post("/submit-date", requireLogin, async (req, res) => {
     res.status(500).send("Error sending email");
   }
 });
+
+app.post("/submit-changes", requireAdmin, async (req, res) => {
+  try {
+    const { pc_number, model } = req.body;
+
+    await pool.query(`
+      UPDATE pcs
+      SET model = $1
+      WHERE pc_number = $2
+    `, [model, pc_number]);
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Update failed" });
+
+  }});
