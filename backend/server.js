@@ -435,17 +435,22 @@ app.post("/submit-date", requireLogin, async (req, res) => {
 
 app.post("/submit-changes", requireAdmin, async (req, res) => {
   try {
-    const { pc_number, model } = req.body;
+    const { id, pc_number, model } = req.body;
 
-    await pool.query(`
+    const result = await pool.query(`
       UPDATE pcs
-      SET model = $1
-      SET pc_number = $2
-    `, [model, pc_number]);
+      SET pc_number = $1,
+          model = $2
+      WHERE id = $3
+      RETURNING *
+    `, [pc_number, model, id]);
+
+    console.log("Updated rows:", result.rowCount);
 
     res.json({ success: true });
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Update failed" });
-
-  }});
+  }
+});

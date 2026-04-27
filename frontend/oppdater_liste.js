@@ -431,35 +431,40 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 function openEditPopup(pc) {
-  const popup = document.getElementById("editPC");
+  document.getElementById("editPC").style.display = "block";
 
-  // fill inputs with current values
   document.getElementById("editPcNumber").value = pc.pc_number;
   document.getElementById("editPcModel").value = pc.model;
 
-  // store pc_number somewhere (important)
-  popup.dataset.pcNumber = pc.pc_number;
-
-  popup.style.display = "block";
+  // 👇 THIS is the important part
+  document.getElementById("editPC").dataset.id = pc.id;
 }
 async function savePC(e) {
+  if (!pc_number || !model) {
+    alert("Fill in all fields");
+    return;
+  }
+
   e.preventDefault();
 
-  const pc_number = document.getElementById("editPcNumber").value;
+  const id = document.getElementById("editPC").dataset.id;
+  const pc_number = Number(document.getElementById("editPcNumber").value);
   const model = document.getElementById("editPcModel").value;
-
-  console.log("Sending:", pc_number, model); // 👈 IMPORTANT DEBUG
 
   const res = await fetch("/submit-changes", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ pc_number, model })
+    body: JSON.stringify({
+      id,
+      pc_number,
+      model
+    })
   });
 
   const data = await res.json();
-  console.log("Response:", data);
+  console.log(data);
 
   document.getElementById("editPC").style.display = "none";
 
