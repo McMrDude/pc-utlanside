@@ -148,6 +148,7 @@ h5 {
 #yesButton {
     background-color: greenyellow;
     transition: 0.2s;
+    cursor: pointer;
 }
 #yesButton:hover {
     background-color: rgb(191, 255, 96);
@@ -160,6 +161,7 @@ h5 {
 #noButton {
     background-color: red;
     transition: 0.2s;
+    cursor: pointer;
 }
 #noButton:hover {
     background-color: rgb(255, 32, 32);
@@ -167,5 +169,16 @@ h5 {
 }
 #noButton:active {
     background-color: rgb(198, 0, 0);
+    transform: scale(0.98);
+}
+
+.pcDiv button {
+    transition: 0.2s;
+    cursor: pointer;
+}
+.pcDiv button:hover {
+    transform: scale(1.02);
+}
+.pcDiv button:active {
     transform: scale(0.98);
 }

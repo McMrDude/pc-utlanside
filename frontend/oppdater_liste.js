@@ -314,6 +314,9 @@ async function loadPCs() {
 
     const edit = document.createElement("button");
     edit.textContent = "⚙️";
+    edit.onclick = () => {
+      editPC();
+    }
     edit.style.backgroundColor = "grey";
 
     editDiv.content = edit;
@@ -424,3 +427,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (pcTab) pcTab.style.display = "none";
   }
 });
+
+
+async function editPC() {
+  const popup = document.getElementById("editPC").style.display = "none";
+}
+async function savePC() {
+  const popup = document.getElementById("editPC").style.display = "block";
+}

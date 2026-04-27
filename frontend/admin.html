@@ -38,6 +38,16 @@
                     <h2>Alle PC'er</h2>
 
                     <div id="pcList"></div>
+                    <div id="editPC">
+                        <div id="editPC" style="display:none; border: 1px solid black; padding: 10px; margin-top: 10px;">
+                            <form method="POST" action="/submit-changes">
+                                <h3>Rediger PC</h3>
+                                <input id="editPcNumber" placeholder="PC nummer">
+                                <input id="editPcModel" placeholder="Modell">
+                                <button type="submit" onclick="savePC()">Lagre</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div> 
         </div> 
