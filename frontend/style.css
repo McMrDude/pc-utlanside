@@ -164,12 +164,10 @@ h5 {
     cursor: pointer;
 }
 #noButton:hover {
-    background-color: rgb(255, 32, 32);
-    transform: scale(1.02);
+    background-color: rgb(255, 47, 47);
 }
 #noButton:active {
     background-color: rgb(198, 0, 0);
-    transform: scale(0.98);
 }
 
 .edit-btn {
@@ -177,17 +175,16 @@ h5 {
     cursor: pointer;
 }
 .edit-btn:hover {
-    transform: scale(1.02);
-    background-color: rgb(144, 144, 144);
+    background-color: rgb(157, 157, 157);
 }
 .edit-btn:active {
-    transform: scale(0.98);
-    background-color: rgb(116, 116, 116);
+    background-color: rgb(94, 94, 94);
 }
 
 .close-btn {
     background-color: red;
     transition: 0.2s;
+    cursor: pointer;
 }
 .close-btn:hover {
     background-color: rgb(255, 47, 47);
