@@ -174,10 +174,10 @@ h5 {
     cursor: pointer;
 }
 .edit-btn:hover {
-    background-color: rgb(186, 186, 186);
+    background-color: rgb(157, 157, 157);
 }
 .edit-btn:active {
-    background-color: rgb(57, 57, 57);
+    background-color: rgb(94, 94, 94);
 }
 
 .close-btn {
