@@ -291,11 +291,11 @@ async function loadPCs() {
     const number = document.createElement("div");
     const model = document.createElement("div");
     const status = document.createElement("div");
-    const edit = document.createElement("div");
+    const editDiv = document.createElement("div");
     number.className = "pcDiv";
     model.className = "pcDiv";
     status.className = "pcDiv";
-    edit.className = "pcDiv";
+    editDiv.className = "pcDiv";
 
     number.textContent = `${pc.pc_number}`;
 
@@ -312,8 +312,11 @@ async function loadPCs() {
 
     pcDiv.appendChild(status);
 
+    const edit = document.createElement("button");
     edit.textContent = "⚙️";
     edit.style.backgroundColor = "grey";
+
+    editDiv.content = edit;
 
     pcDiv.appendChild(edit);
   });
