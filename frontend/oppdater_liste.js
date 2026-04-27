@@ -440,11 +440,6 @@ function openEditPopup(pc) {
   document.getElementById("editPC").dataset.id = pc.id;
 }
 async function savePC(e) {
-  if (!pc_number || !model) {
-    alert("Fill in all fields");
-    return;
-  }
-
   e.preventDefault();
 
   const id = document.getElementById("editPC").dataset.id;
