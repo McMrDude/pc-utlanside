@@ -316,11 +316,11 @@ async function loadPCs() {
     edit.className = "edit-btn";
     edit.textContent = "⚙️";
     edit.onclick = () => {
-      editPC();
-    }
+      openEditPopup(pc);
+    };
     edit.style.backgroundColor = "grey";
 
-    editDiv.content = edit;
+    editDiv.appendChild(edit);
 
     pcDiv.appendChild(edit);
   });
@@ -430,9 +430,39 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 
-async function editPC() {
-  const popup = document.getElementById("editPC").style.display = "block";
+function openEditPopup(pc) {
+  const popup = document.getElementById("editPC");
+
+  // fill inputs with current values
+  document.getElementById("editPcNumber").value = pc.pc_number;
+  document.getElementById("editPcModel").value = pc.model;
+
+  // store pc_number somewhere (important)
+  popup.dataset.pcNumber = pc.pc_number;
+
+  popup.style.display = "block";
 }
-async function savePC() {
-  const popup = document.getElementById("editPC").style.display = "none";
+async function savePC(e) {
+  e.preventDefault(); // stop form reload
+
+  const pc_number = document.getElementById("editPcNumber").value;
+  const model = document.getElementById("editPcModel").value;
+
+  await fetch("/submit-changes", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      pc_number,
+      model
+    }),
+    credentials: "include"
+  });
+
+  // close popup
+  document.getElementById("editPC").style.display = "none";
+
+  // reload list
+  loadPCs();
 }

@@ -47,11 +47,13 @@
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);">
-                        <form method="POST" action="/submit-changes">
+                        <form onsubmit="savePC(event)">
                             <h3>Rediger PC</h3>
-                            <input id="editPcNumber" placeholder="PC nummer">
-                            <input id="editPcModel" placeholder="Modell">
-                            <button type="submit" onclick="savePC()">Lagre</button>
+
+                            <input id="editPcNumber" name="pc_number" readonly>
+                            <input id="editPcModel" name="model">
+
+                            <button type="submit">Lagre</button>
                         </form>
                     </div>
                 </div>
