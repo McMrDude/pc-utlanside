@@ -151,12 +151,10 @@ h5 {
     cursor: pointer;
 }
 #yesButton:hover {
-    background-color: rgb(191, 255, 96);
-    transform: scale(1.02);
+    background-color: rgb(199, 255, 114);
 }
 #yesButton:active {
     background-color: rgb(124, 176, 47);
-    transform: scale(0.98);
 }
 #noButton {
     background-color: red;
@@ -164,7 +162,7 @@ h5 {
     cursor: pointer;
 }
 #noButton:hover {
-    background-color: rgb(255, 47, 47);
+    background-color: rgb(255, 75, 75);
 }
 #noButton:active {
     background-color: rgb(198, 0, 0);
@@ -175,10 +173,10 @@ h5 {
     cursor: pointer;
 }
 .edit-btn:hover {
-    background-color: rgb(157, 157, 157);
+    background-color: rgb(186, 186, 186);
 }
 .edit-btn:active {
-    background-color: rgb(94, 94, 94);
+    background-color: rgb(57, 57, 57);
 }
 
 .close-btn {
@@ -187,7 +185,7 @@ h5 {
     cursor: pointer;
 }
 .close-btn:hover {
-    background-color: rgb(255, 47, 47);
+    background-color: rgb(255, 75, 75);
 }
 .close-btn:active {
     background-color: rgb(198, 0, 0);
