@@ -190,7 +190,7 @@ h5 {
     transition: 0.2s;
 }
 .close-btn:hover {
-    background-color: rgb(255, 32, 32);
+    background-color: rgb(255, 47, 47);
 }
 .close-btn:active {
     background-color: rgb(198, 0, 0);
