@@ -172,13 +172,13 @@ h5 {
     transform: scale(0.98);
 }
 
-.pcDiv button {
+.pcList button {
     transition: 0.2s;
     cursor: pointer;
 }
-.pcDiv button:hover {
+.pcList button:hover {
     transform: scale(1.02);
 }
-.pcDiv button:active {
+.pcList button:active {
     transform: scale(0.98);
 }
