@@ -184,3 +184,14 @@ h5 {
     transform: scale(0.98);
     background-color: rgb(116, 116, 116);
 }
+
+.close-btn {
+    background-color: red;
+    transition: 0.2s;
+}
+.close-btn:hover {
+    background-color: rgb(255, 32, 32);
+}
+.close-btn:active {
+    background-color: rgb(198, 0, 0);
+}
