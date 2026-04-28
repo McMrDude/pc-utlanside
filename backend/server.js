@@ -280,8 +280,7 @@ app.post("/rentals", requireLogin, async (req, res) => {
        VALUES ($1, $2, $3, $4, $5)`,
       [  
         req.session.user.name,
-        req.
-        request.pc_number,
+        123,
         request.startDate,
         request.returnDate,
         req.session.user.id
