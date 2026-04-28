@@ -273,7 +273,7 @@ app.get("/rentals", requireLogin, async (req, res) => {
 app.post("/rentals", requireLogin, async (req, res) => {
   try {
     const results = await pool.query("SELECT * FROM requests WHERE id = $1", 
-    [req.session.user.id]);
+    [req.body.requestId]);
     const reqData = results.rows[0];
 
     await pool.query(
