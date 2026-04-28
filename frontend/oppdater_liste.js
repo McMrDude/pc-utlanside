@@ -441,7 +441,10 @@ async function approveRequest(requestId) {
     headers: { 
       "Content-Type": "application/json" 
     },
-    body: JSON.stringify({ requestId }),
+    body: JSON.stringify({ 
+      requestId,
+      
+     }),
     credentials: "include"
   });
 

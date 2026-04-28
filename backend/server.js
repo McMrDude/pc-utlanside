@@ -272,7 +272,7 @@ app.get("/rentals", requireLogin, async (req, res) => {
 
 app.post("/rentals", requireLogin, async (req, res) => {
   try {
-    const request = await pool.query("SELECT * FROM rentals WHERE user_id = $1", 
+    const request = await pool.query("SELECT * FROM requests WHERE user_id = $1", 
     [req.session.user.id]);
 
     await pool.query(
@@ -280,6 +280,7 @@ app.post("/rentals", requireLogin, async (req, res) => {
        VALUES ($1, $2, $3, $4, $5)`,
       [  
         req.session.user.name,
+        req.
         request.pc_number,
         request.startDate,
         request.returnDate,
