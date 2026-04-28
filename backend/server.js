@@ -281,8 +281,8 @@ app.post("/rentals", requireLogin, async (req, res) => {
       [  
         req.session.user.name,
         123,
-        request.startDate,
-        request.returnDate,
+        request.start_date,
+        request.return_date,
         req.session.user.id
       ]
     );
