@@ -272,8 +272,9 @@ app.get("/rentals", requireLogin, async (req, res) => {
 
 app.post("/rentals", requireLogin, async (req, res) => {
   try {
-    const request = await pool.query("SELECT * FROM requests WHERE user_id = $1", 
+    const results = await pool.query("SELECT * FROM requests WHERE id = $1", 
     [req.session.user.id]);
+    const reqData = results.rows[0];
 
     await pool.query(
       `INSERT INTO rentals (student_name, pc_number, rented_date, return_date, user_id)
@@ -281,8 +282,8 @@ app.post("/rentals", requireLogin, async (req, res) => {
       [  
         req.session.user.name,
         123,
-        request.start_date,
-        request.return_date,
+        reqData.start_date,
+        reqData.return_date,
         req.session.user.id
       ]
     );
