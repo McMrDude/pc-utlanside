@@ -436,7 +436,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 async function approveRequest(requestId) {
-  await fetch(`/rentals`, {
+  const res = await fetch(`/rentals`, {
     method: "POST",
     headers: { 
       "Content-Type": "application/json" 
@@ -444,6 +444,9 @@ async function approveRequest(requestId) {
     body: JSON.stringify({ requestId }),
     credentials: "include"
   });
+
+  const data = await res.json();
+  console.log(data);
 
   loadPCs();
 }
