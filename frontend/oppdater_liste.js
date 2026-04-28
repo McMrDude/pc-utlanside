@@ -267,6 +267,8 @@ function openPCs() {
   loadPCs();
 }
 
+let currentRequestId = null;
+
 async function loadPCs() {
   const PCres = await fetch("/pcs/status");
   const pcs = await PCres.json();
@@ -376,7 +378,8 @@ async function loadPCs() {
     buttonYes.id = "yesButton";
     buttonYes.textContent = "✓";
     buttonYes.onclick = () => {
-      approveRequest(req.id);
+      currentRequestId = req.id;
+      document.getElementById("acceptRequest").style.display = "block";
     };
     const buttonNo = document.createElement("button");
     buttonNo.className = "decideButton";
@@ -473,6 +476,8 @@ async function rejectRequest(requestId) {
     }),
     credentials: "include"
   });
+
+  document.getElementById("acceptRequest").style.display = "none";
 }
 
 function openEditPopup(pc) {
