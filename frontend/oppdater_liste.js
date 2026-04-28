@@ -443,7 +443,6 @@ async function approveRequest(requestId) {
     },
     body: JSON.stringify({ 
       requestId,
-      
      }),
     credentials: "include"
   });
@@ -454,6 +453,18 @@ async function approveRequest(requestId) {
   loadPCs();
 }
 
+async function rejectRequest(requestId) {
+  await fetch(`/requests-delete`, {
+    method: "POST",
+    headers: { 
+      "Content-Type": "application/json" 
+    },
+    body: JSON.stringify({ 
+      requestId
+    }),
+    credentials: "include"
+  });
+}
 
 function openEditPopup(pc) {
   document.getElementById("editPC").style.display = "block";

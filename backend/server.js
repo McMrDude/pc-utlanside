@@ -288,10 +288,26 @@ app.post("/rentals", requireLogin, async (req, res) => {
       ]
     );
 
+    await pool.query(
+      `DELETE FROM requests WHERE id = $1`,
+      [req.body.requestId]
+    );
+
     res.sendStatus(201);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Insert failed" });
+  }
+});
+app.post("/rentals-delete", requireLogin, async (req, res) => {
+  try {
+    const { id } = req.body;
+
+    await pool.query("DELETE FROM rentals WHERE id = $1", [id]);
+    res.sendStatus(201);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Delete failed" });
   }
 });
 
