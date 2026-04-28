@@ -369,10 +369,16 @@ async function loadPCs() {
     buttonYes.className = "decideButton";
     buttonYes.id = "yesButton";
     buttonYes.textContent = "✓";
+    buttonYes.onclick = () => {
+      approveRequest(req.id);
+    };
     const buttonNo = document.createElement("button");
     buttonNo.className = "decideButton";
     buttonNo.id = "noButton";
     buttonNo.textContent = "X";
+    buttonNo.onclick = () => {
+      rejectRequest(req.id);
+    };
     shit.appendChild(buttonYes)
     shit.appendChild(buttonNo)
     
@@ -427,6 +433,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (pcTab) pcTab.style.display = "none";
   }
 });
+
+
+async function approveRequest(requestId) {
+  await fetch(`/rentals`, {
+    method: "POST",
+    headers: { 
+      "Content-Type": "application/json" 
+    },
+    body: JSON.stringify({ requestId }),
+    credentials: "include"
+  });
+
+  loadPCs();
+}
 
 
 function openEditPopup(pc) {

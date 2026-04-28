@@ -7,6 +7,7 @@ import bcrypt from "bcrypt";
 import session from "express-session";
 import { send } from "@emailjs/nodejs";
 import crypto from "crypto";
+import { request } from "http";
 
 
 /* =========================
@@ -271,17 +272,17 @@ app.get("/rentals", requireLogin, async (req, res) => {
 
 app.post("/rentals", requireLogin, async (req, res) => {
   try {
-    const { student_name, pc_number, rented_date, return_date } = req.body;
+    const request = await pool.query("SELECT * FROM rentals WHERE user_id = $1", 
+    [req.session.user.id]);
 
     await pool.query(
-      `INSERT INTO rentals 
-       (student_name, pc_number, rented_date, return_date, user_id)
+      `INSERT INTO rentals (student_name, pc_number, rented_date, return_date, user_id)
        VALUES ($1, $2, $3, $4, $5)`,
-      [
-        student_name,
-        pc_number,
-        rented_date,
-        return_date,
+      [  
+        req.session.user.name,
+        request.pc_number,
+        request.startDate,
+        request.returnDate,
         req.session.user.id
       ]
     );
