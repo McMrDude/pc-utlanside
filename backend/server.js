@@ -203,18 +203,24 @@ app.get("/pcs/status", requireAdmin, async (req, res) => {
         pcs.id,
         pcs.pc_number,
         pcs.model,
+
         CASE
           WHEN r.id IS NOT NULL THEN 'loaned'
           ELSE 'available'
         END AS status,
+
         u.name AS user_name,
         u.email AS user_email
+
       FROM pcs
+
       LEFT JOIN rentals r
         ON r.pc_number = pcs.pc_number
-        AND r.return_date >= CURRENT_DATE
+        AND r.status = 'active'
+
       LEFT JOIN users u
         ON u.id = r.user_id
+
       ORDER BY pcs.pc_number
     `);
 
@@ -277,8 +283,8 @@ app.post("/rentals", requireLogin, async (req, res) => {
     const reqData = results.rows[0];
 
     await pool.query(
-      `INSERT INTO rentals (student_name, pc_number, rented_date, return_date, user_id)
-       VALUES ($1, $2, $3, $4, $5)`,
+      `INSERT INTO rentals (student_name, pc_number, rented_date, return_date, user_id, status)
+       VALUES ($1, $2, $3, $4, $5, 'active')`,
       [  
         req.session.user.name,
         req.body.pcNumber,
