@@ -281,7 +281,7 @@ app.post("/rentals", requireLogin, async (req, res) => {
        VALUES ($1, $2, $3, $4, $5)`,
       [  
         req.session.user.name,
-        123,
+        req.body.pcNumber,
         reqData.start_date,
         reqData.return_date,
         req.session.user.id
@@ -299,11 +299,11 @@ app.post("/rentals", requireLogin, async (req, res) => {
     res.status(500).json({ error: "Insert failed" });
   }
 });
-app.post("/rentals-delete", requireLogin, async (req, res) => {
+app.post("/request-decline", requireLogin, async (req, res) => {
   try {
     const { id } = req.body;
 
-    await pool.query("DELETE FROM rentals WHERE id = $1", [id]);
+    await pool.query("DELETE FROM requests WHERE id = $1", [id]);
     res.sendStatus(201);
   } catch (err) {
     console.error(err);

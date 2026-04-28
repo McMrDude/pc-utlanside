@@ -288,6 +288,12 @@ async function loadPCs() {
   })
 
   pcs.forEach(pc => {
+    const selectOption = document.createElement("option");
+    selectOption.value = pc.pc_number;
+    selectOption.textContent = `PC ${pc.pc_number} - ${pc.model}`;
+    document.getElementById("pcSelect").appendChild(selectOption);
+
+
     const number = document.createElement("div");
     const model = document.createElement("div");
     const status = document.createElement("div");
@@ -436,6 +442,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 async function approveRequest(requestId) {
+  const pcNumber = document.getElementById("pcSelect").value;
+
   const res = await fetch(`/rentals`, {
     method: "POST",
     headers: { 
@@ -443,7 +451,8 @@ async function approveRequest(requestId) {
     },
     body: JSON.stringify({ 
       requestId,
-     }),
+      pcNumber
+    }),
     credentials: "include"
   });
 
@@ -454,7 +463,7 @@ async function approveRequest(requestId) {
 }
 
 async function rejectRequest(requestId) {
-  await fetch(`/requests-delete`, {
+  await fetch(`/request-decline`, {
     method: "POST",
     headers: { 
       "Content-Type": "application/json" 

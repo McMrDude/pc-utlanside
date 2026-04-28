@@ -39,6 +39,27 @@
 
                     <div id="pcList"></div>
 
+
+                    <div id="acceptRequest" style="display:none; 
+                    border: 1px solid black;
+                    background-color: rgb(197, 197, 197);
+                    padding: 10px; 
+                    margin-top: 10px;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);">
+                        <form onsubmit="approveRequest(event)">
+                            <button type="button" class="close-btn" style="position: absolute; top: 10px; right: 10px;" onclick="getElementById('editPC').style.display = 'none'">X</button>
+                            <h3>Velg PC</h3>
+
+                            <select id="pcSelect" name="pc_number"></select>
+
+                            <button type="submit">Lagre</button>
+                        </form>
+                    </div>
+
+
                     <div id="editPC" style="display:none; 
                     border: 1px solid black;
                     background-color: rgb(197, 197, 197);
