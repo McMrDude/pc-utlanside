@@ -444,7 +444,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 
-async function approveRequest(requestId) {
+async function approveRequest() {
   const pcNumber = document.getElementById("pcSelect").value;
 
   const res = await fetch(`/rentals`, {
@@ -453,7 +453,7 @@ async function approveRequest(requestId) {
       "Content-Type": "application/json" 
     },
     body: JSON.stringify({ 
-      requestId,
+      requestId: currentRequestId,
       pcNumber
     }),
     credentials: "include"
