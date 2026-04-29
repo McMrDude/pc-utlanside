@@ -31,7 +31,7 @@ async function openList() {
 async function openCalendar() {
   list.style.display = "none";
   calendar.style.display = "block";
-  popup.style.display = "none";
+  popup.style = "display: none; border: 1px solid black; background-color: rgb(197, 197, 197); padding: 10px; margin-top: 10px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);";
   document.getElementById("pcPage").style.display = "none";
 
   if (!calendarInstance) {
@@ -44,17 +44,19 @@ async function openCalendar() {
       eventClick: function (info) {
         const event = info.event;
 
-        popup.innerHTML = `
-          <strong>
-            ${event.extendedProps.studentName} - PC ${event.extendedProps.pcNumber}
-          </strong><br>
-          Rented: ${formatDate(event.extendedProps.rentedDate)}<br>
-          Return: ${formatDate(event.extendedProps.returnDate)}<br><br>
-          <button id="popupDeleteBtn" class="delete-btn">Delete</button>
-        `;
+        event.forEach(e => {
+          const rental = document.createElement("div");
+          rental.innerHTML = `
+            <strong>
+              ${e.extendedProps.studentName} - PC ${e.extendedProps.pcNumber}
+            </strong><br>
+            Rented: ${formatDate(e.extendedProps.rentedDate)}<br>
+            Return: ${formatDate(e.extendedProps.returnDate)}<br><br>
+            <button id="popupDeleteBtn" class="delete-btn`
 
-        popup.style.left = info.jsEvent.pageX + 10 + "px";
-        popup.style.top = info.jsEvent.pageY + 10 + "px";
+            popup.appendChild(rental);
+        });
+
         popup.style.display = "block";
 
         document.getElementById("popupDeleteBtn").onclick = async () => {
