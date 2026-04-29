@@ -350,54 +350,62 @@ async function loadPCs() {
   const requests = await res.json();
 
   // 👇 LOOP THROUGH REQUESTS
-  requests.forEach(req => {
-    const bruker = document.createElement("div");
-    const date = document.createElement("div");
-    const status = document.createElement("div");
-    const decide = document.createElement("div");
+  if (requests.length === 0) {
+    const noReq = document.createElement("div");
+    noReq.textContent = "Ingen ventende forespørsler";
+    reqDiv.appendChild(noReq);
+    return;
+  }
+  else {
+    requests.forEach(req => {
+      const bruker = document.createElement("div");
+      const date = document.createElement("div");
+      const status = document.createElement("div");
+      const decide = document.createElement("div");
 
-    bruker.className = "pcDiv";
-    date.className = "pcDiv";
-    status.className = "pcDiv";
-    decide.className = "pcDiv";
+      bruker.className = "pcDiv";
+      date.className = "pcDiv";
+      status.className = "pcDiv";
+      decide.className = "pcDiv";
 
-    bruker.textContent = `${req.student_name} (${req.student_email})`;
-    date.textContent = `${req.start_date.split("T")[0]} → ${req.return_date.split("T")[0]}`;
+      bruker.textContent = `${req.student_name} (${req.student_email})`;
+      date.textContent = `${req.start_date.split("T")[0]} → ${req.return_date.split("T")[0]}`;
 
-    status.textContent =
-      req.status === "pending"
-        ? "⏳ Venter på godkjenning"
-        : req.status === "approved"
-        ? "✅ Godkjent"
-        : "❌ Avvist";
+      status.textContent =
+        req.status === "pending"
+          ? "⏳ Venter på godkjenning"
+          : req.status === "approved"
+          ? "✅ Godkjent"
+          : "❌ Avvist";
 
-    const shit = document.createElement("div");
-    shit.className = "shit";
-    const buttonYes = document.createElement("button");
-    buttonYes.className = "decideButton";
-    buttonYes.id = "yesButton";
-    buttonYes.textContent = "✓";
-    buttonYes.onclick = () => {
-      currentRequestId = req.id;
-      document.getElementById("acceptRequest").style.display = "block";
-    };
-    const buttonNo = document.createElement("button");
-    buttonNo.className = "decideButton";
-    buttonNo.id = "noButton";
-    buttonNo.textContent = "X";
-    buttonNo.onclick = () => {
-      rejectRequest(req.id);
-    };
-    shit.appendChild(buttonYes)
-    shit.appendChild(buttonNo)
-    
-    decide.appendChild(shit)
+      const shit = document.createElement("div");
+      shit.className = "shit";
+      const buttonYes = document.createElement("button");
+      buttonYes.className = "decideButton";
+      buttonYes.id = "yesButton";
+      buttonYes.textContent = "✓";
+      buttonYes.onclick = () => {
+        currentRequestId = req.id;
+        document.getElementById("acceptRequest").style.display = "block";
+      };
+      const buttonNo = document.createElement("button");
+      buttonNo.className = "decideButton";
+      buttonNo.id = "noButton";
+      buttonNo.textContent = "X";
+      buttonNo.onclick = () => {
+        rejectRequest(req.id);
+      };
+      shit.appendChild(buttonYes)
+      shit.appendChild(buttonNo)
+      
+      decide.appendChild(shit)
 
-    reqDiv.appendChild(bruker);
-    reqDiv.appendChild(date);
-    reqDiv.appendChild(status);
-    reqDiv.appendChild(decide);
-  });
+      reqDiv.appendChild(bruker);
+      reqDiv.appendChild(date);
+      reqDiv.appendChild(status);
+      reqDiv.appendChild(decide);
+    });
+  }
 }
 
 async function addPC() {
