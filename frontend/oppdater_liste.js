@@ -332,6 +332,12 @@ async function loadPCs() {
     pcDiv.appendChild(edit);
   });
 
+  // 👇 FETCH REQUESTS
+  const res = await fetch("/requests", {
+    credentials: "include"
+  });
+  const requests = await res.json();
+
   if (requests.length === 0) {
     const noReq = document.createElement("div");
     noReq.textContent = "Ingen ventende forespørsler";
@@ -348,12 +354,6 @@ async function loadPCs() {
       row.textContent = h;
       reqDiv.appendChild(row);
     });
-
-    // 👇 FETCH REQUESTS
-    const res = await fetch("/requests", {
-      credentials: "include"
-    });
-    const requests = await res.json();
 
     // 👇 LOOP THROUGH REQUESTS
     requests.forEach(req => {
