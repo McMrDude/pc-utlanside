@@ -31,7 +31,7 @@ async function openList() {
 async function openCalendar() {
   list.style.display = "none";
   calendar.style.display = "block";
-  popup.style = "display: none; border: 1px solid black; background-color: rgb(197, 197, 197); padding: 10px; margin-top: 10px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);";
+  popup.style = "display: none; border: 1px solid black; background-color: rgb(197, 197, 197); padding: 10px; margin-top: 10px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;";
   document.getElementById("pcPage").style.display = "none";
   
   const res = await fetch("/rentals", {
@@ -72,7 +72,7 @@ async function openCalendar() {
 
         popup.style.display = "block";
 
-        document.getElementByClass("popupDeleteBtn").onclick = async () => {
+        document.getElementsByClassName("popupDeleteBtn")[0].onclick = async () => {
           if (!confirm("Slett denne leieavtalen?")) return;
 
           await fetch(`${API_URL}/${event.extendedProps.id}`, {
