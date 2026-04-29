@@ -338,6 +338,9 @@ async function loadPCs() {
   });
   const requests = await res.json();
 
+  const reqDiv = document.getElementById("requestList");
+    reqDiv.innerHTML = "";
+
   if (requests.length === 0) {
     const noReq = document.createElement("div");
     noReq.textContent = "Ingen ventende forespørsler";
@@ -345,9 +348,6 @@ async function loadPCs() {
     return;
   }
   else {
-    const reqDiv = document.getElementById("requestList");
-    reqDiv.innerHTML = "";
-
     // headers
     ["Bruker", "Datoer", "Status", "Godkjenn?"].forEach(h => {
       const row = document.createElement("div");
