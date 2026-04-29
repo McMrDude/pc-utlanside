@@ -47,6 +47,7 @@ async function openCalendar() {
       events: [],
 
       eventClick: function (info) {
+        popup.innerHTML = "";
         const event = info.event;
         const clickedDate = event.startStr;
 
