@@ -33,6 +33,11 @@ async function openCalendar() {
   calendar.style.display = "block";
   popup.style = "display: none; border: 1px solid black; background-color: rgb(197, 197, 197); padding: 10px; margin-top: 10px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);";
   document.getElementById("pcPage").style.display = "none";
+  
+  const res = await fetch("/rentals", {
+    credentials: "include"
+  });
+  const rentals = await res.json();
 
   if (!calendarInstance) {
     calendarInstance = new FullCalendar.Calendar(calendar, {
@@ -44,17 +49,20 @@ async function openCalendar() {
       eventClick: function (info) {
         const event = info.event;
 
-        event.forEach(e => {
-          const rental = document.createElement("div");
-          rental.innerHTML = `
-            <strong>
-              ${e.extendedProps.studentName} - PC ${e.extendedProps.pcNumber}
-            </strong><br>
-            Rented: ${formatDate(e.extendedProps.rentedDate)}<br>
-            Return: ${formatDate(e.extendedProps.returnDate)}<br><br>
-            <button id="popupDeleteBtn" class="delete-btn`
+        rentals.forEach(e => {
+          if (e.returnDate == event.extendedProps.returnDate) {
+            const rental = document.createElement("div");
+            rental.innerHTML = `
+              <strong>
+                ${e.extendedProps.studentName} - PC ${e.extendedProps.pcNumber}
+              </strong><br>
+              Rented: ${formatDate(e.extendedProps.rentedDate)}<br>
+              Return: ${formatDate(e.extendedProps.returnDate)}<br><br>
+              <button id="popupDeleteBtn" class="delete-btn">Slett</button>
+            `;
 
-            popup.appendChild(rental);
+              popup.appendChild(rental);
+          }
         });
 
         popup.style.display = "block";
