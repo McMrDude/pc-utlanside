@@ -57,6 +57,7 @@ async function openCalendar() {
 
         sameDayRentals.forEach(r => {
           const rental = document.createElement("div");
+          rental.style = "background-color: lightgray; padding: 5px; margin-bottom: 5px; border-radius: 5px;";
           rental.innerHTML = `
             <strong>
               ${r.student_name} - PC ${r.pc_number}
