@@ -332,24 +332,6 @@ async function loadPCs() {
     pcDiv.appendChild(edit);
   });
 
-
-  const reqDiv = document.getElementById("requestList");
-  reqDiv.innerHTML = "";
-
-  // headers
-  ["Bruker", "Datoer", "Status", "Godkjenn?"].forEach(h => {
-    const row = document.createElement("div");
-    row.textContent = h;
-    reqDiv.appendChild(row);
-  });
-
-  // 👇 FETCH REQUESTS
-  const res = await fetch("/requests", {
-    credentials: "include"
-  });
-  const requests = await res.json();
-
-  // 👇 LOOP THROUGH REQUESTS
   if (requests.length === 0) {
     const noReq = document.createElement("div");
     noReq.textContent = "Ingen ventende forespørsler";
@@ -357,6 +339,23 @@ async function loadPCs() {
     return;
   }
   else {
+    const reqDiv = document.getElementById("requestList");
+    reqDiv.innerHTML = "";
+
+    // headers
+    ["Bruker", "Datoer", "Status", "Godkjenn?"].forEach(h => {
+      const row = document.createElement("div");
+      row.textContent = h;
+      reqDiv.appendChild(row);
+    });
+
+    // 👇 FETCH REQUESTS
+    const res = await fetch("/requests", {
+      credentials: "include"
+    });
+    const requests = await res.json();
+
+    // 👇 LOOP THROUGH REQUESTS
     requests.forEach(req => {
       const bruker = document.createElement("div");
       const date = document.createElement("div");
