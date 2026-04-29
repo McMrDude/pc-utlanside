@@ -47,30 +47,19 @@ async function openCalendar() {
       events: [],
 
       eventClick: function (info) {
+        popup.innerHTML = "";
         const event = info.event;
 
-        rentals.forEach(e => {
-          if (e.returnDate == event.extendedProps.returnDate) {
-            const rental = document.createElement("div");
-            rental.innerHTML = `
-              <strong>
-                ${e.extendedProps.studentName} - PC ${e.extendedProps.pcNumber}
-              </strong><br>
-              Rented: ${formatDate(e.extendedProps.rentedDate)}<br>
-              Return: ${formatDate(e.extendedProps.returnDate)}<br><br>
-              <button id="popupDeleteBtn" class="delete-btn">Slett</button>
-            `;
+        const rental = document.createElement("div");
 
-              popup.appendChild(rental);
-          }
-        });
+        const btn = document.createElement("button");
+        btn.className = "delete-btn";
+        btn.textContent = "Slett";
 
-        popup.style.display = "block";
-
-        document.getElementById("popupDeleteBtn").onclick = async () => {
+        btn.onclick = async () => {
           if (!confirm("Slett denne leieavtalen?")) return;
 
-          await fetch(`${API_URL}/${event.extendedProps.id}`, {
+          await fetch(`${API_URL}/${e.id}`, {
             method: "DELETE"
           });
 
@@ -78,6 +67,17 @@ async function openCalendar() {
           loadRentals();
           loadCalendarEvents();
         };
+
+        rental.innerHTML = `
+          <strong>
+            ${e.student_name} - PC ${e.pc_number}
+          </strong><br>
+          Rented: ${formatDate(e.rented_date)}<br>
+          Return: ${formatDate(e.return_date)}<br><br>
+        `;
+
+        rental.appendChild(btn);
+        popup.appendChild(rental);
       }
     });
 
