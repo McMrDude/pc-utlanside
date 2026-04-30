@@ -305,7 +305,7 @@ async function loadPCs() {
   })
 
   pcs.forEach(pc => {
-    if (pc.status.value === "ledig") {
+    if (pc.status === "ledig") {
       const selectOption = document.createElement("option");
       selectOption.value = pc.pc_number;
       selectOption.textContent = `PC ${pc.pc_number} - ${pc.model}`;
