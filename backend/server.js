@@ -461,6 +461,13 @@ app.post("/submit-changes", requireAdmin, async (req, res) => {
   try {
     const { id, pc_number, model } = req.body;
 
+    const rentalUpdate = await pool.query(`
+      UPDATE rentals
+      SET pc_number = $1
+      WHERE pc_number = (SELECT pc_number FROM pcs WHERE id = $2)
+        AND status = 'active'
+    `, [pc_number, id]);
+
     const result = await pool.query(`
       UPDATE pcs
       SET pc_number = $1,
