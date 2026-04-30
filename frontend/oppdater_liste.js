@@ -304,8 +304,8 @@ async function loadPCs() {
     pcDiv.appendChild(row)
   })
 
+  document.getElementById("pcSelect").replaceChildren();
   pcs.forEach(pc => {
-    document.getElementById("pcSelect").replaceChildren
     if (pc.status === "ledig") {
       const selectOption = document.createElement("option");
       selectOption.value = pc.pc_number;
