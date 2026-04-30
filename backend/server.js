@@ -203,7 +203,7 @@ app.get("/pcs/status", requireAdmin, async (req, res) => {
         pcs.id,
         pcs.pc_number,
         pcs.model,
-        pcs.status
+        pcs.status,
 
         CASE
           WHEN r.id IS NOT NULL THEN 'loaned'
