@@ -305,11 +305,12 @@ async function loadPCs() {
   })
 
   pcs.forEach(pc => {
-    const selectOption = document.createElement("option");
-    selectOption.value = pc.pc_number;
-    selectOption.textContent = `PC ${pc.pc_number} - ${pc.model}`;
-    document.getElementById("pcSelect").appendChild(selectOption);
-
+    if (pc.status === "lånt") {
+      const selectOption = document.createElement("option");
+      selectOption.value = pc.pc_number;
+      selectOption.textContent = `PC ${pc.pc_number} - ${pc.model}`;
+      document.getElementById("pcSelect").appendChild(selectOption);
+    }
 
     const number = document.createElement("div");
     const model = document.createElement("div");

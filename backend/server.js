@@ -282,6 +282,13 @@ app.post("/rentals", requireLogin, async (req, res) => {
     [req.body.requestId]);
     const reqData = results.rows[0];
 
+    const updatePC = await pool.query(
+      `UPDATE pcs
+       SET status = 'lånt'
+       WHERE pc_number = $1`,
+      [req.body.pcNumber]
+    );
+
     await pool.query(
       `INSERT INTO rentals (student_name, pc_number, rented_date, return_date, user_id, status)
        VALUES ($1, $2, $3, $4, $5, 'active')`,
