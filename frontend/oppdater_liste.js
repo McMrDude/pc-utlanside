@@ -515,7 +515,7 @@ async function savePC(e) {
   e.preventDefault();
 
   const id = document.getElementById("editPC").dataset.id;
-  const pc_number = Number(document.getElementById("editPcNumber").value);
+  const pc_number = document.getElementById("editPcNumber").value;
   const model = document.getElementById("editPcModel").value;
 
   const res = await fetch("/submit-changes", {
