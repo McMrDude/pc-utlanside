@@ -305,6 +305,7 @@ async function loadPCs() {
   })
 
   pcs.forEach(pc => {
+    document.getElementById("pcSelect").replaceChildren
     if (pc.status === "ledig") {
       const selectOption = document.createElement("option");
       selectOption.value = pc.pc_number;
@@ -330,7 +331,7 @@ async function loadPCs() {
     pcDiv.appendChild(model);
 
     status.textContent =
-      pc.status === "loaned"
+      pc.status === "lånt"
         ? `🔴 Lånt til ${pc.user_name} (${pc.user_email})`
         : "🟢 Tilgjengelig";
 
