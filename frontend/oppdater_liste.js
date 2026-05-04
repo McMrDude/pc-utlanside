@@ -137,6 +137,8 @@ async function loadRentals() {
       formatDate(r.return_date)
     ];
 
+    const currentRowID = rowID; // Capture current rowID for closure
+
     rows.forEach(text => {
       const row = document.createElement("h5");
       row.style.width = "100%";
@@ -157,21 +159,21 @@ async function loadRentals() {
         firstCell = false;
       }
 
-      row.className = "Row" + rowID;
+      row.className = "Row" + currentRowID;
 
       listDiv.appendChild(row);
     });
 
     const deleteBtn = document.createElement("button");
     deleteBtn.id = "delete-btn";
-    deleteBtn.className = "Row" + rowID;
+    deleteBtn.className = "Row" + currentRowID;
     deleteBtn.textContent = "✕";
 
     deleteBtn.onclick = async () => {
       if (!confirm("Er denne levert inn?")) return;
 
       // Replace 'your-class-name' with the actual class you want to delete
-      document.querySelectorAll('.Row' + rowID).forEach(el => el.remove());
+      document.querySelectorAll('.Row' + currentRowID).forEach(el => el.remove());
 
 
       loadRentals();
