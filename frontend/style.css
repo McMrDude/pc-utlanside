@@ -58,7 +58,7 @@ p {
 #delete-btn { 
     width: 100%; 
     height: 100%; 
-    background-color: darkred; 
+    background-color: green; 
     color: white; 
     font-weight: bold; 
     border: none; 
@@ -68,8 +68,11 @@ p {
 } 
 
 #delete-btn:hover { 
-    background-color: red; 
+    background-color: greenyellow; 
 } 
+#delete-btn:active { 
+    background-color: darkgreen; 
+}
 
 h4, h5 { 
     margin: 0px; 

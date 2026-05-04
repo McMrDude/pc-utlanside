@@ -285,10 +285,11 @@ app.post("/rentals", requireLogin, async (req, res) => {
     );
 
     await pool.query(
-      `INSERT INTO rentals (student_name, pc_number, rented_date, return_date, user_id, status)
-       VALUES ($1, $2, $3, $4, $5, 'active')`,
+      `INSERT INTO rentals (student_name, student_email, pc_number, rented_date, return_date, user_id, status)
+       VALUES ($1, $2, $3, $4, $5, $6, 'active')`,
       [  
         req.session.user.name,
+        req.session.user.email,
         req.body.pcNumber,
         reqData.start_date,
         reqData.return_date,

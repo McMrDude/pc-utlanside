@@ -113,7 +113,7 @@ async function loadRentals() {
     "<h4>PC nummer</h4>",
     "<h4>Dato lånet</h4>",
     "<h4>Leverings dato</h4>",
-    '<h4 style="border-right: none;">Slett</h4>'
+    '<h4 style="border-right: none;">Levert?</h4>'
   ];
 
   headers.forEach(h => {
@@ -132,7 +132,7 @@ async function loadRentals() {
 
       const rows = [
         `Dager til levering: ${daysRemaining}`,
-        r.student_name,
+        r.student_name + "($" + r.student_email + ")",
         r.pc_number,
         formatDate(r.rented_date),
         formatDate(r.return_date)
@@ -168,7 +168,7 @@ async function loadRentals() {
       const deleteBtn = document.createElement("button");
       deleteBtn.id = "delete-btn";
       deleteBtn.className = "Row" + currentRowID;
-      deleteBtn.textContent = "✕";
+      deleteBtn.textContent = "✓";
 
       deleteBtn.onclick = async () => {
         if (!confirm("Er denne levert inn?")) return;
