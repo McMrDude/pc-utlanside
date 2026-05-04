@@ -491,7 +491,7 @@ async function approveRequest() {
 }
 
 async function rejectRequest() {
-  await fetch(`/request-decline`, {
+  const res = await fetch(`/request-decline`, {
     method: "POST",
     headers: { 
       "Content-Type": "application/json" 
@@ -501,6 +501,11 @@ async function rejectRequest() {
     }),
     credentials: "include"
   });
+
+  const data = await res.json();
+  console.log(data);
+
+  loadPCs();
 
   document.getElementById("acceptRequest").style.display = "none";
 }
