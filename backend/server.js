@@ -309,10 +309,10 @@ app.post("/rentals", requireLogin, async (req, res) => {
 });
 app.post("/request-decline", requireLogin, async (req, res) => {
   try {
-    const { id } = req.body;
-
-    await pool.query("DELETE FROM requests WHERE id = $1", [id]);
-    res.sendStatus(201);
+    await pool.query(
+      `DELETE FROM requests WHERE id = $1`,
+      [req.body.requestId]
+    );
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Delete failed" });

@@ -409,7 +409,8 @@ async function loadPCs() {
       buttonNo.id = "noButton";
       buttonNo.textContent = "X";
       buttonNo.onclick = () => {
-        rejectRequest(req.id);
+        currentRequestId = req.id;
+        rejectRequest();
       };
       shit.appendChild(buttonYes)
       shit.appendChild(buttonNo)
@@ -489,14 +490,14 @@ async function approveRequest() {
   loadPCs();
 }
 
-async function rejectRequest(requestId) {
+async function rejectRequest() {
   await fetch(`/request-decline`, {
     method: "POST",
     headers: { 
       "Content-Type": "application/json" 
     },
     body: JSON.stringify({ 
-      requestId
+      requestId: currentRequestId
     }),
     credentials: "include"
   });
