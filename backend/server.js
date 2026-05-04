@@ -313,6 +313,8 @@ app.post("/request-decline", requireLogin, async (req, res) => {
       `DELETE FROM requests WHERE id = $1`,
       [req.body.requestId]
     );
+
+    res.json({ success: true });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Delete failed" });
