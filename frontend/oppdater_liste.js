@@ -101,6 +101,11 @@ async function loadRentals() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
+  const PCres = await fetch("/pcs/status");
+  const pcs = await PCres.json();
+
+  let pcNummer = "";
+
   const res = await fetch(API_URL);
   const rentals = await res.json();
 
@@ -176,13 +181,20 @@ async function loadRentals() {
         // Replace 'your-class-name' with the actual class you want to delete
         document.querySelectorAll('.Row' + currentRowID).forEach(el => el.remove());
 
+        pcs.forEach(async pc => {
+          if (pc.pc_number === r.pc_number) {
+            pcNummer = pc.pc_number;
+          }
+        });
+
         await fetch("/return", {
           method: "POST",
           headers: { 
             "Content-Type": "application/json" 
           },
           body: JSON.stringify({ 
-            id: r.id 
+            id: r.id,
+            pcNumber: pcNummer
           })
         });
 

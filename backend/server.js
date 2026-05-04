@@ -324,13 +324,20 @@ app.post("/request-decline", requireLogin, async (req, res) => {
 
 app.post("/return", requireLogin, async (req, res) => {
   try {
-    const { id } = req.body;
+    const { id, pcNumber } = req.body;
 
     await pool.query(
       `UPDATE rentals
        SET status = 'returned'
        WHERE id = $1`,
       [id]
+    );
+
+    const updatePC = await pool.query(
+      `UPDATE pcs
+       SET status = 'ledig'
+       WHERE pc_number = $1`,
+      [pcNumber]
     );
 
     res.json({ success: true });
