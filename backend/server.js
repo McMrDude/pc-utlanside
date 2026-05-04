@@ -321,6 +321,24 @@ app.post("/request-decline", requireLogin, async (req, res) => {
   }
 });
 
+app.post("/return", requireLogin, async (req, res) => {
+  try {
+    const { id } = req.body;
+
+    await pool.query(
+      `UPDATE rentals
+       SET status = 'returned'
+       WHERE id = $1`,
+      [id]
+    );
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Return failed" });
+  }
+});
+
 app.get("/availability", async (req, res) => {
   try {
     const totalPCs = await pool.query("SELECT COUNT(*) FROM pcs");
