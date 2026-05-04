@@ -121,6 +121,8 @@ async function loadRentals() {
     listDiv.appendChild(row);
   });
 
+  const rowID = 0;
+
   rentals.forEach(r => {
     let firstCell = true;
 
@@ -156,25 +158,30 @@ async function loadRentals() {
         firstCell = false;
       }
 
+      row.className = "Row" + rowID;
+
       listDiv.appendChild(row);
     });
 
     const deleteBtn = document.createElement("button");
-    deleteBtn.className = "delete-btn";
+    deleteBtn.id = "delete-btn";
+    deleteBtn.className = "Row" + rowID;
     deleteBtn.textContent = "✕";
 
     deleteBtn.onclick = async () => {
-      if (!confirm("Slett denne leieavtalen?")) return;
+      if (!confirm("Er denne levert inn?")) return;
 
-      await fetch(`${API_URL}/${r.id}`, {
-        method: "DELETE"
-      });
+      // Replace 'your-class-name' with the actual class you want to delete
+      document.querySelectorAll('.Row' + rowID).forEach(el => el.remove());
+
 
       loadRentals();
       if (calendarInstance) loadCalendarEvents();
     };
 
     listDiv.appendChild(deleteBtn);
+
+    rowID++;
   });
 }
 

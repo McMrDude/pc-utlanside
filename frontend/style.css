@@ -55,7 +55,7 @@ p {
     width: 40%;
 }
 
-.delete-btn { 
+#delete-btn { 
     width: 100%; 
     height: 100%; 
     background-color: darkred; 
@@ -67,7 +67,7 @@ p {
     border-bottom: 1px solid black; 
 } 
 
-.delete-btn:hover { 
+#delete-btn:hover { 
     background-color: red; 
 } 
 
