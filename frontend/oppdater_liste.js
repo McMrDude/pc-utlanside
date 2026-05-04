@@ -123,76 +123,78 @@ async function loadRentals() {
   });
 
   rentals.forEach(r => {
-    let firstCell = true;
+    if (r.status === "active") {
+      let firstCell = true;
 
-    const returnDate = new Date(r.return_date).getTime();
-    const daysRemaining =
-      Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24)) - 1;
+      const returnDate = new Date(r.return_date).getTime();
+      const daysRemaining =
+        Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24)) - 1;
 
-    const rows = [
-      `Dager til levering: ${daysRemaining}`,
-      r.student_name,
-      r.pc_number,
-      formatDate(r.rented_date),
-      formatDate(r.return_date)
-    ];
+      const rows = [
+        `Dager til levering: ${daysRemaining}`,
+        r.student_name,
+        r.pc_number,
+        formatDate(r.rented_date),
+        formatDate(r.return_date)
+      ];
 
-    const currentRowID = rowID; // Capture current rowID for closure
+      const currentRowID = rowID; // Capture current rowID for closure
 
-    rows.forEach(text => {
-      const row = document.createElement("h5");
-      row.style.width = "100%";
-      row.innerHTML = text;
+      rows.forEach(text => {
+        const row = document.createElement("h5");
+        row.style.width = "100%";
+        row.innerHTML = text;
 
-      if (firstCell) {
-        if (daysRemaining < 0) {
-          row.style.backgroundColor = "darkred";
-          row.innerHTML = "Overdue";
-        } else if (daysRemaining === 0) {
-          row.style.backgroundColor = "red";
-          row.innerHTML = "Today";
-        } else if (daysRemaining <= 5) {
-          row.style.backgroundColor = "yellow";
-        } else {
-          row.style.backgroundColor = "lightgreen";
+        if (firstCell) {
+          if (daysRemaining < 0) {
+            row.style.backgroundColor = "darkred";
+            row.innerHTML = "Overdue";
+          } else if (daysRemaining === 0) {
+            row.style.backgroundColor = "red";
+            row.innerHTML = "Today";
+          } else if (daysRemaining <= 5) {
+            row.style.backgroundColor = "yellow";
+          } else {
+            row.style.backgroundColor = "lightgreen";
+          }
+          firstCell = false;
         }
-        firstCell = false;
-      }
 
-      row.className = "Row" + currentRowID;
+        row.className = "Row" + currentRowID;
 
-      listDiv.appendChild(row);
-    });
-
-    const deleteBtn = document.createElement("button");
-    deleteBtn.id = "delete-btn";
-    deleteBtn.className = "Row" + currentRowID;
-    deleteBtn.textContent = "✕";
-
-    deleteBtn.onclick = async () => {
-      if (!confirm("Er denne levert inn?")) return;
-
-      // Replace 'your-class-name' with the actual class you want to delete
-      document.querySelectorAll('.Row' + currentRowID).forEach(el => el.remove());
-
-      await fetch("/return", {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json" 
-        },
-        body: JSON.stringify({ 
-          id: r.id 
-        })
+        listDiv.appendChild(row);
       });
 
+      const deleteBtn = document.createElement("button");
+      deleteBtn.id = "delete-btn";
+      deleteBtn.className = "Row" + currentRowID;
+      deleteBtn.textContent = "✕";
 
-      loadRentals();
-      if (calendarInstance) loadCalendarEvents();
+      deleteBtn.onclick = async () => {
+        if (!confirm("Er denne levert inn?")) return;
+
+        // Replace 'your-class-name' with the actual class you want to delete
+        document.querySelectorAll('.Row' + currentRowID).forEach(el => el.remove());
+
+        await fetch("/return", {
+          method: "POST",
+          headers: { 
+            "Content-Type": "application/json" 
+          },
+          body: JSON.stringify({ 
+            id: r.id 
+          })
+        });
+
+
+        loadRentals();
+        if (calendarInstance) loadCalendarEvents();
+      };
+
+      listDiv.appendChild(deleteBtn);
+
+      rowID++;
     };
-
-    listDiv.appendChild(deleteBtn);
-
-    rowID++;
   });
 }
 
