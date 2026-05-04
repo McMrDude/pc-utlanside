@@ -97,7 +97,7 @@ async function openCalendar() {
    Load list view
 ========================= */
 async function loadRentals() {
-  const rowID = 0;
+  let rowID = 0;
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
