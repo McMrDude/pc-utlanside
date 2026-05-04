@@ -122,17 +122,6 @@ async function loadRentals() {
     listDiv.appendChild(row);
   });
 
-  const res = await fetch("/requests", {
-    credentials: "include"
-  });
-  const requests = await res.json();
-
-  let requestsID = [];
-
-  requests.forEach(req => {
-    requestsID.push(req.id);
-  });
-
   rentals.forEach(r => {
     let firstCell = true;
 
