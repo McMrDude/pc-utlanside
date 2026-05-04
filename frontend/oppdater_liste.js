@@ -97,6 +97,7 @@ async function openCalendar() {
    Load list view
 ========================= */
 async function loadRentals() {
+  const rowID = 0;
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -120,8 +121,6 @@ async function loadRentals() {
     row.innerHTML = h;
     listDiv.appendChild(row);
   });
-
-  const rowID = 0;
 
   rentals.forEach(r => {
     let firstCell = true;
