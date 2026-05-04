@@ -176,7 +176,7 @@ async function loadRentals() {
       deleteBtn.textContent = "✓";
 
       deleteBtn.onclick = async () => {
-        if (!confirm("Er denne levert inn?")) return;
+        if (!confirm("Er PCen levert inn?")) return;
 
         // Replace 'your-class-name' with the actual class you want to delete
         document.querySelectorAll('.Row' + currentRowID).forEach(el => el.remove());
