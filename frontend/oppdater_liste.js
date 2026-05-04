@@ -505,9 +505,9 @@ async function rejectRequest() {
   const data = await res.json();
   console.log(data);
 
-  loadPCs();
-
   document.getElementById("acceptRequest").style.display = "none";
+
+  loadPCs();
 }
 
 function openEditPopup(pc) {
