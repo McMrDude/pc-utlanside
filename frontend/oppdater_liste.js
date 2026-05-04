@@ -132,7 +132,7 @@ async function loadRentals() {
 
       const rows = [
         `Dager til levering: ${daysRemaining}`,
-        r.student_name + "($" + r.student_email + ")",
+        r.student_name + "(" + r.student_email + ")",
         r.pc_number,
         formatDate(r.rented_date),
         formatDate(r.return_date)

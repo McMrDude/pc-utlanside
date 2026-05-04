@@ -39,10 +39,15 @@ p {
 }
 
 /* ADMIN VIEW */
-.listDiv { 
-    display: grid; 
-    grid-template-columns: auto auto auto auto auto 60px; 
-} 
+.listDiv {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr 80px;
+    width: 100%;
+}
+#listPage {
+    overflow-x: auto;
+}
+
 
 #pcList {
     display: grid;
@@ -68,26 +73,31 @@ p {
 } 
 
 #delete-btn:hover { 
-    background-color: greenyellow; 
+    background-color: rgb(0, 173, 0); 
 } 
 #delete-btn:active { 
     background-color: darkgreen; 
 }
 
-h4, h5 { 
-    margin: 0px; 
-    border-right: 2px solid black; 
-    border-bottom: 1px solid black; 
-    text-align: center; 
-} 
+h4, h5 {
+    margin: 0;
+    border-right: 2px solid black;
+    border-bottom: 1px solid black;
+    text-align: center;
 
-h4 { 
-    font-size: 30px; 
-} 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
-h5 { 
-    font-size: 20px; 
-} 
+h4 {
+    font-size: clamp(14px, 2vw, 24px);
+}
+
+h5 {
+    white-space: normal;
+    word-break: break-word;
+}
 
 #calendar { 
     display: none; 
