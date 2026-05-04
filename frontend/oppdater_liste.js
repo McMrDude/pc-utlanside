@@ -505,8 +505,6 @@ async function rejectRequest() {
   const data = await res.json();
   console.log(data);
 
-  document.getElementById("acceptRequest").style.display = "none";
-
   loadPCs();
 }
 
