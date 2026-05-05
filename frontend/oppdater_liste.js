@@ -77,8 +77,26 @@ async function openCalendar() {
         document.getElementsByClassName("popupDeleteBtn")[0].onclick = async () => {
           if (!confirm("Slett denne leieavtalen?")) return;
 
-          await fetch(`${API_URL}/${event.extendedProps.id}`, {
-            method: "DELETE"
+          document.querySelectorAll('.Row' + currentRowID).forEach(el => el.remove());
+
+          const PCres = await fetch("/pcs/status");
+          const pcs = await PCres.json();
+
+          pcs.forEach(async pc => {
+            if (pc.pc_number === r.pc_number) {
+              pcNummer = pc.pc_number;
+            }
+          });
+
+          await fetch("/return", {
+            method: "POST",
+            headers: { 
+              "Content-Type": "application/json" 
+            },
+            body: JSON.stringify({ 
+              id: r.id,
+              pcNumber: pcNummer
+            })
           });
 
           popup.style.display = "none";
