@@ -223,32 +223,34 @@ async function loadCalendarEvents() {
   calendarInstance.getEvents().forEach(e => e.remove());
 
   rentals.forEach(r => {
-    const returnDate = new Date(r.return_date);
+    if (r.status === "active") {
+      const returnDate = new Date(r.return_date);
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
 
-    const daysRemaining =
-      Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24)) - 1;
+      const daysRemaining =
+        Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24)) - 1;
 
-    let color = "green";
-    if (daysRemaining < 0) color = "darkred";
-    else if (daysRemaining === 0) color = "red";
-    else if (daysRemaining <= 5) color = "orange";
+      let color = "green";
+      if (daysRemaining < 0) color = "darkred";
+      else if (daysRemaining === 0) color = "red";
+      else if (daysRemaining <= 5) color = "orange";
 
-    calendarInstance.addEvent({
-      title: `${r.student_name} - PC ${r.pc_number}`,
-      start: returnDate.toISOString().split("T")[0],
-      display: "background",
-      color: color,
-      extendedProps: {
-        id: r.id,
-        rentedDate: r.rented_date,
-        returnDate: r.return_date,
-        studentName: r.student_name,
-        pcNumber: r.pc_number
-      }
-    });
+      calendarInstance.addEvent({
+        title: `${r.student_name} - PC ${r.pc_number}`,
+        start: returnDate.toISOString().split("T")[0],
+        display: "background",
+        color: color,
+        extendedProps: {
+          id: r.id,
+          rentedDate: r.rented_date,
+          returnDate: r.return_date,
+          studentName: r.student_name,
+          pcNumber: r.pc_number
+        }
+      });
+    };
   });
 }
 
