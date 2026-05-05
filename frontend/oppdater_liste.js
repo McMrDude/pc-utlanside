@@ -112,9 +112,6 @@ function renderRentals(rentals) {
 
   let pcNummer = "";
 
-  const res = await fetch(API_URL);
-  const rentals = await res.json();
-
   const listDiv = document.getElementById("listDiv");
   listDiv.innerHTML = "";
 
