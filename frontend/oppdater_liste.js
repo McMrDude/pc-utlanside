@@ -72,13 +72,9 @@ async function openCalendar() {
             <button class="popupDeleteBtn">Slett</button>
           `;
 
-            popup.appendChild(rental);
-        });
+          popup.appendChild(rental);
 
-        popup.style.display = "block";
-        
-        allRentals.forEach(r => {
-          document.getElementsByClassName("popupDeleteBtn")[0].onclick = async () => {
+          document.querySelector(".popupDeleteBtn").onclick = async () => {
             if (!confirm("Slett denne leieavtalen?")) return;
 
             const PCres = await fetch("/pcs/status");
@@ -106,6 +102,8 @@ async function openCalendar() {
             loadCalendarEvents();
           };
         });
+
+        popup.style.display = "block";
       }
     });
 
