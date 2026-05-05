@@ -116,12 +116,12 @@ function renderRentals(rentals) {
   listDiv.innerHTML = "";
 
   const headers = [
-    "<h4>Status</h4>",
-    "<h4>Elev navn</h4>",
-    "<h4>PC nummer</h4>",
-    "<h4>Dato lånet</h4>",
-    "<h4>Leverings dato</h4>",
-    '<h4 style="border-right: none;">Levert?</h4>'
+    "<h4 style='border-top: 1px solid black;'>Status</h4>",
+    "<h4 style='border-top: 1px solid black;'>Elev navn</h4>",
+    "<h4 style='border-top: 1px solid black;'>PC nummer</h4>",
+    "<h4 style='border-top: 1px solid black;'>Dato lånet</h4>",
+    "<h4 style='border-top: 1px solid black;'>Leverings dato</h4>",
+    '<h4 style="border-right: none; border-top: 1px solid black;">Levert?</h4>'
   ];
 
   headers.forEach(h => {
