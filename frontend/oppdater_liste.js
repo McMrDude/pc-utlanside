@@ -73,11 +73,8 @@ async function openCalendar() {
         });
 
         popup.style.display = "block";
-
-        const res = await fetch(API_URL);
-        rentals = await res.json();
         
-        rentals.forEach(r => {
+        allRentals.forEach(r => {
           document.getElementsByClassName("popupDeleteBtn")[0].onclick = async () => {
             if (!confirm("Slett denne leieavtalen?")) return;
 
