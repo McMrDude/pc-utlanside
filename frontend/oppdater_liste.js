@@ -75,9 +75,9 @@ async function openCalendar() {
         popup.style.display = "block";
 
         const res = await fetch(API_URL);
-        allRentals = await res.json();
+        rentals = await res.json();
         
-        allRentals.forEach(r => {
+        rentals.forEach(r => {
           document.getElementsByClassName("popupDeleteBtn")[0].onclick = async () => {
             if (!confirm("Slett denne leieavtalen?")) return;
 
