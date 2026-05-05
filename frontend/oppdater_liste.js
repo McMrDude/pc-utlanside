@@ -74,35 +74,38 @@ async function openCalendar() {
 
         popup.style.display = "block";
 
-        document.getElementsByClassName("popupDeleteBtn")[0].onclick = async () => {
-          if (!confirm("Slett denne leieavtalen?")) return;
+        const res = await fetch(API_URL);
+        allRentals = await res.json();
+        
+        allRentals.forEach(r => {
+          document.getElementsByClassName("popupDeleteBtn")[0].onclick = async () => {
+            if (!confirm("Slett denne leieavtalen?")) return;
 
-          document.querySelectorAll('.Row' + currentRowID).forEach(el => el.remove());
+            const PCres = await fetch("/pcs/status");
+            const pcs = await PCres.json();
 
-          const PCres = await fetch("/pcs/status");
-          const pcs = await PCres.json();
+            pcs.forEach(async pc => {
+              if (pc.pc_number === r.pc_number) {
+                pcNummer = pc.pc_number;
+              }
+            });
 
-          pcs.forEach(async pc => {
-            if (pc.pc_number === r.pc_number) {
-              pcNummer = pc.pc_number;
-            }
-          });
+            await fetch("/return", {
+              method: "POST",
+              headers: { 
+                "Content-Type": "application/json" 
+              },
+              body: JSON.stringify({ 
+                id: r.id,
+                pcNumber: pcNummer
+              })
+            });
 
-          await fetch("/return", {
-            method: "POST",
-            headers: { 
-              "Content-Type": "application/json" 
-            },
-            body: JSON.stringify({ 
-              id: r.id,
-              pcNumber: pcNummer
-            })
-          });
-
-          popup.style.display = "none";
-          loadRentals();
-          loadCalendarEvents();
-        };
+            popup.style.display = "none";
+            loadRentals();
+            loadCalendarEvents();
+          };
+        });
       }
     });
 
