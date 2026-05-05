@@ -11,6 +11,16 @@ import { request } from "http";
 import connectPgSimple from "connect-pg-simple";
 
 /* =========================
+   Database connection
+========================= */
+const pool = new pg.Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
+
+/* =========================
    Setup __dirname (ESM)
 ========================= */
 const __filename = fileURLToPath(import.meta.url);
@@ -47,16 +57,6 @@ app.use(session({
    Serve frontend
 ========================= */
 app.use(express.static(path.join(__dirname, "../frontend")));
-
-/* =========================
-   Database connection
-========================= */
-const pool = new pg.Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
 
 /* =========================
    Auth Middleware
