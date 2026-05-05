@@ -68,10 +68,10 @@
           ? new Date(avail.nextAvailableDate).toLocaleDateString()
           : "N/A";
       
-      const res = await fetch("/rentals", {
+      const ren = await fetch("/rentals", {
         credentials: "include"
       });
-      const rentals = await res.json();
+      const rentals = await ren.json();
 
       rentals.forEach(r => {
         if (r.user_email === me.email) {
@@ -80,6 +80,22 @@
             document.getElementById("aktivLåntDiv").style.display = "flex";
             document.getElementById("pcLånt").textContent = `PC nummer: ${r.pc_number}`;
             document.getElementById("returDato").textContent = `Retur dato: ${new Date(r.return_date).toLocaleDateString()}`;
+          }
+        }
+      });
+
+      const res = await fetch("/requests", {
+        credentials: "include"
+      });
+      const requests = await res.json();
+
+      requests.forEach(req => {
+        if (req.user_email === me.email) {
+          if (req.status === "pending") {
+            document.getElementById("foresprørselDiv").style.display = "none";
+            document.getElementById("aktivLåntDiv").style.display = "flex";
+            document.getElementById("pcLånt").textContent = `Forespørsel sendt inn`;
+            document.getElementById("returDato").textContent = `Venter på godkjenning`;
           }
         }
       });
