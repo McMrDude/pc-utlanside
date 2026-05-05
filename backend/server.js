@@ -8,7 +8,7 @@ import session from "express-session";
 import { send } from "@emailjs/nodejs";
 import crypto from "crypto";
 import { request } from "http";
-
+import connectPgSimple from "connect-pg-simple";
 
 /* =========================
    Setup __dirname (ESM)
@@ -29,7 +29,14 @@ app.use(cors({
 }));
 app.use(express.json());
 
+const PgSession = connectPgSimple(session);
+
 app.use(session({
+  store: new PgSession({
+    pool: pool,
+    tableName: "session",
+    pruneSessionInterval: 60 * 60 // prune expired sessions every hour
+  }),
   secret: "supersecretkey", // CHANGE THIS in production
   resave: false,
   saveUninitialized: false,
