@@ -15,9 +15,11 @@
                 <button class="nav-btn" onclick="openCalendar()"><img src="icons/calendar.png">Kalender</button> 
                 <button class="nav-btn" onclick="openPCs()"><img src="icons\pc.png">PC'er</button>
                 <button onclick="logout()">Logg ut</button>
-            </div> <div style="display: flex; flex-direction: column; flex: 1;"> 
+            </div> 
+            <div style="display: flex; flex-direction: column; flex: 1;"> 
                 <div id="listPage" style="flex: 1;"> 
                     <div style="display: flex; flex-direction: column; border: 1px solid black; background-color: rgb(189, 189, 189);"> 
+                        <input id="searchInput" placeholder="Søk..." style="margin: 10px; padding: 5px;" oninput="filterList()">
                         <div id="listDiv" class="listDiv"> 
 
                         </div> 

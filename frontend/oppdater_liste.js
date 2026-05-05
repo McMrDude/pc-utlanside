@@ -1,5 +1,7 @@
 const API_URL = "/rentals";
 
+let allRentals = [];
+
 const list = document.getElementById("listPage");
 const calendar = document.getElementById("calendar");
 
@@ -97,12 +99,16 @@ async function openCalendar() {
    Load list view
 ========================= */
 async function loadRentals() {
+  const res = await fetch(API_URL);
+  allRentals = await res.json();
+
+  renderRentals(allRentals);
+}
+
+function renderRentals(rentals) {
   let rowID = 0;
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-
-  const PCres = await fetch("/pcs/status");
-  const pcs = await PCres.json();
 
   let pcNummer = "";
 
@@ -207,7 +213,7 @@ async function loadRentals() {
 
       rowID++;
     };
-  });
+   });
 }
 
 /* =========================
@@ -295,6 +301,26 @@ function formatDate(dateString) {
 ========================= */
 if (document.getElementById("listDiv")) {
   loadRentals();
+}
+
+const searchInput = document.getElementById("searchInput");
+
+if (searchInput) {
+  searchInput.addEventListener("input", (e) => {
+    const query = e.target.value.toLowerCase();
+
+    const filtered = allRentals.filter(r => {
+      return (
+        r.student_name.toLowerCase().includes(query) ||
+        r.student_email.toLowerCase().includes(query) ||
+        r.pc_number.toLowerCase().includes(query) ||
+        formatDate(r.rented_date).includes(query) ||
+        formatDate(r.return_date).includes(query)
+      );
+    });
+
+    renderRentals(filtered);
+  });
 }
 
 document.addEventListener("click", function (e) {
