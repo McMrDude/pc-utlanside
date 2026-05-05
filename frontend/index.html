@@ -55,8 +55,22 @@
   <script>
     async function load() {
       const me = await fetch("/me", { credentials: "include" }).then(r => r.json());
+      sjekkLånt(me);
       if (!me) location.href = "/login.html";
 
+      if (me.role === "admin") {
+        document.getElementById("adminBtn").style.display = "block";
+      }
+
+      const avail = await fetch("/availability").then(r => r.json());
+      document.getElementById("available").textContent = avail.available;
+      document.getElementById("next").textContent =
+        avail.nextAvailableDate
+          ? new Date(avail.nextAvailableDate).toLocaleDateString()
+          : "N/A";
+    }
+
+    async function sjekkLånt(me) {
       const ren = await fetch("/rentals", {
         credentials: "include"
       });
@@ -88,17 +102,6 @@
           }
         }
       });
-
-      if (me.role === "admin") {
-        document.getElementById("adminBtn").style.display = "block";
-      }
-
-      const avail = await fetch("/availability").then(r => r.json());
-      document.getElementById("available").textContent = avail.available;
-      document.getElementById("next").textContent =
-        avail.nextAvailableDate
-          ? new Date(avail.nextAvailableDate).toLocaleDateString()
-          : "N/A";
     }
 
     async function requestLoan() {
@@ -107,6 +110,8 @@
 
     async function sendRequest() {
       const popup = document.getElementById("requestPopup").style.display = "none";
+      const me = await fetch("/me", { credentials: "include" }).then(r => r.json());
+      sjekkLånt(me);
     }
 
     load();
