@@ -18,8 +18,15 @@
     <p>Ledige PC-er: <strong id="available">...</strong></p>
     <p>Neste tilgjengelige: <strong id="next">...</strong></p>
   </div>
-  <div style="display: flex; flex-direction: column; width: 100vw; justify-content: center; align-items: center;">
+  <div id="foresprørselDiv" style="display: flex; flex-direction: column; width: 100vw; justify-content: center; align-items: center;">
     <button style="width: 100px; height: 50px; border-radius: 10px; " onclick="requestLoan()">Send in forespørsel</button>
+  </div>
+  <div id="aktivLåntDiv" style="display: none; flex-direction: column; width: 100vw; justify-content: center; align-items: center;">
+    <p>Du har allerede lånt en PC og kan ikke låne en ny</p>
+    <div>
+      <h3 id="pcLånt"></h3>
+      <h3 id="returDato"></h3>
+    </div>
   </div>
 
   <div id="requestPopup" style="border: 3px solid black; 
@@ -60,6 +67,22 @@
         avail.nextAvailableDate
           ? new Date(avail.nextAvailableDate).toLocaleDateString()
           : "N/A";
+      
+      const res = await fetch("/rentals", {
+        credentials: "include"
+      });
+      const rentals = await res.json();
+
+      rentals.forEach(r => {
+        if (r.user_email === me.email) {
+          if (r.status !== "returned") {
+            document.getElementById("foresprørselDiv").style.display = "none";
+            document.getElementById("aktivLåntDiv").style.display = "flex";
+            document.getElementById("pcLånt").textContent = `PC nummer: ${r.pc_number}`;
+            document.getElementById("returDato").textContent = `Retur dato: ${new Date(r.return_date).toLocaleDateString()}`;
+          }
+        }
+      });
     }
 
     async function requestLoan() {
