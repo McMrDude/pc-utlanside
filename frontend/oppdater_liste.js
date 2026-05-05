@@ -41,12 +41,15 @@ async function openCalendar() {
   });
   const rentals = await res.json();
 
+  let pcNummer = "";
+
   if (!calendarInstance) {
     calendarInstance = new FullCalendar.Calendar(calendar, {
       initialView: "dayGridMonth",
       height: "auto",
       expandRows: true,
       events: [],
+      
 
       eventClick: function (info) {
         popup.innerHTML = "";
