@@ -74,7 +74,7 @@
       const rentals = await ren.json();
 
       rentals.forEach(r => {
-        if (r.user_email === me.email) {
+        if (r.student_email === me.email) {
           if (r.status !== "returned") {
             document.getElementById("foresprørselDiv").style.display = "none";
             document.getElementById("aktivLåntDiv").style.display = "flex";
@@ -90,7 +90,7 @@
       const requests = await res.json();
 
       requests.forEach(req => {
-        if (req.user_email === me.email) {
+        if (req.student_email === me.email) {
           if (req.status === "pending") {
             document.getElementById("foresprørselDiv").style.display = "none";
             document.getElementById("aktivLåntDiv").style.display = "flex";
