@@ -18,7 +18,7 @@
     <p>Ledige PC-er: <strong id="available">...</strong></p>
     <p>Neste tilgjengelige: <strong id="next">...</strong></p>
   </div>
-  <div id="foresprørselDiv" style="display: flex; flex-direction: column; width: 100vw; justify-content: center; align-items: center;">
+  <div id="foresprørselDiv" style="display: none; flex-direction: column; width: 100vw; justify-content: center; align-items: center;">
     <button style="width: 100px; height: 50px; border-radius: 10px; " onclick="requestLoan()">Send in forespørsel</button>
   </div>
   <div id="aktivLåntDiv" style="display: none; flex-direction: column; width: 100vw; justify-content: center; align-items: center;">
@@ -54,23 +54,14 @@
 
   <script>
     async function load() {
+      let erLånt = false;
       const me = await fetch("/me", { credentials: "include" }).then(r => r.json());
-      sjekkLånt(me);
       if (!me) location.href = "/login.html";
 
       if (me.role === "admin") {
         document.getElementById("adminBtn").style.display = "block";
       }
 
-      const avail = await fetch("/availability").then(r => r.json());
-      document.getElementById("available").textContent = avail.available;
-      document.getElementById("next").textContent =
-        avail.nextAvailableDate
-          ? new Date(avail.nextAvailableDate).toLocaleDateString()
-          : "N/A";
-    }
-
-    async function sjekkLånt(me) {
       const ren = await fetch("/rentals", {
         credentials: "include"
       });
@@ -83,6 +74,7 @@
             document.getElementById("aktivLåntDiv").style.display = "flex";
             document.getElementById("pcLånt").textContent = `PC nummer: ${r.pc_number}`;
             document.getElementById("returDato").textContent = `Retur dato: ${new Date(r.return_date).toLocaleDateString()}`;
+            erLånt = true;
           }
         }
       });
@@ -99,9 +91,22 @@
             document.getElementById("aktivLåntDiv").style.display = "flex";
             document.getElementById("pcLånt").textContent = `Forespørsel sendt inn`;
             document.getElementById("returDato").textContent = `Venter på godkjenning`;
+            erLånt = true;
           }
         }
       });
+
+      if (!erLånt) {
+        document.getElementById("foresprørselDiv").style.display = "flex";
+        document.getElementById("aktivLåntDiv").style.display = "none";
+      }
+
+      const avail = await fetch("/availability").then(r => r.json());
+      document.getElementById("available").textContent = avail.available;
+      document.getElementById("next").textContent =
+        avail.nextAvailableDate
+          ? new Date(avail.nextAvailableDate).toLocaleDateString()
+          : "N/A";
     }
 
     async function requestLoan() {
@@ -110,8 +115,7 @@
 
     async function sendRequest() {
       const popup = document.getElementById("requestPopup").style.display = "none";
-      const me = await fetch("/me", { credentials: "include" }).then(r => r.json());
-      sjekkLånt(me);
+      load();
     }
 
     load();
