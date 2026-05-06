@@ -10,13 +10,13 @@ body {
 
 @keyframes inNout {
     0% {
-        transform: translateY(-70%);
+        transform: translateY(-100%);
     }
     10%, 90% {
         transform: translateY(-25%);
     }
     100% {
-        transform: translateY(-70%);
+        transform: translateY(-100%);
     }
 }
 
@@ -28,7 +28,7 @@ body {
 
 #foresendt {
     left: 50%;
-    transform: translate(-50%, -70%);
+    transform: translateY(-100%);
     background: lightgreen;
     padding: 10px 20px;
     border-radius: 10px;
