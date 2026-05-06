@@ -128,6 +128,8 @@
       });
 
       const foresendt = document.getElementById("foresendt");
+      foresendt.classList.remove("foresendt");
+      void foresendt.offsetWidth; // forces reflow
       foresendt.classList.add("foresendt");
       load();
     }
