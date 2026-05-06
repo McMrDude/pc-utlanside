@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
-  <div id="foresendt" style="transform: translateY(-70%); position: fixed;"">
+  <div id="foresendt" style="position: fixed;">
     <h3>Forespørsel sendt</h3>
   </div>
   <button id="adminBtn" style="display: none;" onclick="location.href='/admin.html'">
@@ -47,7 +47,7 @@
       <input type="date" name="selectedDate">
       <h3 >Returnerings dato:</h3>
       <input type="date" name="returnDate">
-      <button type="submit" onclick="sendRequest()">Send</button>
+      <button type="button" onclick="sendRequest()">Send</button>
     </div>
   </div>
 

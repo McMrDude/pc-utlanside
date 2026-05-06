@@ -13,7 +13,7 @@ body {
         transform: translateY(-70%);
     }
     10%, 90% {
-        transform: translateY(-25);
+        transform: translateY(-25%);
     }
     100% {
         transform: translateY(-70%);
@@ -24,6 +24,14 @@ body {
 .foresendt {
     
     animation: inNout 5s ease-in-out forwards;
+}
+
+#foresendt {
+    left: 50%;
+    transform: translate(-50%, -70%);
+    background: lightgreen;
+    padding: 10px 20px;
+    border-radius: 10px;
 }
 
 .splash_art {
