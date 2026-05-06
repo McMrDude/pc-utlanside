@@ -13,8 +13,7 @@ body {
     background-color: black;
     color: white;
     top: 10px;
-    right: 10px;
-    background-color: transparent;
+    left: 10px;
     padding: 10px 20px;
     cursor: pointer;
 }
