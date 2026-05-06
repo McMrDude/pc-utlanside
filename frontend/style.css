@@ -8,10 +8,22 @@ body {
     background-color: rgb(215, 215, 215); 
 } 
 
+@keyframes inNout {
+    0% {
+        transform: translateY(-70%);
+    }
+    10%, 90% {
+        transform: translateY(-25);
+    }
+    100% {
+        transform: translateY(-70%);
+    }
+}
+
 /* INDEX VIEW */
 .foresendt {
-    transform: translateY(-160%)
-
+    
+    animation: inNout 5s ease-in-out forwards;
 }
 
 .splash_art {

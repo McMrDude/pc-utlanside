@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
-  <div class="foresendt">
+  <div id="foresendt" style="transform: translateY(-70%); position: fixed;"">
     <h3>Forespørsel sendt</h3>
   </div>
   <button id="adminBtn" style="display: none;" onclick="location.href='/admin.html'">
@@ -127,7 +127,8 @@
         body: JSON.stringify({ selectedDate, returnDate })
       });
 
-      alert("Forespørsel sendt!");
+      const foresendt = document.getElementById("foresendt");
+      foresendt.classList.add("foresendt");
       load();
     }
 
