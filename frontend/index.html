@@ -46,14 +46,13 @@
       <form id="requestForm">
         <h3>Plukke opp dato:</h3>
         <input type="date" name="selectedDate">
-        <h3 >Returnerings dato:</h3>
+        <h3>Returnerings dato:</h3>
         <input type="date" name="returnDate">
+        <p id="msg"></p>
         <button type="submit">Send</button>
       </form>
     </div>
   </div>
-
-  <p id="msg"></p>
 
   <script>
     async function load() {
@@ -118,7 +117,6 @@
 
     document.getElementById("requestForm").addEventListener("submit", async (e) => {
       e.preventDefault();
-      const popup = document.getElementById("requestPopup").style.display = "none";
       const selectedDate = document.getElementById('selectedDate').value;
       const returnDate = document.getElementById('returnDate').value;
 
@@ -139,6 +137,10 @@
       if (!res.ok) {
         document.getElementById("msg").textContent = "Du må velge datoer";
         return;
+      }
+      else {
+        document.getElementById("msg").textContent = "";
+        const popup = document.getElementById("requestPopup").style.display = "none";
       }
     });
 
