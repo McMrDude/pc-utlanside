@@ -77,6 +77,10 @@ p {
 #pcLåntDiv {
     background-color: rgb(174, 174, 174);
     box-shadow: inset 0 0 10px black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
 }
 
 /* ADMIN VIEW */
