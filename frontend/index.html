@@ -125,14 +125,11 @@
         headers: {
           "Content-Type": "application/json"
         },
+        credentials: "include",
         body: JSON.stringify({ selectedDate, returnDate })
       });
 
-      const foresendt = document.getElementById("foresendt");
-      foresendt.classList.remove("foresendt");
-      void foresendt.offsetWidth; // forces reflow
-      foresendt.classList.add("foresendt");
-      load();
+      const data = await res.json();
 
       if (!res.ok) {
         document.getElementById("msg").textContent = "Du må velge datoer";
@@ -142,6 +139,12 @@
         document.getElementById("msg").textContent = "";
         const popup = document.getElementById("requestPopup").style.display = "none";
       }
+      
+      const foresendt = document.getElementById("foresendt");
+      foresendt.classList.remove("foresendt");
+      void foresendt.offsetWidth; // forces reflow
+      foresendt.classList.add("foresendt");
+      load();
     });
 
     load();
