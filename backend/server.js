@@ -488,6 +488,7 @@ app.post("/submit-date", requireLogin, async (req, res) => {
         returnDate
       ]
     );
+    res.json({ success: true });
   } catch (err) {
     console.error(err);
     res.status(500).send("Error sending email");
