@@ -9,6 +9,11 @@ body {
 } 
 
 /* INDEX VIEW */
+.foresendt {
+    transform: translateY(-160%)
+
+}
+
 .splash_art {
     width: 100%;
     height: 50%;
