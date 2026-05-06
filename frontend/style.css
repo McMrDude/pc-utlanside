@@ -31,6 +31,8 @@ body {
     background: lightgreen;
     padding: 10px 20px;
     border-radius: 10px;
+    border: black solid 2px;
+    box-shadow: 0 0 10px black;
 }
 
 .splash_art {

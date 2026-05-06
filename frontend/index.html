@@ -43,11 +43,13 @@
     <div class="requestLoan">
       <h1 style="text-align: center;">For hvilken lengde vil du låne en PC?</h1>
       <h3>Velg hvilken periode du ønsker å låne en PC</h3>
-      <h3>Plukke opp dato:</h3>
-      <input type="date" name="selectedDate">
-      <h3 >Returnerings dato:</h3>
-      <input type="date" name="returnDate">
-      <button type="button" onclick="sendRequest()">Send</button>
+      <form id="requestForm">
+        <h3>Plukke opp dato:</h3>
+        <input type="date" name="selectedDate">
+        <h3 >Returnerings dato:</h3>
+        <input type="date" name="returnDate">
+        <button type="submit">Send</button>
+      </form>
     </div>
   </div>
 
@@ -114,12 +116,13 @@
       const popup = document.getElementById("requestPopup").style.display = "block";
     }
 
-    async function sendRequest() {
+    document.getElementById("requestForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
       const popup = document.getElementById("requestPopup").style.display = "none";
-      const selectedDate = document.querySelector('[name="selectedDate"]').value;
-      const returnDate = document.querySelector('[name="returnDate"]').value;
+      const selectedDate = document.getElementById('selectedDate').value;
+      const returnDate = document.getElementById('returnDate').value;
 
-      await fetch("/submit-date", {
+      const res = await fetch("/submit-date", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -132,7 +135,12 @@
       void foresendt.offsetWidth; // forces reflow
       foresendt.classList.add("foresendt");
       load();
-    }
+
+      if (!res.ok) {
+        document.getElementById("msg").textContent = "Du må velge datoer";
+        return;
+      }
+    });
 
     load();
   </script>
