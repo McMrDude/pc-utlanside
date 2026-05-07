@@ -83,13 +83,13 @@ async function openCalendar() {
             </strong><br>
             Rented: ${formatDate(r.rented_date)}<br>
             Return: ${formatDate(r.return_date)}<br><br>
-            <button class="popupDeleteBtn">Slett</button>
+            <button class="popupDeleteBtn">✓</button>
           `;
 
           popup.appendChild(rental);
 
           document.querySelector(".popupDeleteBtn").onclick = async () => {
-            if (!confirm("Slett denne leieavtalen?")) return;
+            if (!confirm("Er PCen levert inn?")) return;
 
             const PCres = await fetch("/pcs/status");
             const pcs = await PCres.json();
