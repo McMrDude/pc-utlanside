@@ -457,7 +457,7 @@ async function loadPCs() {
 
   if (requests.length === 0) {
     const noReq = document.createElement("div");
-    noReq.textContent = "Ingen ventende forespørsler";
+    noReq.textContent = "Ingen forespørsler for øyeblikket";
     reqDiv.appendChild(noReq);
     return;
   }
