@@ -274,6 +274,8 @@ async function loadCalendarEvents() {
       else if (daysRemaining === 0) color = "red", border = "2px solid rgba(255,220,40,.15)";
       else if (daysRemaining <= 5) color = "orange";
 
+      console.log("border:", border);
+
       calendarInstance.addEvent({
         title: `${r.student_name} - PC ${r.pc_number}`,
         start: returnDate.toISOString().split("T")[0],
