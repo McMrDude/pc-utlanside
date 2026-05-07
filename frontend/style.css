@@ -113,12 +113,9 @@ p {
     width: 40%;
 }
 
-.fc-event {
-    cursor: pointer;
-}
-
 .today-rental {
-    border-width: 5px !important;
+    outline: 5px solid rgba(255,220,40,.6) !important;
+    cursor: pointer;
 }
 
 .popupDeleteBtn { 

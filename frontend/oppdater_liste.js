@@ -269,16 +269,15 @@ async function loadCalendarEvents() {
         Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24)) - 1;
 
       let color = "green";
-      let borderColor = "none";
       if (daysRemaining < 0) color = "darkred";
-      else if (daysRemaining === 0) color = "red", borderColor = " rgba(255,220,40,.15)";
+      else if (daysRemaining === 0) color = "red";
       else if (daysRemaining <= 5) color = "orange";
 
       calendarInstance.addEvent({
         title: `${r.student_name} - PC ${r.pc_number}`,
         start: returnDate.toISOString().split("T")[0],
+        display: "background",
         color: color,
-        borderColor: borderColor,
         classNames: daysRemaining === 0 ? ["today-rental"] : [],
         extendedProps: {
           id: r.id,
