@@ -7,6 +7,10 @@ const calendar = document.getElementById("calendar");
 
 let calendarInstance;
 
+let listPageOpen = true;
+let calendarPageOpen = false;
+let pcPageOpen = false;
+
 /* =========================
    Popup for event details
 ========================= */
@@ -28,6 +32,9 @@ async function openList() {
   calendar.style.display = "none";
   popup.style.display = "none";
   document.getElementById("pcPage").style.display = "none";
+  listPageOpen = true;
+  calendarPageOpen = false;
+  pcPageOpen = false;
 }
 
 async function openCalendar() {
@@ -35,6 +42,9 @@ async function openCalendar() {
   calendar.style.display = "block";
   popup.style = "display: none; border: 1px solid black; background-color: rgb(197, 197, 197); padding: 10px; margin-top: 10px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;";
   document.getElementById("pcPage").style.display = "none";
+  listPageOpen = false;
+  calendarPageOpen = true;
+  pcPageOpen = false;
   
   const res = await fetch("/rentals", {
     credentials: "include"
@@ -358,6 +368,9 @@ function openPCs() {
   document.getElementById("listPage").style.display = "none";
   document.getElementById("calendar").style.display = "none";
   document.getElementById("pcPage").style.display = "block";
+  listPageOpen = false;
+  calendarPageOpen = false;
+  pcPageOpen = true;
   loadPCs();
 }
 
@@ -621,4 +634,18 @@ async function savePC(e) {
   document.getElementById("editPC").style.display = "none";
 
   loadPCs();
+}
+
+function whichTabOpen() {
+  if (listPageOpen) {
+    document.getElementById("listBtn").style = "background-color: rgb(187, 187, 187); border: 1px solid dark-blue; border-bottom: none;";
+  } else {
+    document.getElementById("listBtn").style = "";
+  }
+  if (calendarPageOpen) {
+    document.getElementById("calendarBtn").style = "background-color: rgb(187, 187, 187); border: 1px solid dark-blue; border-bottom: none;";
+  }
+  if (pcPageOpen) {
+    document.getElementById("pcBtn").style = "background-color: rgb(187, 187, 187); border: 1px solid dark-blue; border-bottom: none;";
+  }
 }
