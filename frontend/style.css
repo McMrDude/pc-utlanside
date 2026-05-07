@@ -114,7 +114,7 @@ p {
 }
 
 .today-rental {
-    outline: 5px solid rgba(255,220,40,.6) !important;
+    outline: 5px solid rgba(255,220,40,.15) !important;
     cursor: pointer;
 }
 
