@@ -22,7 +22,7 @@
     <p>Neste tilgjengelige: <strong id="next">...</strong></p>
   </div>
   <div id="foresprørselDiv" style="display: none; flex-direction: column; width: 100%; justify-content: center; align-items: center;">
-    <button style="width: 100px; height: 50px; border-radius: 10px; " onclick="requestLoan()">Send in forespørsel</button>
+    <button id="openFormButton" style="width: 100px; height: 50px; border-radius: 10px; cursor: pointer;" onclick="requestLoan()">Send in forespørsel</button>
   </div>
   <div id="aktivLåntDiv">
     <p style="border: black solid 4px;">Du har allerede lånt en PC og kan ikke låne en ny</p>
@@ -48,7 +48,7 @@
           <h3>Returnerings dato:</h3>
           <input type="date" name="returnDate" id="returnDate">
           <p id="msg"></p>
-          <button type="submit">Send</button>
+          <button style="cursor: pointer;" type="submit">Send</button>
         </form>
       </div>
     </div>

@@ -68,6 +68,10 @@ p {
     font-size: 30px;
 }
 
+#openFormButton :hover {
+    background-color: rgb(157, 157, 157);
+}
+
 .requestLoan {
     display: flex;
     flex-direction: column;
