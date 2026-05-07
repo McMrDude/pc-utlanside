@@ -66,7 +66,6 @@
       document.getElementById("requestForm").reset();
     }
     async function load() {
-      body.style.cursor = "default";
       let erLånt = false;
       const me = await fetch("/me", { credentials: "include" }).then(r => r.json());
       if (!me) location.href = "/login.html";
@@ -120,6 +119,8 @@
         avail.nextAvailableDate
           ? new Date(avail.nextAvailableDate).toLocaleDateString()
           : "N/A";
+      
+      body.style.cursor = "default";
     }
 
     async function requestLoan() {
