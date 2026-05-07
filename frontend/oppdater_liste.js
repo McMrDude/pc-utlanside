@@ -277,9 +277,7 @@ async function loadCalendarEvents() {
         title: `${r.student_name} - PC ${r.pc_number}`,
         start: returnDate.toISOString().split("T")[0],
         display: "background",
-        style: {
-          cursor: "pointer"
-        },
+        cursor: "pointer",
         color: color,
         extendedProps: {
           id: r.id,
