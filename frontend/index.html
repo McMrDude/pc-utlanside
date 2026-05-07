@@ -128,7 +128,6 @@
     }
 
     document.getElementById("requestForm").addEventListener("submit", async (e) => {
-      body.style.cursor = "progress";
       e.preventDefault();
       const selectedDate = document.getElementById('selectedDate').value;
       const returnDate = document.getElementById('returnDate').value;
@@ -158,6 +157,7 @@
       void foresendt.offsetWidth; // forces reflow
       foresendt.classList.add("foresendt");
       document.getElementById("requestForm").reset();
+      body.style.cursor = "progress";
       load();
     });
 
