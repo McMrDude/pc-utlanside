@@ -89,7 +89,7 @@ async function openCalendar() {
           popup.appendChild(rental);
 
           document.querySelector(".popupDeleteBtn").onclick = async () => {
-            if (!confirm("Er PCen levert inn?")) return;
+            if (!confirm("Er PCen levert inn og klar for ny utlån?")) return;
 
             const PCres = await fetch("/pcs/status");
             const pcs = await PCres.json();
@@ -212,7 +212,7 @@ function renderRentals(rentals) {
       deleteBtn.textContent = "✓";
 
       deleteBtn.onclick = async () => {
-        if (!confirm("Er PCen levert inn?")) return;
+        if (!confirm("Er PCen levert inn og klar for ny utlån?")) return;
 
         // Replace 'your-class-name' with the actual class you want to delete
         document.querySelectorAll('.Row' + currentRowID).forEach(el => el.remove());
