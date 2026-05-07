@@ -11,6 +11,8 @@ let listPageOpen = true;
 let calendarPageOpen = false;
 let pcPageOpen = false;
 
+whichTabOpen();
+
 /* =========================
    Popup for event details
 ========================= */
