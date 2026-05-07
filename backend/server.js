@@ -361,7 +361,7 @@ app.get("/availability", async (req, res) => {
     const loaned = await pool.query(`
       SELECT COUNT(DISTINCT pc_number)
       FROM rentals
-      WHERE return_date >= CURRENT_DATE
+      WHERE return_date >= CURRENT_DATE AND status = 'active'
     `);
 
     const available =
@@ -371,7 +371,7 @@ app.get("/availability", async (req, res) => {
     const nextReturn = await pool.query(`
       SELECT MIN(return_date) AS next_date
       FROM rentals
-      WHERE return_date >= CURRENT_DATE
+      WHERE return_date >= CURRENT_DATE AND status = 'active'
     `);
 
     res.json({
