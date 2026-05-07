@@ -63,7 +63,6 @@ async function openCalendar() {
       height: "auto",
       expandRows: true,
       events: [],
-      style: "cursor: pointer;",
       
 
       eventClick: function (info) {

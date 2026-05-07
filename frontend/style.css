@@ -113,6 +113,10 @@ p {
     width: 40%;
 }
 
+.fc-event {
+    cursor: pointer;
+}
+
 .popupDeleteBtn { 
     width: 100%; 
     height: 100%; 
