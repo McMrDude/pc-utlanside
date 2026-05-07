@@ -66,6 +66,7 @@
       document.getElementById("requestForm").reset();
     }
     async function load() {
+      document.body.style.cursor = "default";
       let erLånt = false;
       const me = await fetch("/me", { credentials: "include" }).then(r => r.json());
       if (!me) location.href = "/login.html";
@@ -119,8 +120,6 @@
         avail.nextAvailableDate
           ? new Date(avail.nextAvailableDate).toLocaleDateString()
           : "N/A";
-      
-      body.style.cursor = "default";
     }
 
     async function requestLoan() {
@@ -128,6 +127,7 @@
     }
 
     document.getElementById("requestForm").addEventListener("submit", async (e) => {
+      document.body.style.cursor = "progress";
       e.preventDefault();
       const selectedDate = document.getElementById('selectedDate').value;
       const returnDate = document.getElementById('returnDate').value;
@@ -157,7 +157,6 @@
       void foresendt.offsetWidth; // forces reflow
       foresendt.classList.add("foresendt");
       document.getElementById("requestForm").reset();
-      body.style.cursor = "progress";
       load();
     });
 
