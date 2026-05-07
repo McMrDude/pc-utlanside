@@ -641,17 +641,17 @@ async function savePC(e) {
 
 function whichTabOpen() {
   if (listPageOpen) {
-    document.getElementById("listBtn").style = "background-color: rgb(187, 187, 187); border: 3px solid blue; border-bottom: none;";
+    document.getElementById("listBtn").style = "background-color: rgb(187, 187, 187); border: 2px solid blue; border-bottom: 2px solid blue; border-bottom: none;";
   } else {
     document.getElementById("listBtn").style = "";
   }
   if (calendarPageOpen) {
-    document.getElementById("calendarBtn").style = "background-color: rgb(187, 187, 187); border: 3px solid blue; border-bottom: none;";
+    document.getElementById("calendarBtn").style = "background-color: rgb(187, 187, 187); border: 2px solid blue; border-bottom: 2px solid blue; border-bottom: none;";
   } else {
     document.getElementById("calendarBtn").style = "";
   }
   if (pcPageOpen) {
-    document.getElementById("pcBtn").style = "background-color: rgb(187, 187, 187); border: 3px solid blue; border-bottom: none;";
+    document.getElementById("pcBtn").style = "background-color: rgb(187, 187, 187); border: 2px solid blue; border-bottom: 2px solid blue; border-bottom: none;";
   } else {
     document.getElementById("pcBtn").style = "";
   }
