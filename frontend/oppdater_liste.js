@@ -271,7 +271,7 @@ async function loadCalendarEvents() {
       let color = "green";
       let borderColor = "none";
       if (daysRemaining < 0) color = "darkred";
-      else if (daysRemaining === 0) color = "red", borderColor = "2px solid rgba(255,220,40,.15)";
+      else if (daysRemaining === 0) color = "red", borderColor = " rgba(255,220,40,.15)";
       else if (daysRemaining <= 5) color = "orange";
 
       calendarInstance.addEvent({
@@ -279,6 +279,7 @@ async function loadCalendarEvents() {
         start: returnDate.toISOString().split("T")[0],
         color: color,
         borderColor: borderColor,
+        classNames: daysRemaining === 0 ? ["today-rental"] : [],
         extendedProps: {
           id: r.id,
           rentedDate: r.rented_date,
