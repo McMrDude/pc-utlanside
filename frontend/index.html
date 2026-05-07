@@ -66,6 +66,7 @@
       document.getElementById("requestForm").reset();
     }
     async function load() {
+      body.style.cursor = "default";
       let erLånt = false;
       const me = await fetch("/me", { credentials: "include" }).then(r => r.json());
       if (!me) location.href = "/login.html";
@@ -126,6 +127,7 @@
     }
 
     document.getElementById("requestForm").addEventListener("submit", async (e) => {
+      body.style.cursor = "progress";
       e.preventDefault();
       const selectedDate = document.getElementById('selectedDate').value;
       const returnDate = document.getElementById('returnDate').value;
