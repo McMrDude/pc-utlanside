@@ -68,6 +68,11 @@ p {
     font-size: 30px;
 }
 
+.loading,
+.loading * {
+    cursor: wait !important;
+}
+
 #openFormButton :hover {
     background-color: rgb(157, 157, 157);
 }

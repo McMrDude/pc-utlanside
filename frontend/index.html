@@ -66,7 +66,6 @@
       document.getElementById("requestForm").reset();
     }
     async function load() {
-      document.html.style.cursor = "default";
       let erLånt = false;
       const me = await fetch("/me", { credentials: "include" }).then(r => r.json());
       if (!me) location.href = "/login.html";
@@ -127,7 +126,7 @@
     }
 
     document.getElementById("requestForm").addEventListener("submit", async (e) => {
-      document.html.style.cursor = "progress";
+      document.documentElement.classList.add("loading");
       e.preventDefault();
       const selectedDate = document.getElementById('selectedDate').value;
       const returnDate = document.getElementById('returnDate').value;
@@ -157,7 +156,8 @@
       void foresendt.offsetWidth; // forces reflow
       foresendt.classList.add("foresendt");
       document.getElementById("requestForm").reset();
-      load();
+      await load();
+      document.documentElement.classList.remove("loading");
     });
 
     load();
