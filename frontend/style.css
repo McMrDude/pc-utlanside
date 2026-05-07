@@ -121,8 +121,6 @@ p {
     font-weight: bold; 
     border: none; 
     cursor: pointer; 
-    border-left: 2px solid black; 
-    border-bottom: 1px solid black; 
 } 
 
 .popupDeleteBtn:hover { 
