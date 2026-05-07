@@ -30,15 +30,16 @@
     <h3 id="returDato"></h3>
   </div>
 
-  <div>
-    <div id="requestPopup" style="border: 3px solid black; 
+  <div id="requestPopup" style="display: none;">
+    <div  style="border: 3px solid black; 
     border-radius: 20px; 
     background-color: rgb(197, 197, 197);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display: none;">
+    display: none;
+    z-index: 1000;">
       <div class="requestLoan">
         <h1 style="text-align: center;">For hvilken lengde vil du låne en PC?</h1>
         <h3>Velg hvilken periode du ønsker å låne en PC</h3>
@@ -51,18 +52,20 @@
           <button type="submit">Send</button>
         </form>
       </div>
-      <button style="position: fixed; left: 0; top: 0; 
-      width: 100%; height: 100%; 
-      background-color: rgba(0, 0, 0, 0.5);
-      border: none;
-      outline: none;"
-      onclick="">
-
-      </button>
     </div>
+    <button style="position: fixed; left: 0; top: 0; 
+    width: 100%; height: 100%; 
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    outline: none;"
+    onclick="closeForm()"></button>
   </div>
 
   <script>
+    function closeForm() {
+      document.getElementById("requestPopup").style.display = "none";
+      document.getElementById("requestForm").reset();
+    }
     async function load() {
       let erLånt = false;
       const me = await fetch("/me", { credentials: "include" }).then(r => r.json());
@@ -152,6 +155,7 @@
       foresendt.classList.remove("foresendt");
       void foresendt.offsetWidth; // forces reflow
       foresendt.classList.add("foresendt");
+      document.getElementById("requestForm").reset();
       load();
     });
 
