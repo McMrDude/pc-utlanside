@@ -35,6 +35,7 @@ async function openList() {
   listPageOpen = true;
   calendarPageOpen = false;
   pcPageOpen = false;
+  whichTabOpen();
 }
 
 async function openCalendar() {
@@ -45,6 +46,7 @@ async function openCalendar() {
   listPageOpen = false;
   calendarPageOpen = true;
   pcPageOpen = false;
+  whichTabOpen();
   
   const res = await fetch("/rentals", {
     credentials: "include"
@@ -371,6 +373,7 @@ function openPCs() {
   listPageOpen = false;
   calendarPageOpen = false;
   pcPageOpen = true;
+  whichTabOpen();
   loadPCs();
 }
 
