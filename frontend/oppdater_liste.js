@@ -63,6 +63,7 @@ async function openCalendar() {
       height: "auto",
       expandRows: true,
       events: [],
+      style: "cursor: pointer;",
       
 
       eventClick: function (info) {
@@ -277,7 +278,7 @@ async function loadCalendarEvents() {
         title: `${r.student_name} - PC ${r.pc_number}`,
         start: returnDate.toISOString().split("T")[0],
         display: "background",
-        cursor: "pointer",
+        
         color: color,
         extendedProps: {
           id: r.id,
