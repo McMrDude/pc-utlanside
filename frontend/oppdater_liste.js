@@ -13,6 +13,23 @@ let pcPageOpen = false;
 
 whichTabOpen();
 
+
+function forespårselAlert() {
+  const res = await fetch("/requests", {
+    credentials: "include"
+  });
+  const requests = await res.json();
+
+  if (requests.length === 0) {
+    document.getElementById("nyAlert").style.display = "none";
+  } else {
+    document.getElementById("nyAlert").style.display = "flex";
+  }
+}
+
+forespårselAlert();
+
+
 /* =========================
    Popup for event details
 ========================= */

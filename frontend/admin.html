@@ -14,7 +14,11 @@
                 <button class="nav-btn" onclick="location.href='/index.html'"><img src="icons/home.png">Hjem</button>
                 <button id="listBtn" class="nav-btn" onclick="openList()"><img src="icons\list.png">Liste</button> 
                 <button id="calendarBtn" class="nav-btn" onclick="openCalendar()"><img src="icons/calendar.png">Kalender</button> 
-                <button id="pcBtn" class="nav-btn" onclick="openPCs()"><img src="icons\pc.png">PC'er<div style="background-color: rgb(105, 198, 255);">Ny: 1</div></button>
+                <button id="pcBtn" class="nav-btn" onclick="openPCs()"><img src="icons\pc.png">PC'er<div id="nyAlert" style="
+                display: none; justify-content: center; align-items: center;
+                background-color: rgb(0, 157, 255); 
+                border-radius: 50%; height: 20px; width: 20px; 
+                font-size: 10px; color: white; ">Ny</div></button>
                 <button onclick="logout()">Logg ut</button>
             </div> 
             <div style="display: flex; flex-direction: column; flex: 1;"> 
