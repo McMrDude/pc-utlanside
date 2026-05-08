@@ -558,15 +558,17 @@ async function loadPCs() {
 
 async function addPC() {
   const pcNumberInput = document.getElementById("pcNumber");
+  const serieNumberInput = document.getElementById("serieNumber");
   const modelInput = document.getElementById("pcModel");
 
   const data = {
     pc_number: pcNumberInput.value,
+    serie_number: serieNumberInput.value,
     model: modelInput.value
   };
 
-  if (!data.pc_number || !data.model) {
-    alert("Vennligst fyll inn begge feltene");
+  if (!data.pc_number || !data.serie_number || !data.model) {
+    alert("Vennligst fyll inn alle feltene");
     return;
   }
 
@@ -578,6 +580,7 @@ async function addPC() {
 
   // ✅ CLEAR INPUTS AFTER SUCCESS
   pcNumberInput.value = "";
+  serieNumberInput.value = "";
   modelInput.value = "";
 
   loadPCs();
