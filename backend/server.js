@@ -209,6 +209,7 @@ app.get("/pcs/status", requireAdmin, async (req, res) => {
       SELECT
         pcs.id,
         pcs.pc_number,
+        pcs.serie_nummer,
         pcs.model,
         pcs.status,
         u.name AS user_name,
