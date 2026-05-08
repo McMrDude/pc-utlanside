@@ -11,6 +11,9 @@
   </div>
   <button id="adminBtn" style="display: none;" onclick="location.href='/admin.html'">
     Admin
+    <div id="adminAlert" style="width: 60px;background-color: rgb(11, 115, 170); 
+    padding: 5px; border-radius: 30px; position: absolute; 
+    font-size: 10px; display: none">Forespørsel !</div>
   </button>
   <div style="display: flex; width: 100%; flex-direction: column; justify-content: center; align-items: center;">
     <h2>Velkommen til PC utlån</h2>
@@ -128,6 +131,10 @@
           }
         }
       });
+
+      if (requests.length > 0) {
+        document.getElementById("adminAlert").style.display = "block";
+      }
 
       if (!erLånt) {
         document.getElementById("foresprørselDiv").style.display = "flex";
