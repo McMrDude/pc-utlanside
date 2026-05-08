@@ -408,8 +408,10 @@ async function loadPCs() {
 
   const headers = [
     "PC nummer",
+    "Serie nummer",
     "Modell",
     "Status",
+    "Utlåners navn",
     "Edit"
   ]
 
