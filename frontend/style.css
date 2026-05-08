@@ -106,7 +106,7 @@ p {
 #pcList {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto;
-    width: 50%;
+    width: 65%;
 }
 #requestList {
     display: grid;
