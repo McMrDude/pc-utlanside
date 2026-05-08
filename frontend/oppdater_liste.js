@@ -11,8 +11,6 @@ let listPageOpen = true;
 let calendarPageOpen = false;
 let pcPageOpen = false;
 
-whichTabOpen();
-
 
 function forespårselAlert() {
   const res = await fetch("/requests", {
@@ -676,3 +674,5 @@ function whichTabOpen() {
     document.getElementById("pcBtn").style = "";
   }
 }
+
+whichTabOpen();
