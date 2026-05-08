@@ -260,10 +260,7 @@ app.listen(PORT, () => {
 ========================= */
 app.get("/rentals", requireLogin, async (req, res) => {
   try {
-      const result = await pool.query(
-        "SELECT * FROM rentals ORDER BY created_at DESC"
-      );
-      return res.json(result.rows);
+    
 
     const result = await pool.query(
       "SELECT * FROM rentals WHERE user_id = $1 ORDER BY created_at DESC",
