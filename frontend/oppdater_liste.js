@@ -11,8 +11,10 @@ let listPageOpen = true;
 let calendarPageOpen = false;
 let pcPageOpen = false;
 
+whichTabOpen();
 
-function forespårselAlert() {
+
+async function forespårselAlert() {
   const res = await fetch("/requests", {
     credentials: "include"
   });
@@ -25,7 +27,7 @@ function forespårselAlert() {
   }
 }
 
-forespårselAlert();
+await forespårselAlert();
 
 
 /* =========================
@@ -674,5 +676,3 @@ function whichTabOpen() {
     document.getElementById("pcBtn").style = "";
   }
 }
-
-whichTabOpen();
