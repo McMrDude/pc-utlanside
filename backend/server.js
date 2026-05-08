@@ -360,9 +360,8 @@ app.get("/availability", async (req, res) => {
     const totalPCs = await pool.query("SELECT COUNT(*) FROM pcs");
 
     const loaned = await pool.query(`
-      SELECT COUNT(DISTINCT pc_number)
-      FROM rentals
-      WHERE status = 'active'
+      SELECT COUNT(*) FROM pcs
+      WHERE status = 'lånt'
     `);
 
     const available =
