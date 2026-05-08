@@ -194,8 +194,8 @@ app.get("/pcs", async (req, res) => {
 
 app.post("/pcs", async (req, res) => {
   try {
-    const { pc_number, model } = req.body;
-    await pool.query("INSERT INTO pcs (pc_number, model) VALUES ($1, $2)", [pc_number, model]);
+    const { pc_number, serie_number, model } = req.body;
+    await pool.query("INSERT INTO pcs (pc_number, serie_nummer, model) VALUES ($1, $2, $3)", [pc_number, serie_number, model]);
     res.sendStatus(201);
   } catch (err) {
     console.error(err);
