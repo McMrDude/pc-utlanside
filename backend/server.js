@@ -510,7 +510,7 @@ app.post("/submit-changes", requireAdmin, async (req, res) => {
     const result = await pool.query(`
       UPDATE pcs
       SET pc_number = $1,
-          serie_number = $2,
+          serie_nummer = $2,
           model = $3
       WHERE id = $4
       RETURNING *
