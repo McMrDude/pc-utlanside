@@ -429,17 +429,25 @@ async function loadPCs() {
     }
 
     const number = document.createElement("div");
+    const serie = document.createElement("div");
     const model = document.createElement("div");
     const status = document.createElement("div");
+    const loanName = document.createElement("div");
     const editDiv = document.createElement("div");
     number.className = "pcDiv";
+    serie.className = "pcDiv";
     model.className = "pcDiv";
     status.className = "pcDiv";
+    loanName.className = "pcDiv";
     editDiv.className = "pcDiv";
 
     number.textContent = `${pc.pc_number}`;
 
     pcDiv.appendChild(number);
+
+    serie.textContent = `${pc.serie_nummer}`;
+
+    pcDiv.appendChild(serie);
 
     model.textContent = `${pc.model}`;
 
@@ -447,10 +455,16 @@ async function loadPCs() {
 
     status.textContent =
       pc.status === "lånt"
-        ? `🔴 Lånt til ${pc.user_name} (${pc.user_email})`
-        : "🟢 Tilgjengelig";
+        ? `🔴 Utlånt`
+        : "🟢 Ledig";
+
+    loanName.textContent =
+      pc.status === "lånt"
+      ? `Lånt til ${pc.user_name} (${pc.user_email})`
+      : "";
 
     pcDiv.appendChild(status);
+    pcDiv.appendChild(loanName);
 
     const edit = document.createElement("button");
     edit.className = "edit-btn";
