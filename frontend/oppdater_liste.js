@@ -27,7 +27,7 @@ async function forespårselAlert() {
   }
 }
 
-await forespårselAlert();
+forespårselAlert();
 
 
 /* =========================
