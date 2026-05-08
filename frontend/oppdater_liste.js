@@ -643,6 +643,7 @@ function openEditPopup(pc) {
   document.getElementById("editPC").style.display = "block";
 
   document.getElementById("editPcNumber").value = pc.pc_number;
+  document.getElementById("editSerieNumber").value = pc.serie_nummer;
   document.getElementById("editPcModel").value = pc.model;
 
   // 👇 THIS is the important part
@@ -653,6 +654,7 @@ async function savePC(e) {
 
   const id = document.getElementById("editPC").dataset.id;
   const pc_number = document.getElementById("editPcNumber").value;
+  const serie_number = document.getElementById("editSerieNumber").value;
   const model = document.getElementById("editPcModel").value;
 
   const res = await fetch("/submit-changes", {
@@ -663,6 +665,7 @@ async function savePC(e) {
     body: JSON.stringify({
       id,
       pc_number,
+      serie_number,
       model
     })
   });

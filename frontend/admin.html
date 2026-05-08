@@ -79,10 +79,14 @@
                         <form onsubmit="savePC(event)">
                             <button type="button" class="close-btn" style="position: absolute; top: 10px; right: 10px;" onclick="getElementById('editPC').style.display = 'none'">X</button>
                             <h3>Rediger PC</h3>
-
-                            <input id="editPcNumber" name="pc_number">
-                            <input id="editPcModel" name="model">
-
+                            <div style="display: grid; grid-template-columns: auto auto auto;">
+                                <h3>PC nummer:</h3>
+                                <h3>Serie nummer:</h3>
+                                <h3>Modell:</h3>
+                                <input id="editPcNumber" name="pc_number">
+                                <input id="editSerieNumber" name="serie_number">
+                                <input id="editPcModel" name="model">
+                            </div>
                             <button type="submit">Lagre</button>
                         </form>
                     </div>

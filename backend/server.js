@@ -498,7 +498,7 @@ app.post("/submit-date", requireLogin, async (req, res) => {
 
 app.post("/submit-changes", requireAdmin, async (req, res) => {
   try {
-    const { id, pc_number, model } = req.body;
+    const { id, pc_number, serie_number, model } = req.body;
 
     const rentalUpdate = await pool.query(`
       UPDATE rentals
@@ -510,10 +510,11 @@ app.post("/submit-changes", requireAdmin, async (req, res) => {
     const result = await pool.query(`
       UPDATE pcs
       SET pc_number = $1,
-          model = $2
-      WHERE id = $3
+          serie_number = $2,
+          model = $3
+      WHERE id = $4
       RETURNING *
-    `, [pc_number, model, id]);
+    `, [pc_number, serie_number, model, id]);
 
     console.log("Updated rows:", result.rowCount);
 
