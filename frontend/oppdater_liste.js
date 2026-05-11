@@ -153,6 +153,8 @@ async function loadRentals() {
   const res = await fetch(API_URL);
   allRentals = await res.json();
 
+  console.log(allRentals);
+
   renderRentals(allRentals);
 }
 
