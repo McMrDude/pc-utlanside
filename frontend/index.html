@@ -100,7 +100,6 @@
 
       const ren = await fetch("/rentals-front", {
         credentials: "include",
-        body: JSON.stringify({ page: "front" })
       });
       const rentals = await ren.json();
 

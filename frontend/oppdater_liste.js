@@ -70,7 +70,6 @@ async function openCalendar() {
   
   const res = await fetch("/rentals-admin", {
     credentials: "include",
-    body: JSON.stringify({ page: "admin" })
   });
   const rentals = await res.json();
 
