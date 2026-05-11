@@ -114,12 +114,21 @@
               document.getElementById("foresprørselDiv").style.display = "none";
               document.getElementById("aktivLåntDiv").style.display = "flex";
               const mainThing = document.getElementById("LåntOverskrift");
-              mainThing.textContent = "Du har en PC som skal returneres i dag. Vennligst returner den før du låner en ny.";
+              mainThing.textContent = "Du har en PC som skal returneres i dag. Husk å returnere den.";
               mainThing.style = "background-color: red; font-size: 28px;";
               document.getElementById("pcLånt").textContent = `PC nummer: ${r.pc_number}`;
               document.getElementById("returDato").textContent = `Retur dato: ${new Date(r.return_date).toLocaleDateString()}`;
               erLånt = true;
-
+            }
+            if (returnDateString < todayString) {
+              document.getElementById("foresprørselDiv").style.display = "none";
+              document.getElementById("aktivLåntDiv").style.display = "flex";
+              const mainThing = document.getElementById("LåntOverskrift");
+              mainThing.textContent = "DU HAR GLEMT Å RETURNERE PC. RETURNER SÅ SNART SOM MULIG.";
+              mainThing.style = "background-color: darkred; font-size: 28px;";
+              document.getElementById("pcLånt").textContent = `PC nummer: ${r.pc_number}`;
+              document.getElementById("returDato").textContent = `Retur dato: ${new Date(r.return_date).toLocaleDateString()}`;
+              erLånt = true;
             } else {
               document.getElementById("foresprørselDiv").style.display = "none";
               document.getElementById("aktivLåntDiv").style.display = "flex";
