@@ -1,7 +1,6 @@
 const API_URL = "/rentals-admin";
 
 let allRentals = [];
-console.log(allRentals);
 
 const list = document.getElementById("listPage");
 const calendar = document.getElementById("calendar");
@@ -152,8 +151,6 @@ async function openCalendar() {
 async function loadRentals() {
   const res = await fetch(API_URL);
   allRentals = await res.json();
-
-  console.log(allRentals);
 
   renderRentals(allRentals);
 }
