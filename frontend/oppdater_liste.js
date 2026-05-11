@@ -586,6 +586,18 @@ async function addPC() {
   loadPCs();
 }
 
+async function getCurrentUser() {
+  const res = await fetch("/me", {
+    credentials: "include"
+  });
+
+  if (!res.ok) {
+    return null;
+  }
+
+  return await res.json();
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   const user = await getCurrentUser();
 
