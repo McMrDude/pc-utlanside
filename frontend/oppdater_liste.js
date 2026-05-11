@@ -1,6 +1,7 @@
 const API_URL = "/rentals";
 
 let allRentals = [];
+console.log(allRentals);
 
 const list = document.getElementById("listPage");
 const calendar = document.getElementById("calendar");
