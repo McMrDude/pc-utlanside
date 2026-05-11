@@ -69,7 +69,8 @@ async function openCalendar() {
   whichTabOpen();
   
   const res = await fetch("/rentals", {
-    credentials: "include"
+    credentials: "include",
+    body: JSON.stringify({ page: "admin" })
   });
   const rentals = await res.json();
 

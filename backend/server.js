@@ -260,12 +260,19 @@ app.listen(PORT, () => {
 ========================= */
 app.get("/rentals", requireLogin, async (req, res) => {
   try {
+    const { page } = req.body;
     
-
-    const result = await pool.query(
-      "SELECT * FROM rentals WHERE user_id = $1 ORDER BY created_at DESC",
-      [req.session.user.id]
-    );
+    if (page === "admin") {
+      const result = await pool.query(
+        "SELECT * FROM rentals ORDER BY created_at DESC"
+      );
+    }
+    if (page === "front") {
+      const result = await pool.query(
+        "SELECT * FROM rentals WHERE user_id = $1 ORDER BY created_at DESC",
+        [req.session.user.id]
+      );
+    }
 
     res.json(result.rows);
   } catch (err) {
