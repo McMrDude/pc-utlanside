@@ -1,4 +1,4 @@
-const API_URL = "/rentals";
+const API_URL = "/rentals-admin";
 
 let allRentals = [];
 console.log(allRentals);
@@ -68,7 +68,7 @@ async function openCalendar() {
   pcPageOpen = false;
   whichTabOpen();
   
-  const res = await fetch("/rentals", {
+  const res = await fetch("/rentals-admin", {
     credentials: "include",
     body: JSON.stringify({ page: "admin" })
   });

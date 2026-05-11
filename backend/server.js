@@ -258,21 +258,24 @@ app.listen(PORT, () => {
 /* =========================
    Get rentals (role-based)
 ========================= */
-app.get("/rentals", requireLogin, async (req, res) => {
+app.get("/rentals-admin", requireLogin, async (req, res) => {
   try {
-    const { page } = req.body;
-    
-    if (page === "admin") {
-      const result = await pool.query(
-        "SELECT * FROM rentals ORDER BY created_at DESC"
-      );
-    }
-    if (page === "front") {
-      const result = await pool.query(
-        "SELECT * FROM rentals WHERE user_id = $1 ORDER BY created_at DESC",
-        [req.session.user.id]
-      );
-    }
+    const result = await pool.query(
+      "SELECT * FROM rentals ORDER BY created_at DESC",
+    );
+
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Database error" });
+  }
+});
+app.get("/rentals-front", requireLogin, async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT * FROM rentals WHERE user_id = $1 ORDER BY created_at DESC",
+      [req.session.user.id]
+    );
 
     res.json(result.rows);
   } catch (err) {
