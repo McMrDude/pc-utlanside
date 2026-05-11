@@ -106,12 +106,26 @@
       rentals.forEach(r => {
         if (r.student_email === me.email) {
           if (r.status !== "returned") {
-            document.getElementById("foresprørselDiv").style.display = "none";
-            document.getElementById("aktivLåntDiv").style.display = "flex";
-            document.getElementById("LåntOverskrift").textContent = "Du har allerede lånt en PC og kan ikke låne en ny";
-            document.getElementById("pcLånt").textContent = `PC nummer: ${r.pc_number}`;
-            document.getElementById("returDato").textContent = `Retur dato: ${new Date(r.return_date).toLocaleDateString()}`;
-            erLånt = true;
+            const today = new Date();
+            const todayString = today.toISOString().split("T")[0];
+            if (r.return_date === todayString) {
+              document.getElementById("foresprørselDiv").style.display = "none";
+              document.getElementById("aktivLåntDiv").style.display = "flex";
+              const mainThing = document.getElementById("LåntOverskrift");
+              mainThing.textContent = "Du har en PC som skal returneres i dag. Vennligst returner den før du låner en ny.";
+              mainThing.style = "color: red; font-size: 18px;";
+              document.getElementById("pcLånt").textContent = `PC nummer: ${r.pc_number}`;
+              document.getElementById("returDato").textContent = `Retur dato: ${new Date(r.return_date).toLocaleDateString()}`;
+              erLånt = true;
+
+            } else {
+              document.getElementById("foresprørselDiv").style.display = "none";
+              document.getElementById("aktivLåntDiv").style.display = "flex";
+              document.getElementById("LåntOverskrift").textContent = "Du har allerede lånt en PC og kan ikke låne en ny";
+              document.getElementById("pcLånt").textContent = `PC nummer: ${r.pc_number}`;
+              document.getElementById("returDato").textContent = `Retur dato: ${new Date(r.return_date).toLocaleDateString()}`;
+              erLånt = true;
+            }
           }
         }
       });
