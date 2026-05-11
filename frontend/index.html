@@ -119,8 +119,7 @@
               document.getElementById("pcLånt").textContent = `PC nummer: ${r.pc_number}`;
               document.getElementById("returDato").textContent = `Retur dato: ${new Date(r.return_date).toLocaleDateString()}`;
               erLånt = true;
-            }
-            if (returnDateString < todayString) {
+            } else if (returnDateString < todayString) {
               document.getElementById("foresprørselDiv").style.display = "none";
               document.getElementById("aktivLåntDiv").style.display = "flex";
               const mainThing = document.getElementById("LåntOverskrift");
