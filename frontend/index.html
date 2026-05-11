@@ -116,7 +116,7 @@
               document.getElementById("aktivLåntDiv").style.display = "flex";
               const mainThing = document.getElementById("LåntOverskrift");
               mainThing.textContent = "Du har en PC som skal returneres i dag. Vennligst returner den før du låner en ny.";
-              mainThing.style = "color: red; font-size: 18px;";
+              mainThing.style = "background-color: red; font-size: 28px;";
               document.getElementById("pcLånt").textContent = `PC nummer: ${r.pc_number}`;
               document.getElementById("returDato").textContent = `Retur dato: ${new Date(r.return_date).toLocaleDateString()}`;
               erLånt = true;
