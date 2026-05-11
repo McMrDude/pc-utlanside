@@ -109,7 +109,7 @@
             const today = new Date();
             const todayString = today.toISOString().split("T")[0];
             console.log("Rental return date:", r.return_date, "Today:", todayString);
-            if (r.return_date === todayString) {
+            if (r.return_date.toISOString().split("T")[0] === todayString) {
               document.getElementById("foresprørselDiv").style.display = "none";
               document.getElementById("aktivLåntDiv").style.display = "flex";
               const mainThing = document.getElementById("LåntOverskrift");
