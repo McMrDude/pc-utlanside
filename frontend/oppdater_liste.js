@@ -364,6 +364,7 @@ if (searchInput) {
 
     const filtered = allRentals.filter(r => {
       return (
+        
         r.student_name.toLowerCase().includes(query) ||
         r.student_email.toLowerCase().includes(query) ||
         r.pc_number.toLowerCase().includes(query) ||
