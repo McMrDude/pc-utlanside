@@ -153,20 +153,29 @@ async function sortRentals(rentals, sortState) {
   let rowID = 0;
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  const returnDate = new Date(r.return_date).getTime();
-  const daysRemaining =
-        Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24)) - 1;
 
   if (sortState === 1) {
-    sorted.sort(function(a, b){return a-b});
+    sorted.sort((a, b) => {
+      const dateA = new Date(a.return_date).getTime();
+      const dateB = new Date(b.return_date).getTime();
+      return dateA - dateB;
+    });
   } else if (sortState === 2) {
-    sorted.sort(function(a, b){return a-b});
+    sorted.sort((a, b) => {
+      const dateA = new Date(a.return_date).getTime();
+      const dateB = new Date(b.return_date).getTime();
+      return dateA - dateB;
+    });
     sorted.reverse();
   }
 
   sorted.forEach(r => {
     if (r.status === "active") {
-      let firstCell = true;      
+      let firstCell = true;    
+      
+      const returnDate = new Date(r.return_date).getTime();
+      const daysRemaining =
+        Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24)) - 1;
 
       const rows = [
         `Dager til levering: ${daysRemaining}`,
