@@ -146,7 +146,7 @@ async function openCalendar() {
 }
 
 
-async function sortRentals(rentals) {
+async function sortRentals(rentals, sortState) {
   let rentalsArray = [];
   
   let rowID = 0;
@@ -237,7 +237,21 @@ async function sortRentals(rentals) {
     };
    });
 
-   renderRentals(rentalsArray);
+   if (sortState === 1) {
+    rentalsArray.sort((a, b) => {
+      const aText = a.textContent || "";
+      const bText = b.textContent || "";
+      return aText.localeCompare(bText);
+    });
+  } else if (sortState === 2) {
+    rentalsArray.sort((a, b) => {
+      const aText = a.textContent || "";
+      const bText = b.textContent || "";
+      return bText.localeCompare(aText);
+    });
+  }
+
+  renderRentals(rentalsArray);
 }
 
 /* =========================
@@ -257,13 +271,27 @@ function renderRentals(array) {
   listDiv.innerHTML = "";
 
   const headers = [
-    "<h4 style='border-top: 1px solid black;'><button style='color: black; cursor: pointer; left: 0;'>Filtrer</button>Status</h4>",
+    "<h4 style='border-top: 1px solid black;'><button id='filterBtn' style='color: black; cursor: pointer; left: 0;'>Filtrer</button>Status</h4>",
     "<h4 style='border-top: 1px solid black;'>Elev navn</h4>",
     "<h4 style='border-top: 1px solid black;'>PC nummer</h4>",
     "<h4 style='border-top: 1px solid black;'>Dato lånet</h4>",
     "<h4 style='border-top: 1px solid black;'>Leverings dato</h4>",
     '<h4 style="border-right: none; border-top: 1px solid black;">Levert?</h4>'
   ];
+
+  const filterBtn = document.getElementById("filterBtn");
+  let state = 0;
+  filterBtn.onclick = () => {
+    if (state === 0) {
+      state = 1;
+    } else if (state === 1) {
+      state = 2;
+    } else {
+      state = 0;
+    }
+      
+    sortRentals(undefined, state);
+  };
 
   headers.forEach(h => {
     const row = document.createElement("div");
