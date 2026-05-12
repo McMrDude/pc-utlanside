@@ -264,6 +264,7 @@ async function loadRentals() {
   sortRentals(allRentals);
 }
 
+let state = 0;
 function renderRentals(array) {
   let pcNummer = "";
 
@@ -280,7 +281,6 @@ function renderRentals(array) {
   ];
 
   const filterBtn = document.getElementById("filterBtn");
-  let state = 0;
   filterBtn.onclick = () => {
     if (state === 0) {
       state = 1;
