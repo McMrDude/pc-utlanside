@@ -383,7 +383,7 @@ if (searchInput) {
       );
     });
 
-    renderRentals(filtered);
+    sortRentals(filtered);
   });
 }
 
