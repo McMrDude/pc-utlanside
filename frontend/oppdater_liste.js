@@ -257,11 +257,11 @@ async function sortRentals(rentals, sortState) {
 /* =========================
    Load list view
 ========================= */
-async function loadRentals() {
+async function loadRentals(sortState) {
   const res = await fetch(API_URL);
   allRentals = await res.json();
 
-  sortRentals(allRentals);
+  sortRentals(allRentals, sortState);
 }
 
 let state = 0;
@@ -299,10 +299,8 @@ function renderRentals(array) {
     } else {
       state = 0;
     }
-    const res = await fetch(API_URL);
-    allRentals = await res.json();
       
-    sortRentals(allRentals, state);
+    loadRentals(state);
   };
 }
 
