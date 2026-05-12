@@ -147,19 +147,28 @@ async function openCalendar() {
 
 
 async function sortRentals(rentals, sortState) {
+  const sorted = [...rentals];
   let rentalsArray = [];
   
   let rowID = 0;
   const today = new Date();
   today.setHours(0, 0, 0, 0);
+  const daysRemaining =
+        Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24)) - 1;
 
-  rentals.forEach(r => {
+  if (sortState === 1) {
+    sorted.sort(function(a, b){return a-b});
+  } else if (sortState === 2) {
+    sorted.sort(function(a, b){return a-b});
+    sorted.reverse();
+  }
+
+  sorted.forEach(r => {
     if (r.status === "active") {
       let firstCell = true;
 
       const returnDate = new Date(r.return_date).getTime();
-      const daysRemaining =
-        Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24)) - 1;
+      
 
       const rows = [
         `Dager til levering: ${daysRemaining}`,
@@ -235,21 +244,7 @@ async function sortRentals(rentals, sortState) {
 
       rowID++;
     };
-   });
-
-   if (sortState === 1) {
-    rentalsArray.sort((a, b) => {
-      const aText = a.textContent || "";
-      const bText = b.textContent || "";
-      return aText.localeCompare(bText);
-    });
-  } else if (sortState === 2) {
-    rentalsArray.sort((a, b) => {
-      const aText = a.textContent || "";
-      const bText = b.textContent || "";
-      return bText.localeCompare(aText);
-    });
-  }
+  });
 
   renderRentals(rentalsArray);
 }
