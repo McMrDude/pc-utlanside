@@ -149,6 +149,9 @@ async function openCalendar() {
 async function sortRentals(rentals) {
   let rentalsArray = [];
 
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
   rentals.forEach(r => {
     if (r.status === "active") {
       let firstCell = true;
@@ -248,8 +251,6 @@ async function loadRentals() {
 
 function renderRentals(array) {
   let rowID = 0;
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
 
   let pcNummer = "";
 
