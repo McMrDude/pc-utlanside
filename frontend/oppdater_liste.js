@@ -296,10 +296,13 @@ function renderRentals(array) {
   filterBtn.onclick = () => {
     if (state === 0) {
       state = 1;
+      filterBtn.title = "Forfalt prioritet";
     } else if (state === 1) {
       state = 2;
+      filterBtn.title = "Nyest prioritet";
     } else {
       state = 0;
+      filterBtn.title = "Normal prioritet";
     }
       
     loadRentals(state);
