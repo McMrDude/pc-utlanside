@@ -145,40 +145,9 @@ async function openCalendar() {
   }
 }
 
-/* =========================
-   Load list view
-========================= */
-async function loadRentals() {
-  const res = await fetch(API_URL);
-  allRentals = await res.json();
 
-  renderRentals(allRentals);
-}
-
-function renderRentals(rentals) {
-  let rowID = 0;
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  let pcNummer = "";
-
-  const listDiv = document.getElementById("listDiv");
-  listDiv.innerHTML = "";
-
-  const headers = [
-    "<h4 style='border-top: 1px solid black;'>Status</h4>",
-    "<h4 style='border-top: 1px solid black;'>Elev navn</h4>",
-    "<h4 style='border-top: 1px solid black;'>PC nummer</h4>",
-    "<h4 style='border-top: 1px solid black;'>Dato lånet</h4>",
-    "<h4 style='border-top: 1px solid black;'>Leverings dato</h4>",
-    '<h4 style="border-right: none; border-top: 1px solid black;">Levert?</h4>'
-  ];
-
-  headers.forEach(h => {
-    const row = document.createElement("div");
-    row.innerHTML = h;
-    listDiv.appendChild(row);
-  });
+async function sortRentals(rentals) {
+  let rentalsArray = [];
 
   rentals.forEach(r => {
     if (r.status === "active") {
@@ -206,10 +175,10 @@ function renderRentals(rentals) {
         if (firstCell) {
           if (daysRemaining < 0) {
             row.style.backgroundColor = "darkred";
-            row.innerHTML = "Overdue";
+            row.innerHTML = "Forfalt";
           } else if (daysRemaining === 0) {
             row.style.backgroundColor = "red";
-            row.innerHTML = "Today";
+            row.innerHTML = "I dag";
           } else if (daysRemaining <= 5) {
             row.style.backgroundColor = "yellow";
           } else {
@@ -220,7 +189,7 @@ function renderRentals(rentals) {
 
         row.className = "Row" + currentRowID;
 
-        listDiv.appendChild(row);
+        rentalsArray.push(row);
       });
 
       const deleteBtn = document.createElement("button");
@@ -231,7 +200,6 @@ function renderRentals(rentals) {
       deleteBtn.onclick = async () => {
         if (!confirm("Er PCen levert inn og klar for ny utlån?")) return;
 
-        // Replace 'your-class-name' with the actual class you want to delete
         document.querySelectorAll('.Row' + currentRowID).forEach(el => el.remove());
 
         const PCres = await fetch("/pcs/status");
@@ -259,11 +227,53 @@ function renderRentals(rentals) {
         if (calendarInstance) loadCalendarEvents();
       };
 
-      listDiv.appendChild(deleteBtn);
+      rentalsArray.push(deleteBtn);
 
       rowID++;
     };
    });
+
+   renderRentals(rentalsArray);
+}
+
+/* =========================
+   Load list view
+========================= */
+async function loadRentals() {
+  const res = await fetch(API_URL);
+  allRentals = await res.json();
+
+  sortRentals(allRentals);
+}
+
+function renderRentals(array) {
+  let rowID = 0;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  let pcNummer = "";
+
+  const listDiv = document.getElementById("listDiv");
+  listDiv.innerHTML = "";
+
+  const headers = [
+    "<h4 style='border-top: 1px solid black;'>Status</h4>",
+    "<h4 style='border-top: 1px solid black;'>Elev navn</h4>",
+    "<h4 style='border-top: 1px solid black;'>PC nummer</h4>",
+    "<h4 style='border-top: 1px solid black;'>Dato lånet</h4>",
+    "<h4 style='border-top: 1px solid black;'>Leverings dato</h4>",
+    '<h4 style="border-right: none; border-top: 1px solid black;">Levert?</h4>'
+  ];
+
+  headers.forEach(h => {
+    const row = document.createElement("div");
+    row.innerHTML = h;
+    listDiv.appendChild(row);
+  });
+
+  array.forEach(el => {
+    listDiv.appendChild(el);
+  });
 }
 
 /* =========================
