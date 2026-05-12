@@ -299,8 +299,10 @@ function renderRentals(array) {
     } else {
       state = 0;
     }
+    const res = await fetch(API_URL);
+    allRentals = await res.json();
       
-    sortRentals(undefined, state);
+    sortRentals(allRentals, state);
   };
 }
 
