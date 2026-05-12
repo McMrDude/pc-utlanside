@@ -153,6 +153,7 @@ async function sortRentals(rentals, sortState) {
   let rowID = 0;
   const today = new Date();
   today.setHours(0, 0, 0, 0);
+  const returnDate = new Date(r.return_date).getTime();
   const daysRemaining =
         Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24)) - 1;
 
@@ -165,10 +166,7 @@ async function sortRentals(rentals, sortState) {
 
   sorted.forEach(r => {
     if (r.status === "active") {
-      let firstCell = true;
-
-      const returnDate = new Date(r.return_date).getTime();
-      
+      let firstCell = true;      
 
       const rows = [
         `Dager til levering: ${daysRemaining}`,
