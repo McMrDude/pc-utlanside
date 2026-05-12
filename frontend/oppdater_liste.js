@@ -280,6 +280,16 @@ function renderRentals(array) {
     '<h4 style="border-right: none; border-top: 1px solid black;">Levert?</h4>'
   ];
 
+  headers.forEach(h => {
+    const row = document.createElement("div");
+    row.innerHTML = h;
+    listDiv.appendChild(row);
+  });
+
+  array.forEach(el => {
+    listDiv.appendChild(el);
+  });
+
   const filterBtn = document.getElementById("filterBtn");
   filterBtn.onclick = () => {
     if (state === 0) {
@@ -292,16 +302,6 @@ function renderRentals(array) {
       
     sortRentals(undefined, state);
   };
-
-  headers.forEach(h => {
-    const row = document.createElement("div");
-    row.innerHTML = h;
-    listDiv.appendChild(row);
-  });
-
-  array.forEach(el => {
-    listDiv.appendChild(el);
-  });
 }
 
 /* =========================
