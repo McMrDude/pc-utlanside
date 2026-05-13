@@ -226,7 +226,7 @@ h5 {
     pointer-events: auto; 
     max-height: 95vh;
     overflow-y: auto;
-    margin: 0;
+    margin-top: 0;
 } 
 
 .fc-bg-event { 
