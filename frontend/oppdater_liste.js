@@ -47,7 +47,7 @@ document.body.appendChild(popup);
    Open / Close views
 ========================= */
 async function openList() {
-  list.style.display = "grid";
+  list.style.display = "block";
   calendar.style.display = "none";
   popup.style.display = "none";
   document.getElementById("pcPage").style.display = "none";
@@ -134,7 +134,7 @@ async function openCalendar() {
           };
         });
 
-        popup.style.display = "block";
+        popup.style.display = "grid";
       }
     });
 
