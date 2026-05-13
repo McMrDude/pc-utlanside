@@ -47,7 +47,7 @@ document.body.appendChild(popup);
    Open / Close views
 ========================= */
 async function openList() {
-  list.style.display = "block";
+  list.style.display = "grid";
   calendar.style.display = "none";
   popup.style.display = "none";
   document.getElementById("pcPage").style.display = "none";
