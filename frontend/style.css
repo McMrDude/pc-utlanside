@@ -121,6 +121,9 @@ p {
     outline: 5px solid rgba(255,220,40,.3) !important;
     cursor: pointer;
 }
+.fc-bg-event.today-rental {
+    cursor: pointer;
+}
 
 .popupDeleteBtn { 
     width: 100%; 
