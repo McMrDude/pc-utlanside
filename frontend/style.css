@@ -102,6 +102,14 @@ p {
     overflow-x: auto;
 }
 
+#statusHeader {
+    display: flex; 
+    border-top: 1px solid black;
+    gap: 15px;
+}
+#statusHeader * {
+    flex: 1;
+}
 
 #pcList {
     display: grid;
