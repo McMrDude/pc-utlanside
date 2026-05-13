@@ -294,11 +294,11 @@ function renderRentals(array) {
 
   const filterBtn = document.getElementById("filterBtn");
   if (state === 0) {
-      filterBtn.title = "Forfalt prioritet";
-    } else if (state === 1) {
-      filterBtn.title = "Nyest prioritet";
-    } else {
       filterBtn.title = "Normal prioritet";
+    } else if (state === 1) {
+      filterBtn.title = "Forfalt prioritet";
+    } else {
+      filterBtn.title = "Nyest prioritet";
     };
 
   filterBtn.onclick = () => {
