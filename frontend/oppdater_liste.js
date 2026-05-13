@@ -293,23 +293,20 @@ function renderRentals(array) {
   });
 
   const filterBtn = document.getElementById("filterBtn");
-  filterBtn.onclick = () => filterClick(this);
-  filterBtn.title = "Normal prioritet";
-}
-
-function filterClick(btn) {
-  if (state === 0) {
-    state = 1;
-    btn.title = "Forfalt prioritet";
-  } else if (state === 1) {
-    state = 2;
-    btn.title = "Nyest prioritet";
-  } else {
-    state = 0;
-    btn.title = "Normal prioritet";
+  filterBtn.onclick = () => {
+    if (state === 0) {
+      state = 1;
+      filterBtn.title = "Forfalt prioritet";
+    } else if (state === 1) {
+      state = 2;
+      filterBtn.title = "Nyest prioritet";
+    } else {
+      state = 0;
+      filterBtn.title = "Normal prioritet";
+    };
+      
+    loadRentals(state);
   };
-    
-  loadRentals(state);
 }
 
 /* =========================
