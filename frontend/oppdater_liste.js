@@ -38,6 +38,7 @@ popup.id = "eventPopup";
 popup.style.position = "absolute";
 popup.style.backgroundColor = "white";
 popup.style.border = "1px solid black";
+popup.style.padding = "10px";
 popup.style.display = "none";
 popup.style.zIndex = "1000";
 document.body.appendChild(popup);
@@ -59,7 +60,7 @@ async function openList() {
 async function openCalendar() {
   list.style.display = "none";
   calendar.style.display = "block";
-  popup.style = "display: none; border: 1px solid black; background-color: rgb(197, 197, 197); padding: 10px; margin-top: 10px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;";
+  popup.style = "display: none; border: 1px solid black; background-color: rgb(197, 197, 197); padding: 10px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;";
   document.getElementById("pcPage").style.display = "none";
   listPageOpen = false;
   calendarPageOpen = true;
