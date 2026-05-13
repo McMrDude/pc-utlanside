@@ -121,7 +121,7 @@ p {
     outline: 5px solid rgba(255,220,40,.3) !important;
     cursor: pointer;
 }
-.fc-bg-event.today-rental {
+.fc-bg-event {
     cursor: pointer;
 }
 
