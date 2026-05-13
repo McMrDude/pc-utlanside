@@ -224,6 +224,8 @@ h5 {
     box-shadow: 0 2px 8px rgba(0,0,0,0.3); 
     border-radius: 4px; 
     pointer-events: auto; 
+    max-height: 95vh;
+    overflow-y: auto;
 } 
 
 .fc-bg-event { 
