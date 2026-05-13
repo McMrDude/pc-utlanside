@@ -293,7 +293,6 @@ function renderRentals(array) {
   });
 
   const filterBtn = document.getElementById("filterBtn");
-  filterBtn.title = "Normal prioritet";
   filterBtn.onclick = () => {
     if (state === 0) {
       state = 1;
@@ -304,7 +303,7 @@ function renderRentals(array) {
     } else {
       state = 0;
       filterBtn.title = "Normal prioritet";
-    }
+    };
       
     loadRentals(state);
   };
