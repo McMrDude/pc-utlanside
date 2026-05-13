@@ -38,7 +38,6 @@ popup.id = "eventPopup";
 popup.style.position = "absolute";
 popup.style.backgroundColor = "white";
 popup.style.border = "1px solid black";
-popup.style.padding = "10px";
 popup.style.display = "none";
 popup.style.zIndex = "1000";
 document.body.appendChild(popup);
