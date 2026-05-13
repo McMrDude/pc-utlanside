@@ -274,7 +274,7 @@ function renderRentals(array) {
   listDiv.innerHTML = "";
 
   const headers = [
-    "<h4 style='border-top: 1px solid black;'><button id='filterBtn' style='color: black; cursor: pointer; left: 0;'>Filtrer</button>Status</h4>",
+    "<h4 style='border-top: 1px solid black; position: relative;'><button id='filterBtn' style='color: black; cursor: pointer; left: 0;'>Filtrer</button>Status</h4>",
     "<h4 style='border-top: 1px solid black;'>Elev navn</h4>",
     "<h4 style='border-top: 1px solid black;'>PC nummer</h4>",
     "<h4 style='border-top: 1px solid black;'>Dato lånet</h4>",
@@ -294,11 +294,11 @@ function renderRentals(array) {
 
   const filterBtn = document.getElementById("filterBtn");
   if (state === 0) {
-      filterBtn.title = "Normal prioritet";
+      filterBtn.title = "Normal prioritering";
     } else if (state === 1) {
-      filterBtn.title = "Forfalt prioritet";
+      filterBtn.title = "Forfalt prioritering";
     } else {
-      filterBtn.title = "Nyest prioritet";
+      filterBtn.title = "Nyest prioritering";
     };
 
   filterBtn.onclick = () => {
@@ -408,6 +408,7 @@ const searchInput = document.getElementById("searchInput");
 
 if (searchInput) {
   searchInput.addEventListener("input", (e) => {
+    state = 0;
     const query = e.target.value.toLowerCase();
 
     const filtered = allRentals.filter(r => {
