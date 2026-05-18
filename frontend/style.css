@@ -128,6 +128,11 @@ p {
 #pcList * {
     padding: 5px;
 }
+
+#filterImg {
+    background-size: cover;
+}
+
 #requestList {
     display: grid;
     grid-template-columns: auto auto auto auto;

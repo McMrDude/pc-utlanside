@@ -300,7 +300,7 @@ function renderRentals(array) {
       filterBtn.style.backgroundImage = "url('icons/normal sort.png')";
     } else if (state === 1) {
       filterBtn.title = "Forfalt prioritering";
-      filterBtn.style.backgroundImage = "url('icons/old sort.png')";
+      filterBtn.style.backgroundImage = "url('icons/overdue sort.png')";
     } else {
       filterBtn.title = "Nyest prioritering";
       filterBtn.style.backgroundImage = "url('icons/new sort.png')"; 
