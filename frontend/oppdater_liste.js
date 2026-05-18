@@ -276,7 +276,7 @@ function renderRentals(array) {
   listDiv.innerHTML = "";
 
   const headers = [
-    "<h4 id='statusHeader'><button id='filterBtn'></button>Status<div></div></h4>",
+    "<h4 id='statusHeader'><button id='filterBtn' img='icons/normal sort.png'></button>Status<div></div></h4>",
     "<h4 style='border-top: 1px solid black;'>Elev navn</h4>",
     "<h4 style='border-top: 1px solid black;'>PC nummer</h4>",
     "<h4 style='border-top: 1px solid black;'>Dato lånet</h4>",
@@ -297,10 +297,13 @@ function renderRentals(array) {
   const filterBtn = document.getElementById("filterBtn");
   if (state === 0) {
       filterBtn.title = "Normal prioritering";
+      filterBtn.style.backgroundImage = "url('icons/normal sort.png')";
     } else if (state === 1) {
       filterBtn.title = "Forfalt prioritering";
+      filterBtn.style.backgroundImage = "url('icons/old sort.png')";
     } else {
       filterBtn.title = "Nyest prioritering";
+      filterBtn.style.backgroundImage = "url('icons/new sort.png')"; 
     };
 
   filterBtn.onclick = () => {
