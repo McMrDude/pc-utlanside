@@ -92,7 +92,7 @@ async function openCalendar() {
         );
 
         sameDayRentals.forEach(r => {
-          if (r.status !== "active") {
+          if (r.status === "active") {
             const rental = document.createElement("div");
             rental.style = "background-color: lightgray; padding: 5px; margin-bottom: 5px; border-radius: 5px;";
             rental.innerHTML = `
