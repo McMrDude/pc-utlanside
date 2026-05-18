@@ -92,45 +92,47 @@ async function openCalendar() {
         );
 
         sameDayRentals.forEach(r => {
-          const rental = document.createElement("div");
-          rental.style = "background-color: lightgray; padding: 5px; margin-bottom: 5px; border-radius: 5px;";
-          rental.innerHTML = `
-            <strong>
-              ${r.student_name} - PC ${r.pc_number}
-            </strong><br>
-            Rented: ${formatDate(r.rented_date)}<br>
-            Return: ${formatDate(r.return_date)}<br>
-            <button class="popupDeleteBtn">✓</button>
-          `;
+          if (r.status !== "active") {
+            const rental = document.createElement("div");
+            rental.style = "background-color: lightgray; padding: 5px; margin-bottom: 5px; border-radius: 5px;";
+            rental.innerHTML = `
+              <strong>
+                ${r.student_name} - PC ${r.pc_number}
+              </strong><br>
+              Rented: ${formatDate(r.rented_date)}<br>
+              Return: ${formatDate(r.return_date)}<br>
+              <button class="popupDeleteBtn">✓</button>
+            `;
 
-          popup.appendChild(rental);
+            popup.appendChild(rental);
 
-          document.querySelector(".popupDeleteBtn").onclick = async () => {
-            if (!confirm("Er PCen levert inn og klar for ny utlån?")) return;
+            document.querySelector(".popupDeleteBtn").onclick = async () => {
+              if (!confirm("Er PCen levert inn og klar for ny utlån?")) return;
 
-            const PCres = await fetch("/pcs/status");
-            const pcs = await PCres.json();
+              const PCres = await fetch("/pcs/status");
+              const pcs = await PCres.json();
 
-            pcs.forEach(async pc => {
-              if (pc.pc_number === r.pc_number) {
-                pcNummer = pc.pc_number;
-              }
-            });
+              pcs.forEach(async pc => {
+                if (pc.pc_number === r.pc_number) {
+                  pcNummer = pc.pc_number;
+                }
+              });
 
-            await fetch("/return", {
-              method: "POST",
-              headers: { 
-                "Content-Type": "application/json" 
-              },
-              body: JSON.stringify({ 
-                id: r.id,
-                pcNumber: pcNummer
-              })
-            });
+              await fetch("/return", {
+                method: "POST",
+                headers: { 
+                  "Content-Type": "application/json" 
+                },
+                body: JSON.stringify({ 
+                  id: r.id,
+                  pcNumber: pcNummer
+                })
+              });
 
-            popup.style.display = "none";
-            loadRentals();
-            loadCalendarEvents();
+              popup.style.display = "none";
+              loadRentals();
+              loadCalendarEvents();
+            };
           };
         });
 
