@@ -221,7 +221,7 @@ h5 {
 } 
 
 #eventPopup { 
-    grid-template-columns: auto;
+    grid-template-columns: auto auto;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3); 
     border-radius: 4px; 
     pointer-events: auto; 
