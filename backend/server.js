@@ -325,7 +325,7 @@ app.post("/request-decline", requireLogin, async (req, res) => {
   try {
     await pool.query(
       `UPDATE requests SET status = 'declined' WHERE id = $1`,
-      [req.body.id]
+      [req.body.requestId]
     );
 
     res.json({ success: true });
@@ -338,7 +338,7 @@ app.post("/remove-request", requireLogin, async (req, res) => {
   try {
     await pool.query(
       `DELETE FROM requests WHERE id = $1`,
-      [req.body.requestId]
+      [req.body.id]
     );
 
     res.json({ success: true });

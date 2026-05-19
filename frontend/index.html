@@ -181,7 +181,16 @@
           : "N/A";
     }
 
-    
+    async function requestDenied(id) {
+      await fetch("/submit-date", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify({ id })
+      });
+    };
 
     async function requestLoan() {
       const popup = document.getElementById("requestPopup").style.display = "block";
