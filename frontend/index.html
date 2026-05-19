@@ -80,7 +80,6 @@
     }
     async function load() {
       let erLånt = false;
-      let requestDeclined = false;
       const me = await fetch("/me", { credentials: "include" }).then(r => r.json());
       if (!me) location.href = "/login.html";
 
@@ -149,21 +148,22 @@
       requests.forEach(req => {
         if (req.notice_decline) {
           kill();
-        }
-        if (req.student_email === me.email) {
-          if (req.status === "pending") {
-            document.getElementById("foresprørselDiv").style.display = "none";
-            document.getElementById("aktivLåntDiv").style.display = "flex";
-            document.getElementById("LåntOverskrift").textContent = "Du har allerede sendt inn en forespørsel og kan ikke sende inn en ny";
-            document.getElementById("pcLånt").textContent = `Forespørsel sendt inn`;
-            document.getElementById("returDato").textContent = `Venter på godkjenning`;
-            erLånt = true;
-          }
-          if (req.status === "declined") {
-            document.getElementById("foresprørselDiv").style.display = "flex";
-            document.getElementById("aktivLåntDiv").style.display = "flex";
-            document.getElementById("LåntOverskrift").textContent = "Din forespørsel har blitt avslått";
-            requestDenied(req.id);
+        } else {
+          if (req.student_email === me.email) {
+            if (req.status === "pending") {
+              document.getElementById("foresprørselDiv").style.display = "none";
+              document.getElementById("aktivLåntDiv").style.display = "flex";
+              document.getElementById("LåntOverskrift").textContent = "Du har allerede sendt inn en forespørsel og kan ikke sende inn en ny";
+              document.getElementById("pcLånt").textContent = `Forespørsel sendt inn`;
+              document.getElementById("returDato").textContent = `Venter på godkjenning`;
+              erLånt = true;
+            }
+            if (req.status === "declined") {
+              document.getElementById("foresprørselDiv").style.display = "flex";
+              document.getElementById("aktivLåntDiv").style.display = "flex";
+              document.getElementById("LåntOverskrift").textContent = "Din forespørsel har blitt avslått";
+              requestDenied(req.id);
+            }
           }
         }
       });
