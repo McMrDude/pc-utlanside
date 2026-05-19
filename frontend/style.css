@@ -137,6 +137,7 @@ p {
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center;
+    aspect-ratio: 1.85 / 1;
 }
 
 #requestList {
