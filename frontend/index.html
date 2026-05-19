@@ -80,6 +80,7 @@
     }
     async function load() {
       let erLånt = false;
+      let requestDeclined = false;
       const me = await fetch("/me", { credentials: "include" }).then(r => r.json());
       if (!me) location.href = "/login.html";
 
@@ -155,6 +156,13 @@
             document.getElementById("returDato").textContent = `Venter på godkjenning`;
             erLånt = true;
           }
+          if (req.status === "declined") {
+            document.getElementById("foresprørselDiv").style.display = "flex";
+            document.getElementById("aktivLåntDiv").style.display = "flex";
+            document.getElementById("LåntOverskrift").textContent = "Din forespørsel har blitt avslått";
+            document.getElementById("pcLånt").textContent = `Forespørsel avslått`;
+            requestDenied(req.id);
+          }
         }
       });
 
@@ -171,6 +179,17 @@
         avail.nextAvailableDate
           ? new Date(avail.nextAvailableDate).toLocaleDateString()
           : "N/A";
+    }
+
+    async function requestDenied(id) {
+      await fetch("/submit-date", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify({ id })
+      });
     }
 
     async function requestLoan() {

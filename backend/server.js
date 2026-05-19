@@ -324,6 +324,19 @@ app.post("/rentals", requireLogin, async (req, res) => {
 app.post("/request-decline", requireLogin, async (req, res) => {
   try {
     await pool.query(
+      `UPDATE requests SET status = 'declined' WHERE id = $1`,
+      [req.body.id]
+    );
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Delete failed" });
+  }
+});
+app.post("/remove-request", requireLogin, async (req, res) => {
+  try {
+    await pool.query(
       `DELETE FROM requests WHERE id = $1`,
       [req.body.requestId]
     );
