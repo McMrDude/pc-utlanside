@@ -160,7 +160,6 @@
             document.getElementById("foresprørselDiv").style.display = "flex";
             document.getElementById("aktivLåntDiv").style.display = "flex";
             document.getElementById("LåntOverskrift").textContent = "Din forespørsel har blitt avslått";
-            document.getElementById("pcLånt").textContent = `Forespørsel avslått`;
             requestDenied(req.id);
           }
         }
@@ -194,7 +193,7 @@
 
     async function requestLoan() {
       const popup = document.getElementById("requestPopup").style.display = "block";
-    }
+    };
 
     document.getElementById("requestForm").addEventListener("submit", async (e) => {
       document.documentElement.classList.add("loading");
