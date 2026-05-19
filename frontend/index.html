@@ -173,6 +173,10 @@
         document.getElementById("adminAlert").style.display = "block";
       }
 
+      if (!erLånt) {
+        document.getElementById("foresprørselDiv").style.display = "flex";
+        document.getElementById("aktivLåntDiv").style.display = "none";
+      }
 
       document.getElementById("next").textContent =
         avail.nextAvailableDate
