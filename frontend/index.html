@@ -148,6 +148,7 @@
       requests.forEach(req => {
         if (req.notice_decline) {
           kill();
+          console.log("DEN BURDE DØ!!.");
         } else {
           if (req.student_email === me.email) {
             if (req.status === "pending") {
