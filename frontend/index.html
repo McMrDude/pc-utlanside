@@ -147,6 +147,9 @@
       const requests = await res.json();
 
       requests.forEach(req => {
+        if (req.notice_decline) {
+          kill();
+        }
         if (req.student_email === me.email) {
           if (req.status === "pending") {
             document.getElementById("foresprørselDiv").style.display = "none";
@@ -178,6 +181,13 @@
         avail.nextAvailableDate
           ? new Date(avail.nextAvailableDate).toLocaleDateString()
           : "N/A";
+    }
+
+    async function kill() {
+      await fetch("/kill-the-neighbors-dog", {
+        method: "POST",
+        credentials: "include"
+      });
     }
 
     async function requestDenied(id) {

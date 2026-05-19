@@ -337,10 +337,22 @@ app.post("/request-decline", requireLogin, async (req, res) => {
 app.post("/remove-request", requireLogin, async (req, res) => {
   try {
     await pool.query(
-      `DELETE FROM requests WHERE id = $1`,
+      `UPDATE requests SET notice_decline = 'true' WHERE id = $1`,
       [req.body.id]
     );
 
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Delete failed" });
+  }
+});
+app.post("/kill-the-neighbors-dog", requireLogin, async (req, res) => {
+  try {
+    await pool.query(
+      `DELETE FROM requests WHERE id = $1`,
+      [req.body.id]
+    );
     res.json({ success: true });
   } catch (err) {
     console.error(err);
