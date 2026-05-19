@@ -147,7 +147,7 @@
 
       requests.forEach(req => {
         if (req.notice_decline) {
-          kill();
+          kill(req.id);
           console.log("DEN BURDE DØ!!.");
         } else {
           if (req.student_email === me.email) {
@@ -180,10 +180,11 @@
           : "N/A";
     }
 
-    async function kill() {
+    async function kill(id) {
       await fetch("/kill-the-neighbors-dog", {
         method: "POST",
-        credentials: "include"
+        credentials: "include",
+        body: JSON.stringify({ id })
       });
     }
 
