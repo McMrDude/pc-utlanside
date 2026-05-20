@@ -75,6 +75,7 @@
 
   <script>
     document.addEventListener("visibilitychange", async() => {
+      console.log("Visibility changed: ", document.visibilityState);
       if (document.visibilityState === "visible") {
         try {
           await fetch("/health",)
