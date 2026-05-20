@@ -150,9 +150,10 @@ async function openCalendar() {
 
 async function sortRentals(rentals, sortState) {
   const sorted = [...rentals];
+  console.log(sorted.length);
   let rentalsArray = [];
   
-  if (sorted.length === 0) {
+  if (sorted.length <= 0) {
     const noRentals = document.createElement("div");
     noRentals.textContent = "Ingen aktive utlån for øyeblikket";
     rentalsArray.push(noRentals);
