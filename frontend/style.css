@@ -97,6 +97,7 @@ p {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr 1fr 1fr 80px;
     width: 100%;
+    overflow-x: hidden;
 }
 #listPage {
     overflow-x: auto;
