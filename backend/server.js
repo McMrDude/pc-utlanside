@@ -301,12 +301,12 @@ app.post("/rentals", requireLogin, async (req, res) => {
       `INSERT INTO rentals (student_name, student_email, pc_number, rented_date, return_date, user_id, status)
        VALUES ($1, $2, $3, $4, $5, $6, 'active')`,
       [  
-        req.session.user.name,
-        req.session.user.email,
+        reqData.student_name,
+        reqData.student_email,
         req.body.pcNumber,
         reqData.start_date,
         reqData.return_date,
-        req.session.user.id
+        reqData.user_id
       ]
     );
 
