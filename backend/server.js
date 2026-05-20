@@ -164,6 +164,15 @@ app.get("/admin-data", requireAdmin, (req, res) => {
   res.json({ secret: "This is admin-only data" });
 });
 
+
+/* ==========================
+    Health check
+========================== */
+app.get("/health", (req, res) => {
+  res.sendStatus(200);
+});
+
+
 /* =========================
    Rentals
 ========================= */

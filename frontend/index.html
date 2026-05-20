@@ -74,6 +74,16 @@
   </div>
 
   <script>
+    document.addEventListener("visibilitychange", async() => {
+      if (document.visibilityState === "visible") {
+        try {
+          await fetch("/health",)
+        } catch {
+          location.reload();
+        }
+      }
+    })
+
     function closeForm() {
       document.getElementById("requestPopup").style.display = "none";
       document.getElementById("requestForm").reset();
