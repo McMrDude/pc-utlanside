@@ -203,15 +203,19 @@ async function sortRentals(rentals, sortState) {
 
           if (firstCell) {
             if (daysRemaining < 0) {
-              row.style.backgroundColor = "darkred";
+              row.style.backgroundImage = "linear-gradient('darkred', 'darkred')";
+              row.style.backgroundSize = "calc(100% - 1px) 100%";
               row.innerHTML = "Forfalt";
             } else if (daysRemaining === 0) {
-              row.style.backgroundColor = "red";
+              row.style.backgroundImage = "linear-gradient('red', 'red')";
+              row.style.backgroundSize = "calc(100% - 1px) 100%";
               row.innerHTML = "I dag";
             } else if (daysRemaining <= 5) {
-              row.style.backgroundColor = "yellow";
+              row.style.backgroundImage = "linear-gradient('yellow', 'yellow')";
+              row.style.backgroundSize = "calc(100% - 1px) 100%";
             } else {
-              row.style.backgroundColor = "lightgreen";
+              row.style.backgroundImage = "linear-gradient('lightgreen', 'lightgreen')";
+              row.style.backgroundSize = "calc(100% - 1px) 100%";
             }
             firstCell = false;
           }
