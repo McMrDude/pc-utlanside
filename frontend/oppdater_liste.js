@@ -153,7 +153,8 @@ async function sortRentals(rentals, sortState) {
   console.log(sorted.length);
   let rentalsArray = [];
   
-  if (sorted.length <= 0) {
+  const activeRentals = sorted.filter(r => r.status === "active");
+  if (activeRentals.length <= 0) {
     const noRentals = document.createElement("div");
     noRentals.textContent = "Ingen aktive utlån for øyeblikket";
     rentalsArray.push(noRentals);
