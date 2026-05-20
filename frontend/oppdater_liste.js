@@ -198,7 +198,6 @@ async function sortRentals(rentals, sortState) {
 
         rows.forEach(text => {
           const row = document.createElement("h5");
-          row.style.width = "100%";
           row.innerHTML = text;
 
           if (firstCell) {
