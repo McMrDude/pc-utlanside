@@ -152,108 +152,114 @@ async function sortRentals(rentals, sortState) {
   const sorted = [...rentals];
   let rentalsArray = [];
   
-  let rowID = 0;
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  if (sorted.length === 0) {
+    const noRentals = document.createElement("div");
+    noRentals.textContent = "Ingen aktive utlån for øyeblikket";
+    rentalsArray.push(noRentals);
+  } else {
+    let rowID = 0;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-  if (sortState === 1) {
-    sorted.sort((a, b) => {
-      const dateA = new Date(a.return_date).getTime();
-      const dateB = new Date(b.return_date).getTime();
-      return dateA - dateB;
-    });
-  } else if (sortState === 2) {
-    sorted.sort((a, b) => {
-      const dateA = new Date(a.return_date).getTime();
-      const dateB = new Date(b.return_date).getTime();
-      return dateA - dateB;
-    });
-    sorted.reverse();
-  }
-
-  sorted.forEach(r => {
-    if (r.status === "active") {
-      let firstCell = true;    
-      
-      const returnDate = new Date(r.return_date).getTime();
-      const daysRemaining =
-        Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24)) - 1;
-
-      const rows = [
-        `Dager til levering: ${daysRemaining}`,
-        r.student_name + "(" + r.student_email + ")",
-        r.pc_number,
-        formatDate(r.rented_date),
-        formatDate(r.return_date)
-      ];
-
-      const currentRowID = rowID; // Capture current rowID for closure
-
-      rows.forEach(text => {
-        const row = document.createElement("h5");
-        row.style.width = "100%";
-        row.innerHTML = text;
-
-        if (firstCell) {
-          if (daysRemaining < 0) {
-            row.style.backgroundColor = "darkred";
-            row.innerHTML = "Forfalt";
-          } else if (daysRemaining === 0) {
-            row.style.backgroundColor = "red";
-            row.innerHTML = "I dag";
-          } else if (daysRemaining <= 5) {
-            row.style.backgroundColor = "yellow";
-          } else {
-            row.style.backgroundColor = "lightgreen";
-          }
-          firstCell = false;
-        }
-
-        row.className = "Row" + currentRowID;
-
-        rentalsArray.push(row);
+    if (sortState === 1) {
+      sorted.sort((a, b) => {
+        const dateA = new Date(a.return_date).getTime();
+        const dateB = new Date(b.return_date).getTime();
+        return dateA - dateB;
       });
+    } else if (sortState === 2) {
+      sorted.sort((a, b) => {
+        const dateA = new Date(a.return_date).getTime();
+        const dateB = new Date(b.return_date).getTime();
+        return dateA - dateB;
+      });
+      sorted.reverse();
+    }
 
-      const deleteBtn = document.createElement("button");
-      deleteBtn.id = "delete-btn";
-      deleteBtn.className = "Row" + currentRowID;
-      deleteBtn.textContent = "✓";
+    sorted.forEach(r => {
+      if (r.status === "active") {
+        let firstCell = true;    
+        
+        const returnDate = new Date(r.return_date).getTime();
+        const daysRemaining =
+          Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24)) - 1;
 
-      deleteBtn.onclick = async () => {
-        if (!confirm("Er PCen levert inn og klar for ny utlån?")) return;
+        const rows = [
+          `Dager til levering: ${daysRemaining}`,
+          r.student_name + "(" + r.student_email + ")",
+          r.pc_number,
+          formatDate(r.rented_date),
+          formatDate(r.return_date)
+        ];
 
-        document.querySelectorAll('.Row' + currentRowID).forEach(el => el.remove());
+        const currentRowID = rowID; // Capture current rowID for closure
 
-        const PCres = await fetch("/pcs/status");
-        const pcs = await PCres.json();
+        rows.forEach(text => {
+          const row = document.createElement("h5");
+          row.style.width = "100%";
+          row.innerHTML = text;
 
-        pcs.forEach(async pc => {
-          if (pc.pc_number === r.pc_number) {
-            pcNummer = pc.pc_number;
+          if (firstCell) {
+            if (daysRemaining < 0) {
+              row.style.backgroundColor = "darkred";
+              row.innerHTML = "Forfalt";
+            } else if (daysRemaining === 0) {
+              row.style.backgroundColor = "red";
+              row.innerHTML = "I dag";
+            } else if (daysRemaining <= 5) {
+              row.style.backgroundColor = "yellow";
+            } else {
+              row.style.backgroundColor = "lightgreen";
+            }
+            firstCell = false;
           }
+
+          row.className = "Row" + currentRowID;
+
+          rentalsArray.push(row);
         });
 
-        await fetch("/return", {
-          method: "POST",
-          headers: { 
-            "Content-Type": "application/json" 
-          },
-          body: JSON.stringify({ 
-            id: r.id,
-            pcNumber: pcNummer
-          })
-        });
+        const deleteBtn = document.createElement("button");
+        deleteBtn.id = "delete-btn";
+        deleteBtn.className = "Row" + currentRowID;
+        deleteBtn.textContent = "✓";
+
+        deleteBtn.onclick = async () => {
+          if (!confirm("Er PCen levert inn og klar for ny utlån?")) return;
+
+          document.querySelectorAll('.Row' + currentRowID).forEach(el => el.remove());
+
+          const PCres = await fetch("/pcs/status");
+          const pcs = await PCres.json();
+
+          pcs.forEach(async pc => {
+            if (pc.pc_number === r.pc_number) {
+              pcNummer = pc.pc_number;
+            }
+          });
+
+          await fetch("/return", {
+            method: "POST",
+            headers: { 
+              "Content-Type": "application/json" 
+            },
+            body: JSON.stringify({ 
+              id: r.id,
+              pcNumber: pcNummer
+            })
+          });
 
 
-        loadRentals();
-        if (calendarInstance) loadCalendarEvents();
+          loadRentals();
+          if (calendarInstance) loadCalendarEvents();
+        };
+
+        rentalsArray.push(deleteBtn);
+
+        rowID++;
       };
-
-      rentalsArray.push(deleteBtn);
-
-      rowID++;
-    };
-  });
+    });
+  }
 
   renderRentals(rentalsArray);
 }
