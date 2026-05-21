@@ -86,8 +86,6 @@
           if (err.name === "AbortError") {
             console.log("Fetch aborted");
             location.reload();
-          } else {
-            console.error("Error fetching health endpoint:", err);
           }
         });
 
