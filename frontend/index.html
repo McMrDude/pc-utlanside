@@ -77,11 +77,16 @@
     document.addEventListener("visibilitychange", async() => {
       console.log("Visibility changed: ", document.visibilityState);
       if (document.visibilityState === "visible") {
-        try {
-          await fetch("/health",)
-        } catch {
+        const controller = new AbortController();
+        const signal = controller.signal;
+
+        fetch("/health", { signal })
+        .then( response => response.json())
+        .catch {
           location.reload();
         }
+
+        setTimeout(() => controller.abort(), 1000);
       }
     })
 
