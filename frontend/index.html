@@ -82,9 +82,14 @@
 
         fetch("/health", { signal })
         .then( response => response.json())
-        .catch (
-          location.reload();
-        )
+        .catch ( err => {
+          if (err.name === "AbortError") {
+            console.log("Fetch aborted");
+            location.reload();
+          } else {
+            console.error("Error fetching health endpoint:", err);
+          }
+        });
 
         setTimeout(() => controller.abort(), 1000);
       }
