@@ -82,9 +82,9 @@
 
         fetch("/health", { signal })
         .then( response => response.json())
-        .catch {
+        .catch (
           location.reload();
-        }
+        )
 
         setTimeout(() => controller.abort(), 1000);
       }
