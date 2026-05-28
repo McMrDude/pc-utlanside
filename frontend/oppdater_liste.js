@@ -5,14 +5,15 @@ const API_URL = "/rentals-admin";
 
 let allRentals = [];
 
-flatpickr("#selectedDate", {
+const selectDate = document.getElementById("selectedDate");
+flatpickr(selectDate, {
     dateFormat: "Y-m-d",
     locale: {
         firstDayOfWeek: 1
     }
 });
-
-flatpickr("#returnDate", {
+const returnDate = document.getElementById("returnDate")
+flatpickr(returnDate, {
     dateFormat: "Y-m-d",
     locale: {
         firstDayOfWeek: 1
