@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>PC Lån</title>
   <link rel="stylesheet" href="style.css"> 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
   <div id="foresendt" style="position: fixed;">
@@ -72,7 +73,23 @@
     outline: none;"
     onclick="closeForm()"></button>
   </div>
-
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    const selectDate = document.getElementById("selectedDate");
+    flatpickr(selectDate, {
+        dateFormat: "Y-m-d",
+        locale: {
+            firstDayOfWeek: 1
+        }
+    });
+    const returnDate = document.getElementById("returnDate")
+    flatpickr(returnDate, {
+        dateFormat: "Y-m-d",
+        locale: {
+            firstDayOfWeek: 1
+        }
+    });
+  </script>
   <script>
     document.addEventListener("visibilitychange", async() => {
       console.log("Visibility changed: ", document.visibilityState);
