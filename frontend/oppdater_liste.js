@@ -375,6 +375,9 @@ async function loadCalendarEvents() {
       });
     };
   });
+  const todayButton = document.getElementsByClassName("fc-today-button")[0];
+  todayButton.textContent = "I dag";
+  todayButton.title = "Denne Måneden";
 }
 
 /* =========================
