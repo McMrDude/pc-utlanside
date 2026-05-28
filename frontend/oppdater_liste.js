@@ -31,7 +31,7 @@ forespårselAlert();
 
 
 const todayButton = document.querySelector(".fc-today-button");
-todayButton.textContent = "I dag";
+
 todayButton.title = "Denne Måneden";
 const prevButton = document.querySelector(".fc-prev-button");
 prevButton.title = "Forrige Måned";
