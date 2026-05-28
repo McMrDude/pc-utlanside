@@ -30,12 +30,12 @@ async function forespårselAlert() {
 forespårselAlert();
 
 
-const todayButton = document.getElementsByClassName("fc-today-button");
+const todayButton = document.querySelector(".fc-today-button");
 todayButton.textContent = "I dag";
 todayButton.title = "Denne Måneden";
-const prevButton = document.getElementsByClassName("fc-prev-button");
+const prevButton = document.querySelector(".fc-prev-button");
 prevButton.title = "Forrige Måned";
-const nextButton = document.getElementsByClassName("fc-next-button");
+const nextButton = document.querySelector(".fc-next-button");
 nextButton.title = "Neste Måned"
 
 
