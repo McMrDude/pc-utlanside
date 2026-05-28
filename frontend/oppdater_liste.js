@@ -559,7 +559,7 @@ async function loadPCs() {
   }
   else {
     // headers
-    ["Bruker", "Datoer", "Status", "Godkjenn?"].forEach(h => {
+    ["Bruker", "Datoer", "Status", "Godkjenn", "Avvis"].forEach(h => {
       const row = document.createElement("div");
       row.textContent = h;
       reqDiv.appendChild(row);
@@ -605,8 +605,8 @@ async function loadPCs() {
         currentRequestId = req.id;
         rejectRequest();
       };
-      approve.appendChild = buttonYes
-      decline.appendChild = buttonNo
+      approve.appendChild(buttonYes)
+      decline.appendChild(buttonNo)
 
       reqDiv.appendChild(bruker);
       reqDiv.appendChild(date);
