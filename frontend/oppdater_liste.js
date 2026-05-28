@@ -30,15 +30,6 @@ async function forespårselAlert() {
 forespårselAlert();
 
 
-const todayButton = document.getElementsByClassName("fc-today-button")[0];
-todayButton.textContent = "I dag";
-todayButton.title = "Denne Måneden";
-const prevButton = document.getElementsByClassName("fc-prev-button")[0];
-prevButton.title = "Forrige Måned";
-const nextButton = document.getElementsByClassName("fc-next-button")[0];
-nextButton.title = "Neste Måned"
-
-
 /* =========================
    Popup for event details
 ========================= */
@@ -153,6 +144,13 @@ async function openCalendar() {
 
     calendarInstance.render();
     loadCalendarEvents();
+    const todayButton = document.getElementsByClassName("fc-today-button")[0];
+    todayButton.textContent = "I dag";
+    todayButton.title = "Denne Måneden";
+    const prevButton = document.getElementsByClassName("fc-prev-button")[0];
+    prevButton.title = "Forrige Måned";
+    const nextButton = document.getElementsByClassName("fc-next-button")[0];
+    nextButton.title = "Neste Måned"
   } else {
     calendarInstance.updateSize();
   }
