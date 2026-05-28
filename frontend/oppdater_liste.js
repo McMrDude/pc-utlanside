@@ -78,7 +78,7 @@ async function openCalendar() {
     calendarInstance = new FullCalendar.Calendar(calendar, {
       initialView: "dayGridMonth",
       firstDay: 1,
-      local: "no",
+      locale: "no",
       height: "auto",
       expandRows: true,
       events: [],
