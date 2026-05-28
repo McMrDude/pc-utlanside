@@ -82,6 +82,11 @@ async function openCalendar() {
       height: "auto",
       expandRows: true,
       events: [],
+      datesSet: function() {
+        const todayButton = document.getElementsByClassName("fc-today-button")[0];
+        todayButton.textContent = "I dag";
+        todayButton.title = "Denne Måneden";
+      },
       
 
       eventClick: function (info) {
