@@ -30,6 +30,15 @@ async function forespårselAlert() {
 forespårselAlert();
 
 
+const todayButton = document.getElementsByClassName("fc-today-button");
+todayButton.textContent = "I dag";
+todayButton.title = "Denne Måneden";
+const prevButton = document.getElementsByClassName("fc-prev-button");
+prevButton.title = "Forrige Måned";
+const nextButton = document.getElementsByClassName("fc-next-button");
+nextButton.title = "Neste Måned"
+
+
 /* =========================
    Popup for event details
 ========================= */
