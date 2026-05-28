@@ -77,6 +77,7 @@ async function openCalendar() {
   if (!calendarInstance) {
     calendarInstance = new FullCalendar.Calendar(calendar, {
       initialView: "dayGridMonth",
+      firstDay: 1,
       height: "auto",
       expandRows: true,
       events: [],
@@ -524,7 +525,7 @@ async function loadPCs() {
 
     loanName.textContent =
       pc.status === "lånt"
-      ? `Lånt til ${pc.user_name} (${pc.user_email})`
+      ? `${pc.user_name} (${pc.user_email})`
       : "";
 
     pcDiv.appendChild(status);
