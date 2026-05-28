@@ -141,8 +141,8 @@ p {
 
 #requestList {
     display: grid;
-    grid-template-columns: auto auto auto auto;
-    width: 40%;
+    grid-template-columns: auto auto auto auto auto;
+    width: 60%;
 }
 
 .today-rental {
