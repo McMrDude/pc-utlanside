@@ -1,6 +1,23 @@
+import flatpickr from "flatpickr";
+import "flatpickr/dist/flatpickr.min.css";
+
 const API_URL = "/rentals-admin";
 
 let allRentals = [];
+
+flatpickr("#selectedDate", {
+    dateFormat: "Y-m-d",
+    locale: {
+        firstDayOfWeek: 1
+    }
+});
+
+flatpickr("#returnDate", {
+    dateFormat: "Y-m-d",
+    locale: {
+        firstDayOfWeek: 1
+    }
+});
 
 const list = document.getElementById("listPage");
 const calendar = document.getElementById("calendar");
