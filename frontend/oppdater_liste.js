@@ -567,52 +567,54 @@ async function loadPCs() {
 
     // 👇 LOOP THROUGH REQUESTS
     requests.forEach(req => {
-      const bruker = document.createElement("div");
-      const date = document.createElement("div");
-      const status = document.createElement("div");
-      const approve = document.createElement("div");
-      const decline = document.createElement("div");
+      if (req.status === "pending") {
+        const bruker = document.createElement("div");
+        const date = document.createElement("div");
+        const status = document.createElement("div");
+        const approve = document.createElement("div");
+        const decline = document.createElement("div");
 
-      bruker.className = "pcDiv";
-      date.className = "pcDiv";
-      status.className = "pcDiv";
-      approve.className = "pcDiv";
-      decline.className = "pcDiv"
+        bruker.className = "pcDiv";
+        date.className = "pcDiv";
+        status.className = "pcDiv";
+        approve.className = "pcDiv";
+        decline.className = "pcDiv"
 
-      bruker.textContent = `${req.student_name} (${req.student_email})`;
-      date.textContent = `${req.start_date.split("T")[0]} → ${req.return_date.split("T")[0]}`;
+        bruker.textContent = `${req.student_name} (${req.student_email})`;
+        date.textContent = `${req.start_date.split("T")[0]} → ${req.return_date.split("T")[0]}`;
 
-      status.textContent =
-        req.status === "pending"
-          ? "⏳ Venter på godkjenning"
-          : req.status === "approved"
-          ? "✅ Godkjent"
-          : "❌ Avvist";
+        status.textContent =
+          req.status === "pending"
+            ? "⏳ Venter på godkjenning"
+            : req.status === "approved"
+            ? "✅ Godkjent"
+            : "❌ Avvist";
 
-      const buttonYes = document.createElement("button");
-      buttonYes.className = "decideButton";
-      buttonYes.id = "yesButton";
-      buttonYes.textContent = "✓";
-      buttonYes.onclick = () => {
-        currentRequestId = req.id;
-        document.getElementById("acceptRequest").style.display = "block";
+        const buttonYes = document.createElement("button");
+        buttonYes.className = "decideButton";
+        buttonYes.id = "yesButton";
+        buttonYes.textContent = "✓";
+        buttonYes.onclick = () => {
+          currentRequestId = req.id;
+          document.getElementById("acceptRequest").style.display = "block";
+        };
+        const buttonNo = document.createElement("button");
+        buttonNo.className = "decideButton";
+        buttonNo.id = "noButton";
+        buttonNo.textContent = "X";
+        buttonNo.onclick = () => {
+          currentRequestId = req.id;
+          rejectRequest();
+        };
+        approve.appendChild(buttonYes)
+        decline.appendChild(buttonNo)
+
+        reqDiv.appendChild(bruker);
+        reqDiv.appendChild(date);
+        reqDiv.appendChild(status);
+        reqDiv.appendChild(approve);
+        reqDiv.appendChild(decline);
       };
-      const buttonNo = document.createElement("button");
-      buttonNo.className = "decideButton";
-      buttonNo.id = "noButton";
-      buttonNo.textContent = "X";
-      buttonNo.onclick = () => {
-        currentRequestId = req.id;
-        rejectRequest();
-      };
-      approve.appendChild(buttonYes)
-      decline.appendChild(buttonNo)
-
-      reqDiv.appendChild(bruker);
-      reqDiv.appendChild(date);
-      reqDiv.appendChild(status);
-      reqDiv.appendChild(approve);
-      reqDiv.appendChild(decline);
     });
   }
 }
