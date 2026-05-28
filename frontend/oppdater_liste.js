@@ -605,8 +605,8 @@ async function loadPCs() {
         currentRequestId = req.id;
         rejectRequest();
       };
-      approve.textContent = buttonYes
-      decline.textContent = buttonNo
+      approve.appendChild = buttonYes
+      decline.appendChild = buttonNo
 
       reqDiv.appendChild(bruker);
       reqDiv.appendChild(date);
