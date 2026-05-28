@@ -74,20 +74,17 @@
     onclick="closeForm()"></button>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/no.js"></script>
   <script>
     const selectDate = document.getElementById("selectedDate");
     flatpickr(selectDate, {
-        dateFormat: "Y-m-d",
-        locale: {
-            firstDayOfWeek: 1
-        }
+        dateFormat: "d-m-Y",
+        locale: no
     });
     const returnDate = document.getElementById("returnDate")
     flatpickr(returnDate, {
-        dateFormat: "Y-m-d",
-        locale: {
-            firstDayOfWeek: 1
-        }
+        dateFormat: "d-m-Y",
+        locale: no
     });
   </script>
   <script>
