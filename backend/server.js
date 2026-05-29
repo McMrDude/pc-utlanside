@@ -80,9 +80,9 @@ function requireAdmin(req, res, next) {
 ========================= */
 app.post("/register", async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, phone, password } = req.body;
 
-    if (!name || !email || !password) {
+    if (!name || !email || !phone || !password) {
       return res.status(400).json({ error: "All fields required" });
     }
 
@@ -94,10 +94,10 @@ app.post("/register", async (req, res) => {
     const hash = await bcrypt.hash(password, 10);
 
     const result = await pool.query(
-      `INSERT INTO users (name, email, password_hash, role, created_at)
-       VALUES ($1, $2, $3, $4, NOW())
+      `INSERT INTO users (name, email, telefonnummer, password_hash, role, created_at)
+       VALUES ($1, $2, $3, $4, $5, NOW())
        RETURNING id, name, email, role`,
-      [name, email, hash, "student"]
+      [name, email, phone, hash, "student"]
     );
 
     req.session.user = result.rows[0];

@@ -27,13 +27,14 @@
 
       const name = document.getElementById("name").value;
       const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
       const password = document.getElementById("password").value;
 
       const res = await fetch("/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ name, email, password })
+        body: JSON.stringify({ name, email, phone, password })
       });
 
       const data = await res.json();
