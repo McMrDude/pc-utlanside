@@ -247,6 +247,7 @@
       e.preventDefault();
       const selectedDate = document.getElementById('selectedDate').value;
       const returnDate = document.getElementById('returnDate').value;
+      console.log("select Date: ", selectDate, " | ", "return Date: ", returnDate)
 
       const res = await fetch("/submit-date", {
         method: "POST",
