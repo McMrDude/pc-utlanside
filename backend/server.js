@@ -567,3 +567,108 @@ app.post("/submit-changes", requireAdmin, async (req, res) => {
     res.status(500).json({ error: "Update failed" });
   }
 });
+
+
+/* PASSORD RESET FORESPØRSEL */
+app.post("/request-reset", async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const result = await pool.query(
+      "SELECT id FROM users WHERE email=$1",
+      [email]
+    );
+
+    if (result.rows.length === 0) {
+      return res.json({ message: "Hvis en passende konto finnes så har det blitt sendt en mail." });
+    }
+
+    const userId = result.rows[0].id;
+    const token = crypto.randomBytes(32).toString("hex");
+
+    // delete old tokens for this user
+    await pool.query(
+      "DELETE FROM password_resets WHERE user_id = $1",
+      [userId]
+    );
+
+    // insert new one
+    await pool.query(
+      `INSERT INTO password_resets (user_id, token, expires_at)
+      VALUES ($1, $2, NOW() + INTERVAL '1 hour')`,
+      [userId, token]
+    );
+
+    const resetLink = `https://task-giver-xsin.onrender.com/reset-password/${token}`;
+
+    console.log("EMAILJS_SERVICE_ID:", process.env.EMAILJS_SERVICE_ID);
+    console.log("EMAILJS_TEMPLATE_ID:", process.env.EMAILJS_TEMPLATE_ID);
+    console.log("EMAILJS_PUBLIC_KEY:", process.env.EMAILJS_PUBLIC_KEY);
+    console.log("Template Params:", { reset_link: resetLink, to_email: email });
+    try {
+      const response = await send(
+        process.env.EMAILJS_SERVICE_ID,
+        process.env.EMAILJS_TEMPLATE_ID,
+        {
+          reset_link: resetLink,
+          to_email: email
+        },
+        {
+          publicKey: process.env.EMAILJS_PUBLIC_KEY
+        }
+      );
+      console.log("EmailJS response:", response);
+    } catch (err) {
+      console.error("EmailJS send error:", JSON.stringify(err, null, 2));
+      return res.status(500).json({ message: "Mail sending feilet" });
+    }
+
+    res.json({ message: "Hvis en passende konto finnes så har det blitt sendt en mail." });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+/* RESET PASSORD */
+app.post("/reset-password", async (req,res) => {
+  const { token, newPassword } = req.body;
+
+  const result = await pool.query(
+    `SELECT * FROM password_resets
+    WHERE token = $1 AND expires_at > NOW()`,
+    [token]
+  );
+
+  if (result.rows.length === 0) {
+    return res.status(400).json({ error: "Ugyldig eller utløpt reset" });
+  }
+
+  const userId = result.rows[0].user_id;
+
+  const hash = await bcrypt.hash(newPassword, 10);
+
+  await pool.query(
+    "UPDATE users SET password_hash=$1 WHERE id=$2",
+    [hash, userId]
+  );
+
+  await pool.query(
+    "DELETE FROM password_resets WHERE token = $1",
+    [token]
+  );
+
+  res.json({ message: "Passord reset vellykket" });
+});
+
+setInterval(async () => {
+  try {
+    const result = await pool.query(
+      "DELETE FROM password_resets WHERE expires_at < NOW()"
+    );
+    console.log(`🧹 Slettet ${result.rowCount} utløpte tokens`);
+  } catch (err) {
+    console.error("Cleanup error:", err);
+  }
+}, 1000 * 60 * 10); // every 10 minutes
