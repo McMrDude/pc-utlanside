@@ -366,12 +366,13 @@ async function loadCalendarEvents() {
         Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24)) - 1;
 
       let color = "green";
-      if (daysRemaining < 0) color = "darkred";
-      else if (daysRemaining === 0) color = "red";
-      else if (daysRemaining <= 5) color = "orange";
+      let daysText = "Lenge til levering";
+      if (daysRemaining < 0) {color = "darkred", daysText = "Ikke levert inn"}
+      else if (daysRemaining === 0) {color = "red", daysText = "Leveres i dag"}
+      else if (daysRemaining <= 5) {color = "orange", daysText = "Skal snart leveres"}
 
       calendarInstance.addEvent({
-        title: `${r.student_name} - PC ${r.pc_number}`,
+        title: `${r.student_name} - PC ${r.pc_number} ${<br></br>} ${}`,
         start: returnDate.toISOString().split("T")[0],
         display: "background",
         color: color,
