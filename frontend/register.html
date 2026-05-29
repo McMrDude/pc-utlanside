@@ -13,7 +13,7 @@
     <input id="email" placeholder="Email" style="width: 200px; height: 30px;"><br><br>
     <input id="phone" placeholder="Telefonnummer" style="width: 200px; height: 30px"><br><br>
     <input id="password" type="password" placeholder="Passord" style="width: 200px; height: 30px;"><br><br>
-    <input id="passwordAgain" type="password" placeholder="Skriv in passord igjen" style="width: 200px; height: 30px;"><br><br>
+    <input id="passwordAgain" type="password" placeholder="Skriv inn passord igjen" style="width: 200px; height: 30px;"><br><br>
     <button type="submit">Registrer</button>
   </form>
 
@@ -29,12 +29,13 @@
       const email = document.getElementById("email").value;
       const phone = document.getElementById("phone").value;
       const password = document.getElementById("password").value;
+      const password_again = document.getElementById("passwordAgain").value;
 
       const res = await fetch("/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ name, email, phone, password })
+        body: JSON.stringify({ name, email, phone, password, password_again })
       });
 
       const data = await res.json();

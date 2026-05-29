@@ -80,15 +80,19 @@ function requireAdmin(req, res, next) {
 ========================= */
 app.post("/register", async (req, res) => {
   try {
-    const { name, email, phone, password } = req.body;
+    const { name, email, phone, password, password_again } = req.body;
 
-    if (!name || !email || !phone || !password) {
-      return res.status(400).json({ error: "All fields required" });
+    if (!name || !email || !phone || !password || !password_again) {
+      return res.status(400).json({ error: "Fyll inn alle feltene" });
+    }
+
+    if (password !== password_again) {
+      return res.status(400).json({ error: "Passordene passer ikke" });
     }
 
     const exists = await pool.query("SELECT id FROM users WHERE email=$1", [email]);
     if (exists.rows.length > 0) {
-      return res.status(400).json({ error: "Email already registered" });
+      return res.status(400).json({ error: "Mail er allerede i bruk" });
     }
 
     const hash = await bcrypt.hash(password, 10);
