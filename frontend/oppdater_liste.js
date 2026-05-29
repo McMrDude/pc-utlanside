@@ -99,7 +99,6 @@ async function openCalendar() {
         const bottom = document.createElement("div");
         bottom.textContent = arg.event.extendedProps.daysText;
         bottom.style.marginTop = "auto";
-        bottom.style.fontSize = "11px";
 
         wrapper.appendChild(top);
         wrapper.appendChild(bottom);
