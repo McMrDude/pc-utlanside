@@ -382,14 +382,12 @@ async function loadCalendarEvents() {
 
       calendarInstance.addEvent({
         title: `${r.student_name} - PC ${r.pc_number}`,
-        extendedProps: {
-          daysText
-        },
         start: returnDate.toISOString().split("T")[0],
         display: "background",
         color: color,
         classNames: daysRemaining === 0 ? ["today-rental"] : [],
         extendedProps: {
+          daysText: daysText,
           id: r.id,
           rentedDate: r.rented_date,
           returnDate: r.return_date,
