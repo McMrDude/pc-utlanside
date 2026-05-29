@@ -372,7 +372,10 @@ async function loadCalendarEvents() {
       else if (daysRemaining <= 5) {color = "orange", daysText = "Skal snart leveres"}
 
       calendarInstance.addEvent({
-        title: `${r.student_name} - PC ${r.pc_number}\n\n${daysText}`,
+        title: `${r.student_name} - PC ${r.pc_number}`,
+        extendedProps: {
+          daysText
+        },
         start: returnDate.toISOString().split("T")[0],
         display: "background",
         color: color,
