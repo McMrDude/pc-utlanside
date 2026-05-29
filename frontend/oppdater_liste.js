@@ -598,7 +598,11 @@ async function loadPCs() {
         decline.className = "pcDiv"
 
         bruker.textContent = `${req.student_name} (${req.student_email})`;
-        date.textContent = `${req.start_date.split("T")[0]} → ${req.return_date.split("T")[0]}`;
+
+        const formattedStart = new Date(req.start_date.split("T")[0]).toLocaleDateString("no-NO");
+        const formattedReturn = new Date(req.return_date.split("T")[0]).toLocaleDateString("no-NO");        
+
+        date.textContent = `${formattedStart} → ${formattedReturn}`;
 
         status.textContent =
           req.status === "pending"
