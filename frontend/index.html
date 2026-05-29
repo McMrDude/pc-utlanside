@@ -78,12 +78,16 @@
   <script>
     const selectDate = document.getElementById("selectedDate");
     flatpickr(selectDate, {
-        dateFormat: "d-m-Y",
+        altInput: true,
+        altFormat: "d-m-Y",
+        dateFormat: "Y-m-d",
         locale: "no"
     });
     const returnDate = document.getElementById("returnDate")
     flatpickr(returnDate, {
-        dateFormat: "d-m-Y",
+        altInput: true,
+        altFormat: "d-m-Y",
+        dateFormat: "Y-m-d",
         locale: "no"
     });
   </script>
