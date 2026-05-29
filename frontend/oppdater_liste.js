@@ -100,14 +100,16 @@ async function openCalendar() {
 
         sameDayRentals.forEach(r => {
           if (r.status === "active") {
+            const formattedRented = new Date(r.rented_date).toLocaleDateString("no-NO");
+            const formattedReturn = new Date(r.return_date).toLocaleDateString("no-NO");
             const rental = document.createElement("div");
             rental.style = "background-color: lightgray; padding: 5px; margin-bottom: 5px; border-radius: 5px;";
             rental.innerHTML = `
               <strong>
                 ${r.student_name} - PC ${r.pc_number}
               </strong><br>
-              Rented: ${formatDate(r.rented_date)}<br>
-              Return: ${formatDate(r.return_date)}<br>
+              Rented: ${formatDate(formattedRented)}<br>
+              Return: ${formatDate(formattedReturn)}<br>
               <button class="popupDeleteBtn">✓</button>
             `;
 
