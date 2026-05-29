@@ -88,14 +88,23 @@ async function openCalendar() {
         todayButton.title = "Denne Måneden";
       },
       eventContent: function(arg) {
-        return {
-          html: `
-            <div>
-              <div>${arg.event.title}</div>
-              <div>${arg.event.extendedProps.daysText}</div>
-            </div>
-          `
-        };
+        const wrapper = document.createElement("div");
+        wrapper.style.height = "100%";
+        wrapper.style.display = "flex";
+        wrapper.style.flexDirection = "column";
+
+        const top = document.createElement("div");
+        top.textContent = `${arg.event.title}`;
+
+        const bottom = document.createElement("div");
+        bottom.textContent = arg.event.extendedProps.daysText;
+        bottom.style.marginTop = "auto";
+        bottom.style.fontSize = "11px";
+
+        wrapper.appendChild(top);
+        wrapper.appendChild(bottom);
+
+        return { domNodes: [wrapper] };
       },
     
       eventClick: function (info) {
