@@ -87,8 +87,17 @@ async function openCalendar() {
         todayButton.textContent = "I dag";
         todayButton.title = "Denne Måneden";
       },
-      
-
+      eventContent: function(arg) {
+        return {
+          html: `
+            <div>
+              <div>${arg.event.title}</div>
+              <div>${arg.event.extendedProps.daysText}</div>
+            </div>
+          `
+        };
+      },
+    
       eventClick: function (info) {
         popup.innerHTML = "";
         const event = info.event;
