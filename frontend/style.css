@@ -142,7 +142,7 @@ p {
 #requestList {
     display: grid;
     grid-template-columns: auto auto auto auto auto;
-    width: 60%;
+    width: 65%;
 }
 
 .today-rental {

@@ -198,6 +198,9 @@ async function sortRentals(rentals, sortState) {
     sorted.forEach(r => {
       if (r.status === "active") {
         let firstCell = true;    
+
+        const formattedRented = new Date(r.rented_date).toLocaleDateString("no-NO");
+        const formattedReturn = new Date(r.return_date).toLocaleDateString("no-NO");
         
         const returnDate = new Date(r.return_date).getTime();
         const daysRemaining =
@@ -207,8 +210,8 @@ async function sortRentals(rentals, sortState) {
           `Dager til levering: ${daysRemaining}`,
           r.student_name + "(" + r.student_email + ")",
           r.pc_number,
-          formatDate(r.rented_date),
-          formatDate(r.return_date)
+          formattedRented,
+          formattedReturn
         ];
 
         const currentRowID = rowID; // Capture current rowID for closure
