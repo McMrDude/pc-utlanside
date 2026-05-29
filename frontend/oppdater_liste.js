@@ -102,6 +102,7 @@ async function openCalendar() {
           if (r.status === "active") {
             const formattedRented = new Date(r.rented_date).toLocaleDateString("no-NO");
             const formattedReturn = new Date(r.return_date).toLocaleDateString("no-NO");
+            console.log("select Date: ", formattedRented, " | ", "return Date: ", formattedReturn)
             const rental = document.createElement("div");
             rental.style = "background-color: lightgray; padding: 5px; margin-bottom: 5px; border-radius: 5px;";
             rental.innerHTML = `
