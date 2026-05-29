@@ -109,7 +109,7 @@ async function openCalendar() {
               <strong>
                 ${r.student_name} - PC ${r.pc_number}
               </strong><br>
-              Rented: ${formatDate(formattedRented)}<br>
+              Rented: ${formattedRented}<br>
               Return: ${formatDate(formattedReturn)}<br>
               <button class="popupDeleteBtn">✓</button>
             `;
