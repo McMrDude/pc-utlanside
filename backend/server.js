@@ -497,27 +497,42 @@ app.post("/submit-date", requireLogin, async (req, res) => {
     const { selectedDate, returnDate } = req.body;
     const user = req.session.user;
 
-    console.log(selectedDate, returnDate);
+    console.log("BODY:", req.body);
+
+    // CHECK VALUES
+    if (!selectedDate || !returnDate) {
+      return res.status(400).json({
+        error: "Dates missing"
+      });
+    }
 
     const token = crypto.randomBytes(32).toString("hex");
     const status = "pending";
 
-    await send(
-      process.env.EMAILJS_SERVICE_ID,
-      process.env.EMAILJS_TEMPLATE_ID,
-      {
-        selected_date: selectedDate,
-        return_date: returnDate,
-        student_name: req.session.user.name,
-        student_email: req.session.user.email
-      },
-      {
-        publicKey: process.env.EMAILJS_PUBLIC_KEY
-      }
-    );
+    // TRY EMAIL BUT DON'T CRASH
+    try {
+      await send(
+        process.env.EMAILJS_SERVICE_ID,
+        process.env.EMAILJS_TEMPLATE_ID,
+        {
+          selected_date: selectedDate,
+          return_date: returnDate,
+          student_name: user.name,
+          student_email: user.email
+        },
+        {
+          publicKey: process.env.EMAILJS_PUBLIC_KEY
+        }
+      );
 
-    await pool.query(
-      `INSERT INTO requests 
+      console.log("Email sent");
+    } catch (emailErr) {
+      console.error("EMAIL ERROR:", emailErr);
+    }
+
+    // ALWAYS INSERT INTO DATABASE
+    const result = await pool.query(
+      `INSERT INTO requests
        (user_id, student_name, student_email, status, token, start_date, return_date, requested_at)
        VALUES ($1, $2, $3, $4, $5, $6, $7, NOW())
        RETURNING *`,
@@ -531,10 +546,19 @@ app.post("/submit-date", requireLogin, async (req, res) => {
         returnDate
       ]
     );
-    res.json({ success: true });
+
+    console.log("REQUEST SAVED:", result.rows[0]);
+
+    res.json({
+      success: true
+    });
+
   } catch (err) {
-    console.error(err);
-    res.status(500).json("Error sending email");
+    console.error("SUBMIT ERROR:", err);
+
+    res.status(500).json({
+      error: err.message
+    });
   }
 });
 
