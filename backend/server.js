@@ -626,13 +626,13 @@ app.post("/request-reset", async (req, res) => {
     const resetLink = `https://task-giver-xsin.onrender.com/reset-password/${token}`;
 
     console.log("EMAILJS_SERVICE_ID:", process.env.EMAILJS_SERVICE_ID);
-    console.log("EMAILJS_TEMPLATE_ID:", process.env.EMAILJS_TEMPLATE_ID);
+    console.log("EMAILJS_PASSWORDRESET_ID:", process.env.EMAILJS_PASSWORDRESET_ID);
     console.log("EMAILJS_PUBLIC_KEY:", process.env.EMAILJS_PUBLIC_KEY);
     console.log("Template Params:", { reset_link: resetLink, to_email: email });
     try {
       const response = await send(
         process.env.EMAILJS_SERVICE_ID,
-        process.env.EMAILJS_TEMPLATE_ID,
+        process.env.EMAILJS_PASSWORDRESET_ID,
         {
           reset_link: resetLink,
           to_email: email
