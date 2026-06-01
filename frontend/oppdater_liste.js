@@ -321,10 +321,10 @@ function renderRentals(array) {
 
   const headers = [
     "<h4 id='statusHeader'><button id='filterBtn' img='icons/normal sort.png'></button>Status<div></div></h4>",
-    "<h4 style='border-top: 1px solid black;'>Elev navn</h4>",
-    "<h4 style='border-top: 1px solid black;'>PC nummer</h4>",
-    "<h4 style='border-top: 1px solid black;'>Dato lånet</h4>",
-    "<h4 style='border-top: 1px solid black;'>Leverings dato</h4>",
+    "<h4 style='border-top: 1px solid black;'>Lånerens navn</h4>",
+    "<h4 style='border-top: 1px solid black;'>PC-nr</h4>",
+    "<h4 style='border-top: 1px solid black;'>Dato lånt</h4>",
+    "<h4 style='border-top: 1px solid black;'>Innleveringsfrist</h4>",
     '<h4 style="border-right: none; border-top: 1px solid black;">Levert?</h4>'
   ];
 
@@ -511,8 +511,8 @@ async function loadPCs() {
   pcDiv.innerHTML = "";
 
   const headers = [
-    "PC nummer",
-    "Serie nummer",
+    "PC-nr",
+    "Serienummer",
     "Modell",
     "Status",
     "Utlåners navn",

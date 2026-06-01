@@ -620,7 +620,7 @@ app.post("/request-reset", async (req, res) => {
       console.log("EmailJS response:", response);
     } catch (err) {
       console.error("EmailJS send error:", JSON.stringify(err, null, 2));
-      return res.status(500).json({ message: "Mail sending feilet" });
+      return res.status(500).json({ message: "Klarte ikke å sende e-post" });
     }
 
     res.json({ message: "Hvis en passende konto finnes så har det blitt sendt en mail." });
