@@ -696,3 +696,11 @@ setInterval(async () => {
     console.error("Cleanup error:", err);
   }
 }, 1000 * 60 * 10); // every 10 minutes
+
+app.get("/reset-password/:token", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/reset-password.html"));
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/index.html"));
+});
