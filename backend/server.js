@@ -623,7 +623,7 @@ app.post("/request-reset", async (req, res) => {
       [userId, token]
     );
 
-    const resetLink = `https://task-giver-xsin.onrender.com/reset-password/${token}`;
+    const resetLink = `https://pc-utlanside.onrender.com/reset-password/${token}`;
 
     console.log("EMAILJS_SERVICE_ID:", process.env.EMAILJS_SERVICE_ID);
     console.log("EMAILJS_PASSWORDRESET_ID:", process.env.EMAILJS_PASSWORDRESET_ID);
