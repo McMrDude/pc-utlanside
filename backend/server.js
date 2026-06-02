@@ -657,7 +657,7 @@ app.post("/request-reset", async (req, res) => {
 
 /* RESET PASSORD */
 app.post("/reset-password", async (req,res) => {
-  const { token, newPassword } = req.body;
+  const { token, newPassword, confirmPassword } = req.body;
 
   const result = await pool.query(
     `SELECT * FROM password_resets
@@ -667,6 +667,10 @@ app.post("/reset-password", async (req,res) => {
 
   if (result.rows.length === 0) {
     return res.status(400).json({ error: "Ugyldig eller utløpt reset" });
+  }
+
+  if (newPassword !== confirmPassword) {
+    return res.status(400).json({ error: "Passordene passer ikke" });
   }
 
   const userId = result.rows[0].user_id;
