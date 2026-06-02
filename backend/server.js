@@ -659,6 +659,10 @@ app.post("/request-reset", async (req, res) => {
 app.post("/reset-password", async (req,res) => {
   const { token, newPassword, confirmPassword } = req.body;
 
+  console.log("TOKEN:", token);
+  console.log("NEW PASSWORD:", newPassword);
+  console.log("CONFIRM PASSWORD:", confirmPassword);
+
   const result = await pool.query(
     `SELECT * FROM password_resets
     WHERE token = $1 AND expires_at > NOW()`,
