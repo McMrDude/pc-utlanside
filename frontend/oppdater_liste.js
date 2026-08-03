@@ -803,19 +803,34 @@ async function savePC(e) {
 }
 
 function whichTabOpen() {
-  if (listPageOpen) {
-    document.getElementById("listBtn").style = "background-color: rgb(187, 187, 187); border: 2px solid blue";
-  } else {
-    document.getElementById("listBtn").style = "";
+  const listBtn = document.getElementById("listBtn");
+  const calendarBtn = document.getElementById("calendarBtn");
+  const pcBtn = document.getElementById("pcBtn");
+
+  if (listBtn) {
+    if (listPageOpen) {
+      listBtn.style =
+        "background-color: rgb(187, 187, 187); border: 2px solid blue";
+    } else {
+      listBtn.style = "";
+    }
   }
-  if (calendarPageOpen) {
-    document.getElementById("calendarBtn").style = "background-color: rgb(187, 187, 187); border: 2px solid blue";
-  } else {
-    document.getElementById("calendarBtn").style = "";
+
+  if (calendarBtn) {
+    if (calendarPageOpen) {
+      calendarBtn.style =
+        "background-color: rgb(187, 187, 187); border: 2px solid blue";
+    } else {
+      calendarBtn.style = "";
+    }
   }
-  if (pcPageOpen) {
-    document.getElementById("pcBtn").style = "background-color: rgb(187, 187, 187); border: 2px solid blue";
-  } else {
-    document.getElementById("pcBtn").style = "";
+
+  if (pcBtn) {
+    if (pcPageOpen) {
+      pcBtn.style =
+        "background-color: rgb(187, 187, 187); border: 2px solid blue";
+    } else {
+      pcBtn.style = "";
+    }
   }
 }
