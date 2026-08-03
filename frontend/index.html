@@ -7,26 +7,85 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
-  <div id="foresendt" style="position: fixed;">
-    <h3>Forespørsel sendt</h3>
+  <div style="width: 100%; background-color: rgb(49, 49, 108); box-shadow: 0 0 10px black; display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding: 10px;">
+    <div id="foresendt" style="position: fixed;">
+      <h3>Forespørsel sendt</h3>
+    </div>
+    <button id="adminBtn" style="display: none;" onclick="location.href='/admin.html'">
+      Admin
+      <div id="adminAlert" style="width: 60px;background-color: rgb(11, 115, 170); 
+      padding: 5px; border-radius: 30px; position: absolute; 
+      font-size: 10px; display: none">Forespørsel !</div>
+    </button>
+    <a style="cursor: pointer;" onclick="logout()">Logg ut</a>
   </div>
-  <button id="adminBtn" style="display: none;" onclick="location.href='/admin.html'">
-    Admin
-    <div id="adminAlert" style="width: 60px;background-color: rgb(11, 115, 170); 
-    padding: 5px; border-radius: 30px; position: absolute; 
-    font-size: 10px; display: none">Forespørsel !</div>
-  </button>
-  <button style="position: absolute; right: 10px; top: 10px; background-color: black; 
-  color: white; padding: 10px 20px; cursor: pointer;" onclick="logout()">Logg ut</button>
   <div style="display: flex; width: 100%; flex-direction: column; justify-content: center; align-items: center;">
-    <h2>Velkommen til PC utlån</h2>
-    <h3>Denne nettsiden er dedikert til å gjøre det enkelt å låne PC-er.</h3>
+    <h2>Velkommen til PC Utlån Portalen</h2>
   </div>
   <div class="splash_art">
-    <h2>PC Låneportal</h2>
-    <p>Ledige PC-er: <strong id="available">...</strong></p>
-    <p>Neste tilgjengelige: <strong id="next">...</strong></p>
+    <div style="
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center; 
+      border: 2px rgba(125, 179, 255, 0.519) solid;
+      border-radius: 15px;
+      padding: 70px;
+      width: 350px;
+      background-color: rgba(178, 209, 252, 0.519);
+      position: relative;
+    ">
+      <p style="top: 0; left: 10px; position: absolute;">Ledige PC-er</p>
+      <div style="
+        top: 10px;
+        right: 10px;
+        position: absolute;
+
+      "><img src="icons/alert_icon.png" style="
+        width: 25px;
+        height: 25px;
+      "></div>
+
+      <strong id="available">...</strong>
+    </div>
+    <div style="
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center; 
+      border: 2px rgba(125, 179, 255, 0.519) solid;
+      border-radius: 15px;
+      padding: 70px;
+      width: 350px;
+      background-color: rgba(178, 209, 252, 0.519);
+      position: relative;
+    ">
+      <p style="top: 0; left: 10px; position: absolute;">Neste tilgjengelige PC</p>
+      <div style="
+        top: 10px;
+        right: 10px;
+        position: absolute;
+
+      "><img src="icons/calender_icon.png" style="
+        width: 25px;
+        height: 25px;
+      "></div>
+
+      <strong id="next">...</strong>
+    </div>
   </div>
+
+
+  <div id="listPage" style="flex: 1;"> 
+    <div style="display: flex; flex-direction: column; border: 1px solid black; background-color: rgb(189, 189, 189);"> 
+      <input id="searchInput" placeholder="Søk..." style="margin: 10px; padding: 5px;">
+      <div id="listDiv" class="listDiv"> 
+
+      </div> 
+    </div> 
+  </div> 
+
+
   <div id="foresprørselDiv" style="display: none; flex-direction: column; width: 100%; justify-content: center; align-items: center;">
     <button id="openFormButton" style="width: 100px; height: 50px; border-radius: 10px; cursor: pointer;" onclick="requestLoan()">Sende inn forespørsel</button>
   </div>
@@ -73,6 +132,9 @@
     outline: none;"
     onclick="closeForm()"></button>
   </div>
+
+  <script src="oppdater_liste.js"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/no.js"></script>
   <script>

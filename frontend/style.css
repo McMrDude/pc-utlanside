@@ -5,7 +5,8 @@ html, body {
 body { 
     padding: 0; 
     margin: 0; 
-    background-color: rgb(215, 215, 215); 
+    background-color: rgb(237, 249, 255);
+    font-family: Arial, Helvetica, sans-serif; 
 } 
 
 #adminBtn {
@@ -47,18 +48,15 @@ body {
 }
 
 .splash_art {
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: row;
     width: 100%;
     height: 50%;
-    background-image: url("icons/background.png");
-    background-color: rgb(255, 255, 255, 0.5);
-    background-blend-mode: lighten;
-    background-size: cover; 
-    background-repeat: no-repeat;
-    background-position: center;
-    aspect-ratio: 1.85 / 1;
-    box-shadow: 0 0 10px black inset;
     text-align: center;
     align-items: center;
+    justify-content: center;
+    gap: 20px;
 }
 
 h2 {
@@ -66,7 +64,7 @@ h2 {
 }
 
 p {
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .loading,
@@ -317,4 +315,14 @@ h5 {
 }
 .close-btn:active {
     background-color: rgb(198, 0, 0);
+}
+
+
+.inputs:focus-within {
+    border: 2px solid rgba(50, 32, 255, 0.455);
+
+    box-shadow: 0 0 5px rgba(50, 32, 255, 0.455);
+}
+input {
+    outline: none;
 }
