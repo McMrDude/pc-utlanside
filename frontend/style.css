@@ -183,8 +183,6 @@ p {
 
 h4, h5 {
     margin: 0;
-    border-right: 2px solid black;
-    border-bottom: 1px solid black;
     text-align: center;
 
     overflow: hidden;
