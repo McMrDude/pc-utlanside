@@ -96,7 +96,7 @@ p {
     justify-items: center;
     align-items: center;
 }
-.listDiv > div, .listDiv > h5 {
+/* .listDiv > div, .listDiv > h5 {
   width: fit-content;
   justify-self: start;
 }
@@ -104,7 +104,7 @@ p {
   width: fit-content;
   justify-self: start;
   margin: 0;
-}
+} */
 
 #listPage {
     overflow-x: auto;
