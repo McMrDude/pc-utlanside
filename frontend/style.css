@@ -97,7 +97,7 @@ p {
     justify-items: stretch;
     align-items: stretch;
 }
-.listDiv > h4 {
+.listDiv > h4, .listDiv > div {
     justify-self: center;
     align-self: center;
 }
@@ -353,6 +353,8 @@ input {
 
   justify-self: center;
   align-self: center;
+
+  padding: 10px;
 }
 
 .statusFill {
