@@ -93,8 +93,8 @@ p {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 80px;
     overflow-x: hidden;
-    justify-items: center;
-    align-items: center;
+    justify-items: stretch;
+    align-items: stretch;
 }
 /* .listDiv > div, .listDiv > h5 {
   width: fit-content;
