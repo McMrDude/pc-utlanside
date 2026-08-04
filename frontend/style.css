@@ -91,7 +91,7 @@ p {
     border: 2px rgba(125, 179, 255, 0.519) solid;
     border-radius: 10px;
     display: grid;
-    grid-template-columns: repeat(6, auto);
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 80px;
     overflow-x: hidden;
     justify-items: center;
     align-items: center;
