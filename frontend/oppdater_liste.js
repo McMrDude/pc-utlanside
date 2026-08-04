@@ -243,16 +243,16 @@ async function sortRentals(rentals, sortState) {
         statusFill.style.width = `${percentRemaining}%`;
 
         if (percentRemaining >= 50) {
-          statusBar.style.backgroundColor = "rgba(154, 255, 139, 1)";
-          statusFill.style.backgroundColor = "rgba(154, 255, 139, 0.5)";
+          statusBar.classList.add("green");
+          statusFill.classList.add("green");
         }
         else if (percentRemaining >= 10) {
-          statusBar.style.backgroundColor = "rgb(255, 234, 0)";
-          statusFill.style.backgroundColor = "rgba(255, 234, 0, 0.5)";
+          statusBar.classList.add("yellow");
+          statusFill.classList.add("yellow");
         }
         else {
-          statusBar.style.backgroundColor = "rgb(255, 35, 35)";
-          statusFill.style.backgroundColor = "rgba(255, 35, 35, 0.5)";
+          statusBar.classList.add("red");
+          statusFill.classList.add("red");
         }
 
         statusBar.appendChild(statusFill);
