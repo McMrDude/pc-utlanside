@@ -220,14 +220,12 @@ async function sortRentals(rentals, sortState) {
         const formattedReturn = new Date(r.return_date).toLocaleDateString("no-NO");
         
         const returnDate = new Date(r.return_date).getTime();
+        const rentedDate = new Date(r.rented_date).getTime();
         const daysRemaining =
           Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24)) - 1;
 
         const currentRowID = rowID; // Capture current rowID for closure
 
-
-        const rentedDate = new Date(r.rented_date).getTime();
-        const returnDate = new Date(r.return_date).getTime();
 
         const totalDays = Math.ceil((returnDate - rentedDate) / (1000 * 60 * 60 * 24));
 
