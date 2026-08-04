@@ -329,6 +329,7 @@ function renderRentals(array) {
   ];
 
   const headerDiv = document.createElement("div");
+  headerDiv.style = "background-color: rgba(146, 187, 246, 0.52)"
 
   headers.forEach(h => {
     const row = document.createElement("div");
