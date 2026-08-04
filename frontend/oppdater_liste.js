@@ -257,7 +257,11 @@ async function sortRentals(rentals, sortState) {
 
         statusBar.appendChild(statusFill);
 
-        rentalsArray.push(statusBar);
+        const throwawayDiv = document.createElement("div");
+        throwawayDiv.style = "padding: 10px; border-bottom: 2px rgba(125, 179, 255, 0.519) solid;";
+        throwawayDiv.appendChild(statusBar);
+
+        rentalsArray.push(throwawayDiv);
 
         const rows = [
           r.student_name + "(" + r.student_email + ")",
