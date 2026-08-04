@@ -93,6 +93,7 @@ p {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 80px;
     overflow-x: hidden;
+    width: 70%;
 }
 .listDiv > div, .listDiv > h5 {
   width: fit-content;
