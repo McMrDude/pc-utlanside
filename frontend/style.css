@@ -188,11 +188,11 @@ h4, h5 {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    display: inline-block;
 }
 
 h4 {
     font-size: clamp(14px, 2vw, 24px);
-    display: inline-block;
 }
 
 h5 {
