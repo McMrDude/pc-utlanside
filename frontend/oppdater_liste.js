@@ -322,12 +322,12 @@ function renderRentals(array) {
   listDiv.innerHTML = "";
 
   const headers = [
-    "<h4 id='statusHeader'><button id='filterBtn' img='icons/normal sort.png'></button>Status<div></div></h4>",
-    "<h4>Lånerens navn</h4>",
-    "<h4>PC-nr</h4>",
-    "<h4>Dato lånt</h4>",
-    "<h4>Innleveringsfrist</h4>",
-    '<h4>Levert?</h4>'
+    "<h5 id='statusHeader'><button id='filterBtn' img='icons/normal sort.png'></button>Status<div></div></h5>",
+    "<h5>Lånerens navn</h5>",
+    "<h5>PC-nr</h5>",
+    "<h5>Dato lånt</h5>",
+    "<h5>Innleveringsfrist</h5>",
+    '<h5>Levert?</h5>'
   ];
 
   const headerDiv = document.createElement("div");
