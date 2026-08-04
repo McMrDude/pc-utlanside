@@ -347,8 +347,7 @@ input {
   width: 120px;
   height: 25px;
 
-  border: 2px solid black;
-  border-radius: 5px;
+  border-radius: 15px;
 
   overflow: hidden;
 
@@ -371,7 +370,6 @@ input {
 
 .statusBar.green {
     background-color: rgba(154, 255, 139, 0.5);
-    border-color: rgba(154, 255, 139, 1);
 }
 .statusFill.green {
     background-color: rgba(154, 255, 139, 1);
@@ -379,7 +377,6 @@ input {
 
 .statusBar.yellow {
     background-color: rgba(255, 234, 0, 0.5);
-    border-color: rgba(255, 234, 0, 1);
 }
 .statusFill.yellow {
     background-color: rgba(255, 234, 0, 1);
@@ -387,7 +384,6 @@ input {
 
 .statusBar.red {
     background-color: rgba(255, 35, 35, 0.5);
-    border-color: rgba(255, 35, 35, 1);
 }
 .statusFill.red {
     background-color: rgba(255, 35, 35, 1);
