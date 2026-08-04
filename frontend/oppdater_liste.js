@@ -223,34 +223,55 @@ async function sortRentals(rentals, sortState) {
         const daysRemaining =
           Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24)) - 1;
 
+        const currentRowID = rowID; // Capture current rowID for closure
+
+
+        const rentedDate = new Date(r.rented_date).getTime();
+        const returnDate = new Date(r.return_date).getTime();
+
+        const totalDays = Math.ceil((returnDate - rentedDate) / (1000 * 60 * 60 * 24));
+
+        let percentRemaining = (daysRemaining / totalDays) * 100;
+
+        percentRemaining = Math.max(0, Math.min(100, percentRemaining));
+
+        const statusBar = document.createElement("div");
+        statusBar.className = "statusBar";
+        statusBar.classList.add("Row" + currentRowID);
+
+        const statusFill = document.createElement("div");
+        statusFill.className = "statusFill";
+
+        statusFill.style.width = `${percentRemaining}%`;
+
+        if (percentRemaining >= 50) {
+          statusBar.style.backgroundColor = "rgba(154, 255, 139, 1)";
+          statusFill.style.backgroundColor = "rgba(154, 255, 139, 0.5)";
+        }
+        else if (percentRemaining >= 10) {
+          statusBar.style.backgroundColor = "rgb(255, 234, 0)";
+          statusFill.style.backgroundColor = "rgba(255, 234, 0, 0.5)";
+        }
+        else {
+          statusBar.style.backgroundColor = "rgb(255, 35, 35)";
+          statusFill.style.backgroundColor = "rgba(255, 35, 35, 0.5)";
+        }
+
+        statusBar.appendChild(statusFill);
+
+        rentalsArray.push(statusBar);
+
         const rows = [
-          `Dager til levering: ${daysRemaining}`,
           r.student_name + "(" + r.student_email + ")",
           r.pc_number,
           formattedRented,
           formattedReturn
         ];
 
-        const currentRowID = rowID; // Capture current rowID for closure
 
         rows.forEach(text => {
           const row = document.createElement("h5");
           row.innerHTML = text;
-
-          if (firstCell) {
-            if (daysRemaining < 0) {
-              row.style.backgroundColor = "darkred";
-              row.innerHTML = "Forfalt";
-            } else if (daysRemaining === 0) {
-              row.style.backgroundColor = "red";
-              row.innerHTML = "I dag";
-            } else if (daysRemaining <= 5) {
-              row.style.backgroundColor = "yellow";
-            } else {
-              row.style.backgroundColor = "lightgreen";
-            }
-            firstCell = false;
-          }
 
           row.className = "Row" + currentRowID;
 
