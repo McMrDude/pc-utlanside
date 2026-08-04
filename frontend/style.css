@@ -94,9 +94,14 @@ p {
     grid-template-columns: 1fr 2fr 1fr 1fr 1fr 80px;
     overflow-x: hidden;
 }
-.listDiv > div, listDiv > h5 {
+.listDiv > div, .listDiv > h5 {
   width: fit-content;
   justify-self: start;
+}
+.listDiv > h5 {
+  width: fit-content;
+  justify-self: start;
+  margin: 0;
 }
 
 #listPage {
