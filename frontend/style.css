@@ -213,6 +213,7 @@ h4 {
 }
 
 h5 {
+    font-weight: normal;
     white-space: normal;
     word-break: break-word;
 }
