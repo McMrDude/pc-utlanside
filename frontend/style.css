@@ -97,10 +97,10 @@ p {
     justify-items: stretch;
     align-items: stretch;
 }
-.listDiv > h4 {
+/* .listDiv > h4 {
     justify-self: center;
     align-self: center;
-}
+} */
 /* .listDiv > div, .listDiv > h5 {
   width: fit-content;
   justify-self: start;
