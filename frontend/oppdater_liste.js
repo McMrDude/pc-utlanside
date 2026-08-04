@@ -336,18 +336,12 @@ function renderRentals(array) {
     const row = document.createElement("div");
     row.innerHTML = h;
     row.style = "background-color: rgba(146, 187, 246, 0.52); border-bottom: 2px rgba(125, 179, 255, 0.519) solid; padding: 10px;";
-    headerDiv.appendChild(row);
+    listDiv.appendChild(row);
   });
-
-  listDiv.appendChild(headerDiv);
-
-  const arrayDiv = document.createElement("div");
 
   array.forEach(el => {
-    arrayDiv.appendChild(el);
+    listDiv.appendChild(el);
   });
-
-  listDiv.appendChild(arrayDiv);
 
   const filterBtn = document.getElementById("filterBtn");
   if (state === 0) {
