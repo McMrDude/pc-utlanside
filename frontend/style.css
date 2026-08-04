@@ -93,7 +93,6 @@ p {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 80px;
     overflow-x: hidden;
-    width: 70%;
     justify-content: center;
     align-items: center;
 }
