@@ -328,11 +328,15 @@ function renderRentals(array) {
     '<h4>Levert?</h4>'
   ];
 
+  const headerDiv = document.createElement("div");
+
   headers.forEach(h => {
     const row = document.createElement("div");
     row.innerHTML = h;
-    listDiv.appendChild(row);
+    headerDiv.appendChild(row);
   });
+
+  listDiv.appendChild(headerDiv);
 
   array.forEach(el => {
     listDiv.appendChild(el);
