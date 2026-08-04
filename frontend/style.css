@@ -93,7 +93,7 @@ p {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 80px;
     overflow-x: hidden;
-    justify-content: center;
+    justify-items: center;
     align-items: center;
 }
 .listDiv > div, .listDiv > h5 {
