@@ -301,7 +301,10 @@ async function sortRentals(rentals, sortState) {
     });
   }
 
-  renderRentals(rentalsArray);
+  const finalArray = document.createElement("div");
+  finalArray.appendChild(rentalsArray);
+
+  renderRentals(finalArray);
 }
 
 /* =========================
@@ -336,12 +339,12 @@ function renderRentals(array) {
     const row = document.createElement("div");
     row.innerHTML = h;
     row.style = "background-color: rgba(146, 187, 246, 0.52); border-bottom: 2px rgba(125, 179, 255, 0.519) solid; padding: 10px;";
-    listDiv.appendChild(row);
+    headerDiv.appendChild(row);
   });
 
-  array.forEach(el => {
-    listDiv.appendChild(el);
-  });
+  listDiv.appendChild(headerDiv);
+
+  listDiv.appendChild(array);
 
   const filterBtn = document.getElementById("filterBtn");
   if (state === 0) {
