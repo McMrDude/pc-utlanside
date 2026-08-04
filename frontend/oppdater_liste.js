@@ -254,6 +254,8 @@ async function sortRentals(rentals, sortState) {
 
           row.className = "Row" + currentRowID;
 
+          row.style = "border-bottom: 2px rgba(125, 179, 255, 0.519) solid;";
+
           rentalsArray.push(row);
         });
 
@@ -333,7 +335,7 @@ function renderRentals(array) {
   headers.forEach(h => {
     const row = document.createElement("div");
     row.innerHTML = h;
-    row.style = "background-color: rgba(146, 187, 246, 0.52)";
+    row.style = "background-color: rgba(146, 187, 246, 0.52); border-bottom: 2px rgba(125, 179, 255, 0.519) solid;";
     listDiv.appendChild(row);
   });
 

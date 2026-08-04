@@ -100,7 +100,6 @@ p {
 
 #statusHeader {
     display: flex; 
-    border-top: 1px solid black;
     gap: 15px;
 }
 #statusHeader * {
