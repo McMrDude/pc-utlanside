@@ -192,6 +192,7 @@ h4, h5 {
 
 h4 {
     font-size: clamp(14px, 2vw, 24px);
+    display: inline-block;
 }
 
 h5 {
