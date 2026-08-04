@@ -301,10 +301,7 @@ async function sortRentals(rentals, sortState) {
     });
   }
 
-  const finalArray = document.createElement("div");
-  finalArray.appendChild(rentalsArray);
-
-  renderRentals(finalArray);
+  renderRentals(rentalsArray);
 }
 
 /* =========================
@@ -344,7 +341,13 @@ function renderRentals(array) {
 
   listDiv.appendChild(headerDiv);
 
-  listDiv.appendChild(array);
+  const arrayDiv = document.createElement("div");
+
+  array.forEach(el => {
+    arrayDiv.appendChild(el);
+  });
+
+  listDiv.appendChild(arrayDiv);
 
   const filterBtn = document.getElementById("filterBtn");
   if (state === 0) {
