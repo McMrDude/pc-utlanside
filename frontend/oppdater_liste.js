@@ -322,12 +322,12 @@ function renderRentals(array) {
   listDiv.innerHTML = "";
 
   const headers = [
-    "<h5 id='statusHeader'><button id='filterBtn' img='icons/normal sort.png'></button>Status<div></div></h5>",
-    "<h5>Lånerens navn</h5>",
-    "<h5>PC-nr</h5>",
-    "<h5>Dato lånt</h5>",
-    "<h5>Innleveringsfrist</h5>",
-    '<h5>Levert?</h5>'
+    "<h5 style='font-weight: bold;' id='statusHeader'><button id='filterBtn' img='icons/normal sort.png'></button>Status<div></div></h5>",
+    "<h5 style='font-weight: bold;'>Lånerens navn</h5>",
+    "<h5 style='font-weight: bold;'>PC-nr</h5>",
+    "<h5 style='font-weight: bold;'>Dato lånt</h5>",
+    "<h5 style='font-weight: bold;'>Innleveringsfrist</h5>",
+    "<h5 style='font-weight: bold;'>Levert?</h5>"
   ];
 
   const headerDiv = document.createElement("div");
@@ -335,7 +335,7 @@ function renderRentals(array) {
   headers.forEach(h => {
     const row = document.createElement("div");
     row.innerHTML = h;
-    row.style = "background-color: rgba(146, 187, 246, 0.52); border-bottom: 2px rgba(125, 179, 255, 0.519) solid; padding: 10px; font-weight: bold;";
+    row.style = "background-color: rgba(146, 187, 246, 0.52); border-bottom: 2px rgba(125, 179, 255, 0.519) solid; padding: 10px;";
     listDiv.appendChild(row);
   });
 
