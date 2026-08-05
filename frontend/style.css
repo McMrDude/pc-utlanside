@@ -100,7 +100,6 @@ p {
 .listDiv > h4, .listDiv > div {
     width: 100%;
     justify-self: stretch;
-    align-self: center;
 }
 /* .listDiv > div, .listDiv > h5 {
   width: fit-content;
