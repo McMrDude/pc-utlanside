@@ -264,7 +264,9 @@ async function sortRentals(rentals, sortState) {
           statusBar.appendChild(overdueText);
         }
 
-        statusBar.appendChild(statusFill);
+        if (statusFill) {
+          statusBar.appendChild(statusFill);
+        }
 
         const throwawayDiv = document.createElement("div");
         throwawayDiv.style = "padding: 10px; border-bottom: 2px rgba(125, 179, 255, 0.519) solid;";
