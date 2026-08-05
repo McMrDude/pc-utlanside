@@ -88,28 +88,27 @@ p {
 
 /* ADMIN VIEW */
 .listDiv {
-    border: 2px rgba(125, 179, 255, 0.519) solid;
+    border: 2px solid rgba(125, 179, 255, 0.519);
     border-radius: 10px;
+
     display: grid;
-    grid-template-columns: repeat(6, max-content);
-    width: fit-content;
-    overflow-x: hidden;
-/*     justify-items: stretch;
-    align-items: stretch; */
-}
-.listDiv > h4, .listDiv > div {
+
+    grid-template-columns:
+        200px
+        1fr
+        100px
+        130px
+        170px
+        85px;
+
     width: 100%;
-    justify-self: stretch;
+
+    overflow: hidden;
 }
-/* .listDiv > div, .listDiv > h5 {
-  width: fit-content;
-  justify-self: start;
+.listDiv > * {
+    box-sizing: border-box;
+    min-width: 0;
 }
-.listDiv > h5 {
-  width: fit-content;
-  justify-self: start;
-  margin: 0;
-} */
 
 #listPage {
     overflow-x: auto;
