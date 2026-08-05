@@ -237,7 +237,7 @@ async function sortRentals(rentals, sortState) {
         statusBar.className = "statusBar";
         statusBar.classList.add("Row" + currentRowID);
 
-        const statusFill = document.createElement("div");
+        let statusFill = document.createElement("div");
         statusFill.className = "statusFill";
 
         statusFill.style.width = `${percentRemaining}%`;
