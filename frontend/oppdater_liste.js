@@ -255,6 +255,14 @@ async function sortRentals(rentals, sortState) {
           statusFill.classList.add("red");
         }
 
+        if ( daysRemaining < 0) {
+          const overdueText = document.createElement("span");
+          overdueText.textContent = "Ikke levert inn";
+          overdueText.style.color = "darkred";
+          overdueText.style.fontWeight = "bold";
+          statusBar.appendChild(overdueText);
+        }
+
         statusBar.appendChild(statusFill);
 
         const throwawayDiv = document.createElement("div");
@@ -269,7 +277,6 @@ async function sortRentals(rentals, sortState) {
           formattedRented,
           formattedReturn
         ];
-
 
         rows.forEach(text => {
           const row = document.createElement("h5");
