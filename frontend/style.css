@@ -98,7 +98,8 @@ p {
     align-items: stretch;
 }
 .listDiv > h4, .listDiv > div {
-    justify-self: center;
+    width: 100%;
+    justify-self: stretch;
     align-self: center;
 }
 /* .listDiv > div, .listDiv > h5 {
