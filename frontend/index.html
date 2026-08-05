@@ -37,14 +37,11 @@
       box-shadow: 0 5px 10px -6px black;
     ">
       <p style="top: 0; left: 10px; position: absolute;">Ledige PC-er</p>
-      <div style="
+      <div id="alertDiv" style="
         top: 10px;
         right: 10px;
         position: absolute;
 
-      "><img src="icons/alert_icon.png" style="
-        width: 25px;
-        height: 25px;
       "></div>
 
       <strong style="font-size: 30px; color: #506175;" id="available">...</strong>
@@ -209,6 +206,11 @@
         document.getElementById("aktivLåntDiv").style.display = "flex";
         document.getElementById("LåntOverskrift").textContent = "Ingen PC-er tilgjengelig for utlån";
         erLånt = true;
+
+        const alert = document.createElement("img");
+        alert.src = "icons/alert_icon.png";
+        alert.style = "width: 25px; height: 25px;";
+        document.getElementById("alertDiv").appendChild(alert);
       }
 
 
