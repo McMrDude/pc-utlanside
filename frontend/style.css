@@ -354,6 +354,8 @@ input {
   justify-self: center;
   align-self: center;
 
+  display: flex;
+
   justify-content: center;
   align-items: center;
 
