@@ -75,7 +75,7 @@
   </div>
 
 
-  <div id="listPage" style="display: flex; justify-content: center; align-items: center; margin-top: 20px; box-shadow: 0 5px 10px -6px black; margin-bottom: 30px;"> 
+  <div id="listPage" style="display: flex; justify-content: center; align-items: center; margin-top: 20px; box-shadow: 0 5px 10px -6px black; padding-bottom: 30px;"> 
     <div style="
       display: flex; 
       flex-direction: column; 
@@ -288,9 +288,9 @@
         document.getElementById("adminAlert").style.display = "block";
       }
 
-      if (!erLånt) {
+      /* if (!erLånt) {
         document.getElementById("foresprørselDiv").style.display = "flex";
-      }
+      } */
 
       document.getElementById("next").textContent =
         avail.nextAvailableDate

@@ -45,10 +45,8 @@ body {
 }
 
 .splash_art {
-    border: 1px solid blue;
     display: flex;
     flex-direction: row;
-    height: 50%;
     text-align: center;
     align-items: center;
     justify-content: center;
