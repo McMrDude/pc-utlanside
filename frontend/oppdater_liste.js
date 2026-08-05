@@ -257,6 +257,7 @@ async function sortRentals(rentals, sortState) {
 
         if ( daysRemaining < 0) {
           const overdueText = document.createElement("span");
+          statusFill = null;
           overdueText.textContent = "Ikke levert inn";
           overdueText.style.color = "darkred";
           overdueText.style.fontWeight = "bold";
