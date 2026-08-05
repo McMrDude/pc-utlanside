@@ -260,7 +260,7 @@ async function sortRentals(rentals, sortState) {
           overdueText.textContent = "Ikke levert inn";
           overdueText.style.color = "darkred";
           overdueText.style.fontWeight = "bold";
-          statusFill.appendChild(overdueText);
+          statusBar.appendChild(overdueText);
         }
 
         statusBar.appendChild(statusFill);
