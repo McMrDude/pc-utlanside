@@ -368,7 +368,7 @@ function renderRentals(array) {
   headers.forEach(h => {
     const row = document.createElement("div");
     row.innerHTML = h;
-    row.style = "background-color: rgba(146, 187, 246, 0.52); border-bottom: 2px rgba(125, 179, 255, 0.519) solid; padding: 10px;";
+    row.style = "background-color: rgba(146, 187, 246, 0.52); border-bottom: 2px rgba(125, 179, 255, 0.519) solid; padding: 10px; display: flex; justify-content: center; align-items: center;";
     listDiv.appendChild(row);
   });
 
