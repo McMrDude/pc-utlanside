@@ -34,6 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Checks if the current page is the contact page
   if (window.location.pathname === "/admin.html") {
     loadPCs();
+  } else if (window.location.pathname === "/calendar.html") {
+
   }
 });
 
@@ -66,14 +68,7 @@ async function openList() {
 }
 
 async function openCalendar() {
-  list.style.display = "none";
-  calendar.style.display = "block";
   popup.style = "display: none; border: 1px solid black; background-color: rgb(197, 197, 197); padding: 10px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;";
-  document.getElementById("pcPage").style.display = "none";
-  listPageOpen = false;
-  calendarPageOpen = true;
-  pcPageOpen = false;
-  whichTabOpen();
   
   const res = await fetch("/rentals-admin", {
     credentials: "include",

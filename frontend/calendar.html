@@ -1,0 +1,57 @@
+<!DOCTYPE html> 
+<html style="padding: 0; margin: 0;"> 
+    <head> 
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+        <title>Pc-utlån</title> <meta name="description" content=""> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <link rel="stylesheet" href="style.css"> 
+        <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet"> 
+    </head> 
+    <body> 
+        <div class="navbar">
+                    <div id="foresendt" style="position: fixed;">
+                    <h3>Forespørsel sendt</h3>
+                    </div>
+                    <button id="adminBtn" style="display: none;" onclick="location.href='/admin.html'">
+                    Admin
+                    <div id="adminAlert" style="width: 60px;background-color: rgb(11, 115, 170); 
+                    padding: 5px; border-radius: 30px; position: absolute; 
+                    font-size: 10px; display: none">Forespørsel !</div>
+                    </button>
+                    <a class="navButtons" style="cursor: pointer; color: white;" onclick="location.href='/index.html'">Dashboard</a>
+                    <a class="navButtons" style="cursor: pointer; color: white;">Lån PC</a>
+                    <a style="color: rgb(237, 237, 237); text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);">Kalender</a>
+                    <a class="navButtons" style="cursor: pointer; color: white;" onclick="location.href='/admin.html'">Administrator</a>
+                    <a class="navButtons" style="cursor: pointer; color: white;" onclick="logout()">Logg ut</a>
+                </div>
+        <div style="display: flex; flex-direction: column;"> 
+            <div id="calendar">
+
+            </div>
+        </div>
+        <script src="oppdater_liste.js"></script> 
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script> 
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/locales-all.global.min.js"></script>
+        <script>
+            document.addEventListener("visibilitychange", async() => {
+                console.log("Visibility changed: ", document.visibilityState);
+                if (document.visibilityState === "visible") {
+                    const controller = new AbortController();
+                    const signal = controller.signal;
+
+                    fetch("/health", { signal })
+                    .then( response => response.json())
+                    .catch ( err => {
+                    if (err.name === "AbortError") {
+                        console.log("Fetch aborted");
+                        location.reload();
+                    }
+                    });
+
+                    setTimeout(() => controller.abort(), 1000);
+                }
+            });
+        </script>
+    </body> 
+</html>
