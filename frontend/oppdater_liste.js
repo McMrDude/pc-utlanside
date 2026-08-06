@@ -268,12 +268,14 @@ async function sortRentals(rentals, sortState) {
           overdueText.textContent = "Må leveres inn!";
           overdueText.style.color = "darkred";
           overdueText.style.fontWeight = "bold";
+          daysText.style.fontSize = "14px";
           statusBar.appendChild(overdueText);
         } else {
           daysText.textContent = `${daysRemaining} dager igjen`;
           daysText.style.fontWeight = "bold";
           daysText.style.position = "absolute";
           daysText.style.zIndex = "10";
+          daysText.style.fontSize = "14px";
           statusBar.appendChild(daysText);
         }
 
