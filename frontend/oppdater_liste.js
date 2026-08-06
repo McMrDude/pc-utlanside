@@ -578,7 +578,7 @@ async function loadPCs() {
 
   headers.forEach(h => {
     const row = document.createElement("div");
-    row.style = "border-bottom: 2px solid rgba(125, 179, 255, 0.519); border-top-left-radius: 10px; border-top-right-radius: 10px;";
+    row.style = "border-bottom: 2px solid rgba(125, 179, 255, 0.519); border-top-left-radius: 10px; border-top-right-radius: 10px; display: flex; justify-content: center; align-items: center;";
     row.textContent = h
     pcDiv.appendChild(row)
   })
