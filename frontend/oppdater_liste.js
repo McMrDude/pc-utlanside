@@ -564,7 +564,7 @@ async function loadPCs() {
   const pcs = await PCres.json();
 
   const pcDiv = document.getElementById("pcList");
-  pcDiv.style = "background-color: rgb(243, 251, 255); border: 2px solid rgba(125, 179, 255, 0.519); border-radius: 10px;";
+  pcDiv.style = "background-color: rgb(248, 253, 255); border: 2px solid rgba(125, 179, 255, 0.519); border-radius: 10px;";
   pcDiv.innerHTML = "";
 
   const headers = [

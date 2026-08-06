@@ -286,6 +286,7 @@ h5 {
 }
 
 .pcDiv {
+    background-color: rgb(248, 253, 255);
     border-bottom: 2px solid rgba(125, 179, 255, 0.519);; 
     background-color: white;
     text-align: center; 
