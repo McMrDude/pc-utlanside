@@ -7,9 +7,9 @@ const calendar = document.getElementById("calendar");
 
 let calendarInstance;
 
-let listPageOpen = true;
+let listPageOpen = false;
 let calendarPageOpen = false;
-let pcPageOpen = false;
+let pcPageOpen = true;
 
 whichTabOpen();
 
