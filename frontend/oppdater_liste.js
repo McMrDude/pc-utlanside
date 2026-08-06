@@ -271,6 +271,9 @@ async function sortRentals(rentals, sortState) {
         const throwawayDiv = document.createElement("div");
         throwawayDiv.style = "padding: 10px; border-bottom: 2px rgba(125, 179, 255, 0.519) solid;";
         throwawayDiv.appendChild(statusBar);
+        const daysDiv = document.createElement("div");
+        daysDiv.innerHTML = daysRemaining + " dager til levering";
+        throwawayDiv.appendChild(daysDiv);
 
         rentalsArray.push(throwawayDiv);
 
