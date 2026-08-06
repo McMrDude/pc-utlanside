@@ -236,6 +236,7 @@ async function sortRentals(rentals, sortState) {
         const statusBar = document.createElement("div");
         statusBar.className = "statusBar";
         statusBar.classList.add("Row" + currentRowID);
+        statusBar.style.position = "relative";
 
         let statusFill = document.createElement("div");
         statusFill.className = "statusFill";
@@ -271,7 +272,9 @@ async function sortRentals(rentals, sortState) {
         } else {
           daysText.textContent = `${daysRemaining} dager igjen`;
           daysText.style.fontWeight = "bold";
-          statusFill.appendChild(daysText);
+          daysText.style.position = "absolute";
+          daysText.style.zIndex = "10";
+          statusBar.appendChild(daysText);
         }
 
         if (statusFill) {
