@@ -605,7 +605,9 @@ async function loadPCs() {
     loanName.className = "pcDiv";
 
     number.textContent = `${pc.pc_number}`;
-    number.style = " border-bottom-left-radius: 10px;";
+    if (forEachCount === pcs.length - 1) {
+      number.style = " border-bottom-right-radius: 7px;";
+    }
 
     pcDiv.appendChild(number);
 
@@ -638,7 +640,7 @@ async function loadPCs() {
     };
 
     if (forEachCount === pcs.length - 1) {
-      edit.style = " border-bottom-right-radius: 10px;";
+      edit.style = " border-bottom-right-radius: 7px;";
     }
 
     pcDiv.appendChild(edit);
