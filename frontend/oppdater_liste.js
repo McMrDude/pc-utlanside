@@ -564,7 +564,7 @@ async function loadPCs() {
   const pcs = await PCres.json();
 
   const pcDiv = document.getElementById("pcList");
-  pcDiv.style = "border: 2px solid rgba(125, 179, 255, 0.519); border-radius: 10px;";
+  pcDiv.style = "border: 2px solid rgba(125, 179, 255, 0.519); border-radius: 10px; background-color: white;";
   pcDiv.innerHTML = "";
 
   const headers = [
@@ -606,6 +606,7 @@ async function loadPCs() {
     editDiv.className = "pcDiv";
 
     number.textContent = `${pc.pc_number}`;
+    number.style = " border-bottom-left-radius: 10px;";
 
     pcDiv.appendChild(number);
 
@@ -633,6 +634,7 @@ async function loadPCs() {
     const edit = document.createElement("button");
     edit.className = "edit-btn";
     edit.textContent = "⚙️";
+    edit.style = " border-bottom-right-radius: 10px;";
     edit.onclick = () => {
       openEditPopup(pc);
     };
