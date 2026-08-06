@@ -30,7 +30,12 @@ async function forespårselAlert() {
 forespårselAlert();
 
 
-loadPCs();
+document.addEventListener("DOMContentLoaded", () => {
+  // Checks if the current page is the contact page
+  if (window.location.pathname === "/admin.html") {
+    loadPCs();
+  }
+});
 
 
 /* =========================
