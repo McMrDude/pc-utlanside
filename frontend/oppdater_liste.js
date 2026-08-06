@@ -584,7 +584,7 @@ async function loadPCs() {
   })
 
   document.getElementById("pcSelect").replaceChildren();
-  const forEachCount = 0;
+  let forEachCount = 0;
   pcs.forEach(pc => {
     if (pc.status === "ledig") {
       const selectOption = document.createElement("option");
