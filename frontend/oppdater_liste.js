@@ -582,13 +582,12 @@ async function loadPCs() {
     row.style = "background-color: rgba(178, 209, 252, 0.519);border-bottom: 2px solid rgba(125, 179, 255, 0.519); display: flex; justify-content: center; align-items: center; padding: 10px";
     row.textContent = h
 
-    if (rowCounter === headers.length - 1) {
-      row.style = "border-top-right-radius: 10px;"
-    } else if (rowCounter === 0) {
+    if (rowCounter === 0) {
       row.style = "border-top-left-radius: 10px;"
+    } else if (rowCounter === headers.length - 1) {
+      row.style = "border-top-right-radius: 10px;"
     }
     
-
     pcDiv.appendChild(row)
     rowCounter++;
   })
