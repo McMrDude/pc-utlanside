@@ -286,12 +286,10 @@ h5 {
 }
 
 .pcDiv {
-    border-left: 1px solid black;
-    border-right: 1px solid black; 
-    border-top: 1px solid black;
-    border-bottom: 1px solid black; 
+    border-bottom: 2px solid rgba(125, 179, 255, 0.519);; 
     background-color: white;
     text-align: center; 
+    padding: 5px;
 }
 
 .shit {
