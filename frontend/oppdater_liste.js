@@ -584,6 +584,7 @@ async function loadPCs() {
   })
 
   document.getElementById("pcSelect").replaceChildren();
+  const forEachCount = 0;
   pcs.forEach(pc => {
     if (pc.status === "ledig") {
       const selectOption = document.createElement("option");
@@ -597,13 +598,11 @@ async function loadPCs() {
     const model = document.createElement("div");
     const status = document.createElement("div");
     const loanName = document.createElement("div");
-    const editDiv = document.createElement("div");
     number.className = "pcDiv";
     serie.className = "pcDiv";
     model.className = "pcDiv";
     status.className = "pcDiv";
     loanName.className = "pcDiv";
-    editDiv.className = "pcDiv";
 
     number.textContent = `${pc.pc_number}`;
     number.style = " border-bottom-left-radius: 10px;";
@@ -634,14 +633,17 @@ async function loadPCs() {
     const edit = document.createElement("button");
     edit.className = "edit-btn";
     edit.textContent = "⚙️";
-    edit.style = " border-bottom-right-radius: 10px;";
     edit.onclick = () => {
       openEditPopup(pc);
     };
 
-    editDiv.appendChild(edit);
+    if (forEachCount === pcs.length) {
+      edit.style = " border-bottom-right-radius: 10px;";
+    }
 
     pcDiv.appendChild(edit);
+
+    forEachCount++;
   });
 
   // 👇 FETCH REQUESTS
