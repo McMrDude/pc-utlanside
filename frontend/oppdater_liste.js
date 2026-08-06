@@ -250,7 +250,7 @@ async function sortRentals(rentals, sortState) {
         if (percentRemaining >= 50) {
           statusBar.classList.add("green");
           statusFill.classList.add("green");
-          daysText.style.color = "lightgreen";
+          daysText.style.color = "green";
         }
         else if (percentRemaining >= 10) {
           statusBar.classList.add("yellow");
