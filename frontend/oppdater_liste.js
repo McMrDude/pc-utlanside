@@ -606,7 +606,7 @@ async function loadPCs() {
 
     number.textContent = `${pc.pc_number}`;
     if (forEachCount === pcs.length - 1) {
-      number.style = " border-bottom-right-radius: 7px;";
+      number.style = " border-bottom-left-radius: 8px;";
     }
 
     pcDiv.appendChild(number);
@@ -640,7 +640,7 @@ async function loadPCs() {
     };
 
     if (forEachCount === pcs.length - 1) {
-      edit.style = " border-bottom-right-radius: 7px;";
+      edit.style = " border-bottom-right-radius: 8px;";
     }
 
     pcDiv.appendChild(edit);
