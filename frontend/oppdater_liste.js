@@ -30,6 +30,9 @@ async function forespårselAlert() {
 forespårselAlert();
 
 
+openPCs();
+
+
 /* =========================
    Popup for event details
 ========================= */
