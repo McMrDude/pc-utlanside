@@ -271,7 +271,7 @@ async function sortRentals(rentals, sortState) {
         } else {
           daysText.textContent = `${daysRemaining} dager igjen`;
           daysText.style.fontWeight = "bold";
-          statusBar.appendChild(daysText);
+          statusFill.appendChild(daysText);
         }
 
         if (statusFill) {
