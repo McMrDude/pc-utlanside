@@ -637,7 +637,7 @@ async function loadPCs() {
       openEditPopup(pc);
     };
 
-    if (forEachCount === pcs.length) {
+    if (forEachCount === pcs.length - 1) {
       edit.style = " border-bottom-right-radius: 10px;";
     }
 
