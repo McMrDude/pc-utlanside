@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (window.location.pathname === "/admin.html") {
     loadPCs();
   } else if (window.location.pathname === "/calendar.html") {
-
+    openCalendar();
   }
 });
 
