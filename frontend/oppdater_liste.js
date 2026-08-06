@@ -564,7 +564,7 @@ async function loadPCs() {
   const pcs = await PCres.json();
 
   const pcDiv = document.getElementById("pcList");
-  pcDiv.style = "background-color: rgb(248, 253, 255); border: 2px solid rgba(125, 179, 255, 0.519); border-radius: 10px;";
+  pcDiv.style = "border: 2px solid rgba(125, 179, 255, 0.519); border-radius: 10px;";
   pcDiv.innerHTML = "";
 
   const headers = [
@@ -578,7 +578,7 @@ async function loadPCs() {
 
   headers.forEach(h => {
     const row = document.createElement("div");
-    row.style = "border-bottom: 2px solid rgba(125, 179, 255, 0.519); background-color: rgb(248, 253, 255);"
+    row.style = "border-bottom: 2px solid rgba(125, 179, 255, 0.519);"
     row.textContent = h
     pcDiv.appendChild(row)
   })
