@@ -242,13 +242,19 @@ async function sortRentals(rentals, sortState) {
 
         statusFill.style.width = `${percentRemaining}%`;
 
+
+        const daysText = document.createElement("span");
+
+
         if (percentRemaining >= 50) {
           statusBar.classList.add("green");
           statusFill.classList.add("green");
+          daysText.style.color = "lightgreen";
         }
         else if (percentRemaining >= 10) {
           statusBar.classList.add("yellow");
           statusFill.classList.add("yellow");
+          daysText.style.color = "darkyellow";
         }
         else {
           statusBar.classList.add("red");
@@ -262,6 +268,10 @@ async function sortRentals(rentals, sortState) {
           overdueText.style.color = "darkred";
           overdueText.style.fontWeight = "bold";
           statusBar.appendChild(overdueText);
+        } else {
+          daysText.textContent = `${daysRemaining} dager igjen`;
+          daysText.style.fontWeight = "bold";
+          statusBar.appendChild(daysText);
         }
 
         if (statusFill) {
@@ -271,9 +281,6 @@ async function sortRentals(rentals, sortState) {
         const throwawayDiv = document.createElement("div");
         throwawayDiv.style = "padding: 10px; border-bottom: 2px rgba(125, 179, 255, 0.519) solid;";
         throwawayDiv.appendChild(statusBar);
-        const daysDiv = document.createElement("div");
-        daysDiv.innerHTML = daysRemaining + " dager til levering";
-        throwawayDiv.appendChild(daysDiv);
 
         rentalsArray.push(throwawayDiv);
 
