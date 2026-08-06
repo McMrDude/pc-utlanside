@@ -30,7 +30,7 @@ async function forespårselAlert() {
 forespårselAlert();
 
 
-openPCs();
+loadPCs();
 
 
 /* =========================
