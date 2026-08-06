@@ -583,9 +583,9 @@ async function loadPCs() {
     row.textContent = h
 
     if (rowCounter === 0) {
-      row.style = "border-top-left-radius: 10px;"
+      row.style = "border-top-left-radius: 8px; background-color: rgba(178, 209, 252, 0.519);border-bottom: 2px solid rgba(125, 179, 255, 0.519); display: flex; justify-content: center; align-items: center; padding: 10px;";
     } else if (rowCounter === headers.length - 1) {
-      row.style = "border-top-right-radius: 10px;"
+      row.style = "border-top-right-radius: 8px; background-color: rgba(178, 209, 252, 0.519);border-bottom: 2px solid rgba(125, 179, 255, 0.519); display: flex; justify-content: center; align-items: center; padding: 10px;";
     }
     
     pcDiv.appendChild(row)
