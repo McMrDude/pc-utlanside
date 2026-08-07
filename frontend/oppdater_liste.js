@@ -438,7 +438,7 @@ async function loadCalendarEvents() {
       const daysRemaining =
         Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24)) - 1;
 
-      let color = "green";
+      let color = "rgba(154, 255, 139, 0.5)";
       let daysText = "Lenge til levering";
       if (daysRemaining < 0) {color = "darkred", daysText = "Ikke levert inn"}
       else if (daysRemaining === 0) {color = "red", daysText = "Leveres i dag"}
@@ -448,6 +448,7 @@ async function loadCalendarEvents() {
         title: `${r.student_name} - PC ${r.pc_number}`,
         start: returnDate.toISOString().split("T")[0],
         display: "background",
+        padding: "10px",
         color: color,
         classNames: daysRemaining === 0 ? ["today-rental"] : [],
         extendedProps: {
