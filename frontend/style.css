@@ -328,12 +328,12 @@ h5 {
     background-clip: padding-box; 
 }
 
-.fc-header-toolbar {
+.fc .fc-toolbar.fc-header-toolbar {
     background-color: rgb(56, 101, 163);
     padding-bottom: 1.5em;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    border: 2px solid rgba(0, 58, 138, 0.519);
+    border: 4px solid rgba(0, 58, 138, 0.519);
     margin-bottom: none;
 } 
 
