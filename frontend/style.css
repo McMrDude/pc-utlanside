@@ -338,6 +338,7 @@ h5 {
 } 
 .fc .fc-toolbar.fc-header-toolbar * {
     margin: 5px;
+    margin-bottom: 0px;
 }
 
 .pcDiv {
