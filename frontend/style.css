@@ -333,9 +333,7 @@ h5 {
     padding-bottom: 1.5em;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    border-left: 2px solid rgba(88, 157, 255, 0.519);
-    border-top: 2px solid rgba(88, 157, 255, 0.519);
-    border-right: 2px solid rgba(88, 157, 255, 0.519);
+    border: 2px solid rgba(88, 157, 255, 0.519);
 } 
 
 .pcDiv {
