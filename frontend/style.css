@@ -163,7 +163,6 @@ p {
 .editPC {
     display:none; 
     opacity: 0;
-    scale: 0.9;
     border: 2px rgba(143, 184, 241, 0.519) solid;
     border-radius: 15px;
     background-color: white;
@@ -177,7 +176,7 @@ p {
 
     transition: 
         opacity 0.4s ease,
-        scale 0.4s ease,
+        transform 0.4s ease,
         display 0.4s ease allow-discrete; /* Keeps the element block during the exit animation */
 }
 
@@ -185,14 +184,14 @@ p {
   /* 3. The target visible state */
   display: block;
   opacity: 1;
-  scale: 1;
+  transform: translate(-50%, -50%) scale(1);
 }
 
 /* 4. Define the entrance styles right before the element renders */
 @starting-style {
   .editPC.is-visible {
     opacity: 0;
-    scale: 0.9;
+    transform: translate(-50%, -50%) scale(0.9);
   }
 }
 
