@@ -837,7 +837,7 @@ async function rejectRequest() {
 }
 
 function openEditPopup(pc) {
-  document.getElementById("editPC").style.display = "block";
+  document.getElementById("editPC").classList.add("is-visible");
 
   document.getElementById("editPcNumber").value = pc.pc_number;
   document.getElementById("editSerieNumber").value = pc.serie_nummer;
@@ -870,7 +870,7 @@ async function savePC(e) {
   const data = await res.json();
   console.log(data);
 
-  document.getElementById("editPC").style.display = "none";
+  document.getElementById("editPC").classList.remove("is-visible");
 
   loadPCs();
 }
