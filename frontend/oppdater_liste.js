@@ -448,7 +448,6 @@ async function loadCalendarEvents() {
         title: `${r.student_name} - PC ${r.pc_number}`,
         start: returnDate.toISOString().split("T")[0],
         display: "background",
-        style: "padding: 10px;",
         color: color,
         classNames: daysRemaining === 0 ? ["today-rental"] : [],
         extendedProps: {
