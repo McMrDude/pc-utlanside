@@ -334,8 +334,11 @@ h5 {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border: 4px solid rgba(0, 58, 138, 0.519);
-    margin-bottom: none;
+    margin-bottom: 0px;
 } 
+.fc .fc-toolbar.fc-header-toolbar * {
+    padding: 5px;
+}
 
 .pcDiv {
     border-bottom: 2px solid rgba(125, 179, 255, 0.519); 
