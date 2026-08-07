@@ -176,9 +176,9 @@ p {
     transform-origin: center;
 
     transition: 
-        opacity 0.3s ease,
-        transform 0.3s ease,
-        display 0.3s ease allow-discrete; /* Keeps the element block during the exit animation */
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        display 0.2s ease allow-discrete; /* Keeps the element block during the exit animation */
 }
 
 .editPC.is-visible {
