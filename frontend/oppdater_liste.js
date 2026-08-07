@@ -460,7 +460,6 @@ async function loadCalendarEvents() {
           pcNumber: r.pc_number
         }
       });
-      calendarInstance.style = ""
     };
   });
   const todayButton = document.getElementsByClassName("fc-today-button")[0];
