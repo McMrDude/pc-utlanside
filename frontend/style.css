@@ -328,6 +328,10 @@ h5 {
     background-clip: padding-box; 
 }
 
+.fc-header-toolbar {
+    background-color: black;
+} 
+
 .pcDiv {
     border-bottom: 2px solid rgba(125, 179, 255, 0.519); 
     background-color: white;
