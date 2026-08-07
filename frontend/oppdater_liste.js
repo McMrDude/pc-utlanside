@@ -837,7 +837,7 @@ async function rejectRequest() {
 }
 
 function openEditPopup(pc) {
-  document.getElementById("editPC").classList.add("is-visible");
+  document.getElementById("editPC").style.display = "block";
 
   document.getElementById("editPcNumber").value = pc.pc_number;
   document.getElementById("editSerieNumber").value = pc.serie_nummer;
