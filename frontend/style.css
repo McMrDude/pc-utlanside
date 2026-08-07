@@ -198,6 +198,9 @@ p {
 .editForm * {
     margin: 5px;
 }
+.editForm input {
+    border: 2px rgba(106, 168, 254, 0.519) solid;
+}
 
 
 #filterBtn {
