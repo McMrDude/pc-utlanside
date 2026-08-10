@@ -346,6 +346,7 @@ h5 {
     border: 2px solid rgb(37, 37, 149);
     border-radius: 5px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
 }
 
 
