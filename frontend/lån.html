@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="aktivLåntDiv">
+            <div style="
+                display: flex; 
+                flex-direction: column;
+                justify-content: center; 
+                align-items: center;
+                background-color: rgb(174, 174, 174);
+                box-shadow: inset 0 0 10px black;
+                padding: 10px;
+            ">
+                <p id="LåntOverskrift"></p>
+                <h3 id="pcLånt"></h3>
+                <h3 id="returDato"></h3>
+            </div>
+        </div>
+
+        <div id="requestPopup">
+            <div  style="
+                border: 3px solid black; 
+                border-radius: 20px; 
+                background-color: rgba(178, 209, 252, 0.519);
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 1000;
+                padding: 10px;
+            ">
+                <div class="requestLoan">
+                    <h1 style="text-align: center;">For hvilken lengde vil du låne en PC?</h1>
+                    <h3>Velg hvilken periode du ønsker å låne en PC</h3>
+                    <form id="requestForm" style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 10px;">
+                    <h3>Plukke opp dato:</h3>
+                    <input name="selectedDate" id="selectedDate">
+                    <h3>Returnerings dato:</h3>
+                    <input name="returnDate" id="returnDate">
+                    <p id="msg"></p>
+                    <button style="cursor: pointer;" type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
