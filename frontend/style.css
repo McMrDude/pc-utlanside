@@ -329,7 +329,7 @@ h5 {
 }
 
 .fc .fc-toolbar.fc-header-toolbar {
-    background-color: rgba(159, 199, 255, 0.519);
+    background-color: rgba(135, 185, 255, 0.519);
     padding-bottom: 1.5em;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -343,6 +343,8 @@ h5 {
 
 .fc .fc-daygrid-day-bg .fc-bg-event {
     padding: 10px;
+    border: 1px solid navy;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 
