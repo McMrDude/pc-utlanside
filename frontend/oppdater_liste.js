@@ -45,12 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
 ========================= */
 const popup = document.createElement("div");
 popup.id = "eventPopup";
-popup.style.position = "absolute";
-popup.style.backgroundColor = "white";
-popup.style.border = "1px solid black";
-popup.style.padding = "10px";
-popup.style.display = "none";
-popup.style.zIndex = "1000";
 document.body.appendChild(popup);
 
 /* =========================
@@ -67,9 +61,7 @@ async function openList() {
   whichTabOpen();
 }
 
-async function openCalendar() {
-  popup.style = "display: none; border: 1px solid black; background-color: rgb(197, 197, 197); padding: 10px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;";
-  
+async function openCalendar() {  
   const res = await fetch("/rentals-admin", {
     credentials: "include",
   });
@@ -124,7 +116,7 @@ async function openCalendar() {
             const formattedReturn = new Date(r.return_date).toLocaleDateString("no-NO");
             console.log("select Date: ", formattedRented, " | ", "return Date: ", formattedReturn)
             const rental = document.createElement("div");
-            rental.style = "background-color: lightgray; padding: 5px; margin-bottom: 5px; border-radius: 5px;";
+            rental.style = "background-color: rgba(146, 187, 246, 0.52); padding: 5px; margin-bottom: 5px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; gap: 10px;";
             rental.innerHTML = `
               <strong>
                 ${r.student_name} - PC ${r.pc_number}
