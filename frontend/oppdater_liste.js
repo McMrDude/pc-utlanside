@@ -116,7 +116,7 @@ async function openCalendar() {
             const formattedReturn = new Date(r.return_date).toLocaleDateString("no-NO");
             console.log("select Date: ", formattedRented, " | ", "return Date: ", formattedReturn)
             const rental = document.createElement("div");
-            rental.style = "background-color: rgba(146, 187, 246, 0.52); padding: 5px; margin-bottom: 5px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; gap: 10px;";
+            rental.style = "background-color: rgba(146, 187, 246, 0.52); padding: 5px; margin-bottom: 5px; border-radius: 5px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; gap: 10px;";
             rental.innerHTML = `
               <strong>
                 ${r.student_name} - PC ${r.pc_number}
