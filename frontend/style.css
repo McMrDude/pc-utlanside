@@ -343,8 +343,8 @@ h5 {
 
 .fc .fc-daygrid-day-bg .fc-bg-event {
     padding: 10px;
-    border: 1px solid navy;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgb(37, 37, 149);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 }
 
 
