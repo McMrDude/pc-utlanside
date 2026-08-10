@@ -10,21 +10,18 @@
     </head> 
     <body> 
         <div class="navbar">
-                    <div id="foresendt" style="position: fixed;">
-                    <h3>Forespørsel sendt</h3>
-                    </div>
-                    <button id="adminBtn" style="display: none;" onclick="location.href='/admin.html'">
-                    Admin
-                    <div id="adminAlert" style="width: 60px;background-color: rgb(11, 115, 170); 
-                    padding: 5px; border-radius: 30px; position: absolute; 
-                    font-size: 10px; display: none">Forespørsel !</div>
-                    </button>
-                    <a class="navButtons" style="cursor: pointer; color: white;" onclick="location.href='/index.html'">Dashboard</a>
-                    <a class="navButtons" style="cursor: pointer; color: white;">Lån PC</a>
-                    <a style="color: rgb(214, 214, 214); text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);">Kalender</a>
-                    <a class="navButtons" style="cursor: pointer; color: white;" onclick="location.href='/admin.html'">Administrator</a>
-                    <a class="navButtons" style="cursor: pointer; color: white;" onclick="logout()">Logg ut</a>
-                </div>
+            <button id="adminBtn" style="display: none;" onclick="location.href='/admin.html'">
+            Admin
+            <div id="adminAlert" style="width: 60px;background-color: rgb(11, 115, 170); 
+            padding: 5px; border-radius: 30px; position: absolute; 
+            font-size: 10px; display: none">Forespørsel !</div>
+            </button>
+            <a class="navButtons" style="cursor: pointer; color: white;" onclick="location.href='/index.html'">Dashboard</a>
+            <a class="navButtons" style="cursor: pointer; color: white;" onclick="location.href='/lån.html'">Lån PC</a>
+            <a style="color: rgb(214, 214, 214); text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);">Kalender</a>
+            <a class="navButtons" style="cursor: pointer; color: white;" onclick="location.href='/admin.html'">Administrator</a>
+            <a class="navButtons" style="cursor: pointer; color: white;" onclick="logout()">Logg ut</a>
+        </div>
         <div style="margin: 20px; display: flex; flex-direction: column;"> 
             <div id="calendar">
 
