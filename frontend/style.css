@@ -173,7 +173,7 @@ p {
     border: 2px rgba(143, 184, 241, 0.519) solid;
     border-radius: 15px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 1);
-    background-color: rgba(178, 209, 252, 1);
+    background-color: rgb(228 239 255);
     padding: 40px; 
     margin-top: 10px;
     position: absolute;

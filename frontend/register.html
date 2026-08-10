@@ -6,20 +6,136 @@
   <link rel="stylesheet" href="style.css"> 
 </head>
 <body style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
-  <h2>Lag konto</h2>
+  <div style="
+    display: flex; 
+    flex-direction: column; 
+    padding: 10px; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+    align-items: center;
+    border: 2px rgba(125, 179, 255, 0.519) solid;
+    border-radius: 10px;
+  ">
+    <div style="background-color: rgba(178, 209, 252, 0.519); border-top-left-radius: 10px; border-top-right-radius: 10px; padding: 10px; width: 100%; box-sizing: border-box; display: flex; justify-content: center;">
+      <h2 style="font-size: 30px;">Lag konto</h2>
+    </div>
 
-  <form id="registerForm">
-    <input id="name" placeholder="Navn" style="width: 200px; height: 30px;"><br><br>
-    <input id="email" placeholder="Email" style="width: 200px; height: 30px;"><br><br>
-    <input id="phone" placeholder="Telefonnummer" style="width: 200px; height: 30px"><br><br>
-    <input id="password" type="password" placeholder="Passord" style="width: 200px; height: 30px;"><br><br>
-    <input id="passwordAgain" type="password" placeholder="Skriv inn passord igjen" style="width: 200px; height: 30px;"><br><br>
-    <button type="submit">Registrer</button>
-  </form>
+    <form id="registerForm" style="display: flex; flex-direction: column; padding-top: 20px; gap: 20px">
+      <div style="display: flex; flex-direction: row; align-items: center; gap: 10px;">
+        <div style="display: flex; flex-direction: column;  gap: 30px">
+          <label style="padding-right: 10px;">Brukernavn</label>
+          <label style="padding-right: 10px;">Mail</label>
+          <label style="padding-right: 10px;">Telefonnummer</label>
+          <label style="padding-right: 10px;">Passord</label>
+          <label style="padding-right: 10px;">Passord sjekk</label>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <div class="inputs" style="display: flex; flex-direction: row; border-radius: 10px; border: 2px rgb(136, 134, 157) solid ;">
+            <div style="
+              border-top-left-radius: 8.6px; 
+              border-bottom-left-radius: 8.6px; 
+              padding: 10px; 
+              padding-bottom: 0px; 
+              background-color: rgba(204, 225, 255, 0.644);
+              border-right: 1px solid rgb(136, 134, 157);"><img src="icons/person_icon.png" style="width: 15px; height: 15px;">
+            </div>
+            <input id="name" placeholder="Navn" style="
+              width: 250px; 
+              height: 30px; 
+              border-top-right-radius: 10px;
+              border-bottom-right-radius: 10px;
+              border: none;
+              background-color: rgba(178, 209, 252, 0.644);
+            ">
+          </div>
 
-  <p id="msg"></p>
+          <div class="inputs" style="display: flex; flex-direction: row; border-radius: 10px; border: 2px rgb(136, 134, 157) solid ;">
+            <div style="
+              border-top-left-radius: 8.6px; 
+              border-bottom-left-radius: 8.6px; 
+              padding: 10px; 
+              padding-bottom: 0px; 
+              background-color: rgba(204, 225, 255, 0.644);
+              border-right: 1px solid rgb(136, 134, 157);"><img src="icons/key_icon.png" style="width: 15px; height: 15px;"></div>
+            <input id="email" placeholder="Email" style="
+              width: 250px; 
+              height: 30px; 
+              border-top-right-radius: 10px;
+              border-bottom-right-radius: 10px;
+              border: none;
+              background-color: rgba(178, 209, 252, 0.644);
+            ">
+          </div>
 
-  <p>Har du allerede en konto? <a href="/login.html">Login</a></p>
+          <div class="inputs" style="display: flex; flex-direction: row; border-radius: 10px; border: 2px rgb(136, 134, 157) solid ;">
+            <div style="
+              border-top-left-radius: 8.6px; 
+              border-bottom-left-radius: 8.6px; 
+              padding: 10px; 
+              padding-bottom: 0px; 
+              background-color: rgba(204, 225, 255, 0.644);
+              border-right: 1px solid rgb(136, 134, 157);"><img src="icons/key_icon.png" style="width: 15px; height: 15px;"></div>
+            <input id="phone" placeholder="Telefonnummer" style="
+              width: 250px; 
+              height: 30px; 
+              border-top-right-radius: 10px;
+              border-bottom-right-radius: 10px;
+              border: none;
+              background-color: rgba(178, 209, 252, 0.644);
+            ">
+          </div>
+
+          <div class="inputs" style="display: flex; flex-direction: row; border-radius: 10px; border: 2px rgb(136, 134, 157) solid ;">
+            <div style="
+              border-top-left-radius: 8.6px; 
+              border-bottom-left-radius: 8.6px; 
+              padding: 10px; 
+              padding-bottom: 0px; 
+              background-color: rgba(204, 225, 255, 0.644);
+              border-right: 1px solid rgb(136, 134, 157);"><img src="icons/key_icon.png" style="width: 15px; height: 15px;"></div>
+            <input id="password" type="password" placeholder="Passord" style="
+              width: 250px; 
+              height: 30px; 
+              border-top-right-radius: 10px;
+              border-bottom-right-radius: 10px;
+              border: none;
+              background-color: rgba(178, 209, 252, 0.644);
+            ">
+          </div>
+
+          <div class="inputs" style="display: flex; flex-direction: row; border-radius: 10px; border: 2px rgb(136, 134, 157) solid ;">
+            <div style="
+              border-top-left-radius: 8.6px; 
+              border-bottom-left-radius: 8.6px; 
+              padding: 10px; 
+              padding-bottom: 0px; 
+              background-color: rgba(204, 225, 255, 0.644);
+              border-right: 1px solid rgb(136, 134, 157);"><img src="icons/key_icon.png" style="width: 15px; height: 15px;"></div>
+            <input id="passwordAgain" type="password" placeholder="Skriv inn passord igjen" style="
+              width: 250px; 
+              height: 30px; 
+              border-top-right-radius: 10px;
+              border-bottom-right-radius: 10px;
+              border: none;
+              background-color: rgba(178, 209, 252, 0.644);
+            ">
+          </div>      
+        </div>       
+      </div>
+      <button type="submit" style="
+        background-color: rgb(56, 159, 193);
+        border: 2px rgb(49, 137, 166) solid;
+        color: white;
+        padding: 5px;
+        height: 35px;
+        border-radius: 5px;
+        cursor: pointer;
+      ">Registrer</button>
+    </form>
+
+    <p>Har du allerede en konto? <a href="/login.html">Login</a></p>
+
+    <p id="msg"></p>
+  </div>
 
   <script>
     document.getElementById("registerForm").addEventListener("submit", async (e) => {
