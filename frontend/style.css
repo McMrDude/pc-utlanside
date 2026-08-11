@@ -471,6 +471,8 @@ h5 {
     background-color: white;
     text-align: center; 
     padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .decideButton {
