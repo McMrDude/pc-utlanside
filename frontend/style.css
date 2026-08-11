@@ -292,6 +292,7 @@ p {
     cursor: pointer;
     margin-right: 5px;
     width: 30px;
+    background-color: rgba(130, 178, 245, 0.52);
     background-blend-mode: lighten;
     background-size: cover; 
     background-repeat: no-repeat;
