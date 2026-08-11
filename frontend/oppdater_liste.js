@@ -770,7 +770,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (!user) {
     alert("Du må være logget inn for å se denne siden");
-    window.location.href = "/login.html";
+    window.location.replace = "/login.html";
     return;
   }
 
