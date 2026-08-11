@@ -240,9 +240,10 @@ p {
 }
 
 #requestList {
-    margin: 10px;
+    margin-top: 10px;
     display: grid;
     grid-template-columns: auto auto auto auto;
+    justify-items: center;
 }
 
 .today-rental {
