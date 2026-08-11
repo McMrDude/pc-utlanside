@@ -217,6 +217,36 @@ p {
   }
 }
 
+.acceptRequest {
+    display:none; 
+    border: 2px rgba(143, 184, 241, 0.519) solid;
+    border-radius: 15px;
+    background-color: white;
+    padding: 20px; 
+    margin-top: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    transition: 
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        display 0.2s ease allow-discrete;
+}
+.acceptRequest.is-visible {
+  display: block;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+@starting-style {
+  .acceptRequest.is-visible {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+}
+
+
 .editForm {
     padding: 5px;
 }
@@ -416,7 +446,7 @@ h5 {
 }
 
 .decideButton {
-    width: 50%;
+    width: 70%;
     height: 100%;
     border-radius: 7px;
 }
