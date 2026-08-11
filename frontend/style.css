@@ -246,6 +246,11 @@ p {
     grid-template-columns: auto auto auto auto;
     justify-items: stretch;
 }
+#requestList * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .today-rental {
     outline: 5px solid rgba(255,220,40,.3) !important;
