@@ -685,7 +685,7 @@ async function loadPCs() {
         approve.className = "pcDiv";
         decline.className = "pcDiv"
 
-        bruker.textContent = `${req.student_name} (${req.student_email})`;
+        bruker.textContent = `${req.student_name}`;
 
         const formattedStart = new Date(req.start_date.split("T")[0]).toLocaleDateString("no-NO");
         const formattedReturn = new Date(req.return_date.split("T")[0]).toLocaleDateString("no-NO");        
