@@ -699,6 +699,7 @@ async function loadPCs() {
         buttonYes.textContent = "✓";
         buttonYes.onclick = () => {
           currentRequestId = req.id;
+          document.getElementById("overlayBackground").classList.add("is-visible");
           document.getElementById("acceptRequest").classList.add("is-visible");
         };
         const buttonNo = document.createElement("button");
@@ -821,6 +822,7 @@ async function rejectRequest() {
 
 function openEditPopup(pc) {
   document.getElementById("editPC").classList.add("is-visible");
+  document.getElementById("overlayBackground").classList.add("is-visible");
 
   document.getElementById("editPcNumber").value = pc.pc_number;
   document.getElementById("editSerieNumber").value = pc.serie_nummer;
@@ -854,6 +856,7 @@ async function savePC(e) {
   console.log(data);
 
   document.getElementById("editPC").classList.remove("is-visible");
+  document.getElementById("overlayBackground").classList.remove("is-visible");
 
   loadPCs();
 }

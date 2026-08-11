@@ -109,6 +109,8 @@
                     </div>
 
 
+                    <button class="overlayBackground" id="overlayBackground" onclick="getElementById('acceptRequest').classList.remove('is-visible'); getElementById('editPC').classList.remove('is-visible'); getElementById('overlayBackground').classList.remove('is-visible')"></button>
+
                     <div class="acceptRequest" id="acceptRequest">
                         <form onsubmit="approveRequest(event)">
                             <button type="button" class="close-btn" style="position: absolute; top: 10px; right: 10px;" onclick="getElementById('acceptRequest').classList.remove('is-visible')">X</button>
