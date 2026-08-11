@@ -391,14 +391,21 @@ h5 {
     grid-template-columns:
         minmax(0, 2fr)
         minmax(0, 1.3fr)
-        minmax(0, 0.6fr)
-        minmax(0, 0.6fr);
+        minmax(80px, 0.6fr)
+        minmax(80px, 0.6fr);
     justify-items: stretch;
 }
 #requestList > div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow-wrap: break-word;
+}
+#requestList h5 {
+    white-space: normal;
+    overflow-wrap: break-word;
+    text-align: center;
 }
 
 .pcDiv {
