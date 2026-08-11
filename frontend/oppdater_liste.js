@@ -691,7 +691,7 @@ async function loadPCs() {
         const formattedStart = new Date(req.start_date.split("T")[0]).toLocaleDateString("no-NO");
         const formattedReturn = new Date(req.return_date.split("T")[0]).toLocaleDateString("no-NO");        
 
-        date.textContent = `${formattedStart} → ${formattedReturn}`;
+        date.textContent = `${formattedStart} - ${formattedReturn}`;
 
         const buttonYes = document.createElement("button");
         buttonYes.className = "decideButton";
