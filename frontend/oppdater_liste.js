@@ -713,7 +713,6 @@ async function loadPCs() {
 
         reqDiv.appendChild(bruker);
         reqDiv.appendChild(date);
-        reqDiv.appendChild(status);
         reqDiv.appendChild(approve);
         reqDiv.appendChild(decline);
       };
