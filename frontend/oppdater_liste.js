@@ -666,7 +666,7 @@ async function loadPCs() {
   }
   else {
     // headers
-    ["Bruker", "Datoer", "Status", "Godkjenn", "Avvis"].forEach(h => {
+    ["Bruker", "Datoer", "Godkjenn", "Avvis"].forEach(h => {
       const row = document.createElement("div");
       row.textContent = h;
       reqDiv.appendChild(row);
@@ -677,13 +677,11 @@ async function loadPCs() {
       if (req.status === "pending") {
         const bruker = document.createElement("div");
         const date = document.createElement("div");
-        const status = document.createElement("div");
         const approve = document.createElement("div");
         const decline = document.createElement("div");
 
         bruker.className = "pcDiv";
         date.className = "pcDiv";
-        status.className = "pcDiv";
         approve.className = "pcDiv";
         decline.className = "pcDiv"
 
@@ -693,13 +691,6 @@ async function loadPCs() {
         const formattedReturn = new Date(req.return_date.split("T")[0]).toLocaleDateString("no-NO");        
 
         date.textContent = `${formattedStart} → ${formattedReturn}`;
-
-        status.textContent =
-          req.status === "pending"
-            ? "⏳ Venter på godkjenning"
-            : req.status === "approved"
-            ? "✅ Godkjent"
-            : "❌ Avvist";
 
         const buttonYes = document.createElement("button");
         buttonYes.className = "decideButton";
