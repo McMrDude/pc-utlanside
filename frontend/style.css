@@ -479,6 +479,8 @@ h5 {
     width: 70%;
     height: 100%;
     border-radius: 7px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 #yesButton {
