@@ -113,7 +113,7 @@
 
                     <div class="acceptRequest" id="acceptRequest">
                         <form onsubmit="approveRequest(event)">
-                            <button type="button" class="close-btn" style="position: absolute; top: 10px; right: 10px;" onclick="getElementById('acceptRequest').classList.remove('is-visible')">X</button>
+                            <button type="button" class="close-btn" style="position: absolute; top: 10px; right: 10px;" onclick="getElementById('acceptRequest').classList.remove('is-visible'); getElementById('overlayBackground').classList.remove('is-visible')">X</button>
                             <h3>Velg PC</h3>
 
                             <select id="pcSelect" name="pc_number"></select>
@@ -125,7 +125,7 @@
 
                     <div id="editPC" class="editPC">
                         <form class="editForm" onsubmit="savePC(event)">
-                            <button type="button" class="close-btn" style="position: absolute; top: 10px; right: 10px;" onclick="getElementById('editPC').classList.remove('is-visible')">X</button>
+                            <button type="button" class="close-btn" style="position: absolute; top: 10px; right: 10px;" onclick="getElementById('editPC').classList.remove('is-visible'); getElementById('overlayBackground').classList.remove('is-visible')">X</button>
                             <h3>Rediger PC</h3>
                             <div style="display: grid; grid-template-columns: auto auto auto; gap: 10px;">
                                 <h3 style="padding: 5px;">PC-nr:</h3>
