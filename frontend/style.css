@@ -294,11 +294,12 @@ p {
     width: 30px;
     background-color: rgba(130, 178, 245, 0.52);
     border: 2px solid rgba(102, 162, 248, 0.52);
+    border-radius: 5px;
     background-blend-mode: lighten;
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center;
-    padding: 5px;
+    padding: 3px;
 }
 
 .today-rental {
