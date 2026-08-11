@@ -669,6 +669,7 @@ async function loadPCs() {
     ["Bruker", "Datoer", "Godkjenn", "Avvis"].forEach(h => {
       const row = document.createElement("div");
       row.textContent = h;
+      row.style = "padding: 10px; border-bottom: 2px solid rgba(125, 179, 255, 0.519); "
       reqDiv.appendChild(row);
     });
 
