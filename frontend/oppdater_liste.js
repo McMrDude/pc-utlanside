@@ -661,6 +661,7 @@ async function loadPCs() {
   if (requests.length === 0) {
     const noReq = document.createElement("div");
     noReq.textContent = "Ingen forespørsler for øyeblikket";
+    reqDiv.style = "display: flex; justify-content: center; align-items: center";
     reqDiv.appendChild(noReq);
     return;
   }
@@ -669,7 +670,7 @@ async function loadPCs() {
     ["Bruker", "Datoer", "Godkjenn", "Avvis"].forEach(h => {
       const row = document.createElement("div");
       row.textContent = h;
-      row.style = "padding: 10px; border-bottom: 2px solid rgba(125, 179, 255, 0.519); "
+      row.style = "padding: 10px; border-bottom: 2px solid rgba(125, 179, 255, 0.519);"
       reqDiv.appendChild(row);
     });
 
