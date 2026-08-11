@@ -365,7 +365,7 @@ function renderRentals(array) {
   listDiv.innerHTML = "";
 
   const headers = [
-    "<h5 style='font-weight: bold;' id='statusHeader'><button id='filterBtn' img='icons/normal sort.png'></button>Status<div></div></h5>",
+    "<h5 style='font-weight: bold;' id='statusHeader'><button id='filterBtn'>↕</button>Status<div></div></h5>",
     "<h5 style='font-weight: bold;'>Lånerens navn</h5>",
     "<h5 style='font-weight: bold;'>PC-nr</h5>",
     "<h5 style='font-weight: bold;'>Dato lånt</h5>",
@@ -389,13 +389,13 @@ function renderRentals(array) {
   const filterBtn = document.getElementById("filterBtn");
   if (state === 0) {
       filterBtn.title = "Normal prioritering";
-      filterBtn.style.backgroundImage = "url('icons/normal sort.png')";
+      filterBtn.innerText = "↕";
     } else if (state === 1) {
-      filterBtn.title = "Forfalt prioritering";
-      filterBtn.style.backgroundImage = "url('icons/old sort.png')";
-    } else {
       filterBtn.title = "Nyest prioritering";
-      filterBtn.style.backgroundImage = "url('icons/new sort.png')"; 
+      filterBtn.innerText = "↓"; 
+    } else {
+      filterBtn.title = "Forfalt prioritering";
+      filterBtn.innerText = "↑";
     };
 
   filterBtn.onclick = () => {
