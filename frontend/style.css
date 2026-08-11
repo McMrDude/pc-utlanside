@@ -239,19 +239,6 @@ p {
     background-position: center;
 }
 
-#requestList {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    display: grid;
-    grid-template-columns: 2fr 1.3fr 0.6fr 0.6fr;
-    justify-items: stretch;
-}
-#requestList > div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .today-rental {
     outline: 5px solid rgba(255,220,40,.3) !important;
     cursor: pointer;
@@ -390,18 +377,31 @@ h5 {
     /* transform: scale(1.1); */
 }
 
+.shit {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+
+#requestList {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 2fr 1.3fr minmax(0, 0.6fr) minmax(0, 0.6fr);
+    justify-items: stretch;
+}
+#requestList > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .pcDiv {
     border-bottom: 2px solid rgba(125, 179, 255, 0.519); 
     background-color: white;
     text-align: center; 
     padding: 10px;
-}
-
-.shit {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
 }
 
 .decideButton {
