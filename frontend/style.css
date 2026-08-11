@@ -219,8 +219,10 @@ p {
 
 .acceptRequest {
     display:none; 
+    opacity: 0;
     border: 2px rgba(143, 184, 241, 0.519) solid;
     border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 1);
     background-color: white;
     padding: 20px; 
     margin-top: 10px;
@@ -228,6 +230,7 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transform-origin: center;
 
     transition: 
         opacity 0.2s ease,
