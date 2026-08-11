@@ -365,7 +365,7 @@ function renderRentals(array) {
   listDiv.innerHTML = "";
 
   const headers = [
-    "<h5 style='font-weight: bold;' id='statusHeader'><h5>↕</h5>Status<div></div></h5>",
+    "<h5 style='font-weight: bold;' id='statusHeader'><h5 id='filterBtn'>↕</h5>Status<div></div></h5>",
     "<h5 style='font-weight: bold;'>Lånerens navn</h5>",
     "<h5 style='font-weight: bold;'>PC-nr</h5>",
     "<h5 style='font-weight: bold;'>Dato lånt</h5>",
