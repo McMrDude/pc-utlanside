@@ -699,7 +699,7 @@ async function loadPCs() {
         buttonYes.textContent = "✓";
         buttonYes.onclick = () => {
           currentRequestId = req.id;
-          document.getElementById("acceptRequest").style.display = "block";
+          document.getElementById("acceptRequest").classList.add("is-visible");
         };
         const buttonNo = document.createElement("button");
         buttonNo.className = "decideButton";
