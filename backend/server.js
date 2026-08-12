@@ -315,7 +315,11 @@ app.get("/rentals-admin", requireAdmin, async (req, res) => {
 app.get("/rentals-front", requireLogin, async (req, res) => {
   try {
     const result = await pool.query(
-      "SELECT * FROM rentals WHERE user_id = $1 ORDER BY created_at DESC",
+      `SELECT * 
+      FROM rentals 
+      WHERE user_id = $1 
+      AND status = 'active'
+      ORDER BY created_at DESC`,
       [req.session.user.id]
     );
 

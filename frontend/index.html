@@ -70,7 +70,7 @@
   </div>
 
 
-  <div id="normalUserDiv" style="display: flex; justify-content: center; align-items: center; margin-top: 20px; padding-bottom: 30px;">
+  <div id="loanStatus" style="display: flex; justify-content: center; align-items: center; margin-top: 20px; padding-bottom: 30px;">
     <div style="
       display: flex; 
       flex-direction: column; 
@@ -82,8 +82,30 @@
       margin-top: 20px;
       width: 65%;
       box-shadow: 0 5px 10px -6px black;
+      justify-content: center; 
+      align-items: center;
     "> 
-      <h3>Personelig Oversikt</h3>
+        <h3 id="loanStatusTitle">Personelig Oversikt</h3>
+        <div id="loanStatusInfo">
+
+        </div>
+        <a
+        id="loanPageButton"
+        href="/lån.html"
+        style="
+            display: none;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: white;
+            border: 2px solid rgba(125, 179, 255, 0.8);
+            border-radius: 10px;
+            text-decoration: none;
+            color: black;
+        "
+    >
+        Gå til Lån PC
+    </a>
+      </div>
     </div>
   </div>
 
@@ -213,8 +235,10 @@
         document.getElementById("adminBtn").style.display = "block";
         document.getElementById("calendarBtn").style.display = "block";
         document.getElementById("listPage").style.display = "flex";
-        document.getElementById("normalUserDiv").style.display = "none";
+        document.getElementById("loanStatus").style.display = "none";
       }
+
+      await loadLoanStatus();
 
       const avail = await fetch("/availability").then(r => r.json());
       document.getElementById("available").textContent = avail.available;
@@ -238,7 +262,6 @@
       const rentals = await ren.json();
 
       rentals.forEach(r => {
-        if (r.student_email === me.email) {
           if (r.status !== "returned") {
             const today = new Date();
             const todayString = today.toISOString().split("T")[0];
@@ -271,7 +294,6 @@
               erLånt = true;
             }
           }
-        }
       });
 
       const res = await fetch("/requests", {
@@ -284,7 +306,6 @@
           kill(req.id);
           console.log("DEN BURDE DØ!!.");
         } else {
-          if (req.student_email === me.email) {
             if (req.status === "pending") {
               document.getElementById("foresprørselDiv").style.display = "none";
               document.getElementById("aktivLåntDiv").style.display = "flex";
@@ -299,7 +320,6 @@
               document.getElementById("LåntOverskrift").textContent = "Din forespørsel har blitt avslått";
               requestDenied(req.id);
             }
-          }
         }
       });
 
@@ -342,6 +362,132 @@
     async function requestLoan() {
       const popup = document.getElementById("requestPopup").style.display = "block";
     };
+
+    async function loadLoanStatus() {
+      const loanStatusTitle = document.getElementById("loanStatusTitle");
+      const loanStatusInfo = document.getElementById("loanStatusInfo");
+      const loanPageButton = document.getElementById("loanPageButton");
+
+      // Get this user's rentals
+      const rentalResponse = await fetch("/rentals-front", {
+          credentials: "include"
+      });
+
+      const rentals = await rentalResponse.json();
+
+      // Get this user's requests
+      const requestResponse = await fetch("/requests", {
+          credentials: "include"
+      });
+
+      const requests = await requestResponse.json();
+
+
+      // ==========================================
+      // 1. CHECK IF THEY CURRENTLY HAVE A PC
+      // ==========================================
+
+      const activeRental = rentals.find(r => r.status === "active");
+
+      if (activeRental) {
+
+          loanStatusTitle.textContent = "Du har en PC utlånt";
+
+          loanStatusInfo.innerHTML = `
+              <p>PC nummer: <strong>${activeRental.pc_number}</strong></p>
+              <p>Utlånt fra: <strong>${new Date(activeRental.rented_date).toLocaleDateString("no-NO")}</strong></p>
+              <p>Returneres: <strong>${new Date(activeRental.return_date).toLocaleDateString("no-NO")}</strong></p>
+          `;
+
+          loanPageButton.style.display = "none";
+
+          return;
+      }
+
+
+      // ==========================================
+      // 2. CHECK FOR PENDING REQUEST
+      // ==========================================
+
+      const pendingRequest = requests.find(r => r.status === "pending");
+
+      if (pendingRequest) {
+
+          loanStatusTitle.textContent = "Forespørsel sendt";
+
+          loanStatusInfo.innerHTML = `
+              <p>
+                  Du har sendt inn en forespørsel om å låne en PC.
+              </p>
+
+              <p>
+                  Forespørselen må først vurderes av en administrator.
+              </p>
+
+              <p>
+                  Ønsket periode:
+                  <strong>
+                      ${new Date(pendingRequest.start_date).toLocaleDateString("no-NO")}
+                      -
+                      ${new Date(pendingRequest.return_date).toLocaleDateString("no-NO")}
+                  </strong>
+              </p>
+          `;
+
+          loanPageButton.style.display = "none";
+
+          return;
+      }
+
+
+      // ==========================================
+      // 3. CHECK FOR DECLINED REQUEST
+      // ==========================================
+
+      const declinedRequest = requests.find(r => r.status === "declined");
+
+      if (declinedRequest) {
+
+          loanStatusTitle.textContent = "Forespørselen ble avslått";
+
+          loanStatusInfo.innerHTML = `
+              <p>
+                  Forespørselen din om å låne en PC ble avslått.
+              </p>
+
+              <p>
+                  Du kan sende inn en ny forespørsel dersom du ønsker.
+              </p>
+          `;
+
+          loanPageButton.textContent = "Send ny forespørsel";
+          loanPageButton.style.display = "inline-block";
+
+          return;
+      }
+
+
+      // ==========================================
+      // 4. NOTHING → THEY DON'T HAVE OR REQUEST PC
+      // ==========================================
+
+      loanStatusTitle.textContent = "Du har ingen aktiv PC";
+
+      loanStatusInfo.innerHTML = `
+          <p>
+              Du har for øyeblikket ingen PC utlånt
+              og ingen aktiv forespørsel.
+          </p>
+
+          <p>
+              Hvis du ønsker å låne en PC,
+              kan du sende inn en forespørsel.
+          </p>
+      `;
+
+      loanPageButton.textContent = "Gå til Lån PC";
+      loanPageButton.style.display = "inline-block";
+    }
 
     load();
   </script>
