@@ -773,9 +773,14 @@ async function checkLogin() {
         return;
     }
 
-    if (user.role !== "admin") {
-        window.location.replace("/index.html");
-        return;
+    if (
+        window.location.pathname === "/admin.html" ||
+        window.location.pathname === "/calendar.html"
+    ) {
+        if (user.role !== "admin") {
+            window.location.replace("/index.html");
+            return;
+        }
     }
 }
 
