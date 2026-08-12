@@ -325,42 +325,6 @@
       const popup = document.getElementById("requestPopup").style.display = "block";
     };
 
-    document.getElementById("requestForm").addEventListener("submit", async (e) => {
-      document.documentElement.classList.add("loading");
-      e.preventDefault();
-      const selectedDate = document.getElementById('selectedDate').value;
-      const returnDate = document.getElementById('returnDate').value;
-      console.log("select Date: ", selectedDate, " | ", "return Date: ", returnDate)
-
-      const res = await fetch("/submit-date", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        credentials: "include",
-        body: JSON.stringify({ selectedDate, returnDate })
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        document.getElementById("msg").textContent = "Du må velge datoer";
-        return;
-      }
-      else {
-        document.getElementById("msg").textContent = "";
-        const popup = document.getElementById("requestPopup").style.display = "none";
-      }
-      
-      const foresendt = document.getElementById("foresendt");
-      foresendt.classList.remove("foresendt");
-      void foresendt.offsetWidth; // forces reflow
-      foresendt.classList.add("foresendt");
-      document.getElementById("requestForm").reset();
-      await load();
-      document.documentElement.classList.remove("loading");
-    });
-
     load();
   </script>
   <script src="auth.js"></script>
