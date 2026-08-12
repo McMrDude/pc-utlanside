@@ -139,7 +139,7 @@
     onclick="closeForm()"></button>
   </div> -->
 
-  <script src="oppdater_liste.js"></script>
+  <!-- <script src="oppdater_liste.js"></script> -->
 
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/no.js"></script>
@@ -167,13 +167,14 @@
         const controller = new AbortController();
         const signal = controller.signal;
 
-        fetch("/health", { signal })
-        .then( response => response.json())
-        .catch ( err => {
-          if (err.name === "AbortError") {
-            console.log("Fetch aborted");
-            location.reload();
-          }
+        fetch("/health")
+        .then(res => {
+            if (!res.ok) {
+                console.log("Server unavailable");
+            }
+        })
+        .catch(err => {
+            console.log("Health check failed:", err);
         });
 
         setTimeout(() => controller.abort(), 1000);
