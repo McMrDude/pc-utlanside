@@ -10,8 +10,8 @@
   <div class="navbar">
     <a style="color: rgb(214, 214, 214); text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);;">Dashboard</a>
     <a class="navButtons" style="cursor: pointer; color: white;" onclick="location.href='/lån.html'">Lån PC</a>
-    <a class="navButtons" style="cursor: pointer; color: white;" onclick="location.href='/calendar.html'">Kalender</a>
-    <a class="navButtons" style="cursor: pointer; color: white;" onclick="location.href='/admin.html'">Administrator</a>
+    <a id="calendarBtn" class="navButtons" style="cursor: pointer; color: white; display: none;" onclick="location.href='/calendar.html'">Kalender</a>
+    <a id="adminBtn" class="navButtons" style="cursor: pointer; color: white; display: none;" onclick="location.href='/admin.html'">Administrator</a>
     <a class="navButtons" style="cursor: pointer; color: white;" onclick="logout()">Logg ut</a>
   </div>
   <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
@@ -187,11 +187,15 @@
     async function load() {
       let erLånt = false;
       const me = await fetch("/me", { credentials: "include" }).then(r => r.json());
-      if (!me) location.href = "/login.html";
+      if (!me) {
+        location.href = "/login.html";
+        return;
+      }
 
-      /* if (me.role === "admin") {
+      if (me.role === "admin") {
         document.getElementById("adminBtn").style.display = "block";
-      } */
+        document.getElementById("calendarBtn").style.display = "block";
+      }
 
       const avail = await fetch("/availability").then(r => r.json());
       document.getElementById("available").textContent = avail.available;

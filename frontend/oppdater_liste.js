@@ -774,8 +774,8 @@ async function checkLogin() {
     }
 
     if (user.role !== "admin") {
-        const pcTab = document.getElementById("pcTab");
-        if (pcTab) pcTab.style.display = "none";
+        window.location.replace("/index.html");
+        return;
     }
 }
 
