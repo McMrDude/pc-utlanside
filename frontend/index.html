@@ -70,7 +70,7 @@
   </div>
 
 
-  <div id="normalUserDiv" style="display: none; justify-content: center; align-items: center; margin-top: 20px; padding-bottom: 30px;">
+  <div id="normalUserDiv" style="display: flex; justify-content: center; align-items: center; margin-top: 20px; padding-bottom: 30px;">
     <div style="
       display: flex; 
       flex-direction: column; 
@@ -213,6 +213,7 @@
         document.getElementById("adminBtn").style.display = "block";
         document.getElementById("calendarBtn").style.display = "block";
         document.getElementById("listPage").style.display = "flex";
+        document.getElementById("normalUserDiv").style.display = "none";
       }
 
       const avail = await fetch("/availability").then(r => r.json());
