@@ -70,7 +70,7 @@
   </div>
 
 
-  <div id="listPage" style="display: flex; justify-content: center; align-items: center; margin-top: 20px; padding-bottom: 30px;"> 
+  <div id="listPage" style="display: none; justify-content: center; align-items: center; margin-top: 20px; padding-bottom: 30px;"> 
     <div style="
       display: flex; 
       flex-direction: column; 
@@ -109,7 +109,7 @@
     </div>
   </div> -->
 
-  <div id="requestPopup" style="display: none;">
+  <!-- <div id="requestPopup" style="display: none;">
     <div  style="border: 3px solid black; 
     border-radius: 20px; 
     background-color: rgb(197, 197, 197);
@@ -137,7 +137,7 @@
     border: none;
     outline: none;"
     onclick="closeForm()"></button>
-  </div>
+  </div> -->
 
   <script src="oppdater_liste.js"></script>
 
@@ -195,6 +195,7 @@
       if (me.role === "admin") {
         document.getElementById("adminBtn").style.display = "block";
         document.getElementById("calendarBtn").style.display = "block";
+        document.getElementById("listPage").style.display = "flex";
       }
 
       const avail = await fetch("/availability").then(r => r.json());
