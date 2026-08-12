@@ -53,6 +53,26 @@ app.use(session({
   cookie: { maxAge: 24 * 60 * 60 * 1000 } // 1 day
 }));
 
+function requireAdminPage(req, res, next) {
+    if (!req.session.user) {
+        return res.redirect("/login.html");
+    }
+
+    if (req.session.user.role !== "admin") {
+        return res.redirect("/index.html");
+    }
+
+    next();
+}
+
+
+app.get("/admin.html", requireAdminPage, (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/admin.html"));
+});
+app.get("/calendar.html", requireAdminPage, (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/calendar.html"));
+});
+
 /* =========================
    Serve frontend
 ========================= */
@@ -196,7 +216,7 @@ app.delete("/rentals/:id", async (req, res) => {
 /* =========================
    PCs
 ========================= */
-app.get("/pcs", async (req, res) => {
+app.get("/pcs", requireAdmin, async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM pcs ORDER BY pc_number");
     res.json(result.rows);
@@ -206,7 +226,7 @@ app.get("/pcs", async (req, res) => {
   }
 });
 
-app.post("/pcs", async (req, res) => {
+app.post("/pcs", requireAdmin, async (req, res) => {
   try {
     const { pc_number, serie_number, model } = req.body;
     await pool.query("INSERT INTO pcs (pc_number, serie_nummer, model) VALUES ($1, $2, $3)", [pc_number, serie_number, model]);
@@ -248,11 +268,20 @@ app.get("/pcs/status", requireAdmin, async (req, res) => {
   }
 });
 
-app.get("/requests", async (req, res) => {
+app.get("/requests", requireLogin, async (req, res) => {
   try {
-    const result = await pool.query(
-      "SELECT * FROM requests ORDER BY requested_at DESC"
-    );
+    let result;
+
+    if (req.session.user.role === "admin") {
+      result = await pool.query(
+        "SELECT * FROM requests ORDER BY requested_at DESC"
+      );
+    } else {
+      result = await pool.query(
+        "SELECT * FROM requests WHERE user_id = $1 ORDER BY requested_at DESC",
+        [req.session.user.id]
+      );
+    }
 
     res.json(result.rows);
   } catch (err) {
@@ -272,7 +301,7 @@ app.listen(PORT, () => {
 /* =========================
    Get rentals (role-based)
 ========================= */
-app.get("/rentals-admin", requireLogin, async (req, res) => {
+app.get("/rentals-admin", requireAdmin, async (req, res) => {
   try {
     const result = await pool.query(
       "SELECT * FROM rentals ORDER BY created_at DESC",
@@ -298,7 +327,7 @@ app.get("/rentals-front", requireLogin, async (req, res) => {
   }
 });
 
-app.post("/rentals", requireLogin, async (req, res) => {
+app.post("/rentals", requireAdmin, async (req, res) => {
   try {
     const results = await pool.query("SELECT * FROM requests WHERE id = $1", 
     [req.body.requestId]);
@@ -335,7 +364,7 @@ app.post("/rentals", requireLogin, async (req, res) => {
     res.status(500).json({ error: "Insert failed" });
   }
 });
-app.post("/request-decline", requireLogin, async (req, res) => {
+app.post("/request-decline", requireAdmin, async (req, res) => {
   try {
     await pool.query(
       `UPDATE requests SET status = 'declined' WHERE id = $1`,
@@ -374,7 +403,7 @@ app.post("/kill-the-neighbors-dog", requireLogin, async (req, res) => {
   }
 });
 
-app.post("/return", requireLogin, async (req, res) => {
+app.post("/return", requireAdmin, async (req, res) => {
   try {
     const { id, pcNumber } = req.body;
 
