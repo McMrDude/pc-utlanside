@@ -23,14 +23,6 @@ body {
     background-color: rgb(28, 131, 149);
 }
 
-#adminBtn {
-    background-color: black;
-    border: 2px solid rgb(11, 115, 170);
-    color: white;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
 @keyframes inNout {
     0% {
         transform: translate(-50%,-110%);
