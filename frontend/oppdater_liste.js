@@ -765,21 +765,21 @@ async function getCurrentUser() {
   return await res.json();
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
-  const user = await getCurrentUser();
+async function checkLogin() {
+    const user = await getCurrentUser();
 
-  if (!user) {
-    alert("Du må være logget inn for å se denne siden");
-    window.location.replace("/login.html");
-    return;
-  }
+    if (!user) {
+        window.location.replace("/login.html");
+        return;
+    }
 
-  // Optional: admin-only UI
-  if (user.role !== "admin") {
-    const pcTab = document.getElementById("pcTab");
-    if (pcTab) pcTab.style.display = "none";
-  }
-});
+    if (user.role !== "admin") {
+        const pcTab = document.getElementById("pcTab");
+        if (pcTab) pcTab.style.display = "none";
+    }
+}
+
+window.addEventListener("pageshow", checkLogin);
 
 
 async function approveRequest() {
