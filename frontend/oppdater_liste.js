@@ -11,8 +11,6 @@ let listPageOpen = false;
 let calendarPageOpen = false;
 let pcPageOpen = true;
 
-whichTabOpen();
-
 
 async function forespårselAlert() {
   const res = await fetch("/requests", {
@@ -58,7 +56,6 @@ async function openList() {
   listPageOpen = true;
   calendarPageOpen = false;
   pcPageOpen = false;
-  whichTabOpen();
 }
 
 async function openCalendar() {  
@@ -545,7 +542,6 @@ function openPCs() {
   listPageOpen = false;
   calendarPageOpen = false;
   pcPageOpen = true;
-  whichTabOpen();
   loadPCs();
 }
 
@@ -865,37 +861,4 @@ async function savePC(e) {
   document.getElementById("overlayBackground").classList.remove("is-visible");
 
   loadPCs();
-}
-
-function whichTabOpen() {
-  const listBtn = document.getElementById("listBtn");
-  const calendarBtn = document.getElementById("calendarBtn");
-  const pcBtn = document.getElementById("pcBtn");
-
-  if (listBtn) {
-    if (listPageOpen) {
-      listBtn.style =
-        "background-color: rgb(187, 187, 187); border: 2px solid blue";
-    } else {
-      listBtn.style = "";
-    }
-  }
-
-  if (calendarBtn) {
-    if (calendarPageOpen) {
-      calendarBtn.style =
-        "background-color: rgb(187, 187, 187); border: 2px solid blue";
-    } else {
-      calendarBtn.style = "";
-    }
-  }
-
-  if (pcBtn) {
-    if (pcPageOpen) {
-      pcBtn.style =
-        "background-color: rgb(187, 187, 187); border: 2px solid blue";
-    } else {
-      pcBtn.style = "";
-    }
-  }
 }
