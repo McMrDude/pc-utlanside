@@ -125,11 +125,11 @@
         document.getElementById("calendarBtn").style.display = "block";
       }
 
-      const avail = await fetch("/availability").then(r => r.json());
+      /* const avail = await fetch("/availability").then(r => r.json());
       document.getElementById("available").textContent = avail.available;
 
       if (avail.available === 0) {
-        /* document.getElementById("foresprørselDiv").style.display = "none";
+         document.getElementById("foresprørselDiv").style.display = "none";
         document.getElementById("aktivLåntDiv").style.display = "flex";
         document.getElementById("LåntOverskrift").textContent = "Ingen PC-er tilgjengelig for utlån";
         erLånt = true; */
@@ -220,11 +220,10 @@
         document.getElementById("foresprørselDiv").style.display = "flex";
       } */
 
-      document.getElementById("next").textContent =
+      /* document.getElementById("next").textContent =
         avail.nextAvailableDate
           ? new Date(avail.nextAvailableDate).toLocaleDateString()
-          : "N/A";
-    }
+          : "N/A"; */
 
     async function kill(id) {
       await fetch("/kill-the-neighbors-dog", {
