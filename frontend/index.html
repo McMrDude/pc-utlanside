@@ -402,9 +402,13 @@
 
           loanStatusTitle.textContent = "Du har en PC utlånt";
 
+          const returnDate =
+            activeRental.return_date.split("T")[0];
+
+
           loanStatusInfo.innerHTML = `
             <div style="display: flex; flex-direction: row; width: 100%">
-              <div style="flex-basis: 50%"></div>
+              <div style="flex-basis: 50%">${createMiniCalendar(returnDate)}</div>
               <div>
                 <p>PC nummer: <strong>${activeRental.pc_number}</strong></p>
                 <p>Utlånt fra: <strong>${new Date(activeRental.rented_date).toLocaleDateString("no-NO")}</strong></p>
@@ -501,6 +505,49 @@
 
       loanPageButton.textContent = "Gå til Lån PC";
       loanPageButton.style.display = "inline-block";
+    }
+
+    let miniCalendar;
+
+    function createMiniCalendar(returnDate) {
+
+        const calendarElement = document.getElementById("miniCalendar");
+
+        calendarElement.style.display = "block";
+
+        // If the calendar already exists, destroy it first
+        if (miniCalendar) {
+            miniCalendar.destroy();
+        }
+
+        miniCalendar = new FullCalendar.Calendar(calendarElement, {
+
+            initialView: "dayGridMonth",
+
+            // This makes the calendar open on the month
+            // containing the return date
+            initialDate: returnDate,
+
+            locale: "no",
+
+            // Remove all navigation buttons
+            headerToolbar: false,
+
+            // Make it smaller
+            height: "auto",
+
+            // Highlight the return date
+            events: [
+                {
+                    start: returnDate,
+                    allDay: true,
+                    display: "background",
+                    backgroundColor: "rgba(255, 80, 80, 0.5)"
+                }
+            ]
+        });
+
+        miniCalendar.render();
     }
 
     load();
