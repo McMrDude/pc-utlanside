@@ -172,17 +172,21 @@
                 }
             });
 
-            const res = await fetch("/requests", {
-                credentials: "include"
-            });
-            const requests = await res.json();
+            async function load() {
+                const res = await fetch("/requests", {
+                    credentials: "include"
+                });
+                const requests = await res.json();
 
-            if (requests.length > 0 ) {
-                const alert = document.createElement("img");
-                alert.src = "icons/adminAlert_icon.png";
-                alert.style = "width: 15px; height: 15px;";
-                document.getElementById("adminAlert").appendChild(alert);
-            }
+                if (requests.length > 0 ) {
+                    const alert = document.createElement("img");
+                    alert.src = "icons/adminAlert_icon.png";
+                    alert.style = "width: 15px; height: 15px;";
+                    document.getElementById("adminAlert").appendChild(alert);
+                }
+            };
+
+            load();
         </script>
     </body> 
 </html>
