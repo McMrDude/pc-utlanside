@@ -17,7 +17,15 @@
             <a class="navButtons" style="cursor: pointer; color: white;" onclick="location.href='/index.html'">Dashboard</a>
             <a style="color: rgb(214, 214, 214); text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);">Lån PC</a>
             <a id="calendarBtn" class="navButtons" style="display: none;" onclick="location.href='/calendar.html'">Kalender</a>
-            <a id="adminBtn" class="navButtons" style="display: none;" onclick="location.href='/admin.html'">Administrator</a>
+            <a id="adminBtn" class="navButtons" style="display: none;" onclick="location.href='/admin.html'">Administrator
+              <div id="adminAlert" style="
+                top: -18%;
+                right: -8%;
+                position: absolute;
+                padding: 0px;
+              ">
+              </div>
+            </a>
             <a class="navButtons" style="cursor: pointer; color: white;" onclick="logout()">Logg ut</a>
         </div>
 
@@ -128,9 +136,17 @@
       }
     }
 
-    /* if (requests.length > 0 ) {
-      document.getElementById("adminAlert").style.display = "block";
-    } */
+    const res = await fetch("/requests", {
+      credentials: "include"
+    });
+    const requests = await res.json();
+
+    if (requests.length > 0 ) {
+      const alert = document.createElement("img");
+      alert.src = "icons/adminAlert_icon.png";
+      alert.style = "width: 15px; height: 15px;";
+      document.getElementById("adminAlert").appendChild(alert);
+    }
 
     async function kill(id) {
       await fetch("/kill-the-neighbors-dog", {

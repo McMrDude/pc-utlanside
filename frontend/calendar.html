@@ -19,7 +19,15 @@
             <a class="navButtons" style="cursor: pointer; color: white;" onclick="location.href='/index.html'">Dashboard</a>
             <a class="navButtons" style="cursor: pointer; color: white;" onclick="location.href='/lån.html'">Lån PC</a>
             <a style="color: rgb(214, 214, 214); text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);">Kalender</a>
-            <a class="navButtons" style="cursor: pointer; color: white;" onclick="location.href='/admin.html'">Administrator</a>
+            <a class="navButtons" style="cursor: pointer; color: white;" onclick="location.href='/admin.html'">Administrator
+                <div id="adminAlert" style="
+                top: -18%;
+                right: -8%;
+                position: absolute;
+                padding: 0px;
+                ">
+                </div>
+            </a>
             <a class="navButtons" style="cursor: pointer; color: white;" onclick="logout()">Logg ut</a>
         </div>
         <div style="margin: 20px; display: flex; flex-direction: column;"> 
@@ -49,6 +57,18 @@
                     setTimeout(() => controller.abort(), 1000);
                 }
             });
+
+            const res = await fetch("/requests", {
+                credentials: "include"
+            });
+            const requests = await res.json();
+
+            if (requests.length > 0 ) {
+                const alert = document.createElement("img");
+                alert.src = "icons/adminAlert_icon.png";
+                alert.style = "width: 15px; height: 15px;";
+                document.getElementById("adminAlert").appendChild(alert);
+            }
         </script>
     </body> 
 </html>
