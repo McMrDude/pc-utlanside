@@ -167,7 +167,7 @@
             });
 
             async function load() {
-                const res = await fetch("/requests", {
+                const res = await fetch("/activeRequests", {
                     credentials: "include"
                 });
                 const requests = await res.json();

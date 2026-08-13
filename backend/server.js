@@ -288,6 +288,21 @@ app.get("/requests", requireLogin, async (req, res) => {
     res.status(500).json({ error: "Failed to fetch requests" });
   }
 });
+app.get("/activeRequests", requireLogin, async (req, res) => {
+  try {
+    let result;
+
+    result = await pool.query(
+      "SELECT * FROM requests WHERE status != 'declined ORDER BY requested_at DESC"
+    );
+
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch requests" });
+  }
+});
+
 
 /* =========================
    Start server
