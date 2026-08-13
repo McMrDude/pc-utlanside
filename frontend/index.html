@@ -12,9 +12,11 @@
     <a id="lånBtn" class="navButtons" style="display: none;" onclick="location.href='/lån.html'">Lån PC</a>
     <a id="calendarBtn" class="navButtons" style="display: none;" onclick="location.href='/calendar.html'">Kalender</a>
     <a id="adminBtn" class="navButtons" style="display: none;" onclick="location.href='/admin.html'">Administrator
-      <div id="adminAlert" style="width: 60px;background-color: rgb(11, 115, 170); 
-            padding: 5px; border-radius: 30px; position: absolute; 
-            font-size: 10px; display: none">Forespørsel !
+      <div id="adminAlert" style="
+        top: 10px;
+        right: 10px;
+        position: absolute;
+      ">
       </div>
     </a>
     <a class="navButtons" onclick="logout()">Logg ut</a>
@@ -324,6 +326,10 @@
       }); */
 
       if (requests.length > 0 ) {
+        const alert = document.createElement("img");
+        alert.src = "icons/adminAlert_icon.png";
+        alert.style = "width: 25px; height: 25px;";
+        document.getElementById("adminAlert").appendChild.alert;
         document.getElementById("adminAlert").style.display = "block";
       }
 
