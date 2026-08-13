@@ -135,16 +135,16 @@
           document.getElementById("calendarBtn").style.display = "block";
       }
 
-      const res = await fetch("/requests", {
-        credentials: "include"
+      const res = await fetch("/activeRequests", {
+          credentials: "include"
       });
       const requests = await res.json();
 
       if (requests.length > 0 ) {
-        const alert = document.createElement("img");
-        alert.src = "icons/adminAlert_icon.png";
-        alert.style = "width: 15px; height: 15px;";
-        document.getElementById("adminAlert").appendChild(alert);
+          const alert = document.createElement("img");
+          alert.src = "icons/adminAlert_icon.png";
+          alert.style = "width: 15px; height: 15px;";
+          document.getElementById("adminAlert").appendChild(alert);
       }
     }
 

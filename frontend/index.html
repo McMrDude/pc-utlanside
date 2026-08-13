@@ -301,11 +301,6 @@
           }
       });
 
-      const res = await fetch("/requests", {
-        credentials: "include"
-      });
-      const requests = await res.json();
-
       /* requests.forEach(req => {
         if (req.notice_decline) {
           kill(req.id);
@@ -325,6 +320,11 @@
             }
         }
       }); */
+
+      const res = await fetch("/activeRequests", {
+          credentials: "include"
+      });
+      const requests = await res.json();
 
       if (requests.length > 0 ) {
         const alert = document.createElement("img");
