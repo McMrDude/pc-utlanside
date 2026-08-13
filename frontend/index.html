@@ -8,8 +8,8 @@
 </head>
 <body>
   <div class="navbar">
-    <a style="color: rgb(214, 214, 214); text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);;">Dashboard</a>
-    <a class="navButtons" onclick="location.href='/lån.html'">Lån PC</a>
+    <a id="dashboardBtn" style="color: rgb(214, 214, 214); text-shadow: 2px 2px 3px rgba(0, 0, 0, 1); display: none;">Dashboard</a>
+    <a id="lånBtn" class="navButtons" style="display: none;" onclick="location.href='/lån.html'">Lån PC</a>
     <a id="calendarBtn" class="navButtons" style="display: none;" onclick="location.href='/calendar.html'">Kalender</a>
     <a id="adminBtn" class="navButtons" style="display: none;" onclick="location.href='/admin.html'">Administrator</a>
     <a class="navButtons" onclick="logout()">Logg ut</a>
@@ -230,6 +230,8 @@
       }
 
       if (me.role === "admin") {
+        document.getElementById("dashboardBtn").style.display = "block";
+        document.getElementById("lånBtn").style.display = "block";
         document.getElementById("adminBtn").style.display = "block";
         document.getElementById("calendarBtn").style.display = "block";
         document.getElementById("listPage").style.display = "flex";

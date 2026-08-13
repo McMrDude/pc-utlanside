@@ -286,6 +286,7 @@
       document.getElementById("requestForm").reset();
       await load();
       document.documentElement.classList.remove("loading");
+      window.location.replace("/index.html");
     });
 
     load();
