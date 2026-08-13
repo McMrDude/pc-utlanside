@@ -102,7 +102,7 @@
           padding: 10px;
         ">
         Gå til Lån PC
-    </a>
+        </a>
       </div>
     </div>
   </div>
@@ -298,7 +298,7 @@
       });
       const requests = await res.json();
 
-      requests.forEach(req => {
+      /* requests.forEach(req => {
         if (req.notice_decline) {
           kill(req.id);
           console.log("DEN BURDE DØ!!.");
@@ -320,7 +320,7 @@
 
       if (requests.length > 0 ) {
         document.getElementById("adminAlert").style.display = "block";
-      }
+      } */
 
       /* if (!erLånt) {
         document.getElementById("foresprørselDiv").style.display = "flex";
