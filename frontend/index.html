@@ -5,6 +5,7 @@
   <title>Dashboard</title>
   <link rel="stylesheet" href="style.css"> 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet"> 
 </head>
 <body>
   <div class="navbar">
@@ -187,6 +188,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/no.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/locales-all.global.min.js"></script>
   <script>
     const selectDate = document.getElementById("selectedDate");
     flatpickr(selectDate, {
@@ -400,9 +403,14 @@
           loanStatusTitle.textContent = "Du har en PC utlånt";
 
           loanStatusInfo.innerHTML = `
-              <p>PC nummer: <strong>${activeRental.pc_number}</strong></p>
-              <p>Utlånt fra: <strong>${new Date(activeRental.rented_date).toLocaleDateString("no-NO")}</strong></p>
-              <p>Returneres: <strong>${new Date(activeRental.return_date).toLocaleDateString("no-NO")}</strong></p>
+            <div style="display: flex; flex-direction: column">
+              <div style="flex-basis: 50%"></div>
+              <div>
+                <p>PC nummer: <strong>${activeRental.pc_number}</strong></p>
+                <p>Utlånt fra: <strong>${new Date(activeRental.rented_date).toLocaleDateString("no-NO")}</strong></p>
+                <p>Returneres: <strong>${new Date(activeRental.return_date).toLocaleDateString("no-NO")}</strong></p>
+              </div>
+            </div>
           `;
 
           loanPageButton.style.display = "none";
