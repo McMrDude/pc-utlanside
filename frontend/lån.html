@@ -54,12 +54,12 @@
                 <div class="requestLoan">
                     <h3 style="font-size: 25px;">Hvor lenge skal du låne PC for?</h3>
                     <form id="requestForm" style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 10px;">
-                    <h3>Hente dato:</h3>
-                    <input name="selectedDate" id="selectedDate">
-                    <h3>Returnerings dato:</h3>
-                    <input name="returnDate" id="returnDate">
-                    <p id="msg"></p>
-                    <button style="cursor: pointer;" type="submit">Send</button>
+                      <h3>Hente dato:</h3>
+                      <input name="selectedDate" id="selectedDate">
+                      <h3>Returnerings dato:</h3>
+                      <input name="returnDate" id="returnDate">
+                      <p id="msg"></p>
+                      <button style="cursor: pointer;" type="submit">Send</button>
                     </form>
                 </div>
             </div>
@@ -125,14 +125,14 @@
         document.getElementById("calendarBtn").style.display = "block";
       }
 
-      /* const avail = await fetch("/availability").then(r => r.json());
+      const avail = await fetch("/availability").then(r => r.json());
       document.getElementById("available").textContent = avail.available;
 
       if (avail.available === 0) {
          document.getElementById("foresprørselDiv").style.display = "none";
         document.getElementById("aktivLåntDiv").style.display = "flex";
         document.getElementById("LåntOverskrift").textContent = "Ingen PC-er tilgjengelig for utlån";
-        erLånt = true; */
+        erLånt = true;
 
         const alert = document.createElement("img");
         alert.src = "icons/alert_icon.png";
@@ -216,14 +216,14 @@
         document.getElementById("adminAlert").style.display = "block";
       }
 
-      /* if (!erLånt) {
+      if (!erLånt) {
         document.getElementById("foresprørselDiv").style.display = "flex";
-      } */
+      }
 
-      /* document.getElementById("next").textContent =
+      document.getElementById("next").textContent =
         avail.nextAvailableDate
           ? new Date(avail.nextAvailableDate).toLocaleDateString()
-          : "N/A"; */
+          : "N/A";
 
     async function kill(id) {
       await fetch("/kill-the-neighbors-dog", {
@@ -289,6 +289,7 @@
       document.documentElement.classList.remove("loading");
       /* window.location.replace("/index.html"); */
     });
+  }
 
     load();
   </script>
