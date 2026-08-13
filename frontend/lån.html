@@ -283,7 +283,9 @@
       void foresendt.offsetWidth; // forces reflow
       foresendt.classList.add("foresendt");
       document.getElementById("requestForm").reset();
+      console.debug("This fires before await load")
       await load();
+      console.degub("This fires after await load")
       document.documentElement.classList.remove("loading");
       window.location.replace("/index.html");
     });
