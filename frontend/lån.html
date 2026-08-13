@@ -11,9 +11,9 @@
     </head>
     <body>
         <div class="navbar">
-            <div id="foresendt" style="position: fixed;">
+            <!-- <div id="foresendt" style="position: fixed;">
                 <h3>Forespørsel sendt</h3>
-            </div>
+            </div> -->
             <a class="navButtons" style="cursor: pointer; color: white;" onclick="location.href='/index.html'">Dashboard</a>
             <a style="color: rgb(214, 214, 214); text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);">Lån PC</a>
             <a id="calendarBtn" class="navButtons" style="display: none;" onclick="location.href='/calendar.html'">Kalender</a>
@@ -185,10 +185,10 @@
         const popup = document.getElementById("requestPopup").style.display = "none";
       }
       
-      const foresendt = document.getElementById("foresendt");
+      /* const foresendt = document.getElementById("foresendt");
       foresendt.classList.remove("foresendt");
       void foresendt.offsetWidth; // forces reflow
-      foresendt.classList.add("foresendt");
+      foresendt.classList.add("foresendt"); */
       document.getElementById("requestForm").reset();
       console.debug("This fires before await load")
       await load();
