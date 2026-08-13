@@ -13,9 +13,10 @@
     <a id="calendarBtn" class="navButtons" style="display: none;" onclick="location.href='/calendar.html'">Kalender</a>
     <a id="adminBtn" class="navButtons" style="display: none; position: relative" onclick="location.href='/admin.html'">Administrator
       <div id="adminAlert" style="
-        top: 10px;
-        right: 10px;
+        top: -60%;
+        right: -40%;
         position: absolute;
+        padding: 0px;
       ">
       </div>
     </a>
@@ -328,7 +329,7 @@
       if (requests.length > 0 ) {
         const alert = document.createElement("img");
         alert.src = "icons/adminAlert_icon.png";
-        alert.style = "width: 25px; height: 25px;";
+        alert.style = "width: 15px; height: 15px;";
         document.getElementById("adminAlert").appendChild(alert);
       }
 
