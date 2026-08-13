@@ -11,7 +11,12 @@
     <a id="dashboardBtn" style="color: rgb(214, 214, 214); text-shadow: 2px 2px 3px rgba(0, 0, 0, 1); display: none;">Dashboard</a>
     <a id="lånBtn" class="navButtons" style="display: none;" onclick="location.href='/lån.html'">Lån PC</a>
     <a id="calendarBtn" class="navButtons" style="display: none;" onclick="location.href='/calendar.html'">Kalender</a>
-    <a id="adminBtn" class="navButtons" style="display: none;" onclick="location.href='/admin.html'">Administrator</a>
+    <a id="adminBtn" class="navButtons" style="display: none;" onclick="location.href='/admin.html'">Administrator
+      <div id="adminAlert" style="width: 60px;background-color: rgb(11, 115, 170); 
+            padding: 5px; border-radius: 30px; position: absolute; 
+            font-size: 10px; display: none">Forespørsel !
+      </div>
+    </a>
     <a class="navButtons" onclick="logout()">Logg ut</a>
   </div>
   <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
@@ -316,11 +321,11 @@
               requestDenied(req.id);
             }
         }
-      });
+      }); */
 
       if (requests.length > 0 ) {
         document.getElementById("adminAlert").style.display = "block";
-      } */
+      }
 
       /* if (!erLånt) {
         document.getElementById("foresprørselDiv").style.display = "flex";
