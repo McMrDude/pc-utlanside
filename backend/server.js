@@ -293,7 +293,7 @@ app.get("/activeRequests", requireLogin, async (req, res) => {
     let result;
 
     result = await pool.query(
-      "SELECT * FROM requests WHERE status != 'declined ORDER BY requested_at DESC"
+      "SELECT * FROM requests WHERE status != 'declined' ORDER BY requested_at DESC"
     );
 
     res.json(result.rows);
