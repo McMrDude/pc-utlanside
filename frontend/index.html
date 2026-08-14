@@ -404,7 +404,7 @@
 
           loanStatusInfo.innerHTML = `
             <div style="display: flex; flex-direction: row; width: 100%">
-              <div id="miniCalendar" style="flex-basis: 50%"></div>
+              <div id="miniCalendar" style="flex-basis: 50%; border: 2px solid blue; border-radius: 10px; margin: 10px; overflow: hidden"></div>
               <div>
                 <p>PC nummer: <strong>${activeRental.pc_number}</strong></p>
                 <p>Utlånt fra: <strong>${new Date(activeRental.rented_date).toLocaleDateString("no-NO")}</strong></p>
@@ -537,6 +537,7 @@
 
             // Make it smaller
             height: "auto",
+
 
             // Highlight the return date
             events: [
