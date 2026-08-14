@@ -648,19 +648,19 @@ async function loadPCs() {
     forEachCount++;
   });
 
-  const res = await fetch("/activeRequests", {
+  const activeres = await fetch("/activeRequests", {
     credentials: "include"
   });
-  const requests = await res.json();
+  const activeRequests = await activeres.json();
 
-  const reqDiv = document.getElementById("requestList");
-    reqDiv.innerHTML = "";
+  const activeReqDiv = document.getElementById("requestList");
+    activeReqDiv.innerHTML = "";
 
-  if (requests.length === 0) {
+  if (activeRequests.length === 0) {
     const noReq = document.createElement("div");
     noReq.textContent = "Ingen forespørsler for øyeblikket";
-    reqDiv.style = "display: flex; justify-content: center; align-items: center";
-    reqDiv.appendChild(noReq);
+    activeReqDiv.style = "display: flex; justify-content: center; align-items: center";
+    activeReqDiv.appendChild(noReq);
     return;
   }
   else {
@@ -669,7 +669,7 @@ async function loadPCs() {
       const row = document.createElement("div");
       row.textContent = h;
       row.style = "padding: 10px; border-bottom: 2px solid rgba(125, 179, 255, 0.519);"
-      reqDiv.appendChild(row);
+      activeReqDiv.appendChild(row);
     });
   }
 
