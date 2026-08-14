@@ -12,7 +12,7 @@ let calendarPageOpen = false;
 let pcPageOpen = true;
 
 
-async function forespårselAlert() {
+/* async function forespårselAlert() {
   const res = await fetch("/requests", {
     credentials: "include"
   });
@@ -25,7 +25,7 @@ async function forespårselAlert() {
   }
 }
 
-forespårselAlert();
+forespårselAlert(); */
 
 
 document.addEventListener("DOMContentLoaded", () => {
