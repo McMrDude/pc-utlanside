@@ -155,6 +155,7 @@ async function openCalendar() {
           };
         });
 
+        document.getElementById("overlayBackground").classList.add("is-visible");
         popup.classList.add("is-visible");
       }
     });
