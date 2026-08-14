@@ -844,6 +844,8 @@ function openEditPopup(pc) {
   // 👇 THIS is the important part
   document.getElementById("editPC").dataset.id = pc.id;
 
+  const editingPcId = pc.id;
+
   document.getElementById("pcDeleteBtn").addEventListener("click", async () => {
 
     if (!editingPcId) {
@@ -883,6 +885,7 @@ function openEditPopup(pc) {
     }
   });
 }
+
 async function savePC(e) {
   e.preventDefault();
 
