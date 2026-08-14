@@ -9,10 +9,6 @@ body {
     font-family: Arial, Helvetica, sans-serif; 
 } 
 
-button:hover {
-  background-color: color-mix(in srgb, currentColor, black 20%);
-}
-
 .submitButton {
     background-color: rgb(56, 159, 193);
     border: 2px rgb(49, 137, 166) solid;
@@ -23,9 +19,9 @@ button:hover {
     cursor: pointer;
     transition: 0.2s;
 }
-/* .submitButton:hover {
+.submitButton:hover {
     background-color: rgb(28, 131, 149);
-} */
+}
 
 @keyframes inNout {
     0% {
@@ -103,9 +99,9 @@ p {
     cursor: wait !important;
 }
 
-/* #openFormButton :hover {
+#openFormButton :hover {
     background-color: rgb(157, 157, 157);
-} */
+}
 
 .requestLoan {
     padding: 10px;
@@ -228,12 +224,34 @@ p {
   }
 }
 
+#saveEditBtn {
+    padding: 10px;
+    background-color: rgb(255, 191, 0);
+    border: 2px solid black;
+    border-radius: 5px;
+    transition: 0.2f;
+}
+#saveEditBtn:hover {
+    background-color: rgb(255, 205, 54);
+}
+#saveEditBtn:active {
+    background-color: rgb(207, 155, 0);
+}
+
 #pcDeleteBtn {
-    padding: 20px;
+    padding: 10px;
     background-color: rgb(226, 73, 73);
     border: 2px solid rgb(134, 41, 41);
-    border-radius: 8px;
+    border-radius: 5px;
+    transition: 0.2f;
 }
+#pcDeleteBtn:hover {
+    background-color: rgb(255, 108, 108);
+}
+#pcDeleteBtn:active {
+    background-color: rgb(167, 56, 56);
+}
+
 
 
 .acceptRequest {
