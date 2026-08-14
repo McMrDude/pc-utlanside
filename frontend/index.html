@@ -402,13 +402,9 @@
 
           loanStatusTitle.textContent = "Du har en PC utlånt";
 
-          const returnDate =
-            activeRental.return_date.split("T")[0];
-
-
           loanStatusInfo.innerHTML = `
             <div style="display: flex; flex-direction: row; width: 100%">
-              <div style="flex-basis: 50%">${createMiniCalendar(returnDate)}</div>
+              <div id="miniCalendar" style="flex-basis: 50%"></div>
               <div>
                 <p>PC nummer: <strong>${activeRental.pc_number}</strong></p>
                 <p>Utlånt fra: <strong>${new Date(activeRental.rented_date).toLocaleDateString("no-NO")}</strong></p>
@@ -418,6 +414,12 @@
           `;
 
           loanPageButton.style.display = "none";
+
+
+          const returnDate =
+            activeRental.return_date.split("T")[0];
+
+          createMiniCalendar(returnDate);
 
           return;
       }
