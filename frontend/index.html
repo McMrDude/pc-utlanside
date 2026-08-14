@@ -404,11 +404,11 @@
 
           loanStatusInfo.innerHTML = `
             <div style="display: flex; flex-direction: row; width: 100%">
-              <div id="miniCalendar" style="flex-basis: 50%; border: 2px solid blue; border-radius: 10px; margin: 10px; overflow: hidden"></div>
-              <div>
-                <p>PC nummer: <strong>${activeRental.pc_number}</strong></p>
-                <p>Utlånt fra: <strong>${new Date(activeRental.rented_date).toLocaleDateString("no-NO")}</strong></p>
-                <p>Returneres: <strong>${new Date(activeRental.return_date).toLocaleDateString("no-NO")}</strong></p>
+              <div id="miniCalendar" style="flex-basis: 50%; border: 2px solid blue; border-radius: 10px; margin: 10px; overflow: hidden; background-color: white;"></div>
+              <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px;">
+                <p style="font-size: 30px;">PC nummer: <strong>${activeRental.pc_number}</strong></p>
+                <p style="font-size: 30px;">Utlånt fra: <strong>${new Date(activeRental.rented_date).toLocaleDateString("no-NO")}</strong></p>
+                <p style="font-size: 30px;">Returneres: <strong>${new Date(activeRental.return_date).toLocaleDateString("no-NO")}</strong></p>
               </div>
             </div>
           `;
