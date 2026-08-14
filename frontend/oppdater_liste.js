@@ -648,8 +648,7 @@ async function loadPCs() {
     forEachCount++;
   });
 
-  // 👇 FETCH REQUESTS
-  const res = await fetch("/requests", {
+  const res = await fetch("/activeRequests", {
     credentials: "include"
   });
   const requests = await res.json();
@@ -672,6 +671,14 @@ async function loadPCs() {
       row.style = "padding: 10px; border-bottom: 2px solid rgba(125, 179, 255, 0.519);"
       reqDiv.appendChild(row);
     });
+
+
+
+  // 👇 FETCH REQUESTS
+  const res = await fetch("/requests", {
+    credentials: "include"
+  });
+  const requests = await res.json();
 
     // 👇 LOOP THROUGH REQUESTS
     requests.forEach(req => {
@@ -720,7 +727,7 @@ async function loadPCs() {
       };
     });
   }
-}
+
 
 async function addPC() {
   const pcNumberInput = document.getElementById("pcNumber");
