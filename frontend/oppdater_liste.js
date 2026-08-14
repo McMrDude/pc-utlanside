@@ -671,6 +671,7 @@ async function loadPCs() {
       row.style = "padding: 10px; border-bottom: 2px solid rgba(125, 179, 255, 0.519);"
       reqDiv.appendChild(row);
     });
+  }
 
 
 
