@@ -149,6 +149,7 @@ async function openCalendar() {
               });
 
               popup.classList.remove("is-visible");
+              document.getElementById('overlayBackground').classList.remove('is-visible')
               loadRentals();
               loadCalendarEvents();
             };
@@ -529,6 +530,7 @@ if (searchInput) {
 document.addEventListener("click", function (e) {
   if (!e.target.closest(".fc-event")) {
     popup.classList.remove("is-visible");
+    document.getElementById('overlayBackground').classList.remove('is-visible')
   }
 });
 
