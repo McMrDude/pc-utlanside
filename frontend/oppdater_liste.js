@@ -681,6 +681,9 @@ async function loadPCs() {
   });
   const requests = await res.json();
 
+  const reqDiv = document.getElementById("requestList");
+    activeReqDiv.innerHTML = "";  
+
     // 👇 LOOP THROUGH REQUESTS
     requests.forEach(req => {
       if (req.status === "pending") {
