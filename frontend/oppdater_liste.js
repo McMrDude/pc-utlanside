@@ -528,7 +528,7 @@ if (searchInput) {
 
 document.addEventListener("click", function (e) {
   if (!e.target.closest(".fc-event")) {
-    popup.classList.add("is-visible");
+    popup.classList.remove("is-visible");
   }
 });
 
