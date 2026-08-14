@@ -294,16 +294,9 @@ app.delete("/pcs/:id", async (req, res) => {
         const pcNumber = pcResult.rows[0].pc_number;
 
         // Delete the active rental for this PC, if one exists
-        /* await client.query(
-            `UPDATE FROM rentals
-             SET status = 'declined'
-             WHERE pc_number = $1
-             AND status = 'active'`,
-            [pcNumber]
-        ); */
-
         await client.query(
-            `DELETE FROM rentals
+            `UPDATE rentals
+             SET status = 'declined'
              WHERE pc_number = $1
              AND status = 'active'`,
             [pcNumber]
