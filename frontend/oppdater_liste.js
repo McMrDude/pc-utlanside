@@ -843,6 +843,45 @@ function openEditPopup(pc) {
 
   // 👇 THIS is the important part
   document.getElementById("editPC").dataset.id = pc.id;
+
+  document.getElementById("pcDeleteBtn").addEventListener("click", async () => {
+
+    if (!editingPcId) {
+        alert("Ingen PC valgt.");
+        return;
+    }
+
+    const confirmed = confirm(
+        "Er du sikker på at du vil slette denne PC-en?\n\n" +
+        "Hvis PC-en er utlånt, vil det aktive utlånet også bli slettet."
+    );
+
+    if (!confirmed) {
+        return;
+    }
+
+    try {
+        const response = await fetch(`/pcs/${editingPcId}`, {
+            method: "DELETE",
+            credentials: "include"
+        });
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.error || "Kunne ikke slette PC");
+        }
+
+        // Close edit popup
+        document.getElementById("editPC").style.display = "none";
+
+        // Refresh your PC list
+        loadPCs();
+
+    } catch (err) {
+        console.error(err);
+        alert("Feil ved sletting: " + err.message);
+    }
+  });
 }
 async function savePC(e) {
   e.preventDefault();

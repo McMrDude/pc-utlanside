@@ -267,6 +267,67 @@ app.get("/pcs/status", requireAdmin, async (req, res) => {
   }
 });
 
+app.delete("/pcs/:id", async (req, res) => {
+    const client = await pool.connect();
+
+    try {
+        const { id } = req.params;
+
+        await client.query("BEGIN");
+
+        // Find the PC
+        const pcResult = await client.query(
+            `SELECT pc_nummer
+             FROM pcs
+             WHERE id = $1`,
+            [id]
+        );
+
+        if (pcResult.rowCount === 0) {
+            await client.query("ROLLBACK");
+
+            return res.status(404).json({
+                error: "PC not found"
+            });
+        }
+
+        const pcNumber = pcResult.rows[0].pc_nummer;
+
+        // Delete the active rental for this PC, if one exists
+        await client.query(
+            `DELETE FROM rentals
+             WHERE pc_number = $1
+             AND status = 'active'`,
+            [pcNumber]
+        );
+
+        // Delete the PC
+        await client.query(
+            `DELETE FROM pcs
+             WHERE id = $1`,
+            [id]
+        );
+
+        await client.query("COMMIT");
+
+        res.sendStatus(204);
+
+    } catch (err) {
+        await client.query("ROLLBACK");
+
+        console.error(err);
+
+        res.status(500).json({
+            error: "Failed to delete PC"
+        });
+
+    } finally {
+        client.release();
+    }
+});
+
+
+
 app.get("/requests", requireLogin, async (req, res) => {
   try {
     let result;
