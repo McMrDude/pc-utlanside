@@ -412,6 +412,18 @@ h5 {
     transform: translate(-50%, -50%); 
     z-index: 1000;
 } 
+#eventPopup.is-visible {
+  display: block;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+@starting-style {
+  #eventPopup.is-visible {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+}
+
 
 .fc-bg-event { 
     opacity: 1 !important; 
