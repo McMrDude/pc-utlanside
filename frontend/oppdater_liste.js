@@ -844,7 +844,7 @@ function openEditPopup(pc) {
   // 👇 THIS is the important part
   document.getElementById("editPC").dataset.id = pc.id;
 
-  const editingPcId = pc.id;
+  let editingPcId = pc.id;
 
   document.getElementById("pcDeleteBtn").addEventListener("click", async () => {
 
