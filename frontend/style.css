@@ -411,9 +411,14 @@ h5 {
     left: 50%; 
     transform: translate(-50%, -50%); 
     z-index: 1000;
+
+    transition: 
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        display 0.2s ease allow-discrete;
 } 
 #eventPopup.is-visible {
-  display: block;
+  display: grid;
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }

@@ -148,14 +148,14 @@ async function openCalendar() {
                 })
               });
 
-              popup.style.display = "none";
+              popup.classList.remove("is-visible");
               loadRentals();
               loadCalendarEvents();
             };
           };
         });
 
-        popup.style.display = "grid";
+        popup.classList.add("is-visible");
       }
     });
 
@@ -527,7 +527,7 @@ if (searchInput) {
 
 document.addEventListener("click", function (e) {
   if (!e.target.closest(".fc-event")) {
-    popup.style.display = "none";
+    popup.classList.add("is-visible");
   }
 });
 
