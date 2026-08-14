@@ -201,6 +201,7 @@ p {
     left: 50%;
     transform: translate(-50%, -50%) scale(0.9);
     transform-origin: center;
+    z-index: 1000;
 
     transition: 
         opacity 0.2s ease,
@@ -237,6 +238,7 @@ p {
     left: 50%;
     transform: translate(-50%, -50%) scale(0.9);
     transform-origin: center;
+    z-index: 1000;
 
     transition: 
         opacity 0.2s ease,
@@ -265,6 +267,8 @@ p {
     left: 50%;
     transform: translate(-50%, -50%);
     transform-origin: center;
+
+    z-index: 900;
 
     transition: 
         opacity 0.2s ease,
