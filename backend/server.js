@@ -277,7 +277,7 @@ app.delete("/pcs/:id", async (req, res) => {
 
         // Find the PC
         const pcResult = await client.query(
-            `SELECT pc_nummer
+            `SELECT pc_number
              FROM pcs
              WHERE id = $1`,
             [id]
@@ -291,7 +291,7 @@ app.delete("/pcs/:id", async (req, res) => {
             });
         }
 
-        const pcNumber = pcResult.rows[0].pc_nummer;
+        const pcNumber = pcResult.rows[0].pc_number;
 
         // Delete the active rental for this PC, if one exists
         await client.query(
