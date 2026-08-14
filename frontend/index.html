@@ -272,7 +272,7 @@
       });
       const rentals = await ren.json();
 
-      rentals.forEach(r => {
+      /* rentals.forEach(r => {
           if (r.status !== "returned") {
             const today = new Date();
             const todayString = today.toISOString().split("T")[0];
@@ -302,7 +302,7 @@
               erLånt = true;
             }
           }
-      });
+      }); */
 
       /* requests.forEach(req => {
         if (req.notice_decline) {
