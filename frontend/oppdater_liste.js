@@ -115,9 +115,14 @@ async function openCalendar() {
             const rental = document.createElement("div");
             rental.style = "background-color: rgba(146, 187, 246, 0.52); padding: 5px; margin-bottom: 5px; border-radius: 5px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; gap: 10px;";
             rental.innerHTML = `
-              <strong>
-                ${r.student_name} - PC ${r.pc_number}
-              </strong><br>
+              <div style="display: flex; flex-direction: column;">
+                <strong style="border: 2px solid rgba(172, 202, 244, 0.519); border-right: 0;">
+                  Bruker: ${r.student_name}
+                </strong><br>
+                <strong style="border: 2px solid rgba(172, 202, 244, 0.519);">
+                  PC: ${r.pc_number}
+                </strong>
+              </div>
               <h3 style="margin: 0px;">Rented: ${formattedRented}</h3><br>
               <h3 style="margin: 0px;">Return: ${formattedReturn}</h3><br>
               <button class="popupDeleteBtn">✓</button>
