@@ -125,7 +125,7 @@ async function openCalendar() {
 
             const closeBtn = document.createElement("button");
             closeBtn.innerHTML = "X";
-            closeBtn.onclick("document.getElementById('eventPopup').classList.remove('is-visible'); document.getElementById('overlayBackground').classList.remove('is-visible')");
+            closeBtn.addEventListener("click", function() {("document.getElementById('eventPopup').classList.remove('is-visible'); document.getElementById('overlayBackground').classList.remove('is-visible')")});
             closeBtn.className = "close-btn";
             closeBtn.style = "position: absolute; top: 10px; right: 10px;";
 
