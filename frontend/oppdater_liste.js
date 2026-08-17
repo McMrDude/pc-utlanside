@@ -465,7 +465,7 @@ async function loadCalendarEvents() {
       const daysRemaining =
         Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24)) - 1;
 
-      let color = "green";
+      let color = "rgba(154, 255, 139, 0.5)";
       let daysText = "Lenge til levering";
       if (daysRemaining < 0) {color = "red", daysText = "Ikke levert inn"}
       else if (daysRemaining === 0) {color = "pink", daysText = "Leveres i dag"}
