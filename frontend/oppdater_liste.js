@@ -455,7 +455,7 @@ async function loadCalendarEvents() {
       else if (daysRemaining === 0) {color = "red", daysText = "Leveres i dag"}
       else if (daysRemaining <= 5) {color = "orange", daysText = "Skal snart leveres"}
 
-      if (rentalsThatDay = 1) {
+      if (rentalsThatDay <= 1) {
         calendarInstance.addEvent({
           title: `${r.student_name} - PC ${r.pc_number}`,
           start: returnDate.toISOString().split("T")[0],
