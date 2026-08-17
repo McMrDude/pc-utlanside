@@ -107,6 +107,12 @@ async function openCalendar() {
           r.return_date.split("T")[0] === clickedDate
         );
 
+        const closeDiv = document.createElement("div");
+        closeDiv.style = "display: flex; justify-content: center; align-items: center;"
+        closeDiv.innerHTML = `<button type="button" class="close-btn" style="margin-left: auto;" onclick="document.getElementById('eventPopup').classList.remove('is-visible'); document.getElementById('overlayBackground').classList.remove('is-visible')">X</button>`;
+
+        popup.appendChild(closeDiv);
+
         sameDayRentals.forEach(r => {
           if (r.status === "active") {
             const formattedRented = new Date(r.rented_date).toLocaleDateString("no-NO");
@@ -130,11 +136,6 @@ async function openCalendar() {
               </div>
             `;
 
-            const closeDiv = document.createElement("div");
-            closeDiv.style = "display: flex; justify-content: center; align-items: center;"
-            closeDiv.innerHTML = `<button type="button" class="close-btn" style="margin-left: auto;" onclick="document.getElementById('eventPopup').classList.remove('is-visible'); document.getElementById('overlayBackground').classList.remove('is-visible')">X</button>`;
-
-            popup.appendChild(closeDiv);
             popup.appendChild(rental);
 
             document.querySelector(".popupDeleteBtn").onclick = async () => {
