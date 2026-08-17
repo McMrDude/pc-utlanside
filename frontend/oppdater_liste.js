@@ -488,6 +488,8 @@ async function loadCalendarEvents() {
           }
         });
       };
+
+      console.log("Current pc for this date: ", rentalsThatDay, ".  Date: ", returnDate);
     };
   });
   const todayButton = document.getElementsByClassName("fc-today-button")[0];
