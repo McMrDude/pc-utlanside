@@ -119,7 +119,7 @@ async function openCalendar() {
             const formattedReturn = new Date(r.return_date).toLocaleDateString("no-NO");
             console.log("select Date: ", formattedRented, " | ", "return Date: ", formattedReturn)
             const rental = document.createElement("div");
-            rental.style = "padding: 5px; margin-bottom: 5px; border-radius: 5px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; gap: 20px";
+            rental.style = "padding: 5px; margin-bottom: 5px; border-radius: 5px; display: flex; flex-direction: column; justify-content: space-between; align-items: center;";
             rental.innerHTML = `
               <div style="display: flex; flex-direction: row; border: 2px solid rgb(134, 181, 247); border-top-left-radius: 6px; border-top-right-radius: 6px; background-color: rgba(146, 187, 246, 0.52); width: 100%">
                 <strong style="padding: 5px; font-size: 25px;">

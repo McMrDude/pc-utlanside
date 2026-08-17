@@ -435,7 +435,7 @@ h5 {
     max-height: 95vh;
     overflow-y: auto;
     margin: 0;
-    gap: 10px;
+    gap: 20px;
 
     display: none; 
     opacity: 0;
