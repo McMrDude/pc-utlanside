@@ -122,18 +122,20 @@ async function openCalendar() {
             rental.style = "padding: 5px; margin-bottom: 5px; border-radius: 5px; display: flex; flex-direction: column; justify-content: space-between; align-items: center;";
             rental.innerHTML = `
               <div style="display: flex; flex-direction: column; gap: 20px;>
-                <div style="display: flex; flex-direction: row; border: 2px solid rgb(134, 181, 247); border-top-left-radius: 6px; border-top-right-radius: 6px; background-color: rgba(146, 187, 246, 0.52); width: 100%">
-                  <strong style="padding: 5px; font-size: 25px;">
-                    Bruker: ${r.student_name}
-                  </strong><br>
-                  <strong style="border-left: 2px solid rgb(134, 181, 247); padding: 5px; font-size: 25px;">
-                    PC: ${r.pc_number}
-                  </strong>
-                </div>
-                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; border: 2px solid rgb(134, 181, 247); border-top: 0; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; background-color: rgba(184, 208, 242, 0.52); width: 100%">
-                  <h3 style="padding: 10px; margin: 0px; border-bottom: 2px solid rgb(134, 181, 247); align-self: stretch; text-align: center;">Rented: ${formattedRented}</h3>
-                  <h3 style="padding: 10px; margin: 0px;">Return: ${formattedReturn}</h3>
-                  <button class="popupDeleteBtn">✓</button>
+                <div>
+                  <div style="display: flex; flex-direction: row; border: 2px solid rgb(134, 181, 247); border-top-left-radius: 6px; border-top-right-radius: 6px; background-color: rgba(146, 187, 246, 0.52); width: 100%">
+                    <strong style="padding: 5px; font-size: 25px;">
+                      Bruker: ${r.student_name}
+                    </strong><br>
+                    <strong style="border-left: 2px solid rgb(134, 181, 247); padding: 5px; font-size: 25px;">
+                      PC: ${r.pc_number}
+                    </strong>
+                  </div>
+                  <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; border: 2px solid rgb(134, 181, 247); border-top: 0; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; background-color: rgba(184, 208, 242, 0.52); width: 100%">
+                    <h3 style="padding: 10px; margin: 0px; border-bottom: 2px solid rgb(134, 181, 247); align-self: stretch; text-align: center;">Rented: ${formattedRented}</h3>
+                    <h3 style="padding: 10px; margin: 0px;">Return: ${formattedReturn}</h3>
+                    <button class="popupDeleteBtn">✓</button>
+                  </div>
                 </div>
               </div>
             `;
