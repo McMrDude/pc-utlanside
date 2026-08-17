@@ -435,6 +435,14 @@ async function loadCalendarEvents() {
     if (r.status === "active") {
       const returnDate = new Date(r.return_date);
 
+      let rentalsThatDay = 0;
+
+      rentals.forEach(e => {
+        if (e.status === "active" && e.return_date === returnDate) {
+          rentalsThatDay + 1;
+        }
+      })
+
       const today = new Date();
       today.setHours(0, 0, 0, 0);
 
@@ -447,21 +455,39 @@ async function loadCalendarEvents() {
       else if (daysRemaining === 0) {color = "red", daysText = "Leveres i dag"}
       else if (daysRemaining <= 5) {color = "orange", daysText = "Skal snart leveres"}
 
-      calendarInstance.addEvent({
-        title: `${r.student_name} - PC ${r.pc_number}`,
-        start: returnDate.toISOString().split("T")[0],
-        display: "background",
-        color: color,
-        classNames: daysRemaining === 0 ? ["today-rental"] : [],
-        extendedProps: {
-          daysText: daysText,
-          id: r.id,
-          rentedDate: r.rented_date,
-          returnDate: r.return_date,
-          studentName: r.student_name,
-          pcNumber: r.pc_number
-        }
-      });
+      if (rentalsThatDay = 1) {
+        calendarInstance.addEvent({
+          title: `${r.student_name} - PC ${r.pc_number}`,
+          start: returnDate.toISOString().split("T")[0],
+          display: "background",
+          color: color,
+          classNames: daysRemaining === 0 ? ["today-rental"] : [],
+          extendedProps: {
+            daysText: daysText,
+            id: r.id,
+            rentedDate: r.rented_date,
+            returnDate: r.return_date,
+            studentName: r.student_name,
+            pcNumber: r.pc_number
+          }
+        });
+      } else if (rentalsThatDay > 1) {
+        calendarInstance.addEvent({
+          title: `${r.student_name} + ${rentalsThatDay - 1}`,
+          start: returnDate.toISOString().split("T")[0],
+          display: "background",
+          color: color,
+          classNames: daysRemaining === 0 ? ["today-rental"] : [],
+          extendedProps: {
+            daysText: daysText,
+            id: r.id,
+            rentedDate: r.rented_date,
+            returnDate: r.return_date,
+            studentName: r.student_name,
+            pcNumber: r.pc_number
+          }
+        });
+      };
     };
   });
   const todayButton = document.getElementsByClassName("fc-today-button")[0];
