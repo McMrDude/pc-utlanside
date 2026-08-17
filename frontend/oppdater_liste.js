@@ -115,6 +115,7 @@ async function openCalendar() {
             const rental = document.createElement("div");
             rental.style = "background-color: rgba(146, 187, 246, 0.52); padding: 5px; margin-bottom: 5px; border-radius: 5px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; gap: 10px;";
             rental.innerHTML = `
+              <button type="button" class="close-btn" style="position: absolute; top: 10px; right: 10px;" onclick="document.getElementById('eventPopup').classList.remove('is-visible'); document.getElementById('overlayBackground').classList.remove('is-visible')">X</button>
               <strong>
                 ${r.student_name} - PC ${r.pc_number}
               </strong><br>
