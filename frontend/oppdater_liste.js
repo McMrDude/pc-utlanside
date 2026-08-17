@@ -448,6 +448,10 @@ async function loadCalendarEvents() {
         }
       })
 
+      const dateString = new Date(r.return_date)
+      .toISOString()
+      .split("T")[0];
+
       if (addedDates.has(dateString)) {
         return;
       }
