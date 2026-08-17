@@ -438,7 +438,10 @@ async function loadCalendarEvents() {
       let rentalsThatDay = 0;
 
       rentals.forEach(e => {
-        if (e.status === "active" && e.return_date === returnDate) {
+        if (e.status === "active" && 
+          new Date(e.return_date).toISOString().split("T")[0] ===
+          returnDate.toISOString().split("T")[0]) 
+        {
           rentalsThatDay++;
         }
       })
