@@ -124,7 +124,7 @@ async function openCalendar() {
             `;
 
             const closeDiv = document.createElement("div");
-            closeDiv.style = "display: flex;"
+            closeDiv.style = "display: flex; justify-content: center; align-items: center;"
             closeDiv.innerHTML = `<button type="button" class="close-btn" style="position: absolute; top: 10px; right: 10px; margin-left: auto;" onclick="document.getElementById('eventPopup').classList.remove('is-visible'); document.getElementById('overlayBackground').classList.remove('is-visible')">X</button>`;
 
             popup.appendChild(closeDiv);
