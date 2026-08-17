@@ -486,9 +486,25 @@ async function loadCalendarEvents() {
             pcNumber: r.pc_number
           }
         });
-      } else if (rentalsThatDay > 1) {
+      } else if (rentalsThatDay = 2) {
         calendarInstance.addEvent({
-          title: `${r.student_name} + ${rentalsThatDay - 1}`,
+          title: `${r.student_name} + ${rentalsThatDay - 1} annen utlån`,
+          start: returnDate.toISOString().split("T")[0],
+          display: "background",
+          color: color,
+          classNames: daysRemaining === 0 ? ["today-rental"] : [],
+          extendedProps: {
+            daysText: daysText,
+            id: r.id,
+            rentedDate: r.rented_date,
+            returnDate: r.return_date,
+            studentName: r.student_name,
+            pcNumber: r.pc_number
+          }
+        });
+      } else {
+        calendarInstance.addEvent({
+          title: `${r.student_name} + ${rentalsThatDay - 1} andre utlån`,
           start: returnDate.toISOString().split("T")[0],
           display: "background",
           color: color,
