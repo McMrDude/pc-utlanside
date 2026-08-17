@@ -115,15 +115,15 @@ async function openCalendar() {
             const rental = document.createElement("div");
             rental.style = "padding: 5px; margin-bottom: 5px; border-radius: 5px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; gap: 10px;";
             rental.innerHTML = `
-              <div style="display: flex; flex-direction: row; background-color: rgba(146, 187, 246, 0.52);">
-                <strong style="border: 2px solid rgb(134, 181, 247); border-right: 0; border-top-left-radius: 6px">
+              <div style="display: flex; flex-direction: row; border: 2px solid rgb(134, 181, 247); border-bottom: 0; border-top-left-radius: 6px; border-top-right-radius: 6px; background-color: rgba(146, 187, 246, 0.52); width: 100%">
+                <strong>
                   Bruker: ${r.student_name}
                 </strong><br>
-                <strong style="border: 2px solid rgb(134, 181, 247); border-top-right-radius: 6px">
+                <strong style="border-left: 2px solid rgb(134, 181, 247);">
                   PC: ${r.pc_number}
                 </strong>
               </div>
-              <div style="border: 2px solid rgb(134, 181, 247); border-top: 0; border-bottom-left-radius: 6px; border-bottom-rigth-radius: 6px;">
+              <div style="border: 2px solid rgb(134, 181, 247); border-top: 0; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; width: 100%">
                 <h3 style="margin: 0px;">Rented: ${formattedRented}</h3><br>
                 <h3 style="margin: 0px;">Return: ${formattedReturn}</h3><br>
                 <button class="popupDeleteBtn">✓</button>
