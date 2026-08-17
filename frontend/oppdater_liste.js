@@ -488,7 +488,7 @@ async function loadCalendarEvents() {
         });
       } else if (rentalsThatDay = 2) {
         calendarInstance.addEvent({
-          title: `${r.student_name} + ${rentalsThatDay - 1} annen utlån`,
+          title: `${r.student_name} + ${rentalsThatDay - 1} et til utlån`,
           start: returnDate.toISOString().split("T")[0],
           display: "background",
           color: color,
