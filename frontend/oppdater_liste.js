@@ -431,6 +431,8 @@ async function loadCalendarEvents() {
 
   calendarInstance.getEvents().forEach(e => e.remove());
 
+  const addDates = new Set();
+
   rentals.forEach(r => {
     if (r.status === "active") {
       const returnDate = new Date(r.return_date);
@@ -445,6 +447,12 @@ async function loadCalendarEvents() {
           rentalsThatDay++;
         }
       })
+
+      if (addedDates.has(dateString)) {
+        return;
+      }
+
+      addedDates.add(dateString);
 
       const today = new Date();
       today.setHours(0, 0, 0, 0);
