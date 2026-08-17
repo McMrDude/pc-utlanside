@@ -527,12 +527,12 @@ if (searchInput) {
   });
 }
 
-document.addEventListener("click", function (e) {
+/* document.addEventListener("click", function (e) {
   if (!e.target.closest(".fc-event")) {
     popup.classList.remove("is-visible");
     document.getElementById('overlayBackground').classList.remove('is-visible')
   }
-});
+}); */
 
 /* =========================
    PC PAGE
