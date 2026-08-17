@@ -116,16 +116,18 @@ async function openCalendar() {
             rental.style = "padding: 5px; margin-bottom: 5px; border-radius: 5px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; gap: 10px;";
             rental.innerHTML = `
               <div style="display: flex; flex-direction: row; background-color: rgba(146, 187, 246, 0.52);">
-                <strong style="border: 2px solid rgb(134, 181, 247); border-right: 0;">
+                <strong style="border: 2px solid rgb(134, 181, 247); border-right: 0; border-top-left-radius: 6px">
                   Bruker: ${r.student_name}
                 </strong><br>
-                <strong style="border: 2px solid rgb(134, 181, 247);">
+                <strong style="border: 2px solid rgb(134, 181, 247); border-top-right-radius: 6px">
                   PC: ${r.pc_number}
                 </strong>
               </div>
-              <h3 style="margin: 0px;">Rented: ${formattedRented}</h3><br>
-              <h3 style="margin: 0px;">Return: ${formattedReturn}</h3><br>
-              <button class="popupDeleteBtn">✓</button>
+              <div style="border: 2px solid rgb(134, 181, 247); border-top: 0; border-bottom-left-radius: 6px; border-bottom-rigth-radius: 6px;">
+                <h3 style="margin: 0px;">Rented: ${formattedRented}</h3><br>
+                <h3 style="margin: 0px;">Return: ${formattedReturn}</h3><br>
+                <button class="popupDeleteBtn">✓</button>
+              </div>
             `;
 
             const closeDiv = document.createElement("div");
