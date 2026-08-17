@@ -116,10 +116,10 @@ async function openCalendar() {
             rental.style = "padding: 5px; margin-bottom: 5px; border-radius: 5px; display: flex; flex-direction: column; justify-content: space-between; align-items: center;";
             rental.innerHTML = `
               <div style="display: flex; flex-direction: row; border: 2px solid rgb(134, 181, 247); border-top-left-radius: 6px; border-top-right-radius: 6px; background-color: rgba(146, 187, 246, 0.52); width: 100%">
-                <strong style="padding: 5px; font-size: 30px;">
+                <strong style="padding: 5px; font-size: 25px;">
                   Bruker: ${r.student_name}
                 </strong><br>
-                <strong style="border-left: 2px solid rgb(134, 181, 247); padding: 5px; font-size: 30px;">
+                <strong style="border-left: 2px solid rgb(134, 181, 247); padding: 5px; font-size: 25px;">
                   PC: ${r.pc_number}
                 </strong>
               </div>
