@@ -123,8 +123,8 @@ async function openCalendar() {
                   PC: ${r.pc_number}
                 </strong>
               </div>
-              <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; border: 2px solid rgb(134, 181, 247); border-top: 0; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; width: 100%">
-                <h3 style="padding: 5px; margin: 0px;">Rented: ${formattedRented}</h3><br>
+              <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; border: 2px solid rgb(134, 181, 247); border-top: 0; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; background-color: rgba(184, 208, 242, 0.52); width: 100%">
+                <h3 style="padding: 5px; margin: 0px; border-down: 2px solid rgb(134, 181, 247);">Rented: ${formattedRented}</h3><br>
                 <h3 style="padding: 5px; margin: 0px;">Return: ${formattedReturn}</h3><br>
                 <button class="popupDeleteBtn">✓</button>
               </div>
