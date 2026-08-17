@@ -439,7 +439,7 @@ async function loadCalendarEvents() {
 
       rentals.forEach(e => {
         if (e.status === "active" && e.return_date === returnDate) {
-          rentalsThatDay += 1;
+          rentalsThatDay++;
         }
       })
 
