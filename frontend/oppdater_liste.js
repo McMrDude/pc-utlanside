@@ -465,11 +465,11 @@ async function loadCalendarEvents() {
       const daysRemaining =
         Math.ceil((returnDate - today) / (1000 * 60 * 60 * 24)) - 1;
 
-      let color = "rgba(154, 255, 139, 0.5)";
+      let color = "green";
       let daysText = "Lenge til levering";
-      if (daysRemaining < 0) {color = "darkred", daysText = "Ikke levert inn"}
-      else if (daysRemaining === 0) {color = "red", daysText = "Leveres i dag"}
-      else if (daysRemaining <= 5) {color = "orange", daysText = "Skal snart leveres"}
+      if (daysRemaining < 0) {color = "red", daysText = "Ikke levert inn"}
+      else if (daysRemaining === 0) {color = "pink", daysText = "Leveres i dag"}
+      else if (daysRemaining <= 5) {color = "lightorange", daysText = "Skal snart leveres"}
 
       if (rentalsThatDay <= 1) {
         calendarInstance.addEvent({
