@@ -431,7 +431,7 @@ async function loadCalendarEvents() {
 
   calendarInstance.getEvents().forEach(e => e.remove());
 
-  const addDates = new Set();
+  const addedDates = new Set();
 
   rentals.forEach(r => {
     if (r.status === "active") {
