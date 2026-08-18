@@ -183,8 +183,8 @@ p {
 
 #pcList {
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
-    /* width: 65%; */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
 }
 
 .editPC {
@@ -312,6 +312,27 @@ p {
 @starting-style {
     .overlayBackground.is-visible {
         opacity: 0;
+    }
+}
+
+
+.addPcForm {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 800px) {
+    .addPcForm {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .addPcForm input,
+    .addPcForm button {
+        width: 100%;
+        max-width: 400px;
     }
 }
 
