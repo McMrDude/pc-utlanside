@@ -117,6 +117,15 @@ p {
 .returnDue {
     color: red;
 }
+.fc-event {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fc-event-title {
+    text-align: center;
+}
 
 
 .loanContainer {
