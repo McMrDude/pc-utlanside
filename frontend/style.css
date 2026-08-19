@@ -87,6 +87,9 @@ body {
     padding: 0px;
     box-sizing: content-box;
 }
+#adminAlert * {
+    box-sizing: content-box;
+}
 
 .splash_art {
     display: flex;
