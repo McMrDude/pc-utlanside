@@ -407,14 +407,14 @@
           loanStatusTitle.textContent = "Du har en PC utlånt";
 
           loanStatusInfo.innerHTML = `
-            <div style="display: flex; flex-direction: column; width: 100%">
-              <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px; flex-basis: 47%;">
+            <div class="loanContainer">
+              <div class="loanInfo">
                 <p style="font-size: 35px; margin-bottom: 20px; font-weight: bold;">Utlån info</p>
                 <p style="font-size: 25px;">PC nummer: <strong>${activeRental.pc_number}</strong></p>
                 <p style="font-size: 25px;">Utlånt fra: <strong>${new Date(activeRental.rented_date).toLocaleDateString("no-NO")}</strong></p>
                 <p style="font-size: 25px;">Returneres: <strong>${new Date(activeRental.return_date).toLocaleDateString("no-NO")}</strong></p>
               </div>
-              <div id="miniCalendar" style="flex-basis: 50%; border: 2px solid blue; border-radius: 10px; margin: 10px; overflow: hidden; background-color: white;"></div>
+              <div class="miniCalendar"  id="miniCalendar"></div>
             </div>
           `;
 

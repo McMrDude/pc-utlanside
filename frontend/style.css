@@ -113,6 +113,52 @@ p {
     font-size: 20px;
 }
 
+
+.loanContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.loanInfo {
+    order: 2;
+
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 20px; 
+    flex-basis: 47%;
+}
+
+.miniCalendar {
+    order: 1;
+
+    flex-basis: 50%; 
+    border: 2px solid blue; 
+    border-radius: 10px; 
+    margin: 10px; 
+    overflow: hidden; 
+    background-color: white;
+}
+
+@media (max-width: 800px) {
+
+    .loanContainer {
+        flex-direction: column;
+    }
+
+    .loanInfo {
+        order: 1;
+    }
+
+    .miniCalendar {
+        order: 2;
+    }
+
+}
+
+
 .loading,
 .loading * {
     cursor: wait !important;
