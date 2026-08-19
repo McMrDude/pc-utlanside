@@ -515,35 +515,29 @@
 
         miniCalendar = new FullCalendar.Calendar(calendarElement, {
 
-            initialView: "dayGridMonth",
+        initialView: "dayGridMonth",
 
-            // This makes the calendar open on the month
-            // containing the return date
-            initialDate: returnDate,
+        initialDate: returnDate,
 
-            locale: "no",
+        locale: "no",
 
-            // Remove all navigation buttons
-            headerToolbar: {
-              left: "",
-              middle: "title",
-              right: ""
-            },
+        headerToolbar: {
+            left: "",
+            center: "title",
+            right: ""
+        },
 
-            // Make it smaller
-            height: "auto",
+        height: "auto",
 
-
-            // Highlight the return date
-            events: [
-                {
-                    start: returnDate,
-                    allDay: true,
-                    display: "background",
-                    backgroundColor: "rgba(255, 80, 80, 0.5)"
-                }
-            ]
-        });
+        events: [
+            {
+                start: returnDate,
+                allDay: true,
+                display: "background",
+                backgroundColor: "rgba(255, 80, 80, 0.5)"
+            }
+        ]
+    });
 
         miniCalendar.render();
     }
