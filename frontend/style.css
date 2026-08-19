@@ -114,6 +114,11 @@ p {
 }
 
 
+.returnDue {
+    color: red;
+}
+
+
 .loanContainer {
     display: flex;
     flex-direction: row;

@@ -390,29 +390,54 @@
 
       if (activeRental) {
 
-          loanStatusTitle.textContent = "Du har en PC utlånt";
+        const today = new Date();
+        const returnDateObj = new Date(activeRental.returnDate);
 
-          loanStatusInfo.innerHTML = `
-            <div class="loanContainer">
-              <div class="loanInfo">
-                <p style="font-size: 35px; margin-bottom: 20px; font-weight: bold;">Utlån info</p>
-                <p style="font-size: 25px;">PC nummer: <strong>${activeRental.pc_number}</strong></p>
-                <p style="font-size: 25px;">Utlånt fra: <strong>${new Date(activeRental.rented_date).toLocaleDateString("no-NO")}</strong></p>
-                <p style="font-size: 25px;">Returneres: <strong>${new Date(activeRental.return_date).toLocaleDateString("no-NO")}</strong></p>
-              </div>
-              <div class="miniCalendar"  id="miniCalendar"></div>
+        const todayOnly = new Date(
+          today.getFullYear(),
+          today.getMonth(),
+          today.getDate()
+        );
+        const returnDateOnly = new Date(
+          returnDateObj.getFullYear(),
+          returnDateObj.getMonth(),
+          returnDateObj.getDate()
+        );
+
+        const isReturnToday = todayOnly.getTime() === returnDateOnly.getTime();
+        const isOverdue = todayOnly > returnDateOnly;
+
+        let returnText = "Returneres: ";
+
+        if (isReturnToday) {
+          returnText = "⚠ RETURNERES I DAG: ";
+        } else if (isOverdue) {
+          returnText = "⚠ FOR SEN RETUR: ";
+        };
+
+        loanStatusTitle.textContent = "Du har en PC utlånt";
+
+        loanStatusInfo.innerHTML = `
+          <div class="loanContainer">
+            <div class="loanInfo">
+              <p style="font-size: 35px; margin-bottom: 20px; font-weight: bold;">Utlån info</p>
+              <p style="font-size: 25px;">PC nummer: <strong>${activeRental.pc_number}</strong></p>
+              <p style="font-size: 25px;">Utlånt fra: <strong>${new Date(activeRental.rented_date).toLocaleDateString("no-NO")}</strong></p>
+              <p class="loanText ${isReturnToday || isOverdue ? "returnDue" : ""}" style="font-size: 25px;">${returnText}<strong>${new Date(activeRental.return_date).toLocaleDateString("no-NO")}</strong></p>
             </div>
-          `;
+            <div class="miniCalendar"  id="miniCalendar"></div>
+          </div>
+        `;
 
-          loanPageButton.style.display = "none";
+        loanPageButton.style.display = "none";
 
 
-          const returnDate =
-            activeRental.return_date.split("T")[0];
+        const returnDate =
+          activeRental.return_date.split("T")[0];
 
-          createMiniCalendar(returnDate);
+        createMiniCalendar(returnDate);
 
-          return;
+        return;
       }
 
 
@@ -513,31 +538,39 @@
             miniCalendar.destroy();
         }
 
+        const today = new Date().toISOString().split("T")[0];
+
         miniCalendar = new FullCalendar.Calendar(calendarElement, {
 
-        initialView: "dayGridMonth",
+          initialView: "dayGridMonth",
 
-        initialDate: returnDate,
+          initialDate: returnDate,
 
-        locale: "no",
+          locale: "no",
 
-        headerToolbar: {
-            left: "",
-            center: "title",
-            right: ""
-        },
+          headerToolbar: {
+              left: "",
+              center: "title",
+              right: ""
+          },
 
-        height: "auto",
+          height: "auto",
 
-        events: [
-            {
+          events: [
+              {
+                start: today,
+                allDay: true,
+                display: "background",
+                backgroundColor: "rgba(100, 180, 255, 0.3)"
+              },
+              {
                 start: returnDate,
                 allDay: true,
                 display: "background",
                 backgroundColor: "rgba(255, 80, 80, 0.5)"
-            }
-        ]
-    });
+              }
+          ]
+        });
 
         miniCalendar.render();
     }
