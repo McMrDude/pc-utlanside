@@ -132,7 +132,7 @@ async function openCalendar() {
               <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; border: 2px solid rgb(134, 181, 247); border-top: 0; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; background-color: rgba(184, 208, 242, 0.52); width: 100%">
                 <h3 style="padding: 10px; margin: 0px; border-bottom: 2px solid rgb(134, 181, 247); align-self: stretch; text-align: center;">Rented: ${formattedRented}</h3>
                 <h3 style="padding: 10px; margin: 0px; border-bottom: 2px solid rgb(134, 181, 247); align-self: stretch; text-align: center;">Return: ${formattedReturn}</h3>
-                <button style="border-bottom-left-radius: 2px; border-bottom-right-radius: 6px" class="popupDeleteBtn">✓</button>
+                <button style="border-bottom-left-radius: 5px; border-bottom-right-radius: 5px" class="popupDeleteBtn">✓</button>
               </div>
             `;
 
