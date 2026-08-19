@@ -540,6 +540,8 @@
 
         const today = new Date().toISOString().split("T")[0];
 
+        const isReturnDateToday = returnDate === today;
+
         miniCalendar = new FullCalendar.Calendar(calendarElement, {
 
           initialView: "dayGridMonth",
@@ -561,7 +563,7 @@
                 title: "I dag",
                 start: today,
                 allDay: true,
-                display: "background",
+                display: isReturnDateToday ? "none" : "background",
                 backgroundColor: "rgba(100, 180, 255, 0.3)"
               },
               {
@@ -569,7 +571,7 @@
                 start: returnDate,
                 allDay: true,
                 display: "background",
-                backgroundColor: "rgba(255, 80, 80, 0.5)"
+                backgroundColor: isReturnDateToday ? "rgba(255, 80, 80, 0.5)" : "rgba(255, 30, 30, 0.8)"
               }
           ]
         });
