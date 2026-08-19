@@ -417,9 +417,9 @@
           <div class="loanContainer">
             <div class="loanInfo">
               <p style="font-size: 35px; margin-bottom: 20px; font-weight: bold;">Utlån info</p>
-              <p style="font-size: 25px;">PC nummer: <strong>${activeRental.pc_number}</strong></p>
-              <p style="font-size: 25px;">Utlånt fra: <strong>${new Date(activeRental.rented_date).toLocaleDateString("no-NO")}</strong></p>
-              <p class="loanText ${isReturnToday || isOverdue ? "returnDue" : ""}" style="font-size: 25px;">${returnText}<strong>${new Date(activeRental.return_date).toLocaleDateString("no-NO")}</strong></p>
+              <p style="font-size: 20px;">PC nummer: <strong>${activeRental.pc_number}</strong></p>
+              <p style="font-size: 20px;">Utlånt fra: <strong>${new Date(activeRental.rented_date).toLocaleDateString("no-NO")}</strong></p>
+              <p class="loanText ${isReturnToday || isOverdue ? "returnDue" : ""}" style="font-size: 20px;">${returnText}<strong>${new Date(activeRental.return_date).toLocaleDateString("no-NO")}</strong></p>
             </div>
             <div class="miniCalendar"  id="miniCalendar"></div>
           </div>
