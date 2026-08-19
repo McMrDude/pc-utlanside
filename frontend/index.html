@@ -540,7 +540,7 @@
 
         const today = new Date().toISOString().split("T")[0];
 
-        const isReturnDateToday = returnDate === today;
+        const isReturnDateToday = today >= returnDate;
 
         miniCalendar = new FullCalendar.Calendar(calendarElement, {
 
