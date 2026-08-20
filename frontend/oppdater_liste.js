@@ -434,8 +434,6 @@ async function loadCalendarEvents() {
 
   const addedDates = new Set();
 
-  const isPhone = window.matchMedia("(max-width: 800px)").matches;
-
   rentals.forEach(r => {
     if (r.status === "active") {
       const returnDate = new Date(r.return_date);
@@ -473,6 +471,7 @@ async function loadCalendarEvents() {
       else if (daysRemaining === 0) {color = "pink", daysText = "Leveres i dag"}
       else if (daysRemaining <= 5) {color = "lightorange", daysText = "Skal snart leveres"}
 
+      const isPhone = window.matchMedia("(max-width: 800px)").matches;
       let eventTitle;
 
       if (isPhone) {
