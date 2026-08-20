@@ -472,20 +472,29 @@ async function loadCalendarEvents() {
       else if (daysRemaining <= 5) {color = "lightorange", daysText = "Skal snart leveres"}
 
       const isPhone = window.matchMedia("(max-width: 800px)").matches;
+
       let eventTitle;
 
       if (isPhone) {
-        eventTitle = `PC ${r.pc_number}`;
-      } else {
-        if (rentalsThatDay <= 1) {
-          eventTitle = `${r.student_name} - PC ${r.pc_number}`
-        } else if (rentalsThatDay === 2) {
-          evenTitle = `${r.student_name} + et til utlån`
-        } else {
-          eventTitle = `${r.student_name} + ${rentalsThatDay - 1} andre utlån`
-        };
-      }
 
+          if (rentalsThatDay === 1) {
+              eventTitle = `PC ${r.pc_number}`;
+          } else {
+              eventTitle = `${rentalsThatDay} utlån`;
+          }
+
+      } else {
+
+          if (rentalsThatDay === 1) {
+              eventTitle = `${r.student_name} - PC ${r.pc_number}`;
+
+          } else if (rentalsThatDay === 2) {
+              eventTitle = `${r.student_name} + et til utlån`;
+
+          } else {
+              eventTitle = `${r.student_name} + ${rentalsThatDay - 1} andre utlån`;
+          }
+      }
 
       calendarInstance.addEvent({
           title: eventTitle,
@@ -972,3 +981,13 @@ async function savePC(e) {
 
   loadPCs();
 }
+
+let resizeTimer;
+
+window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+
+    resizeTimer = setTimeout(() => {
+        loadCalendarEvents();
+    }, 200);
+});
