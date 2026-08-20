@@ -657,6 +657,56 @@ h5 {
     text-align: center;
 }
 
+
+.adminMasterDiv {
+    display: flex; 
+    flex-direction: row; 
+    justify-content: center; 
+    align-items: flex-start; 
+    gap: 30px; 
+    width: 100%;
+}
+.pcTabel {
+    display: flex; 
+    flex-direction: column; 
+    flex: 1;
+    justify-content: center; 
+    align-items: center; 
+    background-color: rgb(248, 253, 255);
+    border: 2px rgba(172, 202, 244, 0.519) solid;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 5px 10px -6px black;
+    width: 100%;
+    max-width: 800px;
+}
+.requestList {
+    display: flex; 
+    flex-direction: column; 
+    flex: 2;
+    justify-content: center; 
+    align-items: center; 
+    background-color: rgba(178, 209, 252, 0.519);
+    border: 2px rgba(172, 202, 244, 0.519) solid;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    box-shadow: 0 5px 10px -6px black;
+}
+@media (max-width: 800px) {
+    .adminMasterDiv {
+        flex-direction: column; 
+    }
+
+    .pcTabel {
+        flex: 2;
+    }
+
+    .requestList {
+        flex: 1;
+    }
+}
 .pcDiv {
     min-width: 0;
     overflow-wrap: anywhere;

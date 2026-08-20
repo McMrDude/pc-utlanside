@@ -51,20 +51,8 @@
                 <div id="pcPage" style="display:flex; flex-direction: column; justify-content: center; align-items: center; padding:10px; width: 100% ">
                     <h2>PC Oversikt</h2>
 
-                    <div style="display: flex; flex-direction: row; justify-content: center; align-items: flex-start; gap: 30px; width: 100%;">
-                        <div style="
-                            display: flex; 
-                            flex-direction: column; 
-                            justify-content: center; 
-                            align-items: center; 
-                            background-color: rgb(248, 253, 255);
-                            border: 2px rgba(172, 202, 244, 0.519) solid;
-                            border-radius: 15px;
-                            padding: 20px;
-                            box-shadow: 0 5px 10px -6px black;
-                            width: 100%;
-                            max-width: 800px;
-                        ">
+                    <div class="adminMasterDiv">
+                        <div class="pcTabel">
                             <h3 style="font-size: 20px; margin-top: 0;">Legg til PC-er</h3>
                             <div class="addPcForm">
                                 <input class="inputs" id="pcNumber" placeholder="PC-nr..." style="
@@ -103,19 +91,7 @@
                             <h3 style="font-size: 30px; margin-top: 0;">Alle PC-er</h3>
                             <div id="pcList" style="width: 100%; min-width: 0"></div>
                         </div>
-                        <div style="
-                            display: flex; 
-                            flex-direction: column; 
-                            justify-content: center; 
-                            align-items: center; 
-                            background-color: rgba(178, 209, 252, 0.519);
-                            border: 2px rgba(172, 202, 244, 0.519) solid;
-                            border-radius: 15px;
-                            width: 100%;
-                            max-width: 450px;
-                            margin: 0 auto;
-                            box-shadow: 0 5px 10px -6px black;
-                        ">
+                        <div class="requestList">
                             <h3 style="font-size: clamp(15px, 3vw, 30px); margin-top: 10px;">Forespørsler</h3>
                             <div id="requestList"></div>
                         </div>
