@@ -483,6 +483,7 @@ async function loadCalendarEvents() {
               eventTitle = `${rentalsThatDay} utlån`;
           }
 
+          daysText = "";
       } else {
 
           if (rentalsThatDay === 1) {
