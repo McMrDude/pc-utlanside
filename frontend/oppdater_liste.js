@@ -434,6 +434,8 @@ async function loadCalendarEvents() {
 
   const addedDates = new Set();
 
+  const isPhone = window.matchMedia("(max-width: 800px)").matches;
+
   rentals.forEach(r => {
     if (r.status === "active") {
       const returnDate = new Date(r.return_date);
@@ -471,41 +473,23 @@ async function loadCalendarEvents() {
       else if (daysRemaining === 0) {color = "pink", daysText = "Leveres i dag"}
       else if (daysRemaining <= 5) {color = "lightorange", daysText = "Skal snart leveres"}
 
-      if (rentalsThatDay <= 1) {
-        calendarInstance.addEvent({
-          title: `${r.student_name} - PC ${r.pc_number}`,
-          start: returnDate.toISOString().split("T")[0],
-          display: "background",
-          color: color,
-          classNames: daysRemaining === 0 ? ["today-rental"] : [],
-          extendedProps: {
-            daysText: daysText,
-            id: r.id,
-            rentedDate: r.rented_date,
-            returnDate: r.return_date,
-            studentName: r.student_name,
-            pcNumber: r.pc_number
-          }
-        });
-      } else if (rentalsThatDay = 2) {
-        calendarInstance.addEvent({
-          title: `${r.student_name} + et til utlån`,
-          start: returnDate.toISOString().split("T")[0],
-          display: "background",
-          color: color,
-          classNames: daysRemaining === 0 ? ["today-rental"] : [],
-          extendedProps: {
-            daysText: daysText,
-            id: r.id,
-            rentedDate: r.rented_date,
-            returnDate: r.return_date,
-            studentName: r.student_name,
-            pcNumber: r.pc_number
-          }
-        });
+      let eventTitle;
+
+      if (isPhone) {
+        eventTitle = `PC ${r.pc_number}`;
       } else {
-        calendarInstance.addEvent({
-          title: `${r.student_name} + ${rentalsThatDay - 1} andre utlån`,
+        if (rentalsThatDay <= 1) {
+          eventTitle = `${r.student_name} - PC ${r.pc_number}`
+        } else if (rentalsThatDay === 2) {
+          evenTitle = `${r.student_name} + et til utlån`
+        } else {
+          eventTitle = `${r.student_name} + ${rentalsThatDay - 1} andre utlån`
+        };
+      }
+
+
+      calendarInstance.addEvent({
+          title: eventTitle,
           start: returnDate.toISOString().split("T")[0],
           display: "background",
           color: color,
@@ -519,7 +503,6 @@ async function loadCalendarEvents() {
             pcNumber: r.pc_number
           }
         });
-      };
 
       console.log("Current pc for this date: ", rentalsThatDay, ".  Date: ", returnDate);
     };
