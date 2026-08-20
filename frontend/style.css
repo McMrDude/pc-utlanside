@@ -434,6 +434,22 @@ p {
     justify-content: center;
     align-items: center;
 }
+.addPcForm input {
+    width: 100%;
+    max-width: 250px; 
+    height: auto; 
+    border-radius: 10px;
+    border: 2px rgb(136, 134, 157) solid;
+    background-color: rgba(222, 236, 255, 0.644);
+}
+.addPcForm button {
+    cursor: pointer;
+    background-color: rgb(78, 131, 146);
+    border: 2px solid rgb(32, 81, 82);
+    border-radius: 7px;
+    height: 100%;  
+    max-height: 60px; 
+}
 
 @media (max-width: 800px) {
     .addPcForm {
